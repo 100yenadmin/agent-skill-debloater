@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-debloater",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
   "type": "module",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "bin/",
     "catalogs/",
     "docs/",
-    "evals/",
+    "evals/skill-routing-evals/v0/scenarios.json",
     "locks/",
     "overlays/",
     "packs/",

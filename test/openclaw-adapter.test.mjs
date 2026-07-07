@@ -150,11 +150,42 @@ test("agent-skill-debloater exposes the OpenClaw adapter search command", () => 
   assert.equal(response.selectedSkillTrace.name, "baoyu-cover-image");
 });
 
+test("OpenClaw adapter CLI resolves read paths from AGENT_SKILL_DEBLOATER_PACK_ROOTS", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      "bin/agent-skill-debloater",
+      "openclaw-adapter",
+      "search",
+      "design",
+      "launch hero cover image",
+      "--catalog-dir",
+      fileURLToPath(fixtureDir)
+    ],
+    {
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        AGENT_SKILL_DEBLOATER_PACK_ROOTS: JSON.stringify({
+          "jimliu/baoyu-skills": "/env/packs/baoyu-skills"
+        })
+      }
+    }
+  );
+  const response = JSON.parse(output);
+
+  assert.equal(
+    response.candidates[0].readPath,
+    "/env/packs/baoyu-skills/skills/baoyu-cover-image/SKILL.md"
+  );
+  assert.equal(response.selectedSkillTrace.readPath, response.candidates[0].readPath);
+});
+
 test("Codex plugin manifest exposes router skills and keeps runtime policy in the package", async () => {
   const manifest = JSON.parse(await readFile(new URL("../.codex-plugin/plugin.json", import.meta.url), "utf8"));
 
   assert.equal(manifest.name, "agent-skill-debloater");
-  assert.equal(manifest.version, "1.0.0");
+  assert.equal(manifest.version, "1.0.1");
   assert.equal(manifest.skills, "./skills/");
   assert.equal(manifest.repository, "https://github.com/100yenadmin/agent-skill-debloater");
   assert.equal(manifest.interface.displayName, "AgentSkillDebloater");

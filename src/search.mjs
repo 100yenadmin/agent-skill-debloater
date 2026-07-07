@@ -696,7 +696,40 @@ export function parsePackRoot(value) {
   if (separator === -1) {
     throw new Error(`--pack-root must be PACK=PATH, received ${value}`);
   }
-  return [value.slice(0, separator), value.slice(separator + 1)];
+  const pack = value.slice(0, separator);
+  const root = value.slice(separator + 1);
+  if (!pack || !root) {
+    throw new Error(`--pack-root must be PACK=PATH with non-empty values, received ${value}`);
+  }
+  return [pack, root];
+}
+
+export function parsePackRootsEnv(value = process.env.AGENT_SKILL_DEBLOATER_PACK_ROOTS) {
+  if (value === undefined || value === null || value === "") return Object.create(null);
+
+  let parsed;
+  try {
+    parsed = JSON.parse(value);
+  } catch {
+    throw new Error("AGENT_SKILL_DEBLOATER_PACK_ROOTS must be a JSON object of pack id to root path");
+  }
+
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("AGENT_SKILL_DEBLOATER_PACK_ROOTS must be a JSON object of pack id to root path");
+  }
+
+  const packRoots = Object.create(null);
+  for (const [pack, root] of Object.entries(parsed)) {
+    if (!pack || typeof pack !== "string") {
+      throw new Error("AGENT_SKILL_DEBLOATER_PACK_ROOTS pack ids must be non-empty strings");
+    }
+    if (!root || typeof root !== "string") {
+      throw new Error(`AGENT_SKILL_DEBLOATER_PACK_ROOTS root for ${pack} must be a non-empty string`);
+    }
+    packRoots[pack] = root;
+  }
+
+  return packRoots;
 }
 
 export function defaultCatalogDir() {

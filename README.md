@@ -63,6 +63,12 @@ debloat-skill-search design "architecture diagram" \
   --pack-root jimliu/baoyu-skills=/path/to/baoyu-skills
 ```
 
+Hosts can provide pack roots once for all router skill searches:
+
+```bash
+export AGENT_SKILL_DEBLOATER_PACK_ROOTS='{"jimliu/baoyu-skills":"/path/to/baoyu-skills"}'
+```
+
 The default search engine attempts SQLite FTS5 candidate retrieval followed by
 the same deterministic scoring/boosts used by the JSON fallback. If SQLite FTS5
 is not available in the host Node build, the query cannot be represented safely
