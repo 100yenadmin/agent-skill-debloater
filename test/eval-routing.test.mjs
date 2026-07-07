@@ -103,6 +103,36 @@ test("routing eval rejects empty or zero-positive scenario suites", async () => 
   await assert.rejects(runRoutingEval(zeroPositivePath, { catalogDir: fixtureCatalogDir }), /positive expectedSkill/);
 });
 
+test("routing eval rejects mustRank1 scenarios without expectedSkill", async () => {
+  const tmpRoot = new URL("./.test-tmp/eval-routing-malformed/", import.meta.url);
+  await rm(tmpRoot, { force: true, recursive: true });
+  await mkdir(tmpRoot, { recursive: true });
+  const scenarioPath = new URL("scenarios.json", tmpRoot);
+  await writeFile(
+    scenarioPath,
+    JSON.stringify([
+      {
+        id: "fixture-positive",
+        studio: "marketing",
+        prompt: "SEO content plan",
+        expectedSkill: "ai-seo"
+      },
+      {
+        id: "malformed-must-rank-1",
+        studio: "marketing",
+        prompt: "Repair a database issue.",
+        expectedSkill: null,
+        mustRank1: true
+      }
+    ])
+  );
+
+  await assert.rejects(
+    runRoutingEval(scenarioPath, { catalogDir: fixtureCatalogDir }),
+    /malformed-must-rank-1 sets mustRank1 without expectedSkill/
+  );
+});
+
 test("routing eval threshold checks use raw metrics before display rounding", () => {
   const failures = thresholdFailures({
     recallAt3: 0.9496,

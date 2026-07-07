@@ -67,6 +67,26 @@ test("catalog schema rejects unknown capability labels", async () => {
   );
 });
 
+test("catalog schema resolves capability labels from the shared capability schema", async () => {
+  const rawSchema = await readJson(path.join(repoRoot, "schemas/catalog.schema.json"));
+  assert.equal(rawSchema.items.properties.capabilities.items.$ref, "./capabilities.schema.json");
+
+  const schema = await loadJsonSchema("catalog.schema.json");
+  assert.deepEqual(
+    schema.items.properties.capabilities.items.enum,
+    [
+      "read-only",
+      "file-write",
+      "network",
+      "browser",
+      "external-posting",
+      "api-key-use",
+      "customer-data",
+      "dangerous"
+    ]
+  );
+});
+
 test("catalog schema rejects non-portable skill paths", async () => {
   const schema = await loadJsonSchema("catalog.schema.json");
   const baseEntry = {

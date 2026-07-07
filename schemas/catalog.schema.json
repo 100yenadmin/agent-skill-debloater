@@ -72,17 +72,7 @@
         "minItems": 1,
         "uniqueItems": true,
         "items": {
-          "type": "string",
-          "enum": [
-            "read-only",
-            "file-write",
-            "network",
-            "browser",
-            "external-posting",
-            "api-key-use",
-            "customer-data",
-            "dangerous"
-          ]
+          "$ref": "./capabilities.schema.json"
         }
       },
       "sourceCommit": {

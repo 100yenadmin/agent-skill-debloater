@@ -84,6 +84,13 @@ function assertLockedBlobUrl(value, packId, resolvedSha, label) {
   }
 }
 
+function assertValidLock(packId, lock, { missingShaLabel = `Lock ${packId}` } = {}) {
+  assertCanonicalRepoUrl(packId, lock.repoUrl, `Lock ${packId} repoUrl`);
+  if (!/^[a-f0-9]{40}$/.test(lock.resolvedSha ?? "")) {
+    throw new Error(`${missingShaLabel} is missing a 40-character resolvedSha`);
+  }
+}
+
 function assertManifestPathPattern(pattern, label) {
   assertPortableRelativePath(pattern, label, { allowGlob: true });
 }
@@ -220,11 +227,8 @@ export async function checkPackMetadata({ root = repoRoot } = {}) {
     if (pack.pinPolicy === "sha" && !lockRecord) {
       throw new Error(`Pack ${packId} uses pinPolicy=sha but has no lockfile`);
     }
-    if (lock && !/^[a-f0-9]{40}$/.test(lock.resolvedSha ?? "")) {
-      throw new Error(`Pack ${packId} lockfile is missing a 40-character resolvedSha`);
-    }
     if (lock) {
-      assertCanonicalRepoUrl(packId, lock.repoUrl, `Lock ${packId} repoUrl`);
+      assertValidLock(packId, lock, { missingShaLabel: `Pack ${packId} lockfile` });
     }
     if (lock && stripTrailingSlash(pack.repoUrl) !== stripTrailingSlash(lock.repoUrl)) {
       throw new Error(`Pack ${packId} repoUrl does not match lock repoUrl`);
@@ -236,10 +240,7 @@ export async function checkPackMetadata({ root = repoRoot } = {}) {
     if (!packs.has(packId)) {
       throw new Error(`Lockfile references undeclared pack ${packId}`);
     }
-    assertCanonicalRepoUrl(packId, lock.repoUrl, `Lock ${packId} repoUrl`);
-    if (!/^[a-f0-9]{40}$/.test(lock.resolvedSha ?? "")) {
-      throw new Error(`Lock ${packId} is missing a 40-character resolvedSha`);
-    }
+    assertValidLock(packId, lock);
     for (const catalogPath of lock.catalogs ?? []) {
       assertPortableRelativePath(catalogPath, `Lock ${packId} catalogs entry`);
       if (!catalogFiles.has(catalogPath)) {

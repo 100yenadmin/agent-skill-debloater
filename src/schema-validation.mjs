@@ -122,9 +122,54 @@ export function validateJsonWithSchema(value, schema, { label = "JSON artifact" 
   }
 }
 
+function schemaFileFromRef(ref) {
+  const [file, pointer = ""] = ref.split("#");
+  if (!file || pointer) {
+    throw new Error(`Unsupported schema $ref: ${ref}`);
+  }
+  if (file.includes("/") && !file.startsWith("./")) {
+    throw new Error(`Schema $ref must be local to schemas/: ${ref}`);
+  }
+  return file.replace(/^\.\//, "");
+}
+
+async function resolveSchemaRefs(value, { schemaDir, seen = new Set() }) {
+  if (Array.isArray(value)) {
+    return Promise.all(value.map((item) => resolveSchemaRefs(item, { schemaDir, seen })));
+  }
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+  if (typeof value.$ref === "string") {
+    const refFile = schemaFileFromRef(value.$ref);
+    if (seen.has(refFile)) {
+      throw new Error(`Circular schema $ref: ${[...seen, refFile].join(" -> ")}`);
+    }
+    const refPath = path.join(schemaDir, refFile);
+    const refSchema = JSON.parse(await readFile(refPath, "utf8"));
+    const resolvedRef = await resolveSchemaRefs(refSchema, {
+      schemaDir,
+      seen: new Set([...seen, refFile])
+    });
+    const { $ref, ...siblings } = value;
+    const resolvedSiblings = await resolveSchemaRefs(siblings, { schemaDir, seen });
+    return Object.keys(resolvedSiblings).length ? { ...resolvedRef, ...resolvedSiblings } : resolvedRef;
+  }
+
+  const resolved = {};
+  for (const [key, child] of Object.entries(value)) {
+    resolved[key] = await resolveSchemaRefs(child, { schemaDir, seen });
+  }
+  return resolved;
+}
+
 export async function loadJsonSchema(name, { schemaDir = path.join(repoRoot, "schemas") } = {}) {
   const schemaPath = path.join(schemaDir, name);
-  return JSON.parse(await readFile(schemaPath, "utf8"));
+  const schema = JSON.parse(await readFile(schemaPath, "utf8"));
+  return resolveSchemaRefs(schema, {
+    schemaDir,
+    seen: new Set([name])
+  });
 }
 
 export async function validateArtifactSchema(value, dir, { label, schemaDir } = {}) {

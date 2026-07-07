@@ -17,6 +17,22 @@ function rankOf(results, expected) {
   return index === -1 ? null : index + 1;
 }
 
+function validateScenario(scenario, index) {
+  const label = scenario.id ?? `scenario[${index}]`;
+  if (!scenario.id) {
+    throw new Error(`Routing eval scenario[${index}] is missing id`);
+  }
+  if (!scenario.studio) {
+    throw new Error(`Routing eval ${label} is missing studio`);
+  }
+  if (typeof scenario.prompt !== "string" || !scenario.prompt.trim()) {
+    throw new Error(`Routing eval ${label} is missing prompt`);
+  }
+  if (scenario.mustRank1 && !scenario.expectedSkill) {
+    throw new Error(`Routing eval ${label} sets mustRank1 without expectedSkill`);
+  }
+}
+
 function summarize(rows) {
   if (rows.length === 0) {
     throw new Error("Routing eval requires at least one scenario");
@@ -87,6 +103,7 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
   if (scenarios.length === 0) {
     throw new Error("Routing eval requires at least one scenario");
   }
+  scenarios.forEach(validateScenario);
   const catalogsByStudio = new Map();
   for (const studio of [...new Set(scenarios.map((scenario) => scenario.studio))]) {
     catalogsByStudio.set(studio, await loadCatalog({ studio, ...(catalogDir ? { catalogDir } : {}) }));
