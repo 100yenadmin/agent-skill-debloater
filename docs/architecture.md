@@ -15,8 +15,8 @@ studio router skills, then searching catalogs that point at upstream skill files
 
 ## Flow
 
-1. A visible role studio skill is triggered, such as `design-studio` or
-   `marketing-studio`.
+1. A visible role studio skill is triggered, such as `design-studio`,
+   `marketing-studio`, `ceo-studio`, or `engineering-studio`.
 2. The router runs `debloat-skill-search <studio> "<query>" --limit 3`.
 3. Search returns compact candidate cards with source, confidence, capabilities,
    reason codes, and a read path.

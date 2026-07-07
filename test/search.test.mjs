@@ -69,6 +69,65 @@ test("search isolates studios so marketing prompts do not return design skills",
   assert.ok(results.every((entry) => entry.studio === "marketing"));
 });
 
+test("CEO catalog routes founder and operating prompts", async () => {
+  const catalog = await loadCatalog({ studio: "ceo" });
+
+  assert.equal(searchCatalog(catalog, "think bigger and rethink this plan")[0].name, "plan-ceo-review");
+  assert.equal(searchCatalog(catalog, "run a CSO security audit")[0].name, "cso");
+  assert.equal(searchCatalog(catalog, "update docs after this release")[0].name, "document-release");
+});
+
+test("engineering catalog routes implementation, debugging, review, and subagent prompts", async () => {
+  const catalog = await loadCatalog({ studio: "engineering" });
+
+  assert.equal(searchCatalog(catalog, "implement this PRD with tests")[0].name, "implement");
+  assert.equal(
+    searchCatalog(catalog, "debug this flaky production bug systematically before proposing fixes")[0].name,
+    "systematic-debugging"
+  );
+  {
+    const debugResults = searchCatalog(catalog, "debug this flaky production bug", { limit: 3 });
+    assert.equal(debugResults[0].name, "diagnosing-bugs");
+    assert.ok(
+      debugResults[0].score - debugResults[1].score >= 20,
+      `expected diagnosing-bugs to have a durable margin, got ${debugResults[0].score} vs ${debugResults[1].score}`
+    );
+  }
+  assert.equal(searchCatalog(catalog, "use TDD and red-green-refactor")[0].name, "tdd");
+  assert.equal(
+    searchCatalog(catalog, "dispatch subagents for parallel engineering tasks")[0].name,
+    "dispatching-parallel-agents"
+  );
+  assert.equal(
+    searchCatalog(catalog, "Use Matt Pocock code review for a two-axis standards and spec review")[0].name,
+    "code-review"
+  );
+  assert.equal(searchCatalog(catalog, "red-green-refactor this feature test first")[0].name, "tdd");
+});
+
+test("engineering catalog exposes risky external capability labels", async () => {
+  const catalog = await loadCatalog({ studio: "engineering" });
+  const byName = new Map(catalog.map((entry) => [entry.name, entry]));
+  const requires = {
+    "land-and-deploy": ["network", "external-posting", "dangerous"],
+    ship: ["network", "external-posting", "dangerous"],
+    spec: ["network", "external-posting"],
+    "to-issues": ["network", "external-posting"],
+    "to-prd": ["network", "external-posting"],
+    triage: ["network", "external-posting"],
+    "benchmark-models": ["network", "api-key-use"],
+    "setup-browser-cookies": ["browser", "customer-data"]
+  };
+
+  for (const [name, capabilities] of Object.entries(requires)) {
+    const entry = byName.get(name);
+    assert.ok(entry, `missing ${name}`);
+    for (const capability of capabilities) {
+      assert.ok(entry.capabilities.includes(capability), `${name} must include ${capability}`);
+    }
+  }
+});
+
 test("search uses SQLite FTS candidates by default before deterministic scoring", async () => {
   const catalog = await loadCatalog({ studio: "marketing", catalogDir: fixtureDir });
   const queryTokens = ["seo", "content", "plan"];

@@ -11,8 +11,18 @@ const THRESHOLDS = {
   wrongCategoryMaxCount: 1,
   ambiguityRate: 0.2,
   negativeFalsePositive: 0,
-  mustRank1Failures: 0
+  mustRank1Failures: 0,
+  curatedIntentRecallAt3: 0.95,
+  curatedIntentMrrAt3: 0.85,
+  curatedIntentTop1: 0.8,
+  curatedIntentNegativeFalsePositive: 0,
+  curatedIntentMustRank1Failures: 0,
+  minHardNegativeStudios: 4,
+  minOverlapClusters: 2
 };
+
+const DEFAULT_SCENARIO_GROUP = "curated-intent";
+const VALID_SCENARIO_GROUPS = new Set([DEFAULT_SCENARIO_GROUP, "generated-provenance"]);
 
 function rankOf(results, expected) {
   const index = results.findIndex((entry) => entry.name === expected);
@@ -39,6 +49,14 @@ function validateScenario(scenario, index) {
     typeof scenario.expectedStudio !== "string"
   ) {
     throw new Error(`Routing eval ${label} expectedStudio must be a string or null`);
+  }
+  if (Object.hasOwn(scenario, "scenarioGroup") && !VALID_SCENARIO_GROUPS.has(scenario.scenarioGroup)) {
+    throw new Error(
+      `Routing eval ${label} scenarioGroup must be one of ${[...VALID_SCENARIO_GROUPS].join(", ")}`
+    );
+  }
+  if (Object.hasOwn(scenario, "overlapCluster") && typeof scenario.overlapCluster !== "string") {
+    throw new Error(`Routing eval ${label} overlapCluster must be a string`);
   }
 }
 
@@ -82,7 +100,40 @@ function summarize(rows) {
   };
 }
 
-export function thresholdFailures(metrics) {
+function summarizeOptional(rows) {
+  return rows.length === 0 ? null : summarize(rows);
+}
+
+function rowsByGroup(rows) {
+  return rows.reduce((groups, row) => {
+    const existing = groups.get(row.scenarioGroup) ?? [];
+    existing.push(row);
+    groups.set(row.scenarioGroup, existing);
+    return groups;
+  }, new Map());
+}
+
+function hardNegativeStudios(rows) {
+  return [
+    ...new Set(
+      rows
+        .filter((row) => !row.expectedSkill && row.expectedSelectedStudio === null)
+        .map((row) => row.expectedStudio)
+    )
+  ].sort();
+}
+
+function overlapClusters(rows) {
+  return [
+    ...new Set(
+      rows
+        .map((row) => row.overlapCluster)
+        .filter(Boolean)
+    )
+  ].sort();
+}
+
+export function thresholdFailures(metrics, { metricsByGroup = {}, coverage = {} } = {}) {
   const failures = [];
   if (metrics.recallAt3 < THRESHOLDS.recallAt3) failures.push(`Recall@3 ${metrics.recallAt3}`);
   if (metrics.mrrAt3 < THRESHOLDS.mrrAt3) failures.push(`MRR@3 ${metrics.mrrAt3}`);
@@ -103,6 +154,39 @@ export function thresholdFailures(metrics) {
   }
   if (metrics.mustRank1FailureCount > THRESHOLDS.mustRank1Failures) {
     failures.push(`must-rank-1 ${metrics.mustRank1FailureCount} failures`);
+  }
+  const hasGroupedInputs = Object.keys(metricsByGroup).length > 0 || Object.keys(coverage).length > 0;
+  if (hasGroupedInputs) {
+    const curated = metricsByGroup[DEFAULT_SCENARIO_GROUP];
+    if (!curated) {
+      failures.push("curated-intent metrics missing");
+    } else {
+      if (curated.recallAt3 < THRESHOLDS.curatedIntentRecallAt3) {
+        failures.push(`curated-intent Recall@3 ${curated.recallAt3}`);
+      }
+      if (curated.mrrAt3 < THRESHOLDS.curatedIntentMrrAt3) {
+        failures.push(`curated-intent MRR@3 ${curated.mrrAt3}`);
+      }
+      if (curated.top1 < THRESHOLDS.curatedIntentTop1) {
+        failures.push(`curated-intent Top1 ${curated.top1}`);
+      }
+      if (curated.negativeFalsePositive > THRESHOLDS.curatedIntentNegativeFalsePositive) {
+        failures.push(
+          `curated-intent negative-false-positive ${curated.negativeFalsePositive} (${curated.negativeFalsePositiveCount ?? 0} false positives)`
+        );
+      }
+      if (curated.mustRank1FailureCount > THRESHOLDS.curatedIntentMustRank1Failures) {
+        failures.push(`curated-intent must-rank-1 ${curated.mustRank1FailureCount} failures`);
+      }
+    }
+    if ((coverage.hardNegativeStudios?.length ?? 0) < THRESHOLDS.minHardNegativeStudios) {
+      failures.push(
+        `hard-negative studio coverage ${coverage.hardNegativeStudios?.length ?? 0}/${THRESHOLDS.minHardNegativeStudios}`
+      );
+    }
+    if ((coverage.overlapClusters?.length ?? 0) < THRESHOLDS.minOverlapClusters) {
+      failures.push(`overlap cluster coverage ${coverage.overlapClusters?.length ?? 0}/${THRESHOLDS.minOverlapClusters}`);
+    }
   }
   return failures;
 }
@@ -148,7 +232,10 @@ function rowFailureReasons(row) {
 }
 
 export function buildRoutingEvalReport(result) {
-  const failures = thresholdFailures(result.metrics);
+  const failures = thresholdFailures(result.metrics, {
+    metricsByGroup: result.metricsByGroup,
+    coverage: result.coverage
+  });
   const rows = result.rows.map((row) => ({
     ...row,
     failureReasons: rowFailureReasons(row)
@@ -159,6 +246,8 @@ export function buildRoutingEvalReport(result) {
     scenarioCount: rows.length,
     thresholds: result.thresholds,
     metrics: result.metrics,
+    metricsByGroup: result.metricsByGroup,
+    coverage: result.coverage,
     thresholdFailures: failures,
     failureRows: rows
       .filter((row) => row.failureReasons.length > 0)
@@ -169,6 +258,8 @@ export function buildRoutingEvalReport(result) {
         expectedSelectedStudio: row.expectedSelectedStudio,
         selectedStudio: row.selectedStudio,
         expectedSkill: row.expectedSkill,
+        scenarioGroup: row.scenarioGroup,
+        overlapCluster: row.overlapCluster,
         selectedSkill: row.selectedSkill,
         rank: row.rank,
         failureReasons: row.failureReasons,
@@ -190,6 +281,8 @@ export function buildRoutingEvalReport(result) {
       })),
     auditTraces: rows.map((row) => ({
       id: row.id,
+      scenarioGroup: row.scenarioGroup,
+      overlapCluster: row.overlapCluster,
       selectedStudio: row.selectedStudio,
       selectedSkill: row.selectedSkill,
       selectedSkillTrace: row.selectedSkillTrace,
@@ -242,6 +335,8 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
     rows.push({
       id: scenario.id,
       prompt: scenario.prompt,
+      scenarioGroup: scenario.scenarioGroup ?? DEFAULT_SCENARIO_GROUP,
+      overlapCluster: scenario.overlapCluster ?? null,
       expectedStudio: scenario.studio,
       expectedSelectedStudio,
       selectedStudio,
@@ -260,11 +355,22 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
     });
   }
 
+  const groupedRows = rowsByGroup(rows);
+  const metricsByGroup = Object.fromEntries(
+    [...groupedRows].map(([group, groupRows]) => [group, summarizeOptional(groupRows)])
+  );
+  const coverage = {
+    hardNegativeStudios: hardNegativeStudios(rows.filter((row) => row.scenarioGroup === DEFAULT_SCENARIO_GROUP)),
+    overlapClusters: overlapClusters(rows.filter((row) => row.scenarioGroup === DEFAULT_SCENARIO_GROUP))
+  };
+
   return {
     suite: "skill-routing-evals/v0",
     thresholds: THRESHOLDS,
     rows,
-    metrics: summarize(rows)
+    metrics: summarize(rows),
+    metricsByGroup,
+    coverage
   };
 }
 
@@ -326,6 +432,8 @@ async function main() {
         scenarioCount: report.scenarioCount,
         thresholds: report.thresholds,
         metrics: report.metrics,
+        metricsByGroup: report.metricsByGroup,
+        coverage: report.coverage,
         thresholdFailures: report.thresholdFailures,
         failureRows: report.failureRows,
         ambiguityRows: report.ambiguityRows

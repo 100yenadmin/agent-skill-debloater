@@ -1,0 +1,2670 @@
+[
+  {
+    "name": "ask-matt",
+    "title": "Ask Matt",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/ask-matt/SKILL.md",
+    "description": "Ask which skill or flow fits your situation. A router over the skills in this repo.",
+    "useWhen": "Ask which skill or flow fits your situation. A router over the skills in this repo.",
+    "aliases": [
+      "ask-matt",
+      "ask matt"
+    ],
+    "tags": [
+      "ask",
+      "engineering",
+      "which",
+      "flow",
+      "fits",
+      "situation",
+      "router",
+      "over",
+      "repo"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/ask-matt/SKILL.md"
+  },
+  {
+    "name": "autoplan",
+    "title": "Autoplan",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "autoplan/SKILL.md",
+    "description": "Auto-review pipeline — reads the full CEO, design, eng, and DX review skills from disk and runs them sequentially with auto-decisions using 6 decision principles. (gstack)",
+    "useWhen": "Surfaces taste decisions (close approaches, borderline scope, codex disagreements) at a final approval gate. One command, fully reviewed plan out. Use when asked to \"auto review\", \"autoplan\", \"run all reviews\", \"review this plan automatically\", or \"make the de",
+    "aliases": [
+      "autoplan",
+      "run all reviews",
+      "automatic review pipeline",
+      "auto plan review",
+      "founder",
+      "CEO"
+    ],
+    "tags": [
+      "autoplan",
+      "auto",
+      "review",
+      "pipeline",
+      "reads",
+      "full",
+      "ceo",
+      "design",
+      "eng",
+      "disk",
+      "runs",
+      "them"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/autoplan/SKILL.md"
+  },
+  {
+    "name": "benchmark",
+    "title": "Benchmark",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "benchmark/SKILL.md",
+    "description": "Performance regression detection using the browse daemon. (gstack)",
+    "useWhen": "Establishes baselines for page load times, Core Web Vitals, and resource sizes. Compares before/after on every PR. Tracks performance trends over time. Use when: \"performance\", \"benchmark\", \"page speed\", \"lighthouse\", \"web vitals\", \"bundle size\", \"load time\". ",
+    "aliases": [
+      "benchmark",
+      "performance benchmark",
+      "check page speed",
+      "detect performance regression"
+    ],
+    "tags": [
+      "benchmark",
+      "performance",
+      "regression",
+      "detection",
+      "using",
+      "browse",
+      "daemon",
+      "establishes",
+      "baselines",
+      "page",
+      "load",
+      "times"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "browser"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/benchmark/SKILL.md"
+  },
+  {
+    "name": "benchmark-models",
+    "title": "Benchmark Models",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "benchmark-models/SKILL.md",
+    "description": "Cross-model benchmark for gstack skills. (gstack)",
+    "useWhen": "Runs the same prompt through Claude, GPT (via Codex CLI), and Gemini side-by-side — compares latency, tokens, cost, and optionally quality via LLM judge. Answers \"which model is actually best for this skill?\" with data instead of vibes. Separate from /benchmar",
+    "aliases": [
+      "benchmark-models",
+      "benchmark models",
+      "cross model benchmark",
+      "compare claude gpt gemini",
+      "benchmark skill across models",
+      "which model should I use"
+    ],
+    "tags": [
+      "benchmark",
+      "models",
+      "cross",
+      "model",
+      "runs",
+      "same",
+      "prompt",
+      "through",
+      "claude",
+      "gpt",
+      "via",
+      "codex"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "api-key-use"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/benchmark-models/SKILL.md"
+  },
+  {
+    "name": "brainstorming",
+    "title": "Brainstorming",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/brainstorming/SKILL.md",
+    "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+    "useWhen": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+    "aliases": [
+      "brainstorming"
+    ],
+    "tags": [
+      "brainstorming",
+      "must",
+      "before",
+      "any",
+      "creative",
+      "work",
+      "creating",
+      "features",
+      "building",
+      "components",
+      "adding",
+      "functionality"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/brainstorming/SKILL.md"
+  },
+  {
+    "name": "browse",
+    "title": "Browse",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "browse/SKILL.md",
+    "description": "Fast headless browser for QA testing and site dogfooding. (gstack)",
+    "useWhen": "Navigate any URL, interact with elements, verify page state, diff before/after actions, take annotated screenshots, check responsive layouts, test forms and uploads, handle dialogs, and assert element states. ~100ms per command. Use when you need to test a fea",
+    "aliases": [
+      "browse",
+      "browse a page",
+      "headless browser",
+      "take page screenshot"
+    ],
+    "tags": [
+      "browse",
+      "fast",
+      "headless",
+      "browser",
+      "testing",
+      "site",
+      "dogfooding",
+      "navigate",
+      "any",
+      "url",
+      "interact",
+      "elements"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "browser"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/browse/SKILL.md"
+  },
+  {
+    "name": "canary",
+    "title": "Canary",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "canary/SKILL.md",
+    "description": "Post-deploy canary monitoring. (gstack)",
+    "useWhen": "Watches the live app for console errors, performance regressions, and page failures using the browse daemon. Takes periodic screenshots, compares against pre-deploy baselines, and alerts on anomalies. Use when: \"monitor deploy\", \"canary\", \"post-deploy check\", ",
+    "aliases": [
+      "canary",
+      "monitor after deploy",
+      "canary check",
+      "watch for errors post-deploy"
+    ],
+    "tags": [
+      "canary",
+      "post",
+      "deploy",
+      "monitoring",
+      "watches",
+      "live",
+      "app",
+      "console",
+      "errors",
+      "performance",
+      "regressions",
+      "page"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/canary/SKILL.md"
+  },
+  {
+    "name": "careful",
+    "title": "Careful",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "careful/SKILL.md",
+    "description": "Safety guardrails for destructive commands. (gstack)",
+    "useWhen": "Warns before rm -rf, DROP TABLE, force-push, git reset --hard, kubectl delete, and similar destructive operations. User can override each warning. Use when touching prod, debugging live systems, or working in a shared environment. Use when asked to \"be careful",
+    "aliases": [
+      "careful",
+      "be careful",
+      "warn before destructive",
+      "safety mode"
+    ],
+    "tags": [
+      "careful",
+      "safety",
+      "guardrails",
+      "destructive",
+      "commands",
+      "warns",
+      "before",
+      "drop",
+      "table",
+      "force",
+      "push",
+      "git"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/careful/SKILL.md"
+  },
+  {
+    "name": "code-review",
+    "title": "Code Review",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/code-review/SKILL.md",
+    "description": "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\".",
+    "useWhen": "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews i",
+    "aliases": [
+      "code-review",
+      "code review",
+      "pull request"
+    ],
+    "tags": [
+      "code",
+      "review",
+      "engineering",
+      "changes",
+      "since",
+      "fixed",
+      "point",
+      "commit",
+      "branch",
+      "tag",
+      "merge",
+      "base"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/code-review/SKILL.md"
+  },
+  {
+    "name": "codebase-design",
+    "title": "Codebase Design",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/codebase-design/SKILL.md",
+    "description": "Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.",
+    "useWhen": "Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabu",
+    "aliases": [
+      "codebase-design",
+      "codebase design"
+    ],
+    "tags": [
+      "codebase",
+      "design",
+      "engineering",
+      "shared",
+      "vocabulary",
+      "designing",
+      "deep",
+      "modules",
+      "wants",
+      "improve",
+      "module",
+      "interface"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/codebase-design/SKILL.md"
+  },
+  {
+    "name": "codex",
+    "title": "Codex",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "codex/SKILL.md",
+    "description": "OpenAI Codex CLI wrapper — three modes. (gstack)",
+    "useWhen": "Code review: independent diff review via codex review with pass/fail gate. Challenge: adversarial mode that tries to break your code. Consult: ask codex anything with session continuity for follow-ups. The \"200 IQ autistic developer\" second opinion. Use when a",
+    "aliases": [
+      "codex",
+      "codex review",
+      "second opinion",
+      "outside voice challenge"
+    ],
+    "tags": [
+      "codex",
+      "openai",
+      "cli",
+      "wrapper",
+      "three",
+      "modes",
+      "code",
+      "review",
+      "independent",
+      "diff",
+      "via",
+      "pass"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/codex/SKILL.md"
+  },
+  {
+    "name": "context-restore",
+    "title": "Context Restore",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "context-restore/SKILL.md",
+    "description": "Restore working context saved earlier by /context-save. (gstack)",
+    "useWhen": "Loads the most recent saved state (across all branches by default) so you can pick up where you left off — even across Conductor workspace handoffs. Use when asked to \"resume\", \"restore context\", \"where was I\", or \"pick up where I left off\". Pair with /context",
+    "aliases": [
+      "context-restore",
+      "context restore",
+      "resume where i left off",
+      "restore context",
+      "where was i",
+      "pick up where i left off"
+    ],
+    "tags": [
+      "context",
+      "restore",
+      "working",
+      "saved",
+      "earlier",
+      "save",
+      "loads",
+      "most",
+      "recent",
+      "state",
+      "across",
+      "all"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/context-restore/SKILL.md"
+  },
+  {
+    "name": "context-save",
+    "title": "Context Save",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "context-save/SKILL.md",
+    "description": "Save working context. (gstack)",
+    "useWhen": "Captures git state, decisions made, and remaining work so any future session can pick up without losing a beat. Use when asked to \"save progress\", \"save state\", \"context save\", or \"save my work\". Pair with /context-restore to resume later. Formerly /checkpoint",
+    "aliases": [
+      "context-save",
+      "context save",
+      "save progress",
+      "save state",
+      "save my work"
+    ],
+    "tags": [
+      "context",
+      "save",
+      "working",
+      "captures",
+      "git",
+      "state",
+      "decisions",
+      "made",
+      "remaining",
+      "work",
+      "any",
+      "future"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/context-save/SKILL.md"
+  },
+  {
+    "name": "devex-review",
+    "title": "Devex Review",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "devex-review/SKILL.md",
+    "description": "Live developer experience audit. (gstack)",
+    "useWhen": "Uses the browse tool to actually TEST the developer experience: navigates docs, tries the getting started flow, times TTHW, screenshots error messages, evaluates CLI help text. Produces a DX scorecard with evidence. Compares against /plan-devex-review scores i",
+    "aliases": [
+      "devex-review",
+      "devex review",
+      "live dx audit",
+      "test developer experience",
+      "measure onboarding time"
+    ],
+    "tags": [
+      "devex",
+      "review",
+      "live",
+      "developer",
+      "experience",
+      "audit",
+      "browse",
+      "tool",
+      "actually",
+      "test",
+      "navigates",
+      "docs"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/devex-review/SKILL.md"
+  },
+  {
+    "name": "diagnosing-bugs",
+    "title": "Diagnosing Bugs",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
+    "description": "Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
+    "useWhen": "Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
+    "aliases": [
+      "diagnosing-bugs",
+      "diagnosing bugs",
+      "debug this flaky production bug",
+      "flaky production bug",
+      "production bug diagnosis",
+      "debugging"
+    ],
+    "tags": [
+      "diagnosing",
+      "bugs",
+      "engineering",
+      "diagnosis",
+      "loop",
+      "hard",
+      "performance",
+      "regressions",
+      "flaky",
+      "production",
+      "says",
+      "diagnose",
+      "debug",
+      "reports"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/diagnosing-bugs/SKILL.md"
+  },
+  {
+    "name": "dispatching-parallel-agents",
+    "title": "Dispatching Parallel Agents",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/dispatching-parallel-agents/SKILL.md",
+    "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+    "useWhen": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+    "aliases": [
+      "dispatching-parallel-agents",
+      "dispatching parallel agents"
+    ],
+    "tags": [
+      "dispatching",
+      "parallel",
+      "agents",
+      "facing",
+      "independent",
+      "tasks",
+      "can",
+      "worked",
+      "without",
+      "shared",
+      "state",
+      "sequential"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/dispatching-parallel-agents/SKILL.md"
+  },
+  {
+    "name": "domain-modeling",
+    "title": "Domain Modeling",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/domain-modeling/SKILL.md",
+    "description": "Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.",
+    "useWhen": "Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.",
+    "aliases": [
+      "domain-modeling",
+      "domain modeling"
+    ],
+    "tags": [
+      "domain",
+      "modeling",
+      "engineering",
+      "build",
+      "sharpen",
+      "project",
+      "model",
+      "wants",
+      "pin",
+      "down",
+      "terminology",
+      "ubiquitous"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/domain-modeling/SKILL.md"
+  },
+  {
+    "name": "executing-plans",
+    "title": "Executing Plans",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/executing-plans/SKILL.md",
+    "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+    "useWhen": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+    "aliases": [
+      "executing-plans",
+      "executing plans"
+    ],
+    "tags": [
+      "executing",
+      "plans",
+      "have",
+      "written",
+      "implementation",
+      "plan",
+      "execute",
+      "separate",
+      "session",
+      "review",
+      "checkpoints"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/executing-plans/SKILL.md"
+  },
+  {
+    "name": "finishing-a-development-branch",
+    "title": "Finishing A Development Branch",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/finishing-a-development-branch/SKILL.md",
+    "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+    "useWhen": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+    "aliases": [
+      "finishing-a-development-branch",
+      "finishing a development branch",
+      "pull request"
+    ],
+    "tags": [
+      "finishing",
+      "development",
+      "branch",
+      "implementation",
+      "complete",
+      "all",
+      "tests",
+      "pass",
+      "need",
+      "decide",
+      "how",
+      "integrate"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/finishing-a-development-branch/SKILL.md"
+  },
+  {
+    "name": "git-guardrails-claude-code",
+    "title": "Git Guardrails Claude Code",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/misc/git-guardrails-claude-code/SKILL.md",
+    "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code.",
+    "useWhen": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code.",
+    "aliases": [
+      "git-guardrails-claude-code",
+      "git guardrails claude code"
+    ],
+    "tags": [
+      "git",
+      "guardrails",
+      "claude",
+      "code",
+      "misc",
+      "set",
+      "hooks",
+      "block",
+      "dangerous",
+      "commands",
+      "push",
+      "reset"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/git-guardrails-claude-code/SKILL.md"
+  },
+  {
+    "name": "grill-me",
+    "title": "Grill Me",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/productivity/grill-me/SKILL.md",
+    "description": "A relentless interview to sharpen a plan or design.",
+    "useWhen": "A relentless interview to sharpen a plan or design.",
+    "aliases": [
+      "grill-me",
+      "grill me"
+    ],
+    "tags": [
+      "grill",
+      "productivity",
+      "relentless",
+      "interview",
+      "sharpen",
+      "plan",
+      "design"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/grill-me/SKILL.md"
+  },
+  {
+    "name": "grill-with-docs",
+    "title": "Grill With Docs",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
+    "description": "A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.",
+    "useWhen": "A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.",
+    "aliases": [
+      "grill-with-docs",
+      "grill with docs"
+    ],
+    "tags": [
+      "grill",
+      "docs",
+      "engineering",
+      "relentless",
+      "interview",
+      "sharpen",
+      "plan",
+      "design",
+      "which",
+      "also",
+      "creates",
+      "adr"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/grill-with-docs/SKILL.md"
+  },
+  {
+    "name": "grilling",
+    "title": "Grilling",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/productivity/grilling/SKILL.md",
+    "description": "Grill the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before building, or uses any 'grill' trigger phrases.",
+    "useWhen": "Grill the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before building, or uses any 'grill' trigger phrases.",
+    "aliases": [
+      "grilling"
+    ],
+    "tags": [
+      "grilling",
+      "productivity",
+      "grill",
+      "relentlessly",
+      "about",
+      "plan",
+      "design",
+      "wants",
+      "stress",
+      "test",
+      "before",
+      "building"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/grilling/SKILL.md"
+  },
+  {
+    "name": "gstack-openclaw-investigate",
+    "title": "Gstack Openclaw Investigate",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "openclaw/skills/gstack-openclaw-investigate/SKILL.md",
+    "description": "Use when asked to debug, fix a bug, investigate an error, or do root cause analysis, and when users report errors, stack traces, unexpected behavior, or say something stopped working.",
+    "useWhen": "Use when asked to debug, fix a bug, investigate an error, or do root cause analysis, and when users report errors, stack traces, unexpected behavior, or say something stopped working.",
+    "aliases": [
+      "gstack-openclaw-investigate",
+      "gstack openclaw investigate",
+      "debugging"
+    ],
+    "tags": [
+      "openclaw",
+      "investigate",
+      "asked",
+      "debug",
+      "fix",
+      "bug",
+      "error",
+      "root",
+      "cause",
+      "analysis",
+      "report",
+      "errors"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-investigate/SKILL.md"
+  },
+  {
+    "name": "gstack-upgrade",
+    "title": "Gstack Upgrade",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "gstack-upgrade/SKILL.md",
+    "description": "Upgrade gstack to the latest version.",
+    "useWhen": "Detects global vs vendored install, runs the upgrade, and shows what's new. Use when asked to \"upgrade gstack\", \"update gstack\", or \"get latest version\". Voice triggers (speech-to-text aliases): \"upgrade the tools\", \"update the tools\", \"gee stack upgrade\", \"g ",
+    "aliases": [
+      "gstack-upgrade",
+      "gstack upgrade",
+      "upgrade gstack",
+      "update gstack version",
+      "get latest gstack"
+    ],
+    "tags": [
+      "upgrade",
+      "latest",
+      "version",
+      "detects",
+      "global",
+      "vendored",
+      "install",
+      "runs",
+      "shows",
+      "what",
+      "new",
+      "asked"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/gstack-upgrade/SKILL.md"
+  },
+  {
+    "name": "hackernews-frontpage",
+    "title": "Hackernews Frontpage",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "browser-skills/hackernews-frontpage/SKILL.md",
+    "description": "Scrape the Hacker News front page (titles, points, comment counts).",
+    "useWhen": "Scrape the Hacker News front page (titles, points, comment counts).",
+    "aliases": [
+      "hackernews-frontpage",
+      "hackernews frontpage",
+      "scrape hacker news frontpage",
+      "scrape hn frontpage",
+      "get hn top stories",
+      "latest hacker news stories"
+    ],
+    "tags": [
+      "hackernews",
+      "frontpage",
+      "browser",
+      "scrape",
+      "hacker",
+      "news",
+      "front",
+      "page",
+      "titles",
+      "points",
+      "comment",
+      "counts"
+    ],
+    "capabilities": [
+      "read-only",
+      "network",
+      "browser"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/browser-skills/hackernews-frontpage/SKILL.md"
+  },
+  {
+    "name": "handoff",
+    "title": "Handoff",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/productivity/handoff/SKILL.md",
+    "description": "Compact the current conversation into a handoff document for another agent to pick up.",
+    "useWhen": "Compact the current conversation into a handoff document for another agent to pick up.",
+    "aliases": [
+      "handoff"
+    ],
+    "tags": [
+      "handoff",
+      "productivity",
+      "compact",
+      "current",
+      "conversation",
+      "document",
+      "another",
+      "agent",
+      "pick"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/handoff/SKILL.md"
+  },
+  {
+    "name": "implement",
+    "title": "Implement",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/implement/SKILL.md",
+    "description": "Implement a piece of work based on a PRD or set of issues.",
+    "useWhen": "Implement a piece of work based on a PRD or set of issues.",
+    "aliases": [
+      "implement"
+    ],
+    "tags": [
+      "implement",
+      "engineering",
+      "piece",
+      "work",
+      "based",
+      "prd",
+      "set",
+      "issues"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/implement/SKILL.md"
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "title": "Improve Codebase Architecture",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
+    "description": "Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.",
+    "useWhen": "Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.",
+    "aliases": [
+      "improve-codebase-architecture",
+      "improve codebase architecture"
+    ],
+    "tags": [
+      "improve",
+      "codebase",
+      "architecture",
+      "engineering",
+      "scan",
+      "deepening",
+      "opportunities",
+      "present",
+      "them",
+      "visual",
+      "html",
+      "report"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/improve-codebase-architecture/SKILL.md"
+  },
+  {
+    "name": "investigate",
+    "title": "Investigate",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "investigate/SKILL.md",
+    "description": "Systematic debugging with root cause investigation. (gstack)",
+    "useWhen": "Four phases: investigate, analyze, hypothesize, implement. Iron Law: no fixes without root cause. Use when asked to \"debug this\", \"fix this bug\", \"why is this broken\", \"investigate this error\", or \"root cause analysis\". Proactively invoke this skill (do NOT de",
+    "aliases": [
+      "investigate",
+      "debug this",
+      "fix this bug",
+      "why is this broken",
+      "root cause analysis",
+      "investigate this error",
+      "debugging"
+    ],
+    "tags": [
+      "investigate",
+      "systematic",
+      "debugging",
+      "root",
+      "cause",
+      "investigation",
+      "four",
+      "phases",
+      "analyze",
+      "hypothesize",
+      "implement",
+      "iron"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/investigate/SKILL.md"
+  },
+  {
+    "name": "ios-clean",
+    "title": "Ios Clean",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "ios-clean/SKILL.md",
+    "description": "Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gstack)",
+    "useWhen": "Cleans up StateServer, DebugOverlay, accessor codegen output, and app-side hooks installed by /ios-qa. This is a convenience wrapper — the structural Release-build guard (Package.swift conditional + CI swift build -c release check) is the safety-critical path.",
+    "aliases": [
+      "ios-clean",
+      "ios clean",
+      "clean the ios debug bridge",
+      "remove debugbridge",
+      "strip the gstack ios instrumentation",
+      "debugging"
+    ],
+    "tags": [
+      "ios",
+      "clean",
+      "remove",
+      "debugbridge",
+      "spm",
+      "package",
+      "all",
+      "debug",
+      "wiring",
+      "app",
+      "cleans",
+      "stateserver"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-clean/SKILL.md"
+  },
+  {
+    "name": "ios-fix",
+    "title": "Ios Fix",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "ios-fix/SKILL.md",
+    "description": "Autonomous iOS bug fixer. (gstack)",
+    "useWhen": "Takes a bug found by /ios-qa, reads the source, writes the fix, rebuilds, redeploys, and verifies the fix on the real device. Closes the loop: find bug → fix bug → confirm fix — zero human intervention. Captures the pre-bug state snapshot as a regression test ",
+    "aliases": [
+      "ios-fix",
+      "ios fix",
+      "fix this ios bug",
+      "patch the iphone app",
+      "auto-fix the ios issue",
+      "debugging"
+    ],
+    "tags": [
+      "ios",
+      "fix",
+      "autonomous",
+      "bug",
+      "fixer",
+      "takes",
+      "found",
+      "reads",
+      "source",
+      "writes",
+      "rebuilds",
+      "redeploys"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-fix/SKILL.md"
+  },
+  {
+    "name": "ios-qa",
+    "title": "Ios Qa",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "ios-qa/SKILL.md",
+    "description": "Live-device iOS QA for SwiftUI apps. (gstack)",
+    "useWhen": "Connects to a real iPhone via USB CoreDevice IPv6 tunnel, reads Swift source to understand every screen, then runs a vision-driven agent loop: screenshot → analyze → decide → act → verify → repeat. All interaction happens via HTTP to an embedded StateServer in",
+    "aliases": [
+      "ios-qa",
+      "ios qa",
+      "test the iphone app",
+      "test my ios app",
+      "find bugs on the device",
+      "qa the ios app"
+    ],
+    "tags": [
+      "ios",
+      "live",
+      "device",
+      "swiftui",
+      "apps",
+      "connects",
+      "real",
+      "iphone",
+      "via",
+      "usb",
+      "coredevice",
+      "ipv6"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-qa/SKILL.md"
+  },
+  {
+    "name": "ios-sync",
+    "title": "Ios Sync",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "ios-sync/SKILL.md",
+    "description": "Regenerate the iOS debug bridge against the latest upstream gstack templates. (gstack)",
+    "useWhen": "Updates StateServer.swift, DebugOverlay.swift, Package.swift, and the typed @Observable state accessors. Use after you upgrade gstack or add new ViewModels/properties that need accessor coverage. Use when asked to \"resync the iOS debug bridge\", \"regenerate iOS",
+    "aliases": [
+      "ios-sync",
+      "ios sync",
+      "resync the ios debug bridge",
+      "regenerate ios accessors",
+      "update the gstack ios instrumentation",
+      "debugging"
+    ],
+    "tags": [
+      "ios",
+      "sync",
+      "regenerate",
+      "debug",
+      "bridge",
+      "against",
+      "latest",
+      "upstream",
+      "templates",
+      "updates",
+      "stateserver",
+      "swift"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-sync/SKILL.md"
+  },
+  {
+    "name": "land-and-deploy",
+    "title": "Land And Deploy",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "land-and-deploy/SKILL.md",
+    "description": "Land and deploy workflow. (gstack)",
+    "useWhen": "Merges the PR, waits for CI and deploy, verifies production health via canary checks. Takes over after /ship creates the PR. Use when: \"merge\", \"land\", \"deploy\", \"merge and verify\", \"land it\", \"ship it to production\".",
+    "aliases": [
+      "land-and-deploy",
+      "land and deploy",
+      "merge and deploy",
+      "land the pr",
+      "ship to production"
+    ],
+    "tags": [
+      "land",
+      "deploy",
+      "workflow",
+      "merges",
+      "waits",
+      "verifies",
+      "production",
+      "health",
+      "via",
+      "canary",
+      "checks",
+      "takes"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "external-posting",
+      "dangerous"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/land-and-deploy/SKILL.md"
+  },
+  {
+    "name": "make-pdf",
+    "title": "Make Pdf",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "make-pdf/SKILL.md",
+    "description": "Turn any markdown file into a publication-quality PDF. (gstack)",
+    "useWhen": "Proper 1in margins, intelligent page breaks, page numbers, cover pages, running headers, curly quotes and em dashes, clickable TOC, diagonal DRAFT watermark. Not a draft artifact — a finished artifact. Use when asked to \"make a PDF\", \"export to PDF\", \"turn thi",
+    "aliases": [
+      "make-pdf",
+      "make pdf",
+      "markdown to pdf",
+      "generate pdf",
+      "export pdf"
+    ],
+    "tags": [
+      "make",
+      "pdf",
+      "turn",
+      "any",
+      "markdown",
+      "file",
+      "publication",
+      "quality",
+      "proper",
+      "1in",
+      "margins",
+      "intelligent"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/make-pdf/SKILL.md"
+  },
+  {
+    "name": "migrate-to-shoehorn",
+    "title": "Migrate To Shoehorn",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/misc/migrate-to-shoehorn/SKILL.md",
+    "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.",
+    "useWhen": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.",
+    "aliases": [
+      "migrate-to-shoehorn",
+      "migrate to shoehorn"
+    ],
+    "tags": [
+      "migrate",
+      "shoehorn",
+      "misc",
+      "test",
+      "files",
+      "type",
+      "assertions",
+      "total",
+      "typescript",
+      "mentions",
+      "wants",
+      "replace"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/migrate-to-shoehorn/SKILL.md"
+  },
+  {
+    "name": "open-gstack-browser",
+    "title": "Open Gstack Browser",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "open-gstack-browser/SKILL.md",
+    "description": "Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked in.",
+    "useWhen": "Opens a visible browser window where you can watch every action in real time. The sidebar shows a live activity feed and chat. Anti-bot stealth built in. Use when asked to \"open gstack browser\", \"launch browser\", \"connect chrome\", \"open chrome\", \"real browser\"",
+    "aliases": [
+      "open-gstack-browser",
+      "open gstack browser",
+      "launch chromium",
+      "show me the browser"
+    ],
+    "tags": [
+      "open",
+      "browser",
+      "launch",
+      "controlled",
+      "chromium",
+      "sidebar",
+      "extension",
+      "baked",
+      "opens",
+      "visible",
+      "window",
+      "where"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "browser"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/open-gstack-browser/SKILL.md"
+  },
+  {
+    "name": "pair-agent",
+    "title": "Pair Agent",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "pair-agent/SKILL.md",
+    "description": "Pair a remote AI agent with your browser. (gstack)",
+    "useWhen": "One command generates a setup key and prints instructions the other agent can follow to connect. Works with OpenClaw, Hermes, Codex, Cursor, or any agent that can make HTTP requests. The remote agent gets its own tab with scoped access (read+write by default, ",
+    "aliases": [
+      "pair-agent",
+      "pair agent",
+      "pair with agent",
+      "connect remote agent",
+      "share my browser"
+    ],
+    "tags": [
+      "pair",
+      "agent",
+      "remote",
+      "browser",
+      "one",
+      "command",
+      "generates",
+      "setup",
+      "key",
+      "prints",
+      "instructions",
+      "other"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "browser"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/pair-agent/SKILL.md"
+  },
+  {
+    "name": "plan-design-review",
+    "title": "Plan Design Review",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "plan-design-review/SKILL.md",
+    "description": "Designer's eye plan review — interactive, like CEO and Eng review. (gstack)",
+    "useWhen": "Rates each design dimension 0-10, explains what would make it a 10, then fixes the plan to get there. Works in plan mode. For live site visual audits, use /design-review. Use when asked to \"review the design plan\" or \"design critique\". Proactively suggest when",
+    "aliases": [
+      "plan-design-review",
+      "plan design review",
+      "design plan review",
+      "review ux plan",
+      "check design decisions",
+      "founder",
+      "CEO"
+    ],
+    "tags": [
+      "plan",
+      "design",
+      "review",
+      "designer",
+      "eye",
+      "interactive",
+      "like",
+      "ceo",
+      "eng",
+      "rates",
+      "each",
+      "dimension"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-design-review/SKILL.md"
+  },
+  {
+    "name": "plan-devex-review",
+    "title": "Plan Devex Review",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "plan-devex-review/SKILL.md",
+    "description": "Interactive developer experience plan review. (gstack)",
+    "useWhen": "Explores developer personas, benchmarks against competitors, designs magical moments, and traces friction points before scoring. Three modes: DX EXPANSION (competitive advantage), DX POLISH (bulletproof every touchpoint), DX TRIAGE (critical gaps only). Use wh",
+    "aliases": [
+      "plan-devex-review",
+      "plan devex review",
+      "developer experience review",
+      "dx plan review",
+      "check developer onboarding"
+    ],
+    "tags": [
+      "plan",
+      "devex",
+      "review",
+      "interactive",
+      "developer",
+      "experience",
+      "explores",
+      "personas",
+      "benchmarks",
+      "against",
+      "competitors",
+      "designs"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-devex-review/SKILL.md"
+  },
+  {
+    "name": "plan-eng-review",
+    "title": "Plan Eng Review",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "plan-eng-review/SKILL.md",
+    "description": "Eng manager-mode plan review. (gstack)",
+    "useWhen": "Lock in the execution plan — architecture, data flow, diagrams, edge cases, test coverage, performance. Walks through issues interactively with opinionated recommendations. Use when asked to \"review the architecture\", \"engineering review\", or \"lock in the plan",
+    "aliases": [
+      "plan-eng-review",
+      "plan eng review",
+      "review architecture",
+      "eng plan review",
+      "check the implementation plan"
+    ],
+    "tags": [
+      "plan",
+      "eng",
+      "review",
+      "manager",
+      "mode",
+      "lock",
+      "execution",
+      "architecture",
+      "data",
+      "flow",
+      "diagrams",
+      "edge"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-eng-review/SKILL.md"
+  },
+  {
+    "name": "prototype",
+    "title": "Prototype",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/prototype/SKILL.md",
+    "description": "Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.",
+    "useWhen": "Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.",
+    "aliases": [
+      "prototype"
+    ],
+    "tags": [
+      "prototype",
+      "engineering",
+      "build",
+      "throwaway",
+      "answer",
+      "design",
+      "question",
+      "wants",
+      "sanity",
+      "check",
+      "whether",
+      "state"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/prototype/SKILL.md"
+  },
+  {
+    "name": "qa",
+    "title": "Qa",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "qa/SKILL.md",
+    "description": "Systematically QA test a web application and fix bugs found. (gstack)",
+    "useWhen": "Runs QA testing, then iteratively fixes bugs in source code, committing each fix atomically and re-verifying. Use when asked to \"qa\", \"QA\", \"test this site\", \"find bugs\", \"test and fix\", or \"fix what's broken\". Proactively suggest when the user says a feature ",
+    "aliases": [
+      "qa",
+      "qa test this",
+      "find bugs on site",
+      "test the site",
+      "debugging"
+    ],
+    "tags": [
+      "systematically",
+      "test",
+      "web",
+      "application",
+      "fix",
+      "bugs",
+      "found",
+      "runs",
+      "testing",
+      "then",
+      "iteratively",
+      "fixes"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/qa/SKILL.md"
+  },
+  {
+    "name": "qa-only",
+    "title": "Qa Only",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "qa-only/SKILL.md",
+    "description": "Report-only QA testing. (gstack)",
+    "useWhen": "Systematically tests a web application and produces a structured report with health score, screenshots, and repro steps — but never fixes anything. Use when asked to \"just report bugs\", \"qa report only\", or \"test but don't fix\". For the full test-fix-verify lo",
+    "aliases": [
+      "qa-only",
+      "qa only",
+      "qa report only",
+      "just report bugs",
+      "test but dont fix"
+    ],
+    "tags": [
+      "only",
+      "report",
+      "testing",
+      "systematically",
+      "tests",
+      "web",
+      "application",
+      "produces",
+      "structured",
+      "health",
+      "score",
+      "screenshots"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/qa-only/SKILL.md"
+  },
+  {
+    "name": "receiving-code-review",
+    "title": "Receiving Code Review",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/receiving-code-review/SKILL.md",
+    "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+    "useWhen": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+    "aliases": [
+      "receiving-code-review",
+      "receiving code review",
+      "code review"
+    ],
+    "tags": [
+      "receiving",
+      "code",
+      "review",
+      "feedback",
+      "before",
+      "implementing",
+      "suggestions",
+      "especially",
+      "seems",
+      "unclear",
+      "technically",
+      "questionable"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/receiving-code-review/SKILL.md"
+  },
+  {
+    "name": "requesting-code-review",
+    "title": "Requesting Code Review",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/requesting-code-review/SKILL.md",
+    "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+    "useWhen": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+    "aliases": [
+      "requesting-code-review",
+      "requesting code review"
+    ],
+    "tags": [
+      "requesting",
+      "code",
+      "review",
+      "completing",
+      "tasks",
+      "implementing",
+      "major",
+      "features",
+      "before",
+      "merging",
+      "verify",
+      "work"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/requesting-code-review/SKILL.md"
+  },
+  {
+    "name": "research",
+    "title": "Research",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/research/SKILL.md",
+    "description": "Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.",
+    "useWhen": "Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.",
+    "aliases": [
+      "research"
+    ],
+    "tags": [
+      "research",
+      "engineering",
+      "investigate",
+      "question",
+      "against",
+      "high",
+      "trust",
+      "primary",
+      "sources",
+      "capture",
+      "findings",
+      "markdown"
+    ],
+    "capabilities": [
+      "read-only",
+      "network"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/research/SKILL.md"
+  },
+  {
+    "name": "resolving-merge-conflicts",
+    "title": "Resolving Merge Conflicts",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/resolving-merge-conflicts/SKILL.md",
+    "description": "Use when you need to resolve an in-progress git merge/rebase conflict.",
+    "useWhen": "Use when you need to resolve an in-progress git merge/rebase conflict.",
+    "aliases": [
+      "resolving-merge-conflicts",
+      "resolving merge conflicts"
+    ],
+    "tags": [
+      "resolving",
+      "merge",
+      "conflicts",
+      "engineering",
+      "need",
+      "resolve",
+      "progress",
+      "git",
+      "rebase",
+      "conflict"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/resolving-merge-conflicts/SKILL.md"
+  },
+  {
+    "name": "review",
+    "title": "Review",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "review/SKILL.md",
+    "description": "Pre-landing PR review. (gstack)",
+    "useWhen": "Analyzes diff against the base branch for SQL safety, LLM trust boundary violations, conditional side effects, and other structural issues. Use when asked to \"review this PR\", \"code review\", \"pre-landing review\", or \"check my diff\". Proactively suggest when th",
+    "aliases": [
+      "review",
+      "review this pr",
+      "code review",
+      "check my diff",
+      "pre-landing review",
+      "pull request"
+    ],
+    "tags": [
+      "review",
+      "pre",
+      "landing",
+      "analyzes",
+      "diff",
+      "against",
+      "base",
+      "branch",
+      "sql",
+      "safety",
+      "llm",
+      "trust"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/review/SKILL.md"
+  },
+  {
+    "name": "scaffold-exercises",
+    "title": "Scaffold Exercises",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/misc/scaffold-exercises/SKILL.md",
+    "description": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.",
+    "useWhen": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.",
+    "aliases": [
+      "scaffold-exercises",
+      "scaffold exercises"
+    ],
+    "tags": [
+      "scaffold",
+      "exercises",
+      "misc",
+      "create",
+      "exercise",
+      "directory",
+      "structures",
+      "sections",
+      "problems",
+      "solutions",
+      "explainers",
+      "pass"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/scaffold-exercises/SKILL.md"
+  },
+  {
+    "name": "scrape",
+    "title": "Scrape",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "scrape/SKILL.md",
+    "description": "Pull data from a web page. (gstack)",
+    "useWhen": "First call on a new intent prototypes the flow via $B primitives and returns JSON. Subsequent calls on a matching intent route to a codified browser-skill and return in ~200ms. Read-only — for mutating flows (form fills, clicks, submissions), use /automate. Us",
+    "aliases": [
+      "scrape",
+      "scrape this page",
+      "get data from",
+      "pull from",
+      "extract from",
+      "what is on"
+    ],
+    "tags": [
+      "scrape",
+      "pull",
+      "data",
+      "web",
+      "page",
+      "first",
+      "call",
+      "new",
+      "intent",
+      "prototypes",
+      "flow",
+      "via"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/scrape/SKILL.md"
+  },
+  {
+    "name": "setup-browser-cookies",
+    "title": "Setup Browser Cookies",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "setup-browser-cookies/SKILL.md",
+    "description": "Import cookies from your real Chromium browser into the headless browse session. (gstack)",
+    "useWhen": "Opens an interactive picker UI where you select which cookie domains to import. Use before QA testing authenticated pages. Use when asked to \"import cookies\", \"login to the site\", or \"authenticate the browser\".",
+    "aliases": [
+      "setup-browser-cookies",
+      "setup browser cookies",
+      "import browser cookies",
+      "login to test site",
+      "setup authenticated session"
+    ],
+    "tags": [
+      "setup",
+      "browser",
+      "cookies",
+      "import",
+      "real",
+      "chromium",
+      "headless",
+      "browse",
+      "session",
+      "opens",
+      "interactive",
+      "picker"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "browser",
+      "customer-data"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/setup-browser-cookies/SKILL.md"
+  },
+  {
+    "name": "setup-deploy",
+    "title": "Setup Deploy",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "setup-deploy/SKILL.md",
+    "description": "Configure deployment settings for /land-and-deploy.",
+    "useWhen": "Detects your deploy platform (Fly.io, Render, Vercel, Netlify, Heroku, GitHub Actions, custom), production URL, health check endpoints, and deploy status commands. Writes the configuration to CLAUDE.md so all future deploys are automatic. Use when: \"setup depl",
+    "aliases": [
+      "setup-deploy",
+      "setup deploy",
+      "configure deploy",
+      "setup deployment",
+      "set deploy platform"
+    ],
+    "tags": [
+      "setup",
+      "deploy",
+      "configure",
+      "deployment",
+      "settings",
+      "land",
+      "detects",
+      "platform",
+      "fly",
+      "render",
+      "vercel",
+      "netlify"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/setup-deploy/SKILL.md"
+  },
+  {
+    "name": "setup-gbrain",
+    "title": "Setup Gbrain",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "setup-gbrain/SKILL.md",
+    "description": "Set up gbrain for this coding agent: install the CLI, initialize a local PGLite or Supabase brain, register MCP, capture per-remote trust policy. (gstack)",
+    "useWhen": "One command from zero to \"gbrain is running, and this agent can call it.\" Use when: \"setup gbrain\", \"connect gbrain\", \"start gbrain\", \"install gbrain\", \"configure gbrain for this machine\".",
+    "aliases": [
+      "setup-gbrain",
+      "setup gbrain",
+      "install gbrain",
+      "connect gbrain",
+      "start gbrain",
+      "configure gbrain"
+    ],
+    "tags": [
+      "setup",
+      "gbrain",
+      "set",
+      "coding",
+      "agent",
+      "install",
+      "cli",
+      "initialize",
+      "local",
+      "pglite",
+      "supabase",
+      "brain"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/setup-gbrain/SKILL.md"
+  },
+  {
+    "name": "setup-matt-pocock-skills",
+    "title": "Setup Matt Pocock Skills",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+    "description": "Configure this repo for the engineering skills — set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.",
+    "useWhen": "Configure this repo for the engineering skills — set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.",
+    "aliases": [
+      "setup-matt-pocock-skills",
+      "setup matt pocock skills"
+    ],
+    "tags": [
+      "setup",
+      "engineering",
+      "configure",
+      "repo",
+      "set",
+      "its",
+      "issue",
+      "tracker",
+      "triage",
+      "label",
+      "vocabulary",
+      "domain"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/setup-matt-pocock-skills/SKILL.md"
+  },
+  {
+    "name": "setup-pre-commit",
+    "title": "Setup Pre Commit",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/misc/setup-pre-commit/SKILL.md",
+    "description": "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.",
+    "useWhen": "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.",
+    "aliases": [
+      "setup-pre-commit",
+      "setup pre commit"
+    ],
+    "tags": [
+      "setup",
+      "pre",
+      "commit",
+      "misc",
+      "set",
+      "husky",
+      "hooks",
+      "lint",
+      "staged",
+      "prettier",
+      "type",
+      "checking"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/setup-pre-commit/SKILL.md"
+  },
+  {
+    "name": "ship",
+    "title": "Ship",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "ship/SKILL.md",
+    "description": "Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION, update CHANGELOG, commit, push, create PR. (gstack)",
+    "useWhen": "Use when asked to \"ship\", \"deploy\", \"push to main\", \"create a PR\", \"merge and push\", or \"get it deployed\". Proactively invoke this skill (do NOT push/PR directly) when the user says code is ready, asks about deploying, wants to push code up, or asks to create ",
+    "aliases": [
+      "ship",
+      "ship it",
+      "create a pr",
+      "push to main",
+      "deploy this",
+      "pull request"
+    ],
+    "tags": [
+      "ship",
+      "workflow",
+      "detect",
+      "merge",
+      "base",
+      "branch",
+      "run",
+      "tests",
+      "review",
+      "diff",
+      "bump",
+      "version"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "external-posting",
+      "dangerous"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ship/SKILL.md"
+  },
+  {
+    "name": "skillify",
+    "title": "Skillify",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "skillify/SKILL.md",
+    "description": "Codify the most recent successful /scrape flow into a permanent browser-skill on disk. (gstack)",
+    "useWhen": "Future /scrape calls with the same intent run the codified script in ~200ms instead of re-driving the page. Walks back through the conversation, synthesizes script.ts + script.test.ts + fixture, runs the test in a temp dir, and asks before committing. Use when",
+    "aliases": [
+      "skillify",
+      "codify this scrape",
+      "save this scrape",
+      "make this permanent"
+    ],
+    "tags": [
+      "skillify",
+      "codify",
+      "most",
+      "recent",
+      "successful",
+      "scrape",
+      "flow",
+      "permanent",
+      "browser",
+      "disk",
+      "future",
+      "calls"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "browser"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/skillify/SKILL.md"
+  },
+  {
+    "name": "spec",
+    "title": "Spec",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "spec/SKILL.md",
+    "description": "Turn vague intent into a precise, executable spec in five phases. (gstack)",
+    "useWhen": "Files the issue, optionally spawns a Claude Code agent in a fresh worktree, and lets /ship close the source issue on merge. Use when asked to \"spec this out\", \"file an issue\", \"write up a ticket\", \"make this a GitHub issue\", or \"turn this into a backlog item\".",
+    "aliases": [
+      "spec",
+      "spec this out",
+      "file an issue",
+      "write up a ticket",
+      "turn this into an issue",
+      "make this a github issue",
+      "turn this into a backlog item"
+    ],
+    "tags": [
+      "spec",
+      "turn",
+      "vague",
+      "intent",
+      "precise",
+      "executable",
+      "five",
+      "phases",
+      "files",
+      "issue",
+      "optionally",
+      "spawns"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network",
+      "external-posting"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/spec/SKILL.md"
+  },
+  {
+    "name": "subagent-driven-development",
+    "title": "Subagent Driven Development",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/subagent-driven-development/SKILL.md",
+    "description": "Use when executing implementation plans with independent tasks in the current session",
+    "useWhen": "Use when executing implementation plans with independent tasks in the current session",
+    "aliases": [
+      "subagent-driven-development",
+      "subagent driven development"
+    ],
+    "tags": [
+      "subagent",
+      "driven",
+      "development",
+      "executing",
+      "implementation",
+      "plans",
+      "independent",
+      "tasks",
+      "current",
+      "session"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/subagent-driven-development/SKILL.md"
+  },
+  {
+    "name": "sync-gbrain",
+    "title": "Sync Gbrain",
+    "studio": "engineering",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "sync-gbrain/SKILL.md",
+    "description": "Keep gbrain current with this repo's code and refresh agent search guidance in CLAUDE.md. Wraps the gstack-gbrain-sync orchestrator with state (gstack)",
+    "useWhen": "probing, native code-surface registration, capability checks, and a verdict block. Re-runnable, idempotent. Use when: \"sync gbrain\", \"refresh gbrain\", \"re-index this repo\", \"gbrain search isn't finding things\".",
+    "aliases": [
+      "sync-gbrain",
+      "sync gbrain",
+      "refresh gbrain",
+      "reindex repo",
+      "update gbrain"
+    ],
+    "tags": [
+      "sync",
+      "gbrain",
+      "keep",
+      "current",
+      "repo",
+      "code",
+      "refresh",
+      "agent",
+      "search",
+      "guidance",
+      "claude",
+      "wraps"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/sync-gbrain/SKILL.md"
+  },
+  {
+    "name": "systematic-debugging",
+    "title": "Systematic Debugging",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/systematic-debugging/SKILL.md",
+    "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+    "useWhen": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+    "aliases": [
+      "systematic-debugging",
+      "systematic debugging",
+      "debug this flaky production bug systematically before proposing fixes",
+      "systematically before proposing fixes",
+      "debugging"
+    ],
+    "tags": [
+      "systematic",
+      "debugging",
+      "encountering",
+      "any",
+      "bug",
+      "flaky",
+      "production",
+      "test",
+      "failure",
+      "unexpected",
+      "behavior",
+      "before",
+      "proposing",
+      "fixes"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/systematic-debugging/SKILL.md"
+  },
+  {
+    "name": "tdd",
+    "title": "Tdd",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/tdd/SKILL.md",
+    "description": "Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions \"red-green-refactor\", or wants integration tests.",
+    "useWhen": "Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions \"red-green-refactor\", or wants integration tests.",
+    "aliases": [
+      "tdd",
+      "test driven development",
+      "TDD",
+      "debugging",
+      "red-green-refactor",
+      "red green refactor"
+    ],
+    "tags": [
+      "tdd",
+      "engineering",
+      "test",
+      "driven",
+      "development",
+      "wants",
+      "build",
+      "features",
+      "fix",
+      "bugs",
+      "first",
+      "mentions",
+      "red",
+      "green",
+      "refactor"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/tdd/SKILL.md"
+  },
+  {
+    "name": "teach",
+    "title": "Teach",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/productivity/teach/SKILL.md",
+    "description": "Teach the user a new skill or concept, within this workspace.",
+    "useWhen": "Teach the user a new skill or concept, within this workspace.",
+    "aliases": [
+      "teach"
+    ],
+    "tags": [
+      "teach",
+      "productivity",
+      "new",
+      "concept",
+      "within",
+      "workspace"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/teach/SKILL.md"
+  },
+  {
+    "name": "test-driven-development",
+    "title": "Test Driven Development",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/test-driven-development/SKILL.md",
+    "description": "Use when implementing any feature or bugfix, before writing implementation code",
+    "useWhen": "Use when implementing any feature or bugfix, before writing implementation code",
+    "aliases": [
+      "test-driven-development",
+      "test driven development",
+      "debugging"
+    ],
+    "tags": [
+      "test",
+      "driven",
+      "development",
+      "implementing",
+      "any",
+      "feature",
+      "bugfix",
+      "before",
+      "writing",
+      "implementation",
+      "code"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/test-driven-development/SKILL.md"
+  },
+  {
+    "name": "to-issues",
+    "title": "To Issues",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/to-issues/SKILL.md",
+    "description": "Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
+    "useWhen": "Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
+    "aliases": [
+      "to-issues",
+      "to issues"
+    ],
+    "tags": [
+      "issues",
+      "engineering",
+      "break",
+      "plan",
+      "spec",
+      "prd",
+      "independently",
+      "grabbable",
+      "project",
+      "issue",
+      "tracker",
+      "using"
+    ],
+    "capabilities": [
+      "read-only",
+      "network",
+      "external-posting"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/to-issues/SKILL.md"
+  },
+  {
+    "name": "to-prd",
+    "title": "To Prd",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/to-prd/SKILL.md",
+    "description": "Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
+    "useWhen": "Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
+    "aliases": [
+      "to-prd",
+      "to prd"
+    ],
+    "tags": [
+      "prd",
+      "engineering",
+      "turn",
+      "current",
+      "conversation",
+      "publish",
+      "project",
+      "issue",
+      "tracker",
+      "interview",
+      "just",
+      "synthesis"
+    ],
+    "capabilities": [
+      "read-only",
+      "network",
+      "external-posting"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/to-prd/SKILL.md"
+  },
+  {
+    "name": "triage",
+    "title": "Triage",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/engineering/triage/SKILL.md",
+    "description": "Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
+    "useWhen": "Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
+    "aliases": [
+      "triage"
+    ],
+    "tags": [
+      "triage",
+      "engineering",
+      "move",
+      "issues",
+      "external",
+      "prs",
+      "through",
+      "state",
+      "machine",
+      "roles",
+      "categorise",
+      "verify"
+    ],
+    "capabilities": [
+      "read-only",
+      "network",
+      "external-posting"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/triage/SKILL.md"
+  },
+  {
+    "name": "using-git-worktrees",
+    "title": "Using Git Worktrees",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/using-git-worktrees/SKILL.md",
+    "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+    "useWhen": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+    "aliases": [
+      "using-git-worktrees",
+      "using git worktrees"
+    ],
+    "tags": [
+      "using",
+      "git",
+      "worktrees",
+      "starting",
+      "feature",
+      "work",
+      "needs",
+      "isolation",
+      "current",
+      "workspace",
+      "before",
+      "executing"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/using-git-worktrees/SKILL.md"
+  },
+  {
+    "name": "using-superpowers",
+    "title": "Using Superpowers",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/using-superpowers/SKILL.md",
+    "description": "Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
+    "useWhen": "Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
+    "aliases": [
+      "using-superpowers",
+      "using superpowers"
+    ],
+    "tags": [
+      "using",
+      "starting",
+      "any",
+      "conversation",
+      "establishes",
+      "how",
+      "find",
+      "requiring",
+      "invocation",
+      "before",
+      "response",
+      "including"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/using-superpowers/SKILL.md"
+  },
+  {
+    "name": "verification-before-completion",
+    "title": "Verification Before Completion",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/verification-before-completion/SKILL.md",
+    "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+    "useWhen": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+    "aliases": [
+      "verification-before-completion",
+      "verification before completion"
+    ],
+    "tags": [
+      "verification",
+      "before",
+      "completion",
+      "about",
+      "claim",
+      "work",
+      "complete",
+      "fixed",
+      "passing",
+      "committing",
+      "creating",
+      "prs"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/verification-before-completion/SKILL.md"
+  },
+  {
+    "name": "writing-great-skills",
+    "title": "Writing Great Skills",
+    "studio": "engineering",
+    "source": "mattpocock/skills",
+    "pack": "mattpocock/skills",
+    "skillPath": "skills/productivity/writing-great-skills/SKILL.md",
+    "description": "Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
+    "useWhen": "Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
+    "aliases": [
+      "writing-great-skills",
+      "writing great skills"
+    ],
+    "tags": [
+      "writing",
+      "great",
+      "productivity",
+      "reference",
+      "editing",
+      "well",
+      "vocabulary",
+      "principles",
+      "make",
+      "predictable"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/writing-great-skills/SKILL.md"
+  },
+  {
+    "name": "writing-plans",
+    "title": "Writing Plans",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/writing-plans/SKILL.md",
+    "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+    "useWhen": "Use when you have a spec or requirements for a multi-step task, before touching code",
+    "aliases": [
+      "writing-plans",
+      "writing plans"
+    ],
+    "tags": [
+      "writing",
+      "plans",
+      "have",
+      "spec",
+      "requirements",
+      "multi",
+      "step",
+      "task",
+      "before",
+      "touching",
+      "code"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/writing-plans/SKILL.md"
+  },
+  {
+    "name": "writing-skills",
+    "title": "Writing Skills",
+    "studio": "engineering",
+    "source": "obra/superpowers",
+    "pack": "obra/superpowers",
+    "skillPath": "skills/writing-skills/SKILL.md",
+    "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+    "useWhen": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+    "aliases": [
+      "writing-skills",
+      "writing skills"
+    ],
+    "tags": [
+      "writing",
+      "creating",
+      "new",
+      "editing",
+      "existing",
+      "verifying",
+      "work",
+      "before",
+      "deployment"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/writing-skills/SKILL.md"
+  }
+]

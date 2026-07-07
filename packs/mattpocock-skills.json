@@ -1,0 +1,10 @@
+{
+  "id": "mattpocock/skills",
+  "repoUrl": "https://github.com/mattpocock/skills",
+  "allowedPaths": ["skills/**/SKILL.md"],
+  "pinPolicy": "sha",
+  "licensePolicy": "record-and-review",
+  "hiddenByDefault": true,
+  "visibility": "catalog-only",
+  "defaultStudio": "engineering"
+}

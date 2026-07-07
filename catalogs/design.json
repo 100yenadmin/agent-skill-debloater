@@ -60,34 +60,6 @@
     "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-diagram/SKILL.md"
   },
   {
-    "name": "baoyu-infographic",
-    "title": "Baoyu Infographic",
-    "studio": "design",
-    "source": "jimliu/baoyu-skills",
-    "pack": "jimliu/baoyu-skills",
-    "skillPath": "skills/baoyu-infographic/SKILL.md",
-    "description": "Use for infographics, dense visual summaries, reports, visual explanations, and publishable information graphics.",
-    "useWhen": "infographics, dense visual summaries, reports, visual explanations, and information graphics",
-    "aliases": [
-      "infographic",
-      "visual summary",
-      "information graphic"
-    ],
-    "tags": [
-      "infographic",
-      "summary",
-      "visualization",
-      "report",
-      "explain",
-      "information"
-    ],
-    "capabilities": [
-      "file-write"
-    ],
-    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-infographic/SKILL.md"
-  },
-  {
     "name": "baoyu-image-cards",
     "title": "Baoyu Image Cards",
     "studio": "design",
@@ -114,6 +86,34 @@
     ],
     "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
     "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md"
+  },
+  {
+    "name": "baoyu-infographic",
+    "title": "Baoyu Infographic",
+    "studio": "design",
+    "source": "jimliu/baoyu-skills",
+    "pack": "jimliu/baoyu-skills",
+    "skillPath": "skills/baoyu-infographic/SKILL.md",
+    "description": "Use for infographics, dense visual summaries, reports, visual explanations, and publishable information graphics.",
+    "useWhen": "infographics, dense visual summaries, reports, visual explanations, and information graphics",
+    "aliases": [
+      "infographic",
+      "visual summary",
+      "information graphic"
+    ],
+    "tags": [
+      "infographic",
+      "summary",
+      "visualization",
+      "report",
+      "explain",
+      "information"
+    ],
+    "capabilities": [
+      "file-write"
+    ],
+    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-infographic/SKILL.md"
   },
   {
     "name": "baoyu-slide-deck",

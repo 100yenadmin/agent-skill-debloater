@@ -3,29 +3,39 @@
     "design": {
       "displayName": "Design Studio",
       "visibleRouterSkill": "design-studio",
-      "packs": ["jimliu/baoyu-skills"],
+      "packs": [
+        "jimliu/baoyu-skills"
+      ],
       "defaultLimit": 3,
       "description": "Visual design, diagrams, covers, slides, UI polish, brand assets, and image-card workflows."
     },
     "marketing": {
       "displayName": "Marketing Studio",
       "visibleRouterSkill": "marketing-studio",
-      "packs": ["coreyhaines31/marketingskills"],
+      "packs": [
+        "coreyhaines31/marketingskills"
+      ],
       "defaultLimit": 3,
       "description": "Positioning, ICP, offers, copy, SEO/content, growth, launches, and marketing strategy."
     },
     "ceo": {
       "displayName": "CEO Studio",
-      "status": "deferred",
-      "packs": [],
-      "plannedPacks": ["garrytan/gstack"],
-      "description": "Executive operating, company-building, fundraising, strategy, and founder workflows."
+      "visibleRouterSkill": "ceo-studio",
+      "packs": [
+        "garrytan/gstack"
+      ],
+      "defaultLimit": 3,
+      "description": "Executive operating, company-building, fundraising, strategy, security governance, and founder workflows."
     },
     "engineering": {
       "displayName": "Engineering Studio",
-      "status": "deferred",
-      "packs": [],
-      "plannedPacks": ["obra/superpowers", "mattpocock/skills"],
+      "visibleRouterSkill": "engineering-studio",
+      "packs": [
+        "garrytan/gstack",
+        "obra/superpowers",
+        "mattpocock/skills"
+      ],
+      "defaultLimit": 3,
       "description": "Engineering execution, debugging, planning, code review, TypeScript, and implementation workflows."
     }
   }

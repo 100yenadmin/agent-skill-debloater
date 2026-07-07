@@ -1,0 +1,10 @@
+{
+  "id": "obra/superpowers",
+  "repoUrl": "https://github.com/obra/superpowers",
+  "allowedPaths": ["skills/**/SKILL.md"],
+  "pinPolicy": "sha",
+  "licensePolicy": "record-and-review",
+  "hiddenByDefault": true,
+  "visibility": "catalog-only",
+  "defaultStudio": "engineering"
+}

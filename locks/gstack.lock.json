@@ -1,0 +1,15 @@
+{
+  "pack": "garrytan/gstack",
+  "repoUrl": "https://github.com/garrytan/gstack",
+  "resolvedRef": "main",
+  "resolvedSha": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+  "resolvedAt": "2026-07-07",
+  "license": {
+    "status": "recorded",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/LICENSE"
+  },
+  "catalogs": [
+    "catalogs/ceo.json",
+    "catalogs/engineering.json"
+  ]
+}
