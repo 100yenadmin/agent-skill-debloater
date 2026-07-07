@@ -26,10 +26,13 @@ studio router skills, then searching catalogs that point at upstream skill files
 
 ## Ranking
 
-V1 uses JSON lexical search with deterministic boosts for names, aliases, tags,
-descriptions, source pack, use-when text, and capabilities. SQLite FTS5 is the
-next foundation once schema and eval coverage are stable. Voyage reranking is
-optional, default-off, and receives compact candidate cards only.
+V1 attempts SQLite FTS5 as the default candidate-retrieval fast path, then
+applies deterministic boosts for names, aliases, tags, descriptions, source
+pack, use-when text, and capabilities. Search falls back to full JSON
+deterministic scoring when SQLite FTS5 is unavailable in the host Node build,
+the query cannot be represented safely for FTS, or the FTS candidate cap is
+saturated. Voyage reranking is optional, default-off, and receives compact
+candidate cards only.
 
 ## Portability
 

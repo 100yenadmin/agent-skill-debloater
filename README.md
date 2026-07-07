@@ -9,7 +9,7 @@ curated packs, studios, overlays, manifests, catalogs, evals, and release cadenc
 live here; OpenClaw core should eventually own only generic catalog/search
 primitives.
 
-## What Ships In v0.1
+## What Ships
 
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`
 - `agent-skill-debloater search <studio> "<query>"`
@@ -19,6 +19,9 @@ primitives.
 - lockfiles with exact upstream seed commits
 - manifest and studio overlay seeds
 - routing eval scaffolding
+- public schemas and provenance checks
+- SQLite FTS5 search fast path by default, with portable JSON deterministic
+  fallback
 
 ## Schema Contracts
 
@@ -33,8 +36,8 @@ Public JSON schemas live under `schemas/`:
 `pack-sync check` validates those schemas plus portability and provenance rules:
 catalog entries must point at declared packs, exact lock SHAs, allowed manifest
 paths, matching GitHub blob URLs, matching studio catalog files, and active
-overlay studios with declared packs. Deferred studios may point at future packs
-without requiring seed manifests yet.
+overlay studios with declared packs. Deferred studios track future roadmap packs
+through `plannedPacks`; `packs` is reserved for manifest-backed bindings.
 
 ## Example
 
@@ -49,6 +52,17 @@ paths, so installed runtimes can resolve exact local paths with pack roots:
 ```bash
 debloat-skill-search design "architecture diagram" \
   --pack-root jimliu/baoyu-skills=/path/to/baoyu-skills
+```
+
+The default search engine attempts SQLite FTS5 candidate retrieval followed by
+the same deterministic scoring/boosts used by the JSON fallback. If SQLite FTS5
+is not available in the host Node build, the query cannot be represented safely
+for FTS, or the candidate cap is saturated, search falls back to full
+deterministic JSON scoring so top-3 ordering and exact-name matches stay
+stable. Force the portable fallback when needed:
+
+```bash
+debloat-skill-search marketing "positioning ICP" --engine json --format json
 ```
 
 ## Proof Boundary

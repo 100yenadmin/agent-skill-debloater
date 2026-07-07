@@ -35,6 +35,7 @@ function parseSearchArgs(argv) {
     catalogDir: defaultCatalogDir(),
     format: "text",
     limit: 3,
+    engine: "fts",
     packRoots: {},
     rerank: "off"
   };
@@ -51,6 +52,9 @@ function parseSearchArgs(argv) {
       index += 1;
     } else if (arg === "--limit") {
       options.limit = parsePositiveIntegerOption("--limit", next);
+      index += 1;
+    } else if (arg === "--engine") {
+      options.engine = optionValue("--engine", next);
       index += 1;
     } else if (arg === "--pack-root") {
       const [pack, root] = parsePackRoot(optionValue("--pack-root", next));
@@ -70,7 +74,7 @@ function parseSearchArgs(argv) {
 function searchUsage() {
   return [
     'Usage: debloat-skill-search <studio> "<query>" [--format json|text] [--limit N]',
-    "       [--catalog-dir PATH] [--pack-root PACK=PATH] [--rerank off|voyage]",
+    "       [--catalog-dir PATH] [--engine fts|json] [--pack-root PACK=PATH] [--rerank off|voyage]",
     "",
     "Default output is top 3 compact results. Rerank is default-off and receives candidate cards only."
   ].join("\n");
@@ -93,6 +97,10 @@ export async function searchMain(argv) {
 
   if (!["text", "json"].includes(options.format)) {
     throw new Error(`Unsupported format: ${options.format}`);
+  }
+
+  if (!["fts", "json"].includes(options.engine)) {
+    throw new Error(`Unsupported search engine: ${options.engine}`);
   }
 
   if (!["off", "voyage"].includes(options.rerank)) {

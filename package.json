@@ -26,6 +26,6 @@
     "eval:routing": "node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json --summary"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.13.0"
   }
 }

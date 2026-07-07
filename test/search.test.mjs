@@ -5,6 +5,7 @@ import test from "node:test";
 
 import {
   buildRerankCandidateCards,
+  ftsCandidateIndexes,
   formatResultsText,
   loadCatalog,
   parsePackReadPath,
@@ -12,6 +13,25 @@ import {
 } from "../src/search.mjs";
 
 const fixtureDir = new URL("./fixtures/catalogs/", import.meta.url);
+
+function fixtureEntry(name, overrides = {}) {
+  return {
+    name,
+    title: name,
+    studio: "marketing",
+    source: "example/pack",
+    pack: "example/pack",
+    sourceCommit: "0000000000000000000000000000000000000000",
+    sourceUrl: `https://github.com/example/pack/blob/0000000000000000000000000000000000000000/skills/${encodeURIComponent(name)}/SKILL.md`,
+    skillPath: `skills/${encodeURIComponent(name)}/SKILL.md`,
+    description: "Use for shared routing term.",
+    aliases: ["shared"],
+    tags: ["shared"],
+    capabilities: ["read-only"],
+    useWhen: "shared",
+    ...overrides
+  };
+}
 
 test("search returns top 3 design results with portable resolved read paths", async () => {
   const catalog = await loadCatalog({ studio: "design", catalogDir: fixtureDir });
@@ -44,6 +64,89 @@ test("search isolates studios so marketing prompts do not return design skills",
 
   assert.equal(results[0].name, "product-marketing");
   assert.ok(results.every((entry) => entry.studio === "marketing"));
+});
+
+test("search uses SQLite FTS candidates by default before deterministic scoring", async () => {
+  const catalog = await loadCatalog({ studio: "marketing", catalogDir: fixtureDir });
+  const queryTokens = ["seo", "content", "plan"];
+  let sqliteAvailable = true;
+
+  try {
+    assert.deepEqual(ftsCandidateIndexes(catalog, queryTokens, { candidateLimit: 1 }), [1]);
+  } catch (error) {
+    sqliteAvailable = false;
+    if (!/SQLite FTS5 search is unavailable/.test(error.message)) throw error;
+  }
+
+  const results = searchCatalog(catalog, "SEO content plan", {
+    candidateLimit: sqliteAvailable ? 2 : 40,
+    limit: 3,
+    packRoots: {
+      "coreyhaines31/marketingskills": "/packs/marketingskills"
+    }
+  });
+
+  assert.equal(results[0].name, "ai-seo");
+});
+
+test("saturated FTS candidate caps preserve deterministic top-3 ordering", () => {
+  const catalog = [
+    ...Array.from({ length: 40 }, (_, index) => fixtureEntry(`z${String(index).padStart(4, "0")}`)),
+    ...Array.from({ length: 5 }, (_, index) => fixtureEntry(`a${String(index).padStart(4, "0")}`))
+  ];
+
+  const jsonResults = searchCatalog(catalog, "shared", {
+    engine: "json",
+    limit: 3
+  });
+  const ftsResults = searchCatalog(catalog, "shared", {
+    candidateLimit: 40,
+    limit: 3
+  });
+
+  assert.deepEqual(
+    ftsResults.map((entry) => entry.name),
+    jsonResults.map((entry) => entry.name)
+  );
+  assert.deepEqual(ftsResults.map((entry) => entry.name), ["a0000", "a0001", "a0002"]);
+});
+
+test("empty FTS queries preserve raw exact-name deterministic matches", () => {
+  const catalog = [
+    fixtureEntry("c++", {
+      description: "Use for C++ skill routing.",
+      aliases: [],
+      tags: [],
+      useWhen: ""
+    })
+  ];
+
+  const results = searchCatalog(catalog, "c++", { limit: 1 });
+
+  assert.equal(results.length, 1);
+  assert.equal(results[0].name, "c++");
+});
+
+test("search rejects invalid FTS candidate limits before fallback", async () => {
+  const catalog = await loadCatalog({ studio: "marketing", catalogDir: fixtureDir });
+
+  assert.throws(
+    () => searchCatalog(catalog, "SEO content plan", { candidateLimit: 0 }),
+    /candidateLimit must be a positive integer/
+  );
+});
+
+test("search can force the JSON lexical fallback engine", async () => {
+  const catalog = await loadCatalog({ studio: "marketing", catalogDir: fixtureDir });
+
+  const results = searchCatalog(catalog, "positioning ICP core offer target audience", {
+    engine: "json",
+    packRoots: {
+      "coreyhaines31/marketingskills": "/packs/marketingskills"
+    }
+  });
+
+  assert.equal(results[0].name, "product-marketing");
 });
 
 test("search reports low confidence when no clear match exists", async () => {
@@ -277,6 +380,27 @@ test("CLI returns compact JSON with top 3 by default", () => {
   assert.ok(parsed.results.length <= 3);
   assert.equal(parsed.results[0].name, "ai-seo");
   assert.ok(parsed.results[0].why.length > 0);
+});
+
+test("CLI can force JSON fallback search engine", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      "bin/debloat-skill-search",
+      "marketing",
+      "positioning ICP core offer target audience",
+      "--catalog-dir",
+      new URL("./fixtures/catalogs", import.meta.url).pathname,
+      "--engine",
+      "json",
+      "--format",
+      "json"
+    ],
+    { cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" }
+  );
+
+  const parsed = JSON.parse(output);
+  assert.equal(parsed.results[0].name, "product-marketing");
 });
 
 test("CLI rejects invalid and missing --limit values", () => {
