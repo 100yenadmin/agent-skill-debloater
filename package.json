@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-debloater",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
   "type": "module",
   "license": "MIT",
