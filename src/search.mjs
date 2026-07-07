@@ -1,9 +1,13 @@
 import { readFile } from "node:fs/promises";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+const require = createRequire(import.meta.url);
 const DEFAULT_LIMIT = 3;
 const DEFAULT_MIN_SCORE = 40;
+const DEFAULT_ENGINE = "fts";
+const DEFAULT_CANDIDATE_LIMIT = 40;
 const STOP_WORDS = new Set([
   "a",
   "an",
@@ -104,6 +108,11 @@ function fieldTokens(entry) {
     tags: (entry.tags ?? []).flatMap(tokenize),
     capabilities: (entry.capabilities ?? []).flatMap(tokenize)
   };
+}
+
+function fieldText(entry, field) {
+  const value = entry[field];
+  return Array.isArray(value) ? value.join(" ") : String(value ?? "");
 }
 
 function assertPortableSkillPath(entry) {
@@ -267,6 +276,116 @@ function scoreEntry(entry, queryTokens, rawQuery) {
   return { score, why: [...new Set(why)].slice(0, 10) };
 }
 
+function ftsQuery(queryTokens) {
+  return queryTokens
+    .map((token) => token.replace(/[^a-z0-9]/g, ""))
+    .filter(Boolean)
+    .map((token) => `${token}*`)
+    .join(" OR ");
+}
+
+function loadSqliteDatabaseSync() {
+  try {
+    return require("node:sqlite").DatabaseSync;
+  } catch {
+    return null;
+  }
+}
+
+function isFtsUnavailableError(error) {
+  return /no such module: fts5/i.test(String(error?.message ?? ""));
+}
+
+export function ftsCandidateIndexes(catalog, queryTokens, { candidateLimit = DEFAULT_CANDIDATE_LIMIT } = {}) {
+  const query = ftsQuery(queryTokens);
+  if (!query) return [];
+
+  const limit = Number(candidateLimit);
+  if (!Number.isInteger(limit) || limit < 1) {
+    throw new Error("candidateLimit must be a positive integer");
+  }
+
+  const Database = loadSqliteDatabaseSync();
+  if (!Database) {
+    throw new Error("SQLite FTS5 search is unavailable in this Node runtime");
+  }
+
+  const db = new Database(":memory:");
+  try {
+    try {
+      db.exec(`
+        CREATE VIRTUAL TABLE skills USING fts5(
+          name,
+          title,
+          aliases,
+          tags,
+          useWhen,
+          description,
+          source,
+          capabilities,
+          tokenize = 'porter unicode61'
+        )
+      `);
+    } catch (error) {
+      if (isFtsUnavailableError(error)) {
+        throw new Error("SQLite FTS5 search is unavailable in this Node runtime");
+      }
+      throw error;
+    }
+    const insert = db.prepare(
+      "INSERT INTO skills(rowid, name, title, aliases, tags, useWhen, description, source, capabilities) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    );
+    catalog.forEach((entry, index) => {
+      insert.run(
+        index + 1,
+        fieldText(entry, "name"),
+        fieldText(entry, "title"),
+        fieldText(entry, "aliases"),
+        fieldText(entry, "tags"),
+        fieldText(entry, "useWhen"),
+        fieldText(entry, "description"),
+        fieldText(entry, "source"),
+        fieldText(entry, "capabilities")
+      );
+    });
+
+    return db
+      .prepare(
+        `SELECT rowid
+         FROM skills
+         WHERE skills MATCH ?
+         ORDER BY bm25(skills, 8.0, 7.0, 6.0, 5.0, 3.0, 2.0, 1.0, 0.5)
+         LIMIT ?`
+      )
+      .all(query, limit)
+      .map((row) => Number(row.rowid) - 1);
+  } finally {
+    db.close();
+  }
+}
+
+function candidateCatalog(catalog, queryTokens, { engine, candidateLimit }) {
+  if (engine === "json") return catalog;
+  if (engine !== "fts") {
+    throw new Error(`Unsupported search engine: ${engine}`);
+  }
+  const limit = Number(candidateLimit);
+  if (!Number.isInteger(limit) || limit < 1) {
+    throw new Error("candidateLimit must be a positive integer");
+  }
+
+  if (!ftsQuery(queryTokens)) return catalog;
+
+  try {
+    const indexes = ftsCandidateIndexes(catalog, queryTokens, { candidateLimit: limit });
+    if (indexes.length === 0) return [];
+    if (indexes.length >= limit) return catalog;
+    return indexes.map((index) => catalog[index]).filter(Boolean);
+  } catch {
+    return catalog;
+  }
+}
+
 function confidenceFor(score, topScore) {
   if (score <= 0) return 0;
   const absolute = Math.min(0.99, score / 70);
@@ -281,6 +400,8 @@ export function searchCatalog(
     limit = DEFAULT_LIMIT,
     minScore = DEFAULT_MIN_SCORE,
     minResultScore = Math.ceil(Number(minScore) / 2),
+    engine = DEFAULT_ENGINE,
+    candidateLimit = DEFAULT_CANDIDATE_LIMIT,
     packRoots = {}
   } = {}
 ) {
@@ -290,8 +411,9 @@ export function searchCatalog(
   }
   const queryTokens = tokenize(query);
   const rawQuery = String(query ?? "").toLowerCase();
+  const candidates = candidateCatalog(catalog, queryTokens, { engine, candidateLimit });
 
-  const scored = catalog.map((entry) => {
+  const scored = candidates.map((entry) => {
     const { score, why } = scoreEntry(entry, queryTokens, rawQuery);
     return { entry, score, why };
   }).filter((item) => item.score > 0);
