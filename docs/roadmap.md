@@ -29,7 +29,9 @@
 ## v0.5.0
 
 - Implement live optional Voyage rerank in shadow mode.
-- Promote only with eval evidence and no Recall@3 regression.
+- Release shadow mode only while deterministic routing evals remain green.
+- Do not promote Voyage ordering without a separate rerank-quality eval proving
+  no Recall@3 regression and meaningful MRR/Top1 lift.
 
 ## v0.6.0
 
