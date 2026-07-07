@@ -110,8 +110,23 @@ test("routing eval threshold checks use raw metrics before display rounding", ()
     top1: 1,
     wrongCategory: 0,
     wrongCategoryCount: 0,
-    negativeFalsePositive: 0
+    negativeFalsePositive: 0,
+    mustRank1FailureCount: 0
   });
 
   assert.deepEqual(failures, ["Recall@3 0.9496"]);
+});
+
+test("routing eval fails smoke regressions marked mustRank1", () => {
+  const failures = thresholdFailures({
+    recallAt3: 1,
+    mrrAt3: 1,
+    top1: 1,
+    wrongCategory: 0,
+    wrongCategoryCount: 0,
+    negativeFalsePositive: 0,
+    mustRank1FailureCount: 1
+  });
+
+  assert.deepEqual(failures, ["must-rank-1 1 failures"]);
 });

@@ -20,6 +20,22 @@ primitives.
 - manifest and studio overlay seeds
 - routing eval scaffolding
 
+## Schema Contracts
+
+Public JSON schemas live under `schemas/`:
+
+- `pack.schema.json` for human-authored pack manifests in `packs/`
+- `lock.schema.json` for generated lockfiles in `locks/`
+- `overlay.schema.json` for studio overlays in `overlays/`
+- `catalog.schema.json` for generated searchable catalogs in `catalogs/`
+- `capabilities.schema.json` for capability labels
+
+`pack-sync check` validates those schemas plus portability and provenance rules:
+catalog entries must point at declared packs, exact lock SHAs, allowed manifest
+paths, matching GitHub blob URLs, matching studio catalog files, and active
+overlay studios with declared packs. Deferred studios may point at future packs
+without requiring seed manifests yet.
+
 ## Example
 
 ```bash

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/100yenadmin/agent-skill-debloater/schemas/catalog.schema.json",
+  "title": "AgentSkillDebloater generated catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "name",
+      "title",
+      "studio",
+      "source",
+      "pack",
+      "skillPath",
+      "description",
+      "aliases",
+      "tags",
+      "capabilities",
+      "sourceCommit",
+      "sourceUrl"
+    ],
+    "properties": {
+      "name": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]*$"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "studio": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "source": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+      },
+      "pack": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+      },
+      "skillPath": {
+        "type": "string",
+        "pattern": "^(?!/)(?![A-Za-z]:)(?!file:)(?!.*\\\\)(?!.*//)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*(?:^|/)\\.(?:/|$)).+/SKILL\\.md$"
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1
+      },
+      "useWhen": {
+        "type": "string"
+      },
+      "aliases": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "tags": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "capabilities": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": [
+            "read-only",
+            "file-write",
+            "network",
+            "browser",
+            "external-posting",
+            "api-key-use",
+            "customer-data",
+            "dangerous"
+          ]
+        }
+      },
+      "sourceCommit": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{40}$"
+      },
+      "sourceUrl": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/blob/[a-f0-9]{40}/.+$"
+      }
+    },
+    "additionalProperties": false
+  }
+}

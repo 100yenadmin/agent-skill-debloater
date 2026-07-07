@@ -12,7 +12,8 @@
       "positioning",
       "ICP",
       "ideal customer profile",
-      "product marketing"
+      "product marketing",
+      "core offer"
     ],
     "tags": [
       "positioning",
@@ -21,7 +22,8 @@
       "category",
       "messaging",
       "context",
-      "offer"
+      "offer",
+      "core-offer"
     ],
     "capabilities": [
       "read-only"

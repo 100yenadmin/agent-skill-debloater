@@ -8,7 +8,8 @@ const THRESHOLDS = {
   top1: 0.8,
   wrongCategory: 0.05,
   wrongCategoryMaxCount: 1,
-  negativeFalsePositive: 0
+  negativeFalsePositive: 0,
+  mustRank1Failures: 0
 };
 
 function rankOf(results, expected) {
@@ -25,6 +26,7 @@ function summarize(rows) {
     throw new Error("Routing eval requires at least one positive expectedSkill scenario");
   }
   const hardNegatives = rows.filter((row) => !row.expectedSkill && row.expectedSelectedStudio === null);
+  const mustRank1Rows = positives.filter((row) => row.mustRank1);
   const recallAt3 = positives.filter((row) => row.rank && row.rank <= 3).length / positives.length;
   const top1 = positives.filter((row) => row.rank === 1).length / positives.length;
   const mrrAt3 =
@@ -37,12 +39,15 @@ function summarize(rows) {
   const negativeFalsePositiveCount = hardNegatives.filter((row) => row.selectedStudio !== null).length;
   const negativeFalsePositive =
     hardNegatives.length === 0 ? 0 : negativeFalsePositiveCount / hardNegatives.length;
+  const mustRank1FailureCount = mustRank1Rows.filter((row) => row.rank !== 1).length;
 
   return {
     positiveCount: positives.length,
     hardNegativeCount: hardNegatives.length,
+    mustRank1Count: mustRank1Rows.length,
     wrongCategoryCount,
     negativeFalsePositiveCount,
+    mustRank1FailureCount,
     recallAt3,
     top1,
     mrrAt3,
@@ -67,6 +72,9 @@ export function thresholdFailures(metrics) {
     failures.push(
       `negative-false-positive ${metrics.negativeFalsePositive} (${metrics.negativeFalsePositiveCount ?? 0} false positives)`
     );
+  }
+  if (metrics.mustRank1FailureCount > THRESHOLDS.mustRank1Failures) {
+    failures.push(`must-rank-1 ${metrics.mustRank1FailureCount} failures`);
   }
   return failures;
 }
@@ -107,6 +115,7 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
       expectedSelectedStudio,
       selectedStudio,
       expectedSkill: scenario.expectedSkill,
+      mustRank1: Boolean(scenario.mustRank1),
       results,
       rank: scenario.expectedSkill ? rankOf(results, scenario.expectedSkill) : null
     });

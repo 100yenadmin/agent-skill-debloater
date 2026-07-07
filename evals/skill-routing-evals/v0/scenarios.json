@@ -72,6 +72,20 @@
     "expectedSkill": "product-marketing"
   },
   {
+    "id": "marketing-positioning-core-offer-launch",
+    "studio": "marketing",
+    "prompt": "Clarify ICP positioning and the core offer for a developer-tool launch.",
+    "expectedSkill": "product-marketing",
+    "mustRank1": true
+  },
+  {
+    "id": "marketing-core-offer-positioning",
+    "studio": "marketing",
+    "prompt": "Clarify the ICP, buying trigger, and core offer for a developer tool.",
+    "expectedSkill": "product-marketing",
+    "mustRank1": true
+  },
+  {
     "id": "marketing-voc-research",
     "studio": "marketing",
     "prompt": "Run voice of customer research from reviews and interviews.",
@@ -88,6 +102,13 @@
     "studio": "marketing",
     "prompt": "Write landing page hero copy with CTA options.",
     "expectedSkill": "copywriting"
+  },
+  {
+    "id": "marketing-core-offer-copy",
+    "studio": "marketing",
+    "prompt": "Write landing page copy that expresses the core offer and CTA.",
+    "expectedSkill": "copywriting",
+    "mustRank1": true
   },
   {
     "id": "marketing-conversion-copy",
@@ -124,6 +145,13 @@
     "studio": "marketing",
     "prompt": "Write the launch strategy for a beta release and Product Hunt announcement.",
     "expectedSkill": "launch"
+  },
+  {
+    "id": "marketing-launch-copy-campaign",
+    "studio": "marketing",
+    "prompt": "Write launch copy and a lightweight campaign plan for a new AI agent product.",
+    "expectedSkill": "launch",
+    "mustRank1": true
   },
   {
     "id": "marketing-feature-announcement",

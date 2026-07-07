@@ -4,6 +4,18 @@
   "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
   "type": "module",
   "license": "MIT",
+  "files": [
+    "bin/",
+    "catalogs/",
+    "docs/",
+    "evals/",
+    "locks/",
+    "overlays/",
+    "packs/",
+    "schemas/",
+    "skills/",
+    "src/"
+  ],
   "bin": {
     "agent-skill-debloater": "bin/agent-skill-debloater",
     "debloat-skill-search": "bin/debloat-skill-search",
