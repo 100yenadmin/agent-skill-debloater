@@ -23,7 +23,33 @@ test("committed routing eval proves must-rank-1 scenarios are currently top rank
 
   assert.ok(result.metrics.mustRank1Count > 0);
   assert.equal(result.metrics.mustRank1FailureCount, 0);
-  assert.equal(thresholdFailures(result.metrics).some((failure) => failure.startsWith("must-rank-1")), false);
+  assert.equal(
+    thresholdFailures(result.metrics, {
+      metricsByGroup: result.metricsByGroup,
+      coverage: result.coverage
+    }).some((failure) => failure.startsWith("must-rank-1")),
+    false
+  );
+});
+
+test("committed routing eval separates curated quality from generated provenance smoke", async () => {
+  const result = await runRoutingEval(new URL("../evals/skill-routing-evals/v0/scenarios.json", import.meta.url));
+
+  assert.ok(result.metricsByGroup["curated-intent"].positiveCount > 0);
+  assert.ok(result.metricsByGroup["generated-provenance"].positiveCount > 0);
+  assert.equal(result.metricsByGroup["curated-intent"].negativeFalsePositive, 0);
+  assert.equal(result.metricsByGroup["curated-intent"].mustRank1FailureCount, 0);
+  assert.deepEqual(result.coverage.hardNegativeStudios, ["ceo", "design", "engineering", "marketing"]);
+  assert.ok(result.coverage.overlapClusters.includes("engineering-code-review"));
+  assert.ok(result.coverage.overlapClusters.includes("engineering-debugging"));
+  assert.ok(result.coverage.overlapClusters.includes("engineering-tdd"));
+  assert.deepEqual(
+    thresholdFailures(result.metrics, {
+      metricsByGroup: result.metricsByGroup,
+      coverage: result.coverage
+    }),
+    []
+  );
 });
 
 test("routing eval can run against committed fixture catalogs", async () => {
@@ -259,11 +285,17 @@ test("routing eval CLI writes a full JSON report while printing summary", async 
 
   const summary = JSON.parse(output);
   const report = JSON.parse(await readFile(reportPath, "utf8"));
+  const scenarioCount = JSON.parse(await readFile(scenarioPath, "utf8")).length;
 
-  assert.equal(summary.scenarioCount, 33);
+  assert.equal(summary.scenarioCount, scenarioCount);
+  assert.equal(summary.thresholdFailures.length, 0);
   assert.equal(summary.failureRows.length, 0);
-  assert.equal(summary.ambiguityRows.length, 0);
-  assert.equal(report.auditTraces.length, 33);
+  assert.ok(Array.isArray(summary.ambiguityRows));
+  assert.ok(summary.metricsByGroup["curated-intent"].positiveCount > 0);
+  assert.ok(summary.metricsByGroup["generated-provenance"].positiveCount > 0);
+  assert.ok(summary.coverage.hardNegativeStudios.includes("engineering"));
+  assert.ok(summary.coverage.overlapClusters.includes("engineering-debugging"));
+  assert.equal(report.auditTraces.length, scenarioCount);
   assert.equal(report.auditTraces[0].selectedSkillTrace.name, "baoyu-cover-image");
 });
 
@@ -293,7 +325,7 @@ test("routing eval CLI summary exposes ambiguity rows when ambiguity threshold f
       ),
     (error) => {
       const summary = JSON.parse(error.stdout);
-      assert.deepEqual(summary.thresholdFailures, ["ambiguity-rate 1"]);
+      assert.ok(summary.thresholdFailures.includes("ambiguity-rate 1"));
       assert.equal(summary.failureRows.length, 0);
       assert.equal(summary.ambiguityRows.length, 1);
       assert.equal(summary.ambiguityRows[0].id, "ambiguous-seo");

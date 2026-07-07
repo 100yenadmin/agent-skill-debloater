@@ -38,6 +38,8 @@
 - Add CEO Studio and Engineering Studio.
 - Add seed pack coverage for GStack, Superpowers, Matt Pocock skills, Baoyu, and
   Cory Haines marketing skills.
+- Preserve upstream pack provenance through overlays and lockfiles without
+  vendoring upstream skill bodies.
 
 ## v1.0.0
 

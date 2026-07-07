@@ -1,0 +1,12 @@
+{
+  "pack": "obra/superpowers",
+  "repoUrl": "https://github.com/obra/superpowers",
+  "resolvedRef": "main",
+  "resolvedSha": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+  "resolvedAt": "2026-07-07",
+  "license": {
+    "status": "recorded",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/LICENSE"
+  },
+  "catalogs": ["catalogs/engineering.json"]
+}

@@ -14,8 +14,10 @@ primitives.
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`
 - `agent-skill-debloater search <studio> "<query>"`
 - `pack-sync check`
-- `design-studio` and `marketing-studio` visible router skills
-- portable seed catalogs for Baoyu design skills and Cory Haines marketing skills
+- `design-studio`, `marketing-studio`, `ceo-studio`, and `engineering-studio`
+  visible router skills
+- portable seed catalogs for Baoyu design skills, Cory Haines marketing skills,
+  GStack, Superpowers, and Matt Pocock skills
 - lockfiles with exact upstream seed commits
 - manifest and studio overlay seeds
 - routing eval scaffolding
@@ -64,6 +66,15 @@ stable. Force the portable fallback when needed:
 
 ```bash
 debloat-skill-search marketing "positioning ICP" --engine json --format json
+```
+
+CEO and Engineering studios use the same interface:
+
+```bash
+debloat-skill-search ceo "think bigger and review this plan" --format text
+debloat-skill-search engineering \
+  "debug this flaky production bug systematically before proposing fixes" \
+  --format text
 ```
 
 Optional Voyage reranking is default-off and shadow-only. It does not reorder the

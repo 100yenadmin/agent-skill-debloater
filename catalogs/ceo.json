@@ -1,0 +1,591 @@
+[
+  {
+    "name": "cso",
+    "title": "Cso",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "cso/SKILL.md",
+    "description": "Chief Security Officer mode. (gstack)",
+    "useWhen": "Infrastructure-first security audit: secrets archaeology, dependency supply chain, CI/CD pipeline security, LLM/AI security, skill supply chain scanning, plus OWASP Top 10, STRIDE threat modeling, and active verification. Two modes: daily (zero-noise, 8/10 con",
+    "aliases": [
+      "cso",
+      "security audit",
+      "check for vulnerabilities",
+      "owasp review"
+    ],
+    "tags": [
+      "cso",
+      "chief",
+      "security",
+      "officer",
+      "mode",
+      "infrastructure",
+      "first",
+      "audit",
+      "secrets",
+      "archaeology",
+      "dependency",
+      "supply"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/cso/SKILL.md"
+  },
+  {
+    "name": "document-generate",
+    "title": "Document Generate",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "document-generate/SKILL.md",
+    "description": "Generate missing documentation from scratch for a feature, module, or entire project. (gstack)",
+    "useWhen": "Uses the Diataxis framework (tutorial / how-to / reference / explanation) to produce complete, structured documentation. Can be invoked standalone or called by /document-release when it finds coverage gaps. Use when asked to \"write docs\", \"generate documentati",
+    "aliases": [
+      "document-generate",
+      "document generate",
+      "write docs for this",
+      "generate documentation",
+      "document this feature",
+      "create a tutorial",
+      "write a how-to",
+      "explain this module"
+    ],
+    "tags": [
+      "document",
+      "generate",
+      "missing",
+      "documentation",
+      "scratch",
+      "feature",
+      "module",
+      "entire",
+      "project",
+      "diataxis",
+      "framework",
+      "tutorial"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/document-generate/SKILL.md"
+  },
+  {
+    "name": "document-release",
+    "title": "Document Release",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "document-release/SKILL.md",
+    "description": "Post-ship documentation update. (gstack)",
+    "useWhen": "Reads all project docs, cross-references the diff, builds a Diataxis coverage map (reference/how-to/tutorial/explanation), updates README/ARCHITECTURE/CONTRIBUTING/CLAUDE.md to match what shipped, detects architecture diagram drift, polishes CHANGELOG voice wi",
+    "aliases": [
+      "document-release",
+      "document release",
+      "update docs after ship",
+      "document what changed",
+      "post-ship docs"
+    ],
+    "tags": [
+      "document",
+      "release",
+      "post",
+      "ship",
+      "documentation",
+      "update",
+      "reads",
+      "all",
+      "project",
+      "docs",
+      "cross",
+      "references"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/document-release/SKILL.md"
+  },
+  {
+    "name": "freeze",
+    "title": "Freeze",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "freeze/SKILL.md",
+    "description": "Restrict file edits to a specific directory for the session. (gstack)",
+    "useWhen": "Blocks Edit and Write outside the allowed path. Use when debugging to prevent accidentally \"fixing\" unrelated code, or when you want to scope changes to one module. Use when asked to \"freeze\", \"restrict edits\", \"only edit this folder\", or \"lock down edits\". # ",
+    "aliases": [
+      "freeze",
+      "freeze edits to directory",
+      "lock editing scope",
+      "restrict file changes"
+    ],
+    "tags": [
+      "freeze",
+      "restrict",
+      "file",
+      "edits",
+      "specific",
+      "directory",
+      "session",
+      "blocks",
+      "edit",
+      "write",
+      "outside",
+      "allowed"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/freeze/SKILL.md"
+  },
+  {
+    "name": "gstack-openclaw-ceo-review",
+    "title": "Gstack Openclaw Ceo Review",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "openclaw/skills/gstack-openclaw-ceo-review/SKILL.md",
+    "description": "Use when asked to review a plan, challenge a proposal, run a CEO review, poke holes in an approach, think bigger about scope, or decide whether to expand or reduce the plan.",
+    "useWhen": "Use when asked to review a plan, challenge a proposal, run a CEO review, poke holes in an approach, think bigger about scope, or decide whether to expand or reduce the plan.",
+    "aliases": [
+      "gstack-openclaw-ceo-review",
+      "gstack openclaw ceo review",
+      "founder",
+      "CEO"
+    ],
+    "tags": [
+      "openclaw",
+      "ceo",
+      "review",
+      "asked",
+      "plan",
+      "challenge",
+      "proposal",
+      "run",
+      "poke",
+      "holes",
+      "approach",
+      "think"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-ceo-review/SKILL.md"
+  },
+  {
+    "name": "gstack-openclaw-office-hours",
+    "title": "Gstack Openclaw Office Hours",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "openclaw/skills/gstack-openclaw-office-hours/SKILL.md",
+    "description": "Use when asked to brainstorm, evaluate whether an idea is worth building, run office hours, or think through a new product idea or design direction before any code is written.",
+    "useWhen": "Use when asked to brainstorm, evaluate whether an idea is worth building, run office hours, or think through a new product idea or design direction before any code is written.",
+    "aliases": [
+      "gstack-openclaw-office-hours",
+      "gstack openclaw office hours"
+    ],
+    "tags": [
+      "openclaw",
+      "office",
+      "hours",
+      "asked",
+      "brainstorm",
+      "evaluate",
+      "whether",
+      "idea",
+      "worth",
+      "building",
+      "run",
+      "think"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-office-hours/SKILL.md"
+  },
+  {
+    "name": "gstack-openclaw-retro",
+    "title": "Gstack Openclaw Retro",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "openclaw/skills/gstack-openclaw-retro/SKILL.md",
+    "description": "Weekly engineering retrospective. Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware with per-person contributions, praise, and growth areas. Use when asked for weekly retro, what shipped this week, or engineering retrospective.",
+    "useWhen": "Weekly engineering retrospective. Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware with per-person contributions, praise, and growth areas. Use when asked for weekly retro, what shipped thi",
+    "aliases": [
+      "gstack-openclaw-retro",
+      "gstack openclaw retro"
+    ],
+    "tags": [
+      "openclaw",
+      "retro",
+      "weekly",
+      "engineering",
+      "retrospective",
+      "analyzes",
+      "commit",
+      "history",
+      "work",
+      "patterns",
+      "code",
+      "quality"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-retro/SKILL.md"
+  },
+  {
+    "name": "guard",
+    "title": "Guard",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "guard/SKILL.md",
+    "description": "Full safety mode: destructive command warnings + directory-scoped edits. (gstack)",
+    "useWhen": "Combines /careful (warns before rm -rf, DROP TABLE, force-push, etc.) with /freeze (blocks edits outside a specified directory). Use for maximum safety when touching prod or debugging live systems. Use when asked to \"guard mode\", \"full safety\", \"lock it down\",",
+    "aliases": [
+      "guard",
+      "full safety mode",
+      "guard against mistakes",
+      "maximum safety"
+    ],
+    "tags": [
+      "guard",
+      "full",
+      "safety",
+      "mode",
+      "destructive",
+      "command",
+      "warnings",
+      "directory",
+      "scoped",
+      "edits",
+      "combines",
+      "careful"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/guard/SKILL.md"
+  },
+  {
+    "name": "health",
+    "title": "Health",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "health/SKILL.md",
+    "description": "Code quality dashboard. (gstack)",
+    "useWhen": "Wraps existing project tools (type checker, linter, test runner, dead code detector, shell linter), computes a weighted composite 0-10 score, and tracks trends over time. Use when: \"health check\", \"code quality\", \"how healthy is the codebase\", \"run all checks\"",
+    "aliases": [
+      "health",
+      "code health check",
+      "quality dashboard",
+      "how healthy is codebase"
+    ],
+    "tags": [
+      "health",
+      "code",
+      "quality",
+      "dashboard",
+      "wraps",
+      "existing",
+      "project",
+      "tools",
+      "type",
+      "checker",
+      "linter",
+      "test"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/health/SKILL.md"
+  },
+  {
+    "name": "landing-report",
+    "title": "Landing Report",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "landing-report/SKILL.md",
+    "description": "Read-only queue dashboard for workspace-aware ship. (gstack)",
+    "useWhen": "Shows which VERSION slots are currently claimed by open PRs, which sibling Conductor workspaces have WIP work likely to ship soon, and what slot /ship would pick next. No mutations — just a snapshot. Use when asked to \"landing report\", \"what's in the queue\", \"",
+    "aliases": [
+      "landing-report",
+      "landing report",
+      "version queue",
+      "ship queue",
+      "what version comes next",
+      "show open PR versions"
+    ],
+    "tags": [
+      "landing",
+      "report",
+      "read",
+      "only",
+      "queue",
+      "dashboard",
+      "workspace",
+      "aware",
+      "ship",
+      "shows",
+      "which",
+      "version"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/landing-report/SKILL.md"
+  },
+  {
+    "name": "learn",
+    "title": "Learn",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "learn/SKILL.md",
+    "description": "Manage project learnings.",
+    "useWhen": "Review, search, prune, and export what gstack has learned across sessions. Use when asked to \"what have we learned\", \"show learnings\", \"prune stale learnings\", or \"export learnings\". Proactively suggest when the user asks about past patterns or wonders \"didn't",
+    "aliases": [
+      "learn",
+      "show learnings",
+      "what have we learned",
+      "manage project learnings"
+    ],
+    "tags": [
+      "learn",
+      "manage",
+      "project",
+      "learnings",
+      "review",
+      "search",
+      "prune",
+      "export",
+      "what",
+      "has",
+      "learned",
+      "across"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/learn/SKILL.md"
+  },
+  {
+    "name": "office-hours",
+    "title": "Office Hours",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "office-hours/SKILL.md",
+    "description": "YC Office Hours — two modes. (gstack)",
+    "useWhen": "Startup mode: six forcing questions that expose demand reality, status quo, desperate specificity, narrowest wedge, observation, and future-fit. Builder mode: design thinking brainstorming for side projects, hackathons, learning, and open source. Saves a desig",
+    "aliases": [
+      "office-hours",
+      "office hours",
+      "brainstorm this",
+      "is this worth building",
+      "help me think through"
+    ],
+    "tags": [
+      "office",
+      "hours",
+      "two",
+      "modes",
+      "startup",
+      "mode",
+      "six",
+      "forcing",
+      "questions",
+      "expose",
+      "demand",
+      "reality"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/office-hours/SKILL.md"
+  },
+  {
+    "name": "plan-ceo-review",
+    "title": "Plan Ceo Review",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "plan-ceo-review/SKILL.md",
+    "description": "CEO/founder-mode plan review. (gstack)",
+    "useWhen": "Rethink the problem, find the 10-star product, challenge premises, expand scope when it creates a better product. Four modes: SCOPE EXPANSION (dream big), SELECTIVE EXPANSION (hold scope + cherry-pick expansions), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (s",
+    "aliases": [
+      "plan-ceo-review",
+      "plan ceo review",
+      "think bigger",
+      "expand scope",
+      "strategy review",
+      "rethink this plan",
+      "founder",
+      "CEO"
+    ],
+    "tags": [
+      "plan",
+      "ceo",
+      "review",
+      "founder",
+      "mode",
+      "rethink",
+      "problem",
+      "find",
+      "star",
+      "product",
+      "challenge",
+      "premises"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write",
+      "network"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-ceo-review/SKILL.md"
+  },
+  {
+    "name": "plan-tune",
+    "title": "Plan Tune",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "plan-tune/SKILL.md",
+    "description": "Self-tuning question sensitivity + developer psychographic for gstack (v1: observational). (gstack)",
+    "useWhen": "Review which AskUserQuestion prompts fire across gstack skills, set per-question preferences (never-ask / always-ask / ask-only-for-one-way), inspect the dual-track profile (what you declared vs what your behavior suggests), and enable/disable question tuning.",
+    "aliases": [
+      "plan-tune",
+      "plan tune",
+      "tune questions",
+      "stop asking me that",
+      "too many questions",
+      "show my profile",
+      "show my vibe",
+      "developer profile"
+    ],
+    "tags": [
+      "plan",
+      "tune",
+      "self",
+      "tuning",
+      "question",
+      "sensitivity",
+      "developer",
+      "psychographic",
+      "observational",
+      "review",
+      "which",
+      "askuserquestion"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-tune/SKILL.md"
+  },
+  {
+    "name": "retro",
+    "title": "Retro",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "retro/SKILL.md",
+    "description": "Weekly engineering retrospective. (gstack)",
+    "useWhen": "Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware: breaks down per-person contributions with praise and growth areas. Use when asked to \"weekly retro\", \"what did we ship\", or \"engineering re",
+    "aliases": [
+      "retro",
+      "weekly retro",
+      "what did we ship",
+      "engineering retrospective"
+    ],
+    "tags": [
+      "retro",
+      "weekly",
+      "engineering",
+      "retrospective",
+      "analyzes",
+      "commit",
+      "history",
+      "work",
+      "patterns",
+      "code",
+      "quality",
+      "metrics"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/retro/SKILL.md"
+  },
+  {
+    "name": "unfreeze",
+    "title": "Unfreeze",
+    "studio": "ceo",
+    "source": "garrytan/gstack",
+    "pack": "garrytan/gstack",
+    "skillPath": "unfreeze/SKILL.md",
+    "description": "Clear the freeze boundary set by /freeze, allowing edits to all directories again. (gstack)",
+    "useWhen": "Use when you want to widen edit scope without ending the session. Use when asked to \"unfreeze\", \"unlock edits\", \"remove freeze\", or \"allow all edits\". # /unfreeze — Clear Freeze Boundary Remove the edit restriction set by `/freeze`, allowing edits to all direc",
+    "aliases": [
+      "unfreeze",
+      "unfreeze edits",
+      "unlock all directories",
+      "remove edit restrictions"
+    ],
+    "tags": [
+      "unfreeze",
+      "clear",
+      "freeze",
+      "boundary",
+      "set",
+      "allowing",
+      "edits",
+      "all",
+      "directories",
+      "again",
+      "want",
+      "widen"
+    ],
+    "capabilities": [
+      "read-only",
+      "file-write"
+    ],
+    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/unfreeze/SKILL.md"
+  }
+]

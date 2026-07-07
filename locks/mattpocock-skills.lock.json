@@ -1,0 +1,12 @@
+{
+  "pack": "mattpocock/skills",
+  "repoUrl": "https://github.com/mattpocock/skills",
+  "resolvedRef": "main",
+  "resolvedSha": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
+  "resolvedAt": "2026-07-07",
+  "license": {
+    "status": "recorded",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/LICENSE"
+  },
+  "catalogs": ["catalogs/engineering.json"]
+}

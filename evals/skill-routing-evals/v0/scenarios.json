@@ -3,205 +3,1622 @@
     "id": "design-cover-hero",
     "studio": "design",
     "prompt": "Create a polished launch hero cover image for a new product page.",
-    "expectedSkill": "baoyu-cover-image"
+    "expectedSkill": "baoyu-cover-image",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-cover-thumbnail",
     "studio": "design",
     "prompt": "Design an article thumbnail poster visual for a technical essay.",
-    "expectedSkill": "baoyu-cover-image"
+    "expectedSkill": "baoyu-cover-image",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-architecture-diagram",
     "studio": "design",
     "prompt": "Diagram the runtime architecture and data flow between the gateway, catalog, and skill reader.",
-    "expectedSkill": "baoyu-diagram"
+    "expectedSkill": "baoyu-diagram",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-sequence-flowchart",
     "studio": "design",
     "prompt": "Make a sequence flowchart for system state transitions.",
-    "expectedSkill": "baoyu-diagram"
+    "expectedSkill": "baoyu-diagram",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-infographic-report",
     "studio": "design",
     "prompt": "Create an infographic for a dense report summary.",
-    "expectedSkill": "baoyu-infographic"
+    "expectedSkill": "baoyu-infographic",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-information-graphic",
     "studio": "design",
     "prompt": "Turn this data into a visual explanation and information graphic.",
-    "expectedSkill": "baoyu-infographic"
+    "expectedSkill": "baoyu-infographic",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-social-carousel",
     "studio": "design",
     "prompt": "Create social carousel image cards for an educational post.",
-    "expectedSkill": "baoyu-image-cards"
+    "expectedSkill": "baoyu-image-cards",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-card-series",
     "studio": "design",
     "prompt": "Design a shareable educational card series.",
-    "expectedSkill": "baoyu-image-cards"
+    "expectedSkill": "baoyu-image-cards",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-pitch-deck",
     "studio": "design",
     "prompt": "Create a pitch slide deck for an investor update.",
-    "expectedSkill": "baoyu-slide-deck"
+    "expectedSkill": "baoyu-slide-deck",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-presentation-visuals",
     "studio": "design",
     "prompt": "Design presentation visuals for a sales deck.",
-    "expectedSkill": "baoyu-slide-deck"
+    "expectedSkill": "baoyu-slide-deck",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-positioning",
     "studio": "marketing",
     "prompt": "Position our new developer tool for an ICP of early-stage SaaS founders.",
-    "expectedSkill": "product-marketing"
+    "expectedSkill": "product-marketing",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-category-messaging",
     "studio": "marketing",
     "prompt": "Define the target audience, category, and foundational messaging.",
-    "expectedSkill": "product-marketing"
+    "expectedSkill": "product-marketing",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-positioning-core-offer-launch",
     "studio": "marketing",
     "prompt": "Clarify ICP positioning and the core offer for a developer-tool launch.",
     "expectedSkill": "product-marketing",
-    "mustRank1": true
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-core-offer-positioning",
     "studio": "marketing",
     "prompt": "Clarify the ICP, buying trigger, and core offer for a developer tool.",
     "expectedSkill": "product-marketing",
-    "mustRank1": true
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-voc-research",
     "studio": "marketing",
     "prompt": "Run voice of customer research from reviews and interviews.",
-    "expectedSkill": "customer-research"
+    "expectedSkill": "customer-research",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-jtbd-persona",
     "studio": "marketing",
     "prompt": "Create a JTBD customer persona from Reddit market evidence.",
-    "expectedSkill": "customer-research"
+    "expectedSkill": "customer-research",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-landing-copy",
     "studio": "marketing",
     "prompt": "Write landing page hero copy with CTA options.",
-    "expectedSkill": "copywriting"
+    "expectedSkill": "copywriting",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-core-offer-copy",
     "studio": "marketing",
     "prompt": "Write landing page copy that expresses the core offer and CTA.",
     "expectedSkill": "copywriting",
-    "mustRank1": true
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-conversion-copy",
     "studio": "marketing",
     "prompt": "Generate conversion copy, a tagline, and value proposition options.",
-    "expectedSkill": "copywriting"
+    "expectedSkill": "copywriting",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-ai-seo",
     "studio": "marketing",
     "prompt": "Create an AI SEO and GEO content plan for organic acquisition.",
-    "expectedSkill": "ai-seo"
+    "expectedSkill": "ai-seo",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-llm-visibility",
     "studio": "marketing",
     "prompt": "Improve ChatGPT and Perplexity visibility with llms.txt and AI citations.",
-    "expectedSkill": "ai-seo"
+    "expectedSkill": "ai-seo",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-topic-cluster",
     "studio": "marketing",
     "prompt": "Build a topic cluster and editorial plan for the blog.",
-    "expectedSkill": "content-strategy"
+    "expectedSkill": "content-strategy",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-content-pillars",
     "studio": "marketing",
     "prompt": "Create content pillars and a content roadmap.",
-    "expectedSkill": "content-strategy"
+    "expectedSkill": "content-strategy",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-launch",
     "studio": "marketing",
     "prompt": "Write the launch strategy for a beta release and Product Hunt announcement.",
-    "expectedSkill": "launch"
+    "expectedSkill": "launch",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-launch-copy-campaign",
     "studio": "marketing",
     "prompt": "Write launch copy and a lightweight campaign plan for a new AI agent product.",
     "expectedSkill": "launch",
-    "mustRank1": true
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-feature-announcement",
     "studio": "marketing",
     "prompt": "Plan a feature announcement, waitlist, and release strategy.",
-    "expectedSkill": "launch"
+    "expectedSkill": "launch",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-gtm-plan",
     "studio": "marketing",
     "prompt": "Create a 90-day growth GTM marketing plan.",
-    "expectedSkill": "marketing-plan"
+    "expectedSkill": "marketing-plan",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-fcmo-roadmap",
     "studio": "marketing",
     "prompt": "Draft a fractional CMO AARRR roadmap.",
-    "expectedSkill": "marketing-plan"
+    "expectedSkill": "marketing-plan",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-google-ads",
     "studio": "marketing",
     "prompt": "Generate Google Ads headlines and LinkedIn ad creative.",
-    "expectedSkill": "ad-creative"
+    "expectedSkill": "ad-creative",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-paid-creative",
     "studio": "marketing",
     "prompt": "Create Facebook ads for paid creative testing with ad copy variants.",
-    "expectedSkill": "ad-creative"
+    "expectedSkill": "ad-creative",
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-pricing-unseeded",
     "studio": "marketing",
     "expectedStudio": null,
     "prompt": "Build a pricing strategy for a new SaaS tier.",
-    "expectedSkill": null
+    "expectedSkill": null,
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "marketing-hard-negative",
     "studio": "marketing",
     "expectedStudio": null,
-    "prompt": "Repair a Kubernetes storage class bug in a production cluster.",
-    "expectedSkill": null
+    "prompt": "Translate a short French poem into English prose.",
+    "expectedSkill": null,
+    "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-hard-negative",
     "studio": "design",
     "expectedStudio": null,
-    "prompt": "Write a Stripe webhook handler and database migration.",
-    "expectedSkill": null
+    "prompt": "Summarize this quarterly finance spreadsheet in plain English.",
+    "expectedSkill": null,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "v06-ceo-cso-description",
+    "studio": "ceo",
+    "prompt": "Cso: Chief Security Officer mode. (gstack)",
+    "expectedSkill": "cso",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-cso-use-when",
+    "studio": "ceo",
+    "prompt": "Use security audit for Infrastructure-first security audit: secrets archaeology, dependency supply chain, CI/CD pipeline security, LLM/AI security, skill supply chain scanning, plus OWASP Top 10, STRIDE threat modeling, and active verification. Two modes: daily (zero-noise, 8/10 con",
+    "expectedSkill": "cso",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-document-generate-description",
+    "studio": "ceo",
+    "prompt": "Document Generate: Generate missing documentation from scratch for a feature, module, or entire project. (gstack)",
+    "expectedSkill": "document-generate",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-document-generate-use-when",
+    "studio": "ceo",
+    "prompt": "Use document generate for Uses the Diataxis framework (tutorial / how-to / reference / explanation) to produce complete, structured documentation. Can be invoked standalone or called by /document-release when it finds coverage gaps. Use when asked to \"write docs\", \"generate documentati",
+    "expectedSkill": "document-generate",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-document-release-description",
+    "studio": "ceo",
+    "prompt": "Document Release: Post-ship documentation update. (gstack)",
+    "expectedSkill": "document-release",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-document-release-use-when",
+    "studio": "ceo",
+    "prompt": "Use document release for Reads all project docs, cross-references the diff, builds a Diataxis coverage map (reference/how-to/tutorial/explanation), updates README/ARCHITECTURE/CONTRIBUTING/CLAUDE.md to match what shipped, detects architecture diagram drift, polishes CHANGELOG voice wi",
+    "expectedSkill": "document-release",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-freeze-description",
+    "studio": "ceo",
+    "prompt": "Freeze: Restrict file edits to a specific directory for the session. (gstack)",
+    "expectedSkill": "freeze",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-freeze-use-when",
+    "studio": "ceo",
+    "prompt": "Use freeze edits to directory for Blocks Edit and Write outside the allowed path. Use when debugging to prevent accidentally \"fixing\" unrelated code, or when you want to scope changes to one module. Use when asked to \"freeze\", \"restrict edits\", \"only edit this folder\", or \"lock down edits\". # ",
+    "expectedSkill": "freeze",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-gstack-openclaw-ceo-review-description",
+    "studio": "ceo",
+    "prompt": "Gstack Openclaw Ceo Review: Use when asked to review a plan, challenge a proposal, run a CEO review, poke holes in an approach, think bigger about scope, or decide whether to expand or reduce the plan.",
+    "expectedSkill": "gstack-openclaw-ceo-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-gstack-openclaw-ceo-review-use-when",
+    "studio": "ceo",
+    "prompt": "Use gstack openclaw ceo review for Use when asked to review a plan, challenge a proposal, run a CEO review, poke holes in an approach, think bigger about scope, or decide whether to expand or reduce the plan.",
+    "expectedSkill": "gstack-openclaw-ceo-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-gstack-openclaw-office-hours-description",
+    "studio": "ceo",
+    "prompt": "Gstack Openclaw Office Hours: Use when asked to brainstorm, evaluate whether an idea is worth building, run office hours, or think through a new product idea or design direction before any code is written.",
+    "expectedSkill": "gstack-openclaw-office-hours",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-gstack-openclaw-office-hours-use-when",
+    "studio": "ceo",
+    "prompt": "Use gstack openclaw office hours for Use when asked to brainstorm, evaluate whether an idea is worth building, run office hours, or think through a new product idea or design direction before any code is written.",
+    "expectedSkill": "gstack-openclaw-office-hours",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-gstack-openclaw-retro-description",
+    "studio": "ceo",
+    "prompt": "Gstack Openclaw Retro: Weekly engineering retrospective. Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware with per-person contributions, praise, and growth areas. Use when asked for weekly retro, what shipped this week, or engineering retrospective.",
+    "expectedSkill": "gstack-openclaw-retro",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-gstack-openclaw-retro-use-when",
+    "studio": "ceo",
+    "prompt": "Use gstack openclaw retro for Weekly engineering retrospective. Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware with per-person contributions, praise, and growth areas. Use when asked for weekly retro, what shipped thi",
+    "expectedSkill": "gstack-openclaw-retro",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-guard-description",
+    "studio": "ceo",
+    "prompt": "Guard: Full safety mode: destructive command warnings + directory-scoped edits. (gstack)",
+    "expectedSkill": "guard",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-guard-use-when",
+    "studio": "ceo",
+    "prompt": "Use full safety mode for Combines /careful (warns before rm -rf, DROP TABLE, force-push, etc.) with /freeze (blocks edits outside a specified directory). Use for maximum safety when touching prod or debugging live systems. Use when asked to \"guard mode\", \"full safety\", \"lock it down\",",
+    "expectedSkill": "guard",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-health-description",
+    "studio": "ceo",
+    "prompt": "Health: Code quality dashboard. (gstack)",
+    "expectedSkill": "health",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-health-use-when",
+    "studio": "ceo",
+    "prompt": "Use code health check for Wraps existing project tools (type checker, linter, test runner, dead code detector, shell linter), computes a weighted composite 0-10 score, and tracks trends over time. Use when: \"health check\", \"code quality\", \"how healthy is the codebase\", \"run all checks\"",
+    "expectedSkill": "health",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-landing-report-description",
+    "studio": "ceo",
+    "prompt": "Landing Report: Read-only queue dashboard for workspace-aware ship. (gstack)",
+    "expectedSkill": "landing-report",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-landing-report-use-when",
+    "studio": "ceo",
+    "prompt": "Use landing report for Shows which VERSION slots are currently claimed by open PRs, which sibling Conductor workspaces have WIP work likely to ship soon, and what slot /ship would pick next. No mutations — just a snapshot. Use when asked to \"landing report\", \"what's in the queue\", \"",
+    "expectedSkill": "landing-report",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-learn-description",
+    "studio": "ceo",
+    "prompt": "Learn: Manage project learnings.",
+    "expectedSkill": "learn",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-learn-use-when",
+    "studio": "ceo",
+    "prompt": "Use show learnings for Review, search, prune, and export what gstack has learned across sessions. Use when asked to \"what have we learned\", \"show learnings\", \"prune stale learnings\", or \"export learnings\". Proactively suggest when the user asks about past patterns or wonders \"didn't",
+    "expectedSkill": "learn",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-office-hours-description",
+    "studio": "ceo",
+    "prompt": "Office Hours: YC Office Hours — two modes. (gstack)",
+    "expectedSkill": "office-hours",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-office-hours-use-when",
+    "studio": "ceo",
+    "prompt": "Use office hours for Startup mode: six forcing questions that expose demand reality, status quo, desperate specificity, narrowest wedge, observation, and future-fit. Builder mode: design thinking brainstorming for side projects, hackathons, learning, and open source. Saves a desig",
+    "expectedSkill": "office-hours",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-plan-ceo-review-description",
+    "studio": "ceo",
+    "prompt": "Plan Ceo Review: CEO/founder-mode plan review. (gstack)",
+    "expectedSkill": "plan-ceo-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-plan-ceo-review-use-when",
+    "studio": "ceo",
+    "prompt": "Use plan ceo review for Rethink the problem, find the 10-star product, challenge premises, expand scope when it creates a better product. Four modes: SCOPE EXPANSION (dream big), SELECTIVE EXPANSION (hold scope + cherry-pick expansions), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (s",
+    "expectedSkill": "plan-ceo-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-plan-tune-description",
+    "studio": "ceo",
+    "prompt": "Plan Tune: Self-tuning question sensitivity + developer psychographic for gstack (v1: observational). (gstack)",
+    "expectedSkill": "plan-tune",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-plan-tune-use-when",
+    "studio": "ceo",
+    "prompt": "Use plan tune for Review which AskUserQuestion prompts fire across gstack skills, set per-question preferences (never-ask / always-ask / ask-only-for-one-way), inspect the dual-track profile (what you declared vs what your behavior suggests), and enable/disable question tuning.",
+    "expectedSkill": "plan-tune",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-retro-description",
+    "studio": "ceo",
+    "prompt": "Retro: Weekly engineering retrospective. (gstack)",
+    "expectedSkill": "retro",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-retro-use-when",
+    "studio": "ceo",
+    "prompt": "Use weekly retro for Analyzes commit history, work patterns, and code quality metrics with persistent history and trend tracking. Team-aware: breaks down per-person contributions with praise and growth areas. Use when asked to \"weekly retro\", \"what did we ship\", or \"engineering re",
+    "expectedSkill": "retro",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-unfreeze-description",
+    "studio": "ceo",
+    "prompt": "Unfreeze: Clear the freeze boundary set by /freeze, allowing edits to all directories again. (gstack)",
+    "expectedSkill": "unfreeze",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-ceo-unfreeze-use-when",
+    "studio": "ceo",
+    "prompt": "Use unfreeze edits for Use when you want to widen edit scope without ending the session. Use when asked to \"unfreeze\", \"unlock edits\", \"remove freeze\", or \"allow all edits\". # /unfreeze — Clear Freeze Boundary Remove the edit restriction set by `/freeze`, allowing edits to all direc",
+    "expectedSkill": "unfreeze",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ask-matt-description",
+    "studio": "engineering",
+    "prompt": "Ask Matt: Ask which skill or flow fits your situation. A router over the skills in this repo.",
+    "expectedSkill": "ask-matt",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ask-matt-use-when",
+    "studio": "engineering",
+    "prompt": "Use ask matt for Ask which skill or flow fits your situation. A router over the skills in this repo.",
+    "expectedSkill": "ask-matt",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-autoplan-description",
+    "studio": "engineering",
+    "prompt": "Autoplan: Auto-review pipeline — reads the full CEO, design, eng, and DX review skills from disk and runs them sequentially with auto-decisions using 6 decision principles. (gstack)",
+    "expectedSkill": "autoplan",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-autoplan-use-when",
+    "studio": "engineering",
+    "prompt": "Use run all reviews for Surfaces taste decisions (close approaches, borderline scope, codex disagreements) at a final approval gate. One command, fully reviewed plan out. Use when asked to \"auto review\", \"autoplan\", \"run all reviews\", \"review this plan automatically\", or \"make the de",
+    "expectedSkill": "autoplan",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-benchmark-description",
+    "studio": "engineering",
+    "prompt": "Benchmark: Performance regression detection using the browse daemon. (gstack)",
+    "expectedSkill": "benchmark",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-benchmark-use-when",
+    "studio": "engineering",
+    "prompt": "Use performance benchmark for Establishes baselines for page load times, Core Web Vitals, and resource sizes. Compares before/after on every PR. Tracks performance trends over time. Use when: \"performance\", \"benchmark\", \"page speed\", \"lighthouse\", \"web vitals\", \"bundle size\", \"load time\". ",
+    "expectedSkill": "benchmark",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-benchmark-models-description",
+    "studio": "engineering",
+    "prompt": "Benchmark Models: Cross-model benchmark for gstack skills. (gstack)",
+    "expectedSkill": "benchmark-models",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-benchmark-models-use-when",
+    "studio": "engineering",
+    "prompt": "Use benchmark models for Runs the same prompt through Claude, GPT (via Codex CLI), and Gemini side-by-side — compares latency, tokens, cost, and optionally quality via LLM judge. Answers \"which model is actually best for this skill?\" with data instead of vibes. Separate from /benchmar",
+    "expectedSkill": "benchmark-models",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-brainstorming-description",
+    "studio": "engineering",
+    "prompt": "Brainstorming: You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+    "expectedSkill": "brainstorming",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-brainstorming-use-when",
+    "studio": "engineering",
+    "prompt": "Use Brainstorming for You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+    "expectedSkill": "brainstorming",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-browse-description",
+    "studio": "engineering",
+    "prompt": "Browse: Fast headless browser for QA testing and site dogfooding. (gstack)",
+    "expectedSkill": "browse",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-browse-use-when",
+    "studio": "engineering",
+    "prompt": "Use browse a page for Navigate any URL, interact with elements, verify page state, diff before/after actions, take annotated screenshots, check responsive layouts, test forms and uploads, handle dialogs, and assert element states. ~100ms per command. Use when you need to test a fea",
+    "expectedSkill": "browse",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-canary-description",
+    "studio": "engineering",
+    "prompt": "Canary: Post-deploy canary monitoring. (gstack)",
+    "expectedSkill": "canary",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-canary-use-when",
+    "studio": "engineering",
+    "prompt": "Use monitor after deploy for Watches the live app for console errors, performance regressions, and page failures using the browse daemon. Takes periodic screenshots, compares against pre-deploy baselines, and alerts on anomalies. Use when: \"monitor deploy\", \"canary\", \"post-deploy check\", ",
+    "expectedSkill": "canary",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-careful-description",
+    "studio": "engineering",
+    "prompt": "Careful: Safety guardrails for destructive commands. (gstack)",
+    "expectedSkill": "careful",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-careful-use-when",
+    "studio": "engineering",
+    "prompt": "Use be careful for Warns before rm -rf, DROP TABLE, force-push, git reset --hard, kubectl delete, and similar destructive operations. User can override each warning. Use when touching prod, debugging live systems, or working in a shared environment. Use when asked to \"be careful",
+    "expectedSkill": "careful",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-code-review-description",
+    "studio": "engineering",
+    "prompt": "Code Review: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\".",
+    "expectedSkill": "code-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-code-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use code review for Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews i",
+    "expectedSkill": "code-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-codebase-design-description",
+    "studio": "engineering",
+    "prompt": "Codebase Design: Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.",
+    "expectedSkill": "codebase-design",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-codebase-design-use-when",
+    "studio": "engineering",
+    "prompt": "Use codebase design for Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabu",
+    "expectedSkill": "codebase-design",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-codex-description",
+    "studio": "engineering",
+    "prompt": "Codex: OpenAI Codex CLI wrapper — three modes. (gstack)",
+    "expectedSkill": "codex",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-codex-use-when",
+    "studio": "engineering",
+    "prompt": "Use codex review for Code review: independent diff review via codex review with pass/fail gate. Challenge: adversarial mode that tries to break your code. Consult: ask codex anything with session continuity for follow-ups. The \"200 IQ autistic developer\" second opinion. Use when a",
+    "expectedSkill": "codex",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-context-restore-description",
+    "studio": "engineering",
+    "prompt": "Context Restore: Restore working context saved earlier by /context-save. (gstack)",
+    "expectedSkill": "context-restore",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-context-restore-use-when",
+    "studio": "engineering",
+    "prompt": "Use context restore for Loads the most recent saved state (across all branches by default) so you can pick up where you left off — even across Conductor workspace handoffs. Use when asked to \"resume\", \"restore context\", \"where was I\", or \"pick up where I left off\". Pair with /context",
+    "expectedSkill": "context-restore",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-context-save-description",
+    "studio": "engineering",
+    "prompt": "Context Save: Save working context. (gstack)",
+    "expectedSkill": "context-save",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-context-save-use-when",
+    "studio": "engineering",
+    "prompt": "Use context save for Captures git state, decisions made, and remaining work so any future session can pick up without losing a beat. Use when asked to \"save progress\", \"save state\", \"context save\", or \"save my work\". Pair with /context-restore to resume later. Formerly /checkpoint",
+    "expectedSkill": "context-save",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-devex-review-description",
+    "studio": "engineering",
+    "prompt": "Devex Review: Live developer experience audit. (gstack)",
+    "expectedSkill": "devex-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-devex-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use devex review for Uses the browse tool to actually TEST the developer experience: navigates docs, tries the getting started flow, times TTHW, screenshots error messages, evaluates CLI help text. Produces a DX scorecard with evidence. Compares against /plan-devex-review scores i",
+    "expectedSkill": "devex-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-diagnosing-bugs-description",
+    "studio": "engineering",
+    "prompt": "Diagnosing Bugs: Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
+    "expectedSkill": "diagnosing-bugs",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-diagnosing-bugs-use-when",
+    "studio": "engineering",
+    "prompt": "Use diagnosing bugs for Diagnosis loop for hard bugs and performance regressions. Use when the user says \"diagnose\"/\"debug this\", or reports something broken/throwing/failing/slow.",
+    "expectedSkill": "diagnosing-bugs",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-dispatching-parallel-agents-description",
+    "studio": "engineering",
+    "prompt": "Dispatching Parallel Agents: Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+    "expectedSkill": "dispatching-parallel-agents",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-dispatching-parallel-agents-use-when",
+    "studio": "engineering",
+    "prompt": "Use dispatching parallel agents for Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+    "expectedSkill": "dispatching-parallel-agents",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-domain-modeling-description",
+    "studio": "engineering",
+    "prompt": "Domain Modeling: Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.",
+    "expectedSkill": "domain-modeling",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-domain-modeling-use-when",
+    "studio": "engineering",
+    "prompt": "Use domain modeling for Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.",
+    "expectedSkill": "domain-modeling",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-executing-plans-description",
+    "studio": "engineering",
+    "prompt": "Executing Plans: Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+    "expectedSkill": "executing-plans",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-executing-plans-use-when",
+    "studio": "engineering",
+    "prompt": "Use executing plans for Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+    "expectedSkill": "executing-plans",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-finishing-a-development-branch-description",
+    "studio": "engineering",
+    "prompt": "Finishing A Development Branch: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+    "expectedSkill": "finishing-a-development-branch",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-finishing-a-development-branch-use-when",
+    "studio": "engineering",
+    "prompt": "Use finishing a development branch for Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+    "expectedSkill": "finishing-a-development-branch",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-git-guardrails-claude-code-description",
+    "studio": "engineering",
+    "prompt": "Git Guardrails Claude Code: Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code.",
+    "expectedSkill": "git-guardrails-claude-code",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-git-guardrails-claude-code-use-when",
+    "studio": "engineering",
+    "prompt": "Use git guardrails claude code for Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Claude Code.",
+    "expectedSkill": "git-guardrails-claude-code",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-grill-me-description",
+    "studio": "engineering",
+    "prompt": "Grill Me: A relentless interview to sharpen a plan or design.",
+    "expectedSkill": "grill-me",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-grill-me-use-when",
+    "studio": "engineering",
+    "prompt": "Use grill me for A relentless interview to sharpen a plan or design.",
+    "expectedSkill": "grill-me",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-grill-with-docs-description",
+    "studio": "engineering",
+    "prompt": "Grill With Docs: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.",
+    "expectedSkill": "grill-with-docs",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-grill-with-docs-use-when",
+    "studio": "engineering",
+    "prompt": "Use grill with docs for A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.",
+    "expectedSkill": "grill-with-docs",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-grilling-description",
+    "studio": "engineering",
+    "prompt": "Grilling: Grill the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before building, or uses any 'grill' trigger phrases.",
+    "expectedSkill": "grilling",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-grilling-use-when",
+    "studio": "engineering",
+    "prompt": "Use Grilling for Grill the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before building, or uses any 'grill' trigger phrases.",
+    "expectedSkill": "grilling",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-gstack-openclaw-investigate-description",
+    "studio": "engineering",
+    "prompt": "Gstack Openclaw Investigate: Use when asked to debug, fix a bug, investigate an error, or do root cause analysis, and when users report errors, stack traces, unexpected behavior, or say something stopped working.",
+    "expectedSkill": "gstack-openclaw-investigate",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-gstack-openclaw-investigate-use-when",
+    "studio": "engineering",
+    "prompt": "Use gstack openclaw investigate for Use when asked to debug, fix a bug, investigate an error, or do root cause analysis, and when users report errors, stack traces, unexpected behavior, or say something stopped working.",
+    "expectedSkill": "gstack-openclaw-investigate",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-gstack-upgrade-description",
+    "studio": "engineering",
+    "prompt": "Gstack Upgrade: Upgrade gstack to the latest version.",
+    "expectedSkill": "gstack-upgrade",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-gstack-upgrade-use-when",
+    "studio": "engineering",
+    "prompt": "Use gstack upgrade for Detects global vs vendored install, runs the upgrade, and shows what's new. Use when asked to \"upgrade gstack\", \"update gstack\", or \"get latest version\". Voice triggers (speech-to-text aliases): \"upgrade the tools\", \"update the tools\", \"gee stack upgrade\", \"g ",
+    "expectedSkill": "gstack-upgrade",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-hackernews-frontpage-description",
+    "studio": "engineering",
+    "prompt": "Hackernews Frontpage: Scrape the Hacker News front page (titles, points, comment counts).",
+    "expectedSkill": "hackernews-frontpage",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-hackernews-frontpage-use-when",
+    "studio": "engineering",
+    "prompt": "Use hackernews frontpage for Scrape the Hacker News front page (titles, points, comment counts).",
+    "expectedSkill": "hackernews-frontpage",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-handoff-description",
+    "studio": "engineering",
+    "prompt": "Handoff: Compact the current conversation into a handoff document for another agent to pick up.",
+    "expectedSkill": "handoff",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-handoff-use-when",
+    "studio": "engineering",
+    "prompt": "Use Handoff for Compact the current conversation into a handoff document for another agent to pick up.",
+    "expectedSkill": "handoff",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-implement-description",
+    "studio": "engineering",
+    "prompt": "Implement: Implement a piece of work based on a PRD or set of issues.",
+    "expectedSkill": "implement",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-implement-use-when",
+    "studio": "engineering",
+    "prompt": "Use Implement for Implement a piece of work based on a PRD or set of issues.",
+    "expectedSkill": "implement",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-improve-codebase-architecture-description",
+    "studio": "engineering",
+    "prompt": "Improve Codebase Architecture: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.",
+    "expectedSkill": "improve-codebase-architecture",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-improve-codebase-architecture-use-when",
+    "studio": "engineering",
+    "prompt": "Use improve codebase architecture for Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.",
+    "expectedSkill": "improve-codebase-architecture",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-investigate-description",
+    "studio": "engineering",
+    "prompt": "Investigate: Systematic debugging with root cause investigation. (gstack)",
+    "expectedSkill": "investigate",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-investigate-use-when",
+    "studio": "engineering",
+    "prompt": "Use debug this for Four phases: investigate, analyze, hypothesize, implement. Iron Law: no fixes without root cause. Use when asked to \"debug this\", \"fix this bug\", \"why is this broken\", \"investigate this error\", or \"root cause analysis\". Proactively invoke this skill (do NOT de",
+    "expectedSkill": "investigate",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-clean-description",
+    "studio": "engineering",
+    "prompt": "Ios Clean: Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gstack)",
+    "expectedSkill": "ios-clean",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-clean-use-when",
+    "studio": "engineering",
+    "prompt": "Use ios clean for Cleans up StateServer, DebugOverlay, accessor codegen output, and app-side hooks installed by /ios-qa. This is a convenience wrapper — the structural Release-build guard (Package.swift conditional + CI swift build -c release check) is the safety-critical path.",
+    "expectedSkill": "ios-clean",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-fix-description",
+    "studio": "engineering",
+    "prompt": "Ios Fix: Autonomous iOS bug fixer. (gstack)",
+    "expectedSkill": "ios-fix",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-fix-use-when",
+    "studio": "engineering",
+    "prompt": "Use ios fix for Takes a bug found by /ios-qa, reads the source, writes the fix, rebuilds, redeploys, and verifies the fix on the real device. Closes the loop: find bug → fix bug → confirm fix — zero human intervention. Captures the pre-bug state snapshot as a regression test ",
+    "expectedSkill": "ios-fix",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-qa-description",
+    "studio": "engineering",
+    "prompt": "Ios Qa: Live-device iOS QA for SwiftUI apps. (gstack)",
+    "expectedSkill": "ios-qa",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-qa-use-when",
+    "studio": "engineering",
+    "prompt": "Use ios qa for Connects to a real iPhone via USB CoreDevice IPv6 tunnel, reads Swift source to understand every screen, then runs a vision-driven agent loop: screenshot → analyze → decide → act → verify → repeat. All interaction happens via HTTP to an embedded StateServer in",
+    "expectedSkill": "ios-qa",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-sync-description",
+    "studio": "engineering",
+    "prompt": "Ios Sync: Regenerate the iOS debug bridge against the latest upstream gstack templates. (gstack)",
+    "expectedSkill": "ios-sync",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ios-sync-use-when",
+    "studio": "engineering",
+    "prompt": "Use ios sync for Updates StateServer.swift, DebugOverlay.swift, Package.swift, and the typed @Observable state accessors. Use after you upgrade gstack or add new ViewModels/properties that need accessor coverage. Use when asked to \"resync the iOS debug bridge\", \"regenerate iOS",
+    "expectedSkill": "ios-sync",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-land-and-deploy-description",
+    "studio": "engineering",
+    "prompt": "Land And Deploy: Land and deploy workflow. (gstack)",
+    "expectedSkill": "land-and-deploy",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-land-and-deploy-use-when",
+    "studio": "engineering",
+    "prompt": "Use land and deploy for Merges the PR, waits for CI and deploy, verifies production health via canary checks. Takes over after /ship creates the PR. Use when: \"merge\", \"land\", \"deploy\", \"merge and verify\", \"land it\", \"ship it to production\".",
+    "expectedSkill": "land-and-deploy",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-make-pdf-description",
+    "studio": "engineering",
+    "prompt": "Make Pdf: Turn any markdown file into a publication-quality PDF. (gstack)",
+    "expectedSkill": "make-pdf",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-make-pdf-use-when",
+    "studio": "engineering",
+    "prompt": "Use make pdf for Proper 1in margins, intelligent page breaks, page numbers, cover pages, running headers, curly quotes and em dashes, clickable TOC, diagonal DRAFT watermark. Not a draft artifact — a finished artifact. Use when asked to \"make a PDF\", \"export to PDF\", \"turn thi",
+    "expectedSkill": "make-pdf",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-migrate-to-shoehorn-description",
+    "studio": "engineering",
+    "prompt": "Migrate To Shoehorn: Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.",
+    "expectedSkill": "migrate-to-shoehorn",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-migrate-to-shoehorn-use-when",
+    "studio": "engineering",
+    "prompt": "Use migrate to shoehorn for Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.",
+    "expectedSkill": "migrate-to-shoehorn",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-open-gstack-browser-description",
+    "studio": "engineering",
+    "prompt": "Open Gstack Browser: Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked in.",
+    "expectedSkill": "open-gstack-browser",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-open-gstack-browser-use-when",
+    "studio": "engineering",
+    "prompt": "Use open gstack browser for Opens a visible browser window where you can watch every action in real time. The sidebar shows a live activity feed and chat. Anti-bot stealth built in. Use when asked to \"open gstack browser\", \"launch browser\", \"connect chrome\", \"open chrome\", \"real browser\"",
+    "expectedSkill": "open-gstack-browser",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-pair-agent-description",
+    "studio": "engineering",
+    "prompt": "Pair Agent: Pair a remote AI agent with your browser. (gstack)",
+    "expectedSkill": "pair-agent",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-pair-agent-use-when",
+    "studio": "engineering",
+    "prompt": "Use pair agent for One command generates a setup key and prints instructions the other agent can follow to connect. Works with OpenClaw, Hermes, Codex, Cursor, or any agent that can make HTTP requests. The remote agent gets its own tab with scoped access (read+write by default, ",
+    "expectedSkill": "pair-agent",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-plan-design-review-description",
+    "studio": "engineering",
+    "prompt": "Plan Design Review: Designer's eye plan review — interactive, like CEO and Eng review. (gstack)",
+    "expectedSkill": "plan-design-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-plan-design-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use plan design review for Rates each design dimension 0-10, explains what would make it a 10, then fixes the plan to get there. Works in plan mode. For live site visual audits, use /design-review. Use when asked to \"review the design plan\" or \"design critique\". Proactively suggest when",
+    "expectedSkill": "plan-design-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-plan-devex-review-description",
+    "studio": "engineering",
+    "prompt": "Plan Devex Review: Interactive developer experience plan review. (gstack)",
+    "expectedSkill": "plan-devex-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-plan-devex-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use plan devex review for Explores developer personas, benchmarks against competitors, designs magical moments, and traces friction points before scoring. Three modes: DX EXPANSION (competitive advantage), DX POLISH (bulletproof every touchpoint), DX TRIAGE (critical gaps only). Use wh",
+    "expectedSkill": "plan-devex-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-plan-eng-review-description",
+    "studio": "engineering",
+    "prompt": "Plan Eng Review: Eng manager-mode plan review. (gstack)",
+    "expectedSkill": "plan-eng-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-plan-eng-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use plan eng review for Lock in the execution plan — architecture, data flow, diagrams, edge cases, test coverage, performance. Walks through issues interactively with opinionated recommendations. Use when asked to \"review the architecture\", \"engineering review\", or \"lock in the plan",
+    "expectedSkill": "plan-eng-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-prototype-description",
+    "studio": "engineering",
+    "prompt": "Prototype: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.",
+    "expectedSkill": "prototype",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-prototype-use-when",
+    "studio": "engineering",
+    "prompt": "Use Prototype for Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.",
+    "expectedSkill": "prototype",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-qa-description",
+    "studio": "engineering",
+    "prompt": "Qa: Systematically QA test a web application and fix bugs found. (gstack)",
+    "expectedSkill": "qa",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-qa-use-when",
+    "studio": "engineering",
+    "prompt": "Use qa test this for Runs QA testing, then iteratively fixes bugs in source code, committing each fix atomically and re-verifying. Use when asked to \"qa\", \"QA\", \"test this site\", \"find bugs\", \"test and fix\", or \"fix what's broken\". Proactively suggest when the user says a feature ",
+    "expectedSkill": "qa",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-qa-only-description",
+    "studio": "engineering",
+    "prompt": "Qa Only: Report-only QA testing. (gstack)",
+    "expectedSkill": "qa-only",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-qa-only-use-when",
+    "studio": "engineering",
+    "prompt": "Use qa only for Systematically tests a web application and produces a structured report with health score, screenshots, and repro steps — but never fixes anything. Use when asked to \"just report bugs\", \"qa report only\", or \"test but don't fix\". For the full test-fix-verify lo",
+    "expectedSkill": "qa-only",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-receiving-code-review-description",
+    "studio": "engineering",
+    "prompt": "Receiving Code Review: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+    "expectedSkill": "receiving-code-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-receiving-code-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use receiving code review for Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+    "expectedSkill": "receiving-code-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-requesting-code-review-description",
+    "studio": "engineering",
+    "prompt": "Requesting Code Review: Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+    "expectedSkill": "requesting-code-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-requesting-code-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use requesting code review for Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+    "expectedSkill": "requesting-code-review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-research-description",
+    "studio": "engineering",
+    "prompt": "Research: Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.",
+    "expectedSkill": "research",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-research-use-when",
+    "studio": "engineering",
+    "prompt": "Use Research for Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.",
+    "expectedSkill": "research",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-resolving-merge-conflicts-description",
+    "studio": "engineering",
+    "prompt": "Resolving Merge Conflicts: Use when you need to resolve an in-progress git merge/rebase conflict.",
+    "expectedSkill": "resolving-merge-conflicts",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-resolving-merge-conflicts-use-when",
+    "studio": "engineering",
+    "prompt": "Use resolving merge conflicts for Use when you need to resolve an in-progress git merge/rebase conflict.",
+    "expectedSkill": "resolving-merge-conflicts",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-review-description",
+    "studio": "engineering",
+    "prompt": "Review: Pre-landing PR review. (gstack)",
+    "expectedSkill": "review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-review-use-when",
+    "studio": "engineering",
+    "prompt": "Use review this pr for Analyzes diff against the base branch for SQL safety, LLM trust boundary violations, conditional side effects, and other structural issues. Use when asked to \"review this PR\", \"code review\", \"pre-landing review\", or \"check my diff\". Proactively suggest when th",
+    "expectedSkill": "review",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-scaffold-exercises-description",
+    "studio": "engineering",
+    "prompt": "Scaffold Exercises: Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.",
+    "expectedSkill": "scaffold-exercises",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-scaffold-exercises-use-when",
+    "studio": "engineering",
+    "prompt": "Use scaffold exercises for Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.",
+    "expectedSkill": "scaffold-exercises",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-scrape-description",
+    "studio": "engineering",
+    "prompt": "Scrape: Pull data from a web page. (gstack)",
+    "expectedSkill": "scrape",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-scrape-use-when",
+    "studio": "engineering",
+    "prompt": "Use scrape this page for First call on a new intent prototypes the flow via $B primitives and returns JSON. Subsequent calls on a matching intent route to a codified browser-skill and return in ~200ms. Read-only — for mutating flows (form fills, clicks, submissions), use /automate. Us",
+    "expectedSkill": "scrape",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-browser-cookies-description",
+    "studio": "engineering",
+    "prompt": "Setup Browser Cookies: Import cookies from your real Chromium browser into the headless browse session. (gstack)",
+    "expectedSkill": "setup-browser-cookies",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-browser-cookies-use-when",
+    "studio": "engineering",
+    "prompt": "Use setup browser cookies for Opens an interactive picker UI where you select which cookie domains to import. Use before QA testing authenticated pages. Use when asked to \"import cookies\", \"login to the site\", or \"authenticate the browser\".",
+    "expectedSkill": "setup-browser-cookies",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-deploy-description",
+    "studio": "engineering",
+    "prompt": "Setup Deploy: Configure deployment settings for /land-and-deploy.",
+    "expectedSkill": "setup-deploy",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-deploy-use-when",
+    "studio": "engineering",
+    "prompt": "Use setup deploy for Detects your deploy platform (Fly.io, Render, Vercel, Netlify, Heroku, GitHub Actions, custom), production URL, health check endpoints, and deploy status commands. Writes the configuration to CLAUDE.md so all future deploys are automatic. Use when: \"setup depl",
+    "expectedSkill": "setup-deploy",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-gbrain-description",
+    "studio": "engineering",
+    "prompt": "Setup Gbrain: Set up gbrain for this coding agent: install the CLI, initialize a local PGLite or Supabase brain, register MCP, capture per-remote trust policy. (gstack)",
+    "expectedSkill": "setup-gbrain",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-gbrain-use-when",
+    "studio": "engineering",
+    "prompt": "Use setup gbrain for One command from zero to \"gbrain is running, and this agent can call it.\" Use when: \"setup gbrain\", \"connect gbrain\", \"start gbrain\", \"install gbrain\", \"configure gbrain for this machine\".",
+    "expectedSkill": "setup-gbrain",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-matt-pocock-skills-description",
+    "studio": "engineering",
+    "prompt": "Setup Matt Pocock Skills: Configure this repo for the engineering skills — set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.",
+    "expectedSkill": "setup-matt-pocock-skills",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-matt-pocock-skills-use-when",
+    "studio": "engineering",
+    "prompt": "Use setup matt pocock skills for Configure this repo for the engineering skills — set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.",
+    "expectedSkill": "setup-matt-pocock-skills",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-pre-commit-description",
+    "studio": "engineering",
+    "prompt": "Setup Pre Commit: Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.",
+    "expectedSkill": "setup-pre-commit",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-setup-pre-commit-use-when",
+    "studio": "engineering",
+    "prompt": "Use setup pre commit for Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.",
+    "expectedSkill": "setup-pre-commit",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ship-description",
+    "studio": "engineering",
+    "prompt": "Ship: Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION, update CHANGELOG, commit, push, create PR. (gstack)",
+    "expectedSkill": "ship",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-ship-use-when",
+    "studio": "engineering",
+    "prompt": "Use ship it for Use when asked to \"ship\", \"deploy\", \"push to main\", \"create a PR\", \"merge and push\", or \"get it deployed\". Proactively invoke this skill (do NOT push/PR directly) when the user says code is ready, asks about deploying, wants to push code up, or asks to create ",
+    "expectedSkill": "ship",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-skillify-description",
+    "studio": "engineering",
+    "prompt": "Skillify: Codify the most recent successful /scrape flow into a permanent browser-skill on disk. (gstack)",
+    "expectedSkill": "skillify",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-skillify-use-when",
+    "studio": "engineering",
+    "prompt": "Use codify this scrape for Future /scrape calls with the same intent run the codified script in ~200ms instead of re-driving the page. Walks back through the conversation, synthesizes script.ts + script.test.ts + fixture, runs the test in a temp dir, and asks before committing. Use when",
+    "expectedSkill": "skillify",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-spec-description",
+    "studio": "engineering",
+    "prompt": "Spec: Turn vague intent into a precise, executable spec in five phases. (gstack)",
+    "expectedSkill": "spec",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-spec-use-when",
+    "studio": "engineering",
+    "prompt": "Use spec this out for Files the issue, optionally spawns a Claude Code agent in a fresh worktree, and lets /ship close the source issue on merge. Use when asked to \"spec this out\", \"file an issue\", \"write up a ticket\", \"make this a GitHub issue\", or \"turn this into a backlog item\".",
+    "expectedSkill": "spec",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-subagent-driven-development-description",
+    "studio": "engineering",
+    "prompt": "Subagent Driven Development: Use when executing implementation plans with independent tasks in the current session",
+    "expectedSkill": "subagent-driven-development",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-subagent-driven-development-use-when",
+    "studio": "engineering",
+    "prompt": "Use subagent driven development for Use when executing implementation plans with independent tasks in the current session",
+    "expectedSkill": "subagent-driven-development",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-sync-gbrain-description",
+    "studio": "engineering",
+    "prompt": "Sync Gbrain: Keep gbrain current with this repo's code and refresh agent search guidance in CLAUDE.md. Wraps the gstack-gbrain-sync orchestrator with state (gstack)",
+    "expectedSkill": "sync-gbrain",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-sync-gbrain-use-when",
+    "studio": "engineering",
+    "prompt": "Use sync gbrain for probing, native code-surface registration, capability checks, and a verdict block. Re-runnable, idempotent. Use when: \"sync gbrain\", \"refresh gbrain\", \"re-index this repo\", \"gbrain search isn't finding things\".",
+    "expectedSkill": "sync-gbrain",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-systematic-debugging-description",
+    "studio": "engineering",
+    "prompt": "Systematic Debugging: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+    "expectedSkill": "systematic-debugging",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-systematic-debugging-use-when",
+    "studio": "engineering",
+    "prompt": "Use systematic debugging for Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+    "expectedSkill": "systematic-debugging",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-tdd-description",
+    "studio": "engineering",
+    "prompt": "Tdd: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions \"red-green-refactor\", or wants integration tests.",
+    "expectedSkill": "tdd",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-tdd-use-when",
+    "studio": "engineering",
+    "prompt": "Use test driven development for Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions \"red-green-refactor\", or wants integration tests.",
+    "expectedSkill": "tdd",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-teach-description",
+    "studio": "engineering",
+    "prompt": "Teach: Teach the user a new skill or concept, within this workspace.",
+    "expectedSkill": "teach",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-teach-use-when",
+    "studio": "engineering",
+    "prompt": "Use Teach for Teach the user a new skill or concept, within this workspace.",
+    "expectedSkill": "teach",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-test-driven-development-description",
+    "studio": "engineering",
+    "prompt": "Test Driven Development: Use when implementing any feature or bugfix, before writing implementation code",
+    "expectedSkill": "test-driven-development",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-test-driven-development-use-when",
+    "studio": "engineering",
+    "prompt": "Use test driven development for Use when implementing any feature or bugfix, before writing implementation code",
+    "expectedSkill": "test-driven-development",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-to-issues-description",
+    "studio": "engineering",
+    "prompt": "To Issues: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
+    "expectedSkill": "to-issues",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-to-issues-use-when",
+    "studio": "engineering",
+    "prompt": "Use to issues for Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
+    "expectedSkill": "to-issues",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-to-prd-description",
+    "studio": "engineering",
+    "prompt": "To Prd: Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
+    "expectedSkill": "to-prd",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-to-prd-use-when",
+    "studio": "engineering",
+    "prompt": "Use to prd for Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
+    "expectedSkill": "to-prd",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-triage-description",
+    "studio": "engineering",
+    "prompt": "Triage: Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
+    "expectedSkill": "triage",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-triage-use-when",
+    "studio": "engineering",
+    "prompt": "Use Triage for Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
+    "expectedSkill": "triage",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-using-git-worktrees-description",
+    "studio": "engineering",
+    "prompt": "Using Git Worktrees: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+    "expectedSkill": "using-git-worktrees",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-using-git-worktrees-use-when",
+    "studio": "engineering",
+    "prompt": "Use using git worktrees for Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+    "expectedSkill": "using-git-worktrees",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-using-superpowers-description",
+    "studio": "engineering",
+    "prompt": "Using Superpowers: Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
+    "expectedSkill": "using-superpowers",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-using-superpowers-use-when",
+    "studio": "engineering",
+    "prompt": "Use using superpowers for Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
+    "expectedSkill": "using-superpowers",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-verification-before-completion-description",
+    "studio": "engineering",
+    "prompt": "Verification Before Completion: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+    "expectedSkill": "verification-before-completion",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-verification-before-completion-use-when",
+    "studio": "engineering",
+    "prompt": "Use verification before completion for Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+    "expectedSkill": "verification-before-completion",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-writing-great-skills-description",
+    "studio": "engineering",
+    "prompt": "Writing Great Skills: Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
+    "expectedSkill": "writing-great-skills",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-writing-great-skills-use-when",
+    "studio": "engineering",
+    "prompt": "Use writing great skills for Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
+    "expectedSkill": "writing-great-skills",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-writing-plans-description",
+    "studio": "engineering",
+    "prompt": "Writing Plans: Use when you have a spec or requirements for a multi-step task, before touching code",
+    "expectedSkill": "writing-plans",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-writing-plans-use-when",
+    "studio": "engineering",
+    "prompt": "Use writing plans for Use when you have a spec or requirements for a multi-step task, before touching code",
+    "expectedSkill": "writing-plans",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-writing-skills-description",
+    "studio": "engineering",
+    "prompt": "Writing Skills: Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+    "expectedSkill": "writing-skills",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "v06-engineering-writing-skills-use-when",
+    "studio": "engineering",
+    "prompt": "Use writing skills for Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+    "expectedSkill": "writing-skills",
+    "scenarioGroup": "generated-provenance"
+  },
+  {
+    "id": "ceo-think-bigger-plan-review",
+    "studio": "ceo",
+    "prompt": "Think bigger and rethink this plan before we commit the roadmap.",
+    "expectedSkill": "plan-ceo-review",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "ceo-cso-security-audit",
+    "studio": "ceo",
+    "prompt": "Run a CSO security audit for secrets, dependencies, CI, and OWASP risks.",
+    "expectedSkill": "cso",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "ceo-post-ship-docs",
+    "studio": "ceo",
+    "prompt": "Update documentation after this release and document what changed.",
+    "expectedSkill": "document-release",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "engineering-implement-prd",
+    "studio": "engineering",
+    "prompt": "Implement this PRD with tests and commit the work on this branch.",
+    "expectedSkill": "implement",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "engineering-systematic-debugging",
+    "studio": "engineering",
+    "prompt": "Debug this flaky production bug systematically before proposing fixes.",
+    "expectedSkill": "systematic-debugging",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent",
+    "overlapCluster": "engineering-debugging"
+  },
+  {
+    "id": "engineering-tdd-feature",
+    "studio": "engineering",
+    "prompt": "Use TDD and red-green-refactor for this new feature.",
+    "expectedSkill": "tdd",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent",
+    "overlapCluster": "engineering-tdd"
+  },
+  {
+    "id": "engineering-code-review-branch",
+    "studio": "engineering",
+    "prompt": "Use Matt Pocock code review for a two-axis standards and spec review of this branch.",
+    "expectedSkill": "code-review",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent",
+    "overlapCluster": "engineering-code-review"
+  },
+  {
+    "id": "engineering-subagent-dispatch",
+    "studio": "engineering",
+    "prompt": "Dispatch subagents for several independent engineering tasks in parallel.",
+    "expectedSkill": "dispatching-parallel-agents",
+    "mustRank1": true,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "engineering-hard-negative-marketing",
+    "studio": "engineering",
+    "expectedStudio": null,
+    "prompt": "Translate a short French poem into English prose for a language class.",
+    "expectedSkill": null,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "ceo-hard-negative-css",
+    "studio": "ceo",
+    "expectedStudio": null,
+    "prompt": "Translate a short French poem into English prose for a language class.",
+    "expectedSkill": null,
+    "scenarioGroup": "curated-intent"
+  },
+  {
+    "id": "engineering-red-green-refactor-tdd",
+    "studio": "engineering",
+    "scenarioGroup": "curated-intent",
+    "overlapCluster": "engineering-tdd",
+    "prompt": "red-green-refactor this feature test first",
+    "expectedSkill": "tdd",
+    "mustRank1": true
+  },
+  {
+    "id": "engineering-generic-code-review-pr",
+    "studio": "engineering",
+    "scenarioGroup": "curated-intent",
+    "overlapCluster": "engineering-code-review",
+    "prompt": "code review this PR before landing",
+    "expectedSkill": "review",
+    "mustRank1": true
+  },
+  {
+    "id": "engineering-generic-debug-bug",
+    "studio": "engineering",
+    "scenarioGroup": "curated-intent",
+    "overlapCluster": "engineering-debugging",
+    "prompt": "debug this flaky production bug",
+    "expectedSkill": "diagnosing-bugs",
+    "mustRank1": true
   }
 ]

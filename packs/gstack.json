@@ -1,0 +1,10 @@
+{
+  "id": "garrytan/gstack",
+  "repoUrl": "https://github.com/garrytan/gstack",
+  "allowedPaths": ["SKILL.md", "*/SKILL.md", "browser-skills/*/SKILL.md", "openclaw/skills/*/SKILL.md"],
+  "pinPolicy": "sha",
+  "licensePolicy": "record-and-review",
+  "hiddenByDefault": true,
+  "visibility": "catalog-only",
+  "defaultStudio": "ceo"
+}
