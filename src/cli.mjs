@@ -7,6 +7,7 @@ import {
   formatResultsText,
   loadCatalog,
   parsePackRoot,
+  runVoyageRerank,
   searchCatalog
 } from "./search.mjs";
 import { runPackSyncCli } from "./pack-sync.mjs";
@@ -76,8 +77,20 @@ function searchUsage() {
     'Usage: debloat-skill-search <studio> "<query>" [--format json|text] [--limit N]',
     "       [--catalog-dir PATH] [--engine fts|json] [--pack-root PACK=PATH] [--rerank off|voyage]",
     "",
-    "Default output is top 3 compact results. Rerank is default-off and receives candidate cards only."
+    "Default output is top 3 compact results. Rerank is default-off shadow mode and receives candidate cards only."
   ].join("\n");
+}
+
+function formatRerankText(rerank) {
+  if (!rerank) return "";
+  const top = rerank.ranked?.[0];
+  const topText = top ? ` top: ${top.name} (${top.relevanceScore ?? "n/a"})` : "";
+  const changeText = rerank.status === "completed" && top
+    ? rerank.selectedSkillWouldChange
+      ? " would-change-top1"
+      : " preserves-top1"
+    : "";
+  return `\n\nrerank: voyage shadow ${rerank.status}${topText}${changeText}`;
 }
 
 export async function searchMain(argv) {
@@ -111,12 +124,10 @@ export async function searchMain(argv) {
   const results = searchCatalog(catalog, options.query, options);
   const rerank =
     options.rerank === "voyage"
-      ? {
-          provider: "voyage",
-          mode: "shadow",
-          status: "not-run-in-v0.1",
+      ? await runVoyageRerank({
+          query: options.query,
           candidateCards: buildRerankCandidateCards(results)
-        }
+        })
       : undefined;
 
   if (options.format === "json") {
@@ -133,7 +144,7 @@ export async function searchMain(argv) {
       )
     );
   } else {
-    console.log(formatResultsText(results));
+    console.log(`${formatResultsText(results)}${formatRerankText(rerank)}`);
   }
 
   return 0;

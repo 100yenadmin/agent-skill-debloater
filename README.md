@@ -22,6 +22,7 @@ primitives.
 - public schemas and provenance checks
 - SQLite FTS5 search fast path by default, with portable JSON deterministic
   fallback
+- optional Voyage rerank shadow mode for compact candidate cards
 
 ## Schema Contracts
 
@@ -64,6 +65,28 @@ stable. Force the portable fallback when needed:
 ```bash
 debloat-skill-search marketing "positioning ICP" --engine json --format json
 ```
+
+Optional Voyage reranking is default-off and shadow-only. It does not reorder the
+normal search results; JSON output reports whether Voyage would have changed the
+top candidate. The API receives compact candidate cards only: names, source
+metadata, descriptions, tags, aliases, capabilities, confidence, why, and
+pack-relative `SKILL.md` paths. Full skill bodies and resolved local read paths
+are not sent.
+
+```bash
+VOYAGE_API_KEY=... debloat-skill-search marketing "launch copy" \
+  --rerank voyage \
+  --format json
+```
+
+Set `VOYAGE_RERANK_MODEL` to override the default `rerank-2.5-lite` model.
+Set `VOYAGE_RERANK_TIMEOUT_MS` to tune the request timeout. Missing keys,
+timeouts, or API failures leave the primary search results intact and record the
+rerank status in JSON.
+
+The routing eval gate proves deterministic search quality only. Voyage ordering
+must stay shadow-only until a separate rerank-quality eval proves lift without
+Recall@3 regression.
 
 ## Routing Evals
 

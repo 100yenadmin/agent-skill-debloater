@@ -8,6 +8,9 @@ const DEFAULT_LIMIT = 3;
 const DEFAULT_MIN_SCORE = 40;
 const DEFAULT_ENGINE = "fts";
 const DEFAULT_CANDIDATE_LIMIT = 40;
+const DEFAULT_VOYAGE_RERANK_MODEL = "rerank-2.5-lite";
+const DEFAULT_VOYAGE_RERANK_TIMEOUT_MS = 8000;
+const VOYAGE_RERANK_ENDPOINT = "https://api.voyageai.com/v1/rerank";
 const STOP_WORDS = new Set([
   "a",
   "an",
@@ -474,7 +477,11 @@ export function formatResultsText(results) {
 }
 
 export function buildRerankCandidateCards(results) {
-  return results.map((entry) => ({
+  return sanitizeRerankCandidateCards(results);
+}
+
+export function sanitizeRerankCandidateCards(candidateCards) {
+  return candidateCards.map((entry) => ({
     name: entry.name,
     title: entry.title,
     studio: entry.studio,
@@ -490,6 +497,198 @@ export function buildRerankCandidateCards(results) {
     confidence: entry.confidence,
     why: entry.why
   }));
+}
+
+function compactList(values) {
+  return Array.isArray(values) ? values.filter((value) => typeof value === "string" && value).join(", ") : "";
+}
+
+function compactValue(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim().slice(0, 1000);
+}
+
+export function formatRerankCandidateDocument(card) {
+  return [
+    ["name", card.name],
+    ["title", card.title],
+    ["studio", card.studio],
+    ["source", card.source],
+    ["description", card.description],
+    ["use_when", card.useWhen],
+    ["aliases", compactList(card.aliases)],
+    ["tags", compactList(card.tags)],
+    ["capabilities", compactList(card.capabilities)],
+    ["skill_path", card.skillPath],
+    ["lexical_confidence", typeof card.confidence === "number" ? card.confidence.toFixed(2) : ""],
+    ["lexical_why", compactList(card.why)]
+  ]
+    .map(([key, value]) => [key, compactValue(value)])
+    .filter(([, value]) => value)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join("\n");
+}
+
+export function buildVoyageRerankRequest(
+  query,
+  candidateCards,
+  { model = DEFAULT_VOYAGE_RERANK_MODEL } = {}
+) {
+  if (!Array.isArray(candidateCards)) {
+    throw new Error("candidateCards must be an array");
+  }
+
+  return {
+    query: String(query ?? ""),
+    documents: candidateCards.map(formatRerankCandidateDocument),
+    model,
+    top_k: candidateCards.length,
+    truncation: true
+  };
+}
+
+function normalizeVoyageRankings(payload, candidateCards) {
+  const rows = Array.isArray(payload?.data)
+    ? payload.data
+    : Array.isArray(payload?.results)
+      ? payload.results
+      : [];
+
+  return rows
+    .map((row, rankIndex) => {
+      const index = Number(row?.index);
+      if (!Number.isInteger(index) || index < 0 || index >= candidateCards.length) return null;
+      const rawScore = row?.relevance_score ?? row?.relevanceScore ?? row?.score;
+      const relevanceScore = Number(rawScore);
+      const card = candidateCards[index];
+
+      return {
+        rank: rankIndex + 1,
+        index,
+        originalRank: index + 1,
+        name: card.name,
+        source: card.source,
+        skillPath: card.skillPath,
+        relevanceScore: Number.isFinite(relevanceScore) ? Number(relevanceScore.toFixed(6)) : null
+      };
+    })
+    .filter(Boolean);
+}
+
+function rerankTimeoutMs(value) {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : DEFAULT_VOYAGE_RERANK_TIMEOUT_MS;
+}
+
+function failedVoyageRerank(base, message) {
+  return {
+    ...base,
+    status: "failed",
+    error: compactValue(message).slice(0, 240),
+    ranked: [],
+    selectedSkillWouldChange: false
+  };
+}
+
+function invalidVoyageRerank(base) {
+  return {
+    ...base,
+    status: "invalid-response",
+    error: "Voyage rerank response did not include any valid ranked candidates",
+    ranked: [],
+    selectedSkillWouldChange: null
+  };
+}
+
+export async function runVoyageRerank({
+  query,
+  candidateCards,
+  apiKey = process.env.VOYAGE_API_KEY,
+  model = process.env.VOYAGE_RERANK_MODEL || DEFAULT_VOYAGE_RERANK_MODEL,
+  fetchImpl = globalThis.fetch,
+  timeoutMs = rerankTimeoutMs(process.env.VOYAGE_RERANK_TIMEOUT_MS)
+} = {}) {
+  const cards = Array.isArray(candidateCards) ? sanitizeRerankCandidateCards(candidateCards) : [];
+  const base = {
+    provider: "voyage",
+    mode: "shadow",
+    status: "not-run",
+    model,
+    inputCount: cards.length,
+    candidateCards: cards
+  };
+
+  if (cards.length === 0) {
+    return {
+      ...base,
+      status: "skipped-empty-candidates",
+      ranked: [],
+      selectedSkillWouldChange: false
+    };
+  }
+
+  if (!apiKey) {
+    return {
+      ...base,
+      status: "skipped-missing-api-key",
+      ranked: [],
+      selectedSkillWouldChange: false
+    };
+  }
+
+  if (typeof fetchImpl !== "function") {
+    return {
+      ...base,
+      status: "skipped-missing-fetch",
+      ranked: [],
+      selectedSkillWouldChange: false
+    };
+  }
+
+  const request = buildVoyageRerankRequest(query, cards, { model });
+  const controller = typeof AbortController === "function" ? new AbortController() : null;
+  const timeout = controller
+    ? setTimeout(() => controller.abort(), rerankTimeoutMs(timeoutMs))
+    : null;
+
+  try {
+    const response = await fetchImpl(VOYAGE_RERANK_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(request),
+      signal: controller?.signal
+    });
+
+    if (!response?.ok) {
+      return failedVoyageRerank(
+        base,
+        `Voyage rerank request failed with HTTP ${response?.status ?? "unknown"}`
+      );
+    }
+
+    const payload = await response.json();
+    const ranked = normalizeVoyageRankings(payload, cards);
+    if (ranked.length === 0) {
+      return invalidVoyageRerank(base);
+    }
+    const top = ranked[0] ?? null;
+
+    return {
+      ...base,
+      status: "completed",
+      ranked,
+      selectedSkillWouldChange: Boolean(top && top.index !== 0)
+    };
+  } catch (error) {
+    const message = error?.name === "AbortError"
+      ? `Voyage rerank request timed out after ${rerankTimeoutMs(timeoutMs)}ms`
+      : error?.message ?? "Voyage rerank request failed";
+    return failedVoyageRerank(base, message);
+  } finally {
+    if (timeout) clearTimeout(timeout);
+  }
 }
 
 export function parsePackRoot(value) {
