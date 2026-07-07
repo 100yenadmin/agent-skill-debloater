@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+import { runSearchCli } from "../src/cli.mjs";
+
+runSearchCli(process.argv.slice(2));

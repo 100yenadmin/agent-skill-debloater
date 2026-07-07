@@ -1,0 +1,12 @@
+{
+  "pack": "coreyhaines31/marketingskills",
+  "repoUrl": "https://github.com/coreyhaines31/marketingskills",
+  "resolvedRef": "main",
+  "resolvedSha": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+  "resolvedAt": "2026-07-07",
+  "license": {
+    "status": "recorded",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/LICENSE"
+  },
+  "catalogs": ["catalogs/marketing.json"]
+}

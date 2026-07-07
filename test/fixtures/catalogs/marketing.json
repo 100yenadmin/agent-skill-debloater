@@ -1,0 +1,98 @@
+[
+  {
+    "name": "product-marketing",
+    "title": "Product Marketing Context",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/product-marketing/SKILL.md",
+    "description": "Use for positioning, ICP, ideal customer profile, product context, target audience, category, and foundational messaging.",
+    "useWhen": "positioning, ICP, ideal customer profile, target audience, category, and messaging",
+    "aliases": [
+      "positioning",
+      "ICP",
+      "ideal customer profile",
+      "product marketing"
+    ],
+    "tags": [
+      "positioning",
+      "icp",
+      "audience",
+      "category",
+      "messaging",
+      "context",
+      "offer"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/product-marketing/SKILL.md"
+  },
+  {
+    "name": "ai-seo",
+    "title": "AI SEO",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/ai-seo/SKILL.md",
+    "description": "Use for AI SEO, GEO, AEO, LLM optimization, AI citations, AI Overviews, Perplexity, ChatGPT visibility, and llms.txt.",
+    "useWhen": "AI SEO, GEO, AEO, LLM optimization, citations, AI Overviews, Perplexity, ChatGPT visibility, and llms.txt",
+    "aliases": [
+      "SEO",
+      "AI SEO",
+      "GEO",
+      "AEO",
+      "LLM visibility"
+    ],
+    "tags": [
+      "seo",
+      "ai",
+      "geo",
+      "aeo",
+      "llm",
+      "citation",
+      "perplexity",
+      "chatgpt",
+      "visibility",
+      "content"
+    ],
+    "capabilities": [
+      "read-only",
+      "network"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/ai-seo/SKILL.md"
+  },
+  {
+    "name": "launch",
+    "title": "Launch Strategy",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/launch/SKILL.md",
+    "description": "Use for product launches, feature announcements, beta launch, Product Hunt, waitlist, release strategy, and GTM launch plans.",
+    "useWhen": "product launches, feature announcements, beta launch, Product Hunt, waitlist, release strategy, and GTM plans",
+    "aliases": [
+      "launch",
+      "go-to-market",
+      "GTM",
+      "release announcement"
+    ],
+    "tags": [
+      "launch",
+      "gtm",
+      "go-to-market",
+      "announcement",
+      "release",
+      "product-hunt",
+      "waitlist",
+      "copy"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/launch/SKILL.md"
+  }
+]

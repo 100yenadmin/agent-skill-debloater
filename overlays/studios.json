@@ -1,0 +1,30 @@
+{
+  "studios": {
+    "design": {
+      "displayName": "Design Studio",
+      "visibleRouterSkill": "design-studio",
+      "packs": ["jimliu/baoyu-skills"],
+      "defaultLimit": 3,
+      "description": "Visual design, diagrams, covers, slides, UI polish, brand assets, and image-card workflows."
+    },
+    "marketing": {
+      "displayName": "Marketing Studio",
+      "visibleRouterSkill": "marketing-studio",
+      "packs": ["coreyhaines31/marketingskills"],
+      "defaultLimit": 3,
+      "description": "Positioning, ICP, offers, copy, SEO/content, growth, launches, and marketing strategy."
+    },
+    "ceo": {
+      "displayName": "CEO Studio",
+      "status": "deferred",
+      "packs": ["garrytan/gstack"],
+      "description": "Executive operating, company-building, fundraising, strategy, and founder workflows."
+    },
+    "engineering": {
+      "displayName": "Engineering Studio",
+      "status": "deferred",
+      "packs": ["obra/superpowers", "mattpocock/skills"],
+      "description": "Engineering execution, debugging, planning, code review, TypeScript, and implementation workflows."
+    }
+  }
+}
