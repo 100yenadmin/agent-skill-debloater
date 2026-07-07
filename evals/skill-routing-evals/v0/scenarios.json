@@ -1579,18 +1579,18 @@
     "scenarioGroup": "curated-intent"
   },
   {
-    "id": "engineering-hard-negative-marketing",
+    "id": "engineering-hard-negative-finance",
     "studio": "engineering",
     "expectedStudio": null,
-    "prompt": "Translate a short French poem into English prose for a language class.",
+    "prompt": "Summarize this personal bank statement into a household budget.",
     "expectedSkill": null,
     "scenarioGroup": "curated-intent"
   },
   {
-    "id": "ceo-hard-negative-css",
+    "id": "ceo-hard-negative-algebra",
     "studio": "ceo",
     "expectedStudio": null,
-    "prompt": "Translate a short French poem into English prose for a language class.",
+    "prompt": "Create a quadratic equation worksheet for a middle-school algebra class.",
     "expectedSkill": null,
     "scenarioGroup": "curated-intent"
   },

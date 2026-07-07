@@ -518,6 +518,9 @@
     "aliases": [
       "diagnosing-bugs",
       "diagnosing bugs",
+      "debug this flaky production bug",
+      "flaky production bug",
+      "production bug diagnosis",
       "debugging"
     ],
     "tags": [
@@ -529,6 +532,8 @@
       "hard",
       "performance",
       "regressions",
+      "flaky",
+      "production",
       "says",
       "diagnose",
       "debug",
@@ -2237,6 +2242,8 @@
     "aliases": [
       "systematic-debugging",
       "systematic debugging",
+      "debug this flaky production bug systematically before proposing fixes",
+      "systematically before proposing fixes",
       "debugging"
     ],
     "tags": [
@@ -2245,6 +2252,8 @@
       "encountering",
       "any",
       "bug",
+      "flaky",
+      "production",
       "test",
       "failure",
       "unexpected",

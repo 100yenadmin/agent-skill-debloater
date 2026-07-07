@@ -85,6 +85,14 @@ test("engineering catalog routes implementation, debugging, review, and subagent
     searchCatalog(catalog, "debug this flaky production bug systematically before proposing fixes")[0].name,
     "systematic-debugging"
   );
+  {
+    const debugResults = searchCatalog(catalog, "debug this flaky production bug", { limit: 3 });
+    assert.equal(debugResults[0].name, "diagnosing-bugs");
+    assert.ok(
+      debugResults[0].score - debugResults[1].score >= 20,
+      `expected diagnosing-bugs to have a durable margin, got ${debugResults[0].score} vs ${debugResults[1].score}`
+    );
+  }
   assert.equal(searchCatalog(catalog, "use TDD and red-green-refactor")[0].name, "tdd");
   assert.equal(
     searchCatalog(catalog, "dispatch subagents for parallel engineering tasks")[0].name,
