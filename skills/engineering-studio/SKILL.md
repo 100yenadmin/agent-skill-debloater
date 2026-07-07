@@ -11,7 +11,8 @@ without loading the whole engineering library into the prompt.
 ## Workflow
 
 1. Turn the user's task into a short search query.
-2. Resolve `<plugin-root>` as the directory two levels above this `SKILL.md`.
+2. Resolve `<plugin-root>` as the plugin package root: the parent of `skills/`,
+   two directories up from this file's directory.
 3. Run the plugin-local CLI, not a global command:
    `node "<plugin-root>/bin/debloat-skill-search" engineering "<query>" --format text --limit 3`
 4. Inspect the ranked set. If confidence is low or the top results conflict,

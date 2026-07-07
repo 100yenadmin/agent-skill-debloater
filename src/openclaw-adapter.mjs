@@ -156,7 +156,8 @@ function usage() {
     "Usage: agent-skill-debloater openclaw-adapter search <studio> <query>",
     "       [--catalog-dir PATH] [--limit N] [--engine fts|json] [--pack-root PACK=PATH]",
     "",
-    "Prints compact JSON candidates plus selectedSkillTrace for OpenClaw adapter smoke tests."
+    "Prints compact JSON candidates plus selectedSkillTrace for OpenClaw adapter smoke tests.",
+    "Pack roots also default from AGENT_SKILL_DEBLOATER_PACK_ROOTS (JSON pack-id to path)."
   ].join("\n");
 }
 

@@ -51,8 +51,11 @@ const REQUIRED_PACKED_FILES = [
   "src/search.mjs"
 ];
 
-const FORBIDDEN_PACKED_FILES = [
-  "evals/skill-routing-evals/v0/routing-report.json"
+const FORBIDDEN_PACKED_FILE_PATTERNS = [
+  {
+    label: "evals/skill-routing-evals/*/routing-report.json",
+    pattern: /^evals\/skill-routing-evals\/[^/]+\/routing-report\.json$/
+  }
 ];
 
 function toPath(input) {
@@ -116,6 +119,12 @@ function packedFileSet(packDryRun) {
   return new Set((first?.files ?? []).map((file) => file.path).filter(Boolean));
 }
 
+function findForbiddenPackedFiles(packedFiles) {
+  return [...packedFiles]
+    .filter((file) => FORBIDDEN_PACKED_FILE_PATTERNS.some(({ pattern }) => pattern.test(file)))
+    .sort();
+}
+
 export async function buildReleaseChecklist({
   root = repoRoot,
   readText,
@@ -148,7 +157,7 @@ export async function buildReleaseChecklist({
   const packDryRun = await runPack();
   const packedFiles = packedFileSet(packDryRun);
   const missingPackedFiles = REQUIRED_PACKED_FILES.filter((file) => !packedFiles.has(file));
-  const forbiddenPackedFiles = FORBIDDEN_PACKED_FILES.filter((file) => packedFiles.has(file));
+  const forbiddenPackedFiles = findForbiddenPackedFiles(packedFiles);
   const ok = Boolean(
     packageJson.name === "agent-skill-debloater" &&
     packageJson.version &&
@@ -181,7 +190,7 @@ export async function buildReleaseChecklist({
     packageContents: {
       required: REQUIRED_PACKED_FILES,
       missing: missingPackedFiles,
-      forbidden: FORBIDDEN_PACKED_FILES,
+      forbidden: FORBIDDEN_PACKED_FILE_PATTERNS.map(({ label }) => label),
       forbiddenPresent: forbiddenPackedFiles
     },
     validationCommands: VALIDATION_COMMANDS,

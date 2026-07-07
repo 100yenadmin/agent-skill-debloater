@@ -705,7 +705,7 @@ export function parsePackRoot(value) {
 }
 
 export function parsePackRootsEnv(value = process.env.AGENT_SKILL_DEBLOATER_PACK_ROOTS) {
-  if (value === undefined || value === null || value === "") return {};
+  if (value === undefined || value === null || value === "") return Object.create(null);
 
   let parsed;
   try {

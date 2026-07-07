@@ -110,7 +110,7 @@ test("release checklist rejects publish command variants in scripts and workflow
   assert.ok(checklist.publishSurfaces.some((surface) => surface.includes("workflow .github/workflows/release.yml")));
 });
 
-test("release checklist ships eval scenarios but rejects generated eval reports", async () => {
+test("release checklist ships eval scenarios but rejects generated eval reports across suite versions", async () => {
   const fakeRoot = {
     "package.json": {
       name: "agent-skill-debloater",
@@ -156,7 +156,8 @@ test("release checklist ships eval scenarios but rejects generated eval reports"
           { path: "src/pack-sync.mjs" },
           { path: "src/release-report.mjs" },
           { path: "src/search.mjs" },
-          { path: "evals/skill-routing-evals/v0/routing-report.json" }
+          { path: "evals/skill-routing-evals/v0/routing-report.json" },
+          { path: "evals/skill-routing-evals/v2/routing-report.json" }
         ]
       }
     ]
@@ -174,7 +175,8 @@ test("release checklist ships eval scenarios but rejects generated eval reports"
 
   assert.equal(checklist.ok, false);
   assert.deepEqual(checklist.packageContents.forbiddenPresent, [
-    "evals/skill-routing-evals/v0/routing-report.json"
+    "evals/skill-routing-evals/v0/routing-report.json",
+    "evals/skill-routing-evals/v2/routing-report.json"
   ]);
 });
 

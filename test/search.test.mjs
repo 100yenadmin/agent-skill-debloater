@@ -677,6 +677,8 @@ test("--pack-root rejects empty pack ids and roots", () => {
 });
 
 test("AGENT_SKILL_DEBLOATER_PACK_ROOTS rejects malformed values", () => {
+  assert.equal(Object.getPrototypeOf(parsePackRootsEnv("")), null);
+
   for (const value of ["not-json", "[]", JSON.stringify({ "example/pack": "" })]) {
     assert.throws(() => parsePackRootsEnv(value), /AGENT_SKILL_DEBLOATER_PACK_ROOTS/);
   }
