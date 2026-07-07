@@ -1,3 +1,6 @@
-name: design-studio
-model_visibility: true
-description: Compact router for hidden design skill catalogs.
+interface:
+  display_name: "Design Studio"
+  short_description: "Search hidden design skill catalogs"
+  default_prompt: "Use Design Studio to find the right backing design skill."
+policy:
+  allow_implicit_invocation: true

@@ -24,6 +24,15 @@ studio router skills, then searching catalogs that point at upstream skill files
 5. The selected skill source and capability labels can be logged as an audit
    trace by the host runtime.
 
+The OpenClaw adapter exposes this same flow as compact JSON:
+
+```bash
+agent-skill-debloater openclaw-adapter search <studio> "<query>"
+```
+
+It returns ranked candidates and `selectedSkillTrace`; it does not read or
+return full backing skill bodies.
+
 ## Ranking
 
 V1 attempts SQLite FTS5 as the default candidate-retrieval fast path, then
@@ -39,3 +48,14 @@ candidate cards only.
 Public catalogs store pack-relative `skillPath` values. Install-time adapters
 resolve those into exact local paths through `--pack-root`, lockfiles, or host
 runtime pack roots. The repository must not ship machine-local absolute paths.
+
+## Update Cadence
+
+`pack-sync diff` compares a locked pack against an upstream ref and reports
+added, removed, moved/renamed, body-changed, license-changed, and missing-hash
+states without vendoring skill bodies. `pack-sync update` writes reviewed
+provenance changes into locks and catalogs, then runs the same metadata check.
+
+The scheduled upstream pack refresh workflow runs diffs only. It does not open
+rollout gates, publish npm packages, mutate OpenClaw core, or install defaults
+on customer VMs.

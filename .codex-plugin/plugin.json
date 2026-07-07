@@ -1,0 +1,41 @@
+{
+  "name": "agent-skill-debloater",
+  "version": "1.0.0",
+  "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
+  "author": {
+    "name": "100yenadmin",
+    "url": "https://github.com/100yenadmin"
+  },
+  "homepage": "https://github.com/100yenadmin/agent-skill-debloater",
+  "repository": "https://github.com/100yenadmin/agent-skill-debloater",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "skill-search",
+    "openclaw",
+    "codex",
+    "prompt-bloat",
+    "catalogs"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AgentSkillDebloater",
+    "shortDescription": "Tiny router skills for large searchable skill catalogs",
+    "longDescription": "Use AgentSkillDebloater to keep curated skill packs hidden by default while router skills search compact catalogs and return exact SKILL.md read paths with selected-skill audit traces.",
+    "developerName": "100yenadmin",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Search the Design Studio for the right backing skill.",
+      "Search the Marketing Studio for the right backing skill."
+    ],
+    "websiteURL": "https://github.com/100yenadmin/agent-skill-debloater",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

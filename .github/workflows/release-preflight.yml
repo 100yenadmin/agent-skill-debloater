@@ -1,0 +1,28 @@
+name: Release preflight
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - run: npm test
+      - run: npm run eval:routing
+      - run: node bin/pack-sync check
+      - run: npm run smoke:openclaw-adapter
+      - run: git diff --check
+      - run: npm run release:check
+      - run: node src/release-report.mjs notes > release-notes.md
+      - run: npm pack --dry-run --json > npm-pack-dry-run.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: release-preflight
+          path: |
+            release-notes.md
+            npm-pack-dry-run.json

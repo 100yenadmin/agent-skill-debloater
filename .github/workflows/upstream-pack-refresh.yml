@@ -1,0 +1,28 @@
+name: Upstream pack refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 9 * * 1"
+
+jobs:
+  diff-seed-packs:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - run: mkdir -p artifacts/pack-sync
+      - run: node bin/pack-sync diff --pack jimliu/baoyu-skills --to main > artifacts/pack-sync/baoyu-skills.json
+      - run: node bin/pack-sync diff --pack coreyhaines31/marketingskills --to main > artifacts/pack-sync/marketingskills.json
+      - run: node bin/pack-sync diff --pack garrytan/gstack --to main > artifacts/pack-sync/gstack.json
+      - run: node bin/pack-sync diff --pack obra/superpowers --to main > artifacts/pack-sync/superpowers.json
+      - run: node bin/pack-sync diff --pack mattpocock/skills --to main > artifacts/pack-sync/mattpocock-skills.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upstream-pack-diffs
+          path: artifacts/pack-sync/*.json

@@ -43,8 +43,16 @@
 
 ## v1.0.0
 
-- Stabilize schemas.
-- Add update automation and scheduled update PRs.
+- Stabilize schemas and Codex plugin manifest packaging.
+- Add `pack-sync diff/update` provenance automation with skill blob hashes.
+- Add manual release preflight and scheduled upstream pack diff workflows.
 - Pass routing thresholds.
-- Prove the OpenClaw local adapter smoke. Customer VM readiness remains a
-  separate canary plan.
+- Prove the OpenClaw local adapter smoke and selected-skill audit trace.
+- Customer VM readiness remains a separate canary plan.
+
+## Deferred After v1.0
+
+- OpenClaw core primitive adoption.
+- Runtime/customer canary rollout.
+- npm publication.
+- Promoting Voyage rerank from shadow mode to ordering behavior.

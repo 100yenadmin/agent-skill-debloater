@@ -3,10 +3,99 @@
   "repoUrl": "https://github.com/jimliu/baoyu-skills",
   "resolvedRef": "main",
   "resolvedSha": "6b7a2e417500561a5ecdd0b168332f4142584617",
-  "resolvedAt": "2026-07-07",
+  "resolvedAt": "2026-07-08",
   "license": {
     "status": "recorded",
-    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/LICENSE"
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/LICENSE",
+    "blobSha": "9f2cc0d74570c5841f02b639593d12a70dc7dc65"
   },
-  "catalogs": ["catalogs/design.json"]
+  "catalogs": [
+    "catalogs/design.json"
+  ],
+  "skills": [
+    {
+      "path": "skills/baoyu-article-illustrator/SKILL.md",
+      "blobSha": "87e27e6d83f420605de2f6992454d71874d8dc44"
+    },
+    {
+      "path": "skills/baoyu-comic/SKILL.md",
+      "blobSha": "e25f4d514f12a7e1de848a6c0605d156f85daf5e"
+    },
+    {
+      "path": "skills/baoyu-compress-image/SKILL.md",
+      "blobSha": "a7f7363ebef4089c1d69e7a2ba20f0ace72c8ff4"
+    },
+    {
+      "path": "skills/baoyu-cover-image/SKILL.md",
+      "blobSha": "abaa5497c2d4989c3ae188d73fa02d92ce68a91f"
+    },
+    {
+      "path": "skills/baoyu-danger-gemini-web/SKILL.md",
+      "blobSha": "8dbbc5355a2c65111836d328e2a8b1a9d3228499"
+    },
+    {
+      "path": "skills/baoyu-danger-x-to-markdown/SKILL.md",
+      "blobSha": "654ae8412ef8b6ec441770b0ce1b2a99748e9ffe"
+    },
+    {
+      "path": "skills/baoyu-diagram/SKILL.md",
+      "blobSha": "22afeae4e7175f20d5f5570e258ce30b13de0727"
+    },
+    {
+      "path": "skills/baoyu-electron-extract/SKILL.md",
+      "blobSha": "212445f51808f2947f221624d7d0ce9ae4703f49"
+    },
+    {
+      "path": "skills/baoyu-format-markdown/SKILL.md",
+      "blobSha": "1bb166fbaee1f5f249ef48feb22685fa9cc25eba"
+    },
+    {
+      "path": "skills/baoyu-image-gen/SKILL.md",
+      "blobSha": "f468e541773d6183a86da0ab07eec1a09ef5dde7"
+    },
+    {
+      "path": "skills/baoyu-infographic/SKILL.md",
+      "blobSha": "8212eaa182e66bde7c7ceae7dd23e86d2dadda10"
+    },
+    {
+      "path": "skills/baoyu-markdown-to-html/SKILL.md",
+      "blobSha": "56987832f42a9819c64bea90857476a1a48827f7"
+    },
+    {
+      "path": "skills/baoyu-post-to-wechat/SKILL.md",
+      "blobSha": "6e6815ab259ccc18722b6629483a69a281069bda"
+    },
+    {
+      "path": "skills/baoyu-post-to-weibo/SKILL.md",
+      "blobSha": "e40e59d4bc743420caf3275d063f522ccebf5dfb"
+    },
+    {
+      "path": "skills/baoyu-post-to-x/SKILL.md",
+      "blobSha": "bde07c29e29dd13d8ae303a1a770765c4fc3c231"
+    },
+    {
+      "path": "skills/baoyu-slide-deck/SKILL.md",
+      "blobSha": "0b4e31539ca82cda246d4957cee29473fa8cf0d0"
+    },
+    {
+      "path": "skills/baoyu-translate/SKILL.md",
+      "blobSha": "401aa885d51543e871b2f531603e5b0294298e5c"
+    },
+    {
+      "path": "skills/baoyu-url-to-markdown/SKILL.md",
+      "blobSha": "adad2b70be26c97934b338ca5d2b7248956a4dbf"
+    },
+    {
+      "path": "skills/baoyu-wechat-summary/SKILL.md",
+      "blobSha": "b5bd8fa76ee347fe39e54496c42c9e130775cea1"
+    },
+    {
+      "path": "skills/baoyu-xhs-images/SKILL.md",
+      "blobSha": "a7bb63b0c9e049f6c3e052d8a781d08f80a1dd78"
+    },
+    {
+      "path": "skills/baoyu-youtube-transcript/SKILL.md",
+      "blobSha": "35a05640d56622839e2dd748afffd3dc3531849f"
+    }
+  ]
 }

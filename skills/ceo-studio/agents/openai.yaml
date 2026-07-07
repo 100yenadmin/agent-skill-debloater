@@ -1,3 +1,6 @@
-name: ceo-studio
-model_visibility: true
-description: Compact router for hidden CEO skill catalogs.
+interface:
+  display_name: "CEO Studio"
+  short_description: "Search hidden CEO skill catalogs"
+  default_prompt: "Use CEO Studio to find the right backing CEO skill."
+policy:
+  allow_implicit_invocation: true
