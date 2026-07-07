@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { findMachineLocalPaths } from "../src/portable-paths.mjs";
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
-const ignoredDirs = new Set([".git", "node_modules", ".test-tmp"]);
+const ignoredDirs = new Set([".git", ".gitnexus", "node_modules", ".test-tmp"]);
 
 async function listFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
