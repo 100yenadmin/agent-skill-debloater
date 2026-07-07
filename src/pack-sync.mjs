@@ -226,15 +226,16 @@ export async function checkPackMetadata({ root = repoRoot } = {}) {
         if (!studio.visibleRouterSkill) {
           throw new Error(`Overlay studio ${studioId} is active but missing visibleRouterSkill`);
         }
+        if (!Array.isArray(studio.packs) || studio.packs.length === 0) {
+          throw new Error(`Overlay studio ${studioId} is active but has no packs`);
+        }
         if (!Number.isInteger(studio.defaultLimit) || studio.defaultLimit < 1) {
           throw new Error(`Overlay studio ${studioId} is active but missing a positive defaultLimit`);
         }
       }
-      if (studio.status !== "deferred") {
-        for (const packId of studio.packs ?? []) {
-          if (!packs.has(packId)) {
-            throw new Error(`Overlay studio ${studioId} references undeclared pack ${packId}`);
-          }
+      for (const packId of studio.packs ?? []) {
+        if (!packs.has(packId)) {
+          throw new Error(`Overlay studio ${studioId} references undeclared pack ${packId}`);
         }
       }
       overlayStudios.set(studioId, studio);

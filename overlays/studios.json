@@ -17,13 +17,15 @@
     "ceo": {
       "displayName": "CEO Studio",
       "status": "deferred",
-      "packs": ["garrytan/gstack"],
+      "packs": [],
+      "plannedPacks": ["garrytan/gstack"],
       "description": "Executive operating, company-building, fundraising, strategy, and founder workflows."
     },
     "engineering": {
       "displayName": "Engineering Studio",
       "status": "deferred",
-      "packs": ["obra/superpowers", "mattpocock/skills"],
+      "packs": [],
+      "plannedPacks": ["obra/superpowers", "mattpocock/skills"],
       "description": "Engineering execution, debugging, planning, code review, TypeScript, and implementation workflows."
     }
   }

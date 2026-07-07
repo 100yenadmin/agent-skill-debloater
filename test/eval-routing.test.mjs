@@ -17,6 +17,14 @@ test("routing eval checks global studio selection and hard negatives", async () 
   assert.equal(pricing.expectedSelectedStudio, null);
 });
 
+test("committed routing eval proves must-rank-1 scenarios are currently top ranked", async () => {
+  const result = await runRoutingEval(new URL("../evals/skill-routing-evals/v0/scenarios.json", import.meta.url));
+
+  assert.ok(result.metrics.mustRank1Count > 0);
+  assert.equal(result.metrics.mustRank1FailureCount, 0);
+  assert.equal(thresholdFailures(result.metrics).some((failure) => failure.startsWith("must-rank-1")), false);
+});
+
 test("routing eval can run against committed fixture catalogs", async () => {
   const tmpRoot = new URL("./.test-tmp/eval-routing-fixture/", import.meta.url);
   await rm(tmpRoot, { force: true, recursive: true });

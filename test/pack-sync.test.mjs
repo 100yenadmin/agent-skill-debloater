@@ -71,7 +71,8 @@ async function makePackRoot(name, { pack = {}, lock = {}, entry = {}, extraFiles
       deferred: {
         displayName: "Deferred Studio",
         status: "deferred",
-        packs: ["future/pack"],
+        packs: [],
+        plannedPacks: ["future/pack"],
         description: "Deferred fixture studio."
       }
     }
@@ -233,12 +234,34 @@ test("pack-sync rejects absolute and file URL path-bearing fields", async () => 
   await assert.rejects(checkPackMetadata({ root: absoluteRoot }), /Schema validation|absolute|file:/);
 });
 
-test("pack-sync allows deferred studios to reference future packs", async () => {
+test("pack-sync allows deferred studios to track future packs outside active pack bindings", async () => {
   const root = await makePackRoot("deferred-future-pack");
 
   const result = await checkPackMetadata({ root });
 
   assert.equal(result.ok, true);
+});
+
+test("pack-sync rejects deferred studio pack bindings without declared manifests", async () => {
+  const root = await makePackRoot("deferred-undeclared-pack-binding", {
+    extraFiles: [
+      {
+        path: "overlays/studios.json",
+        json: {
+          studios: {
+            deferred: {
+              displayName: "Deferred Studio",
+              status: "deferred",
+              packs: ["future/pack"],
+              description: "Broken deferred pack binding."
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /Overlay studio deferred references undeclared pack future\/pack/);
 });
 
 test("pack-sync rejects active overlays that reference undeclared packs", async () => {
