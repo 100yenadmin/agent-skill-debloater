@@ -53,7 +53,7 @@ function validateValue(value, schema, pointer, errors) {
   }
 
   if (schema.type === "string") {
-    if (schema.minLength && value.length < schema.minLength) {
+    if (schema.minLength !== undefined && value.length < schema.minLength) {
       errors.push(`${pointer} must contain at least ${schema.minLength} characters`);
     }
     if (schema.pattern && !new RegExp(schema.pattern).test(value)) {
@@ -68,7 +68,7 @@ function validateValue(value, schema, pointer, errors) {
     }
   }
 
-  if (schema.type === "integer" && schema.minimum !== undefined && value < schema.minimum) {
+  if ((schema.type === "integer" || schema.type === "number") && schema.minimum !== undefined && value < schema.minimum) {
     errors.push(`${pointer} must be >= ${schema.minimum}`);
   }
 
@@ -130,7 +130,14 @@ function schemaFileFromRef(ref) {
   if (file.includes("/") && !file.startsWith("./")) {
     throw new Error(`Schema $ref must be local to schemas/: ${ref}`);
   }
-  return file.replace(/^\.\//, "");
+  const local = file.replace(/^\.\//, "");
+  if (
+    local.split("/").some((segment) => segment === "." || segment === ".." || segment === "") ||
+    path.posix.normalize(local) !== local
+  ) {
+    throw new Error(`Schema $ref must be local to schemas/: ${ref}`);
+  }
+  return local;
 }
 
 async function resolveSchemaRefs(value, { schemaDir, seen = new Set() }) {

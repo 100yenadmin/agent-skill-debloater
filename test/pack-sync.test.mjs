@@ -156,6 +156,16 @@ test("pack-sync rejects license URLs outside the locked repo and SHA", async () 
     }
   });
   await assert.rejects(checkPackMetadata({ root: wrongSha }), /license\.sourceUrl/);
+
+  const traversal = await makePackRoot("license-path-traversal", {
+    lock: {
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/example/pack/blob/${SHA}/../other-repo/LICENSE`
+      }
+    }
+  });
+  await assert.rejects(checkPackMetadata({ root: traversal }), /license\.sourceUrl/);
 });
 
 test("pack-sync rejects catalog paths outside manifest allowedPaths", async () => {

@@ -57,6 +57,18 @@ function canonicalRepoUrl(packId) {
   return `https://github.com/${packId}`;
 }
 
+function hasRelativeUrlSegment(value) {
+  return value.split("/").some((segment) => {
+    let decoded = segment;
+    try {
+      decoded = decodeURIComponent(segment);
+    } catch {
+      return true;
+    }
+    return decoded === "." || decoded === ".." || decoded.includes("/");
+  });
+}
+
 function assertCanonicalRepoUrl(packId, repoUrl, label) {
   assertHttpUrl(repoUrl, label);
   const parsed = new URL(repoUrl);
@@ -79,7 +91,21 @@ function assertLockedBlobUrl(value, packId, resolvedSha, label) {
   assertHttpUrl(value, label);
   const parsed = new URL(value);
   const expectedPrefix = `${canonicalRepoUrl(packId)}/blob/${resolvedSha}/`;
-  if (parsed.search || parsed.hash || !value.startsWith(expectedPrefix) || value.length <= expectedPrefix.length) {
+  const expectedPathPrefix = `/${packId}/blob/${resolvedSha}/`;
+  const rawTail = value.startsWith(expectedPrefix) ? value.slice(expectedPrefix.length) : "";
+  if (
+    parsed.protocol !== "https:" ||
+    parsed.hostname !== "github.com" ||
+    parsed.username ||
+    parsed.password ||
+    parsed.search ||
+    parsed.hash ||
+    !value.startsWith(expectedPrefix) ||
+    !parsed.pathname.startsWith(expectedPathPrefix) ||
+    parsed.pathname.length <= expectedPathPrefix.length ||
+    rawTail.length === 0 ||
+    hasRelativeUrlSegment(rawTail)
+  ) {
     throw new Error(`${label} must be under ${expectedPrefix}`);
   }
 }

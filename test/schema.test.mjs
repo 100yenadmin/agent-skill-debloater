@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -16,6 +16,10 @@ const artifactDirs = ["packs", "locks", "overlays", "catalogs"];
 
 async function readJson(file) {
   return JSON.parse(await readFile(file, "utf8"));
+}
+
+async function writeJson(file, value) {
+  await writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
 }
 
 test("public schemas validate committed pack, lock, overlay, and catalog artifacts", async () => {
@@ -85,6 +89,32 @@ test("catalog schema resolves capability labels from the shared capability schem
       "dangerous"
     ]
   );
+});
+
+test("schema refs cannot resolve outside the schema directory", async () => {
+  const schemaDir = new URL("./.test-tmp/schema-ref-traversal/", import.meta.url);
+  await rm(schemaDir, { force: true, recursive: true });
+  await mkdir(schemaDir, { recursive: true });
+  await writeJson(new URL("catalog.schema.json", schemaDir), {
+    $ref: "./../escape.schema.json"
+  });
+
+  await assert.rejects(
+    loadJsonSchema("catalog.schema.json", { schemaDir: fileURLToPath(schemaDir) }),
+    /Schema \$ref must be local to schemas/
+  );
+});
+
+test("schema validator enforces numeric minimum and explicit minLength", () => {
+  assert.throws(
+    () => validateJsonWithSchema(-1, { type: "number", minimum: 0 }, { label: "number fixture" }),
+    /must be >= 0/
+  );
+  assert.throws(
+    () => validateJsonWithSchema("", { type: "string", minLength: 1 }, { label: "string fixture" }),
+    /at least 1 characters/
+  );
+  assert.doesNotThrow(() => validateJsonWithSchema("", { type: "string", minLength: 0 }, { label: "string fixture" }));
 });
 
 test("catalog schema rejects non-portable skill paths", async () => {
