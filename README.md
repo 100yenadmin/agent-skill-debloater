@@ -65,6 +65,22 @@ stable. Force the portable fallback when needed:
 debloat-skill-search marketing "positioning ICP" --engine json --format json
 ```
 
+## Routing Evals
+
+Run the routing gate with a compact console summary:
+
+```bash
+npm run eval:routing
+```
+
+Write the full audit report, including selected-skill traces and failure rows:
+
+```bash
+node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json \
+  --summary \
+  --report artifacts/skill-routing-evals/v0/report.json
+```
+
 ## Proof Boundary
 
 This proves local plugin routing only. It does not prove customer VM rollout
