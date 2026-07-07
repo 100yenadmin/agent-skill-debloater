@@ -1,4 +1,5 @@
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
 
 import { loadCatalog, searchCatalog } from "./search.mjs";
 
@@ -8,6 +9,7 @@ const THRESHOLDS = {
   top1: 0.8,
   wrongCategory: 0.05,
   wrongCategoryMaxCount: 1,
+  ambiguityRate: 0.2,
   negativeFalsePositive: 0,
   mustRank1Failures: 0
 };
@@ -30,6 +32,13 @@ function validateScenario(scenario, index) {
   }
   if (scenario.mustRank1 && !scenario.expectedSkill) {
     throw new Error(`Routing eval ${label} sets mustRank1 without expectedSkill`);
+  }
+  if (
+    Object.hasOwn(scenario, "expectedStudio") &&
+    scenario.expectedStudio !== null &&
+    typeof scenario.expectedStudio !== "string"
+  ) {
+    throw new Error(`Routing eval ${label} expectedStudio must be a string or null`);
   }
 }
 
@@ -84,6 +93,9 @@ export function thresholdFailures(metrics) {
   ) {
     failures.push(`wrong-category ${metrics.wrongCategory} (${metrics.wrongCategoryCount} mismatches)`);
   }
+  if (metrics.ambiguityRate > THRESHOLDS.ambiguityRate) {
+    failures.push(`ambiguity-rate ${metrics.ambiguityRate}`);
+  }
   if (metrics.negativeFalsePositive > THRESHOLDS.negativeFalsePositive) {
     failures.push(
       `negative-false-positive ${metrics.negativeFalsePositive} (${metrics.negativeFalsePositiveCount ?? 0} false positives)`
@@ -95,6 +107,98 @@ export function thresholdFailures(metrics) {
   return failures;
 }
 
+function selectedSkillTrace(result) {
+  if (!result) return null;
+  return {
+    name: result.name,
+    title: result.title,
+    studio: result.studio,
+    source: result.source,
+    pack: result.pack,
+    skillPath: result.skillPath,
+    readPath: result.readPath,
+    sourceCommit: result.sourceCommit,
+    sourceUrl: result.sourceUrl,
+    capabilities: result.capabilities,
+    confidence: result.confidence,
+    confidenceLabel: result.confidenceLabel,
+    score: result.score,
+    why: result.why
+  };
+}
+
+function rowFailureReasons(row) {
+  const reasons = [];
+  if (row.selectedStudio !== row.expectedSelectedStudio) {
+    reasons.push("selected-studio");
+  }
+  if (row.expectedSkill && (!row.rank || row.rank > 3)) {
+    reasons.push("recall@3");
+  }
+  if (row.expectedSkill && row.rank !== 1) {
+    reasons.push("top1");
+  }
+  if (row.mustRank1 && row.rank !== 1) {
+    reasons.push("must-rank-1");
+  }
+  if (!row.expectedSkill && row.expectedSelectedStudio === null && row.selectedStudio !== null) {
+    reasons.push("negative-false-positive");
+  }
+  return [...new Set(reasons)];
+}
+
+export function buildRoutingEvalReport(result) {
+  const failures = thresholdFailures(result.metrics);
+  const rows = result.rows.map((row) => ({
+    ...row,
+    failureReasons: rowFailureReasons(row)
+  }));
+
+  return {
+    suite: result.suite,
+    scenarioCount: rows.length,
+    thresholds: result.thresholds,
+    metrics: result.metrics,
+    thresholdFailures: failures,
+    failureRows: rows
+      .filter((row) => row.failureReasons.length > 0)
+      .map((row) => ({
+        id: row.id,
+        prompt: row.prompt,
+        expectedStudio: row.expectedStudio,
+        expectedSelectedStudio: row.expectedSelectedStudio,
+        selectedStudio: row.selectedStudio,
+        expectedSkill: row.expectedSkill,
+        selectedSkill: row.selectedSkill,
+        rank: row.rank,
+        failureReasons: row.failureReasons,
+        topResults: row.results.map((entry) => ({
+          name: entry.name,
+          source: entry.source,
+          confidence: entry.confidence,
+          confidenceLabel: entry.confidenceLabel,
+          readPath: entry.readPath
+        }))
+      })),
+    ambiguityRows: rows
+      .filter((row) => row.results[0]?.confidenceLabel === "ambiguous")
+      .map((row) => ({
+        id: row.id,
+        selectedSkill: row.selectedSkill,
+        confidence: row.results[0]?.confidence ?? null,
+        readPath: row.selectedSkillTrace?.readPath ?? null
+      })),
+    auditTraces: rows.map((row) => ({
+      id: row.id,
+      selectedStudio: row.selectedStudio,
+      selectedSkill: row.selectedSkill,
+      selectedSkillTrace: row.selectedSkillTrace,
+      selectedStudioTrace: row.selectedStudioTrace
+    })),
+    rows
+  };
+}
+
 export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
   const scenarios = JSON.parse(await readFile(scenarioPath, "utf8"));
   if (!Array.isArray(scenarios)) {
@@ -104,6 +208,13 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
     throw new Error("Routing eval requires at least one scenario");
   }
   scenarios.forEach(validateScenario);
+  const ids = new Set();
+  for (const scenario of scenarios) {
+    if (ids.has(scenario.id)) {
+      throw new Error(`Routing eval scenario id must be unique: ${scenario.id}`);
+    }
+    ids.add(scenario.id);
+  }
   const catalogsByStudio = new Map();
   for (const studio of [...new Set(scenarios.map((scenario) => scenario.studio))]) {
     catalogsByStudio.set(studio, await loadCatalog({ studio, ...(catalogDir ? { catalogDir } : {}) }));
@@ -117,9 +228,11 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
     const studioResults = [...catalogsByStudio].flatMap(([studio, studioCatalog]) =>
       searchCatalog(studioCatalog, scenario.prompt, { limit: 1 }).map((result) => ({ studio, result }))
     );
-    const selectedStudio =
-      studioResults.sort((a, b) => b.result.score - a.result.score || b.result.confidence - a.result.confidence)[0]
-        ?.studio ?? null;
+    const selectedStudioCandidate =
+      studioResults.sort((a, b) => b.result.score - a.result.score || b.result.confidence - a.result.confidence)[0] ??
+      null;
+    const selectedStudio = selectedStudioCandidate?.studio ?? null;
+    const selectedResult = results[0] ?? null;
     const expectedSelectedStudio = Object.hasOwn(scenario, "expectedStudio")
       ? scenario.expectedStudio
       : scenario.expectedSkill
@@ -128,10 +241,19 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
 
     rows.push({
       id: scenario.id,
+      prompt: scenario.prompt,
       expectedStudio: scenario.studio,
       expectedSelectedStudio,
       selectedStudio,
+      selectedStudioTrace: selectedStudioCandidate
+        ? {
+            studio: selectedStudioCandidate.studio,
+            selectedSkillTrace: selectedSkillTrace(selectedStudioCandidate.result)
+          }
+        : null,
       expectedSkill: scenario.expectedSkill,
+      selectedSkill: selectedResult?.name ?? null,
+      selectedSkillTrace: selectedSkillTrace(selectedResult),
       mustRank1: Boolean(scenario.mustRank1),
       results,
       rank: scenario.expectedSkill ? rankOf(results, scenario.expectedSkill) : null
@@ -146,29 +268,76 @@ export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
   };
 }
 
+function parseCliArgs(argv) {
+  const [scenarioPath, ...rest] = argv;
+  const options = {
+    scenarioPath,
+    summaryOnly: false,
+    reportPath: null
+  };
+
+  for (let index = 0; index < rest.length; index += 1) {
+    const arg = rest[index];
+    const next = rest[index + 1];
+
+    if (arg === "--summary") {
+      options.summaryOnly = true;
+    } else if (arg === "--report") {
+      if (!next || next.startsWith("--")) {
+        throw new Error("--report requires a path");
+      }
+      options.reportPath = next;
+      index += 1;
+    } else {
+      throw new Error(`Unknown argument: ${arg}`);
+    }
+  }
+
+  return options;
+}
+
+async function writeReport(reportPath, report) {
+  await mkdir(path.dirname(reportPath), { recursive: true });
+  await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+}
+
 async function main() {
-  const scenarioPath = process.argv[2];
-  const summaryOnly = process.argv.includes("--summary");
+  let options;
+  try {
+    options = parseCliArgs(process.argv.slice(2));
+  } catch (error) {
+    console.error(error.message);
+    console.error("Usage: node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json [--summary] [--report PATH]");
+    process.exitCode = 2;
+    return;
+  }
+  const { scenarioPath, summaryOnly, reportPath } = options;
   if (!scenarioPath) {
-    console.error("Usage: node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json [--summary]");
+    console.error("Usage: node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json [--summary] [--report PATH]");
     process.exitCode = 2;
     return;
   }
 
   const result = await runRoutingEval(scenarioPath);
-  const failures = thresholdFailures(result.metrics);
+  const report = buildRoutingEvalReport(result);
   const output = summaryOnly
     ? {
-        suite: result.suite,
-        scenarioCount: result.rows.length,
-        thresholds: result.thresholds,
-        metrics: result.metrics,
-        thresholdFailures: failures
+        suite: report.suite,
+        scenarioCount: report.scenarioCount,
+        thresholds: report.thresholds,
+        metrics: report.metrics,
+        thresholdFailures: report.thresholdFailures,
+        failureRows: report.failureRows,
+        ambiguityRows: report.ambiguityRows
       }
-    : { ...result, thresholdFailures: failures };
+    : report;
+
+  if (reportPath) {
+    await writeReport(reportPath, report);
+  }
 
   console.log(JSON.stringify(output, null, 2));
-  if (failures.length > 0) {
+  if (report.thresholdFailures.length > 0) {
     process.exitCode = 1;
   }
 }
