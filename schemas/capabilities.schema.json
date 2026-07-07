@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/100yenadmin/agent-skill-debloater/schemas/capabilities.schema.json",
+  "title": "AgentSkillDebloater capability label",
+  "description": "Capability labels describe what a selected backing skill may cause an agent to do. Hidden/read-on-demand visibility is not a security boundary.",
+  "type": "string",
+  "enum": [
+    "read-only",
+    "file-write",
+    "network",
+    "browser",
+    "external-posting",
+    "api-key-use",
+    "customer-data",
+    "dangerous"
+  ]
+}

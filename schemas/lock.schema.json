@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/100yenadmin/agent-skill-debloater/schemas/lock.schema.json",
+  "title": "AgentSkillDebloater pack lockfile",
+  "type": "object",
+  "required": [
+    "pack",
+    "repoUrl",
+    "resolvedRef",
+    "resolvedSha",
+    "resolvedAt",
+    "license",
+    "catalogs"
+  ],
+  "properties": {
+    "pack": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "repoUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "resolvedRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resolvedSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "resolvedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "license": {
+      "type": "object",
+      "required": [
+        "status",
+        "sourceUrl"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "recorded"
+          ]
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/blob/[a-f0-9]{40}/.+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "catalogs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^catalogs/[a-z][a-z0-9-]*\\.json$"
+      }
+    }
+  },
+  "additionalProperties": false
+}

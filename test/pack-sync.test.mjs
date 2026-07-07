@@ -51,12 +51,32 @@ async function makePackRoot(name, { pack = {}, lock = {}, entry = {}, extraFiles
     sourceUrl: `https://github.com/example/pack/blob/${SHA}/skills/example-skill/SKILL.md`,
     skillPath: "skills/example-skill/SKILL.md",
     description: "Example catalog entry.",
+    aliases: [],
+    tags: [],
     capabilities: ["read-only"],
     ...entry
   };
 
   if (packJson) await writeJson(new URL("packs/example.json", root), packJson);
   if (lockJson) await writeJson(new URL("locks/example.lock.json", root), lockJson);
+  await writeJson(new URL("overlays/studios.json", root), {
+    studios: {
+      marketing: {
+        displayName: "Marketing Studio",
+        visibleRouterSkill: "marketing-studio",
+        packs: ["example/pack"],
+        defaultLimit: 3,
+        description: "Marketing fixture studio."
+      },
+      deferred: {
+        displayName: "Deferred Studio",
+        status: "deferred",
+        packs: [],
+        plannedPacks: ["future/pack"],
+        description: "Deferred fixture studio."
+      }
+    }
+  });
   await writeJson(new URL("catalogs/marketing.json", root), [entryJson]);
 
   for (const { path, json } of extraFiles) {
@@ -101,6 +121,54 @@ test("pack-sync rejects spoofed catalog source metadata", async () => {
   await assert.rejects(checkPackMetadata({ root }), /sourceUrl/);
 });
 
+test("pack-sync rejects pack repoUrl that does not match the pack id", async () => {
+  const root = await makePackRoot("spoofed-repo-url", {
+    pack: {
+      repoUrl: "https://github.com/other/pack"
+    },
+    lock: {
+      repoUrl: "https://github.com/other/pack"
+    },
+    entry: {
+      sourceUrl: `https://github.com/other/pack/blob/${SHA}/skills/example-skill/SKILL.md`
+    }
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /Pack example\/pack repoUrl must be https:\/\/github.com\/example\/pack/);
+});
+
+test("pack-sync rejects license URLs outside the locked repo and SHA", async () => {
+  const wrongRepo = await makePackRoot("license-wrong-repo", {
+    lock: {
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/other/pack/blob/${SHA}/LICENSE`
+      }
+    }
+  });
+  await assert.rejects(checkPackMetadata({ root: wrongRepo }), /license\.sourceUrl/);
+
+  const wrongSha = await makePackRoot("license-wrong-sha", {
+    lock: {
+      license: {
+        status: "recorded",
+        sourceUrl: "https://github.com/example/pack/blob/1111111111111111111111111111111111111111/LICENSE"
+      }
+    }
+  });
+  await assert.rejects(checkPackMetadata({ root: wrongSha }), /license\.sourceUrl/);
+
+  const traversal = await makePackRoot("license-path-traversal", {
+    lock: {
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/example/pack/blob/${SHA}/../other-repo/LICENSE`
+      }
+    }
+  });
+  await assert.rejects(checkPackMetadata({ root: traversal }), /license\.sourceUrl/);
+});
+
 test("pack-sync rejects catalog paths outside manifest allowedPaths", async () => {
   const root = await makePackRoot("outside-allowed-paths", {
     entry: {
@@ -121,7 +189,11 @@ test("pack-sync rejects duplicate pack and lock identities", async () => {
           id: "example/pack",
           repoUrl: "https://github.com/example/pack",
           allowedPaths: ["skills/**/SKILL.md"],
-          pinPolicy: "sha"
+          pinPolicy: "sha",
+          licensePolicy: "record-and-review",
+          hiddenByDefault: true,
+          visibility: "catalog-only",
+          defaultStudio: "marketing"
         }
       }
     ]
@@ -135,7 +207,14 @@ test("pack-sync rejects duplicate pack and lock identities", async () => {
         json: {
           pack: "example/pack",
           repoUrl: "https://github.com/example/pack",
-          resolvedSha: SHA
+          resolvedRef: "main",
+          resolvedSha: SHA,
+          resolvedAt: "2026-07-07",
+          license: {
+            status: "recorded",
+            sourceUrl: `https://github.com/example/pack/blob/${SHA}/LICENSE`
+          },
+          catalogs: ["catalogs/marketing.json"]
         }
       }
     ]
@@ -152,5 +231,150 @@ test("pack-sync rejects absolute and file URL path-bearing fields", async () => 
     }
   });
 
-  await assert.rejects(checkPackMetadata({ root: absoluteRoot }), /absolute|file:/);
+  await assert.rejects(checkPackMetadata({ root: absoluteRoot }), /Schema validation|absolute|file:/);
+});
+
+test("pack-sync allows deferred studios to track future packs outside active pack bindings", async () => {
+  const root = await makePackRoot("deferred-future-pack");
+
+  const result = await checkPackMetadata({ root });
+
+  assert.equal(result.ok, true);
+});
+
+test("pack-sync rejects deferred studio pack bindings without declared manifests", async () => {
+  const root = await makePackRoot("deferred-undeclared-pack-binding", {
+    extraFiles: [
+      {
+        path: "overlays/studios.json",
+        json: {
+          studios: {
+            deferred: {
+              displayName: "Deferred Studio",
+              status: "deferred",
+              packs: ["future/pack"],
+              description: "Broken deferred pack binding."
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /Overlay studio deferred references undeclared pack future\/pack/);
+});
+
+test("pack-sync rejects active overlays that reference undeclared packs", async () => {
+  const root = await makePackRoot("active-overlay-undeclared-pack", {
+    extraFiles: [
+      {
+        path: "overlays/studios.json",
+        json: {
+          studios: {
+            marketing: {
+              displayName: "Marketing Studio",
+              visibleRouterSkill: "marketing-studio",
+              packs: ["missing/pack"],
+              defaultLimit: 3,
+              description: "Broken active studio."
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /Overlay studio marketing references undeclared pack missing\/pack/);
+});
+
+test("pack-sync rejects invalid overlay studio ids", async () => {
+  const root = await makePackRoot("invalid-overlay-studio-id", {
+    extraFiles: [
+      {
+        path: "overlays/studios.json",
+        json: {
+          studios: {
+            "Marketing Studio": {
+              displayName: "Marketing Studio",
+              visibleRouterSkill: "marketing-studio",
+              packs: ["example/pack"],
+              defaultLimit: 3,
+              description: "Broken studio id."
+            }
+          }
+        }
+      }
+    ]
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /must be lowercase kebab-case/);
+});
+
+test("pack-sync rejects catalog entries in the wrong studio catalog", async () => {
+  const root = await makePackRoot("wrong-studio-catalog", {
+    entry: {
+      studio: "design"
+    }
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /Catalog catalogs\/marketing\.json contains example-skill for studio design/);
+});
+
+test("pack-sync rejects lockfiles that reference missing catalogs", async () => {
+  const root = await makePackRoot("missing-lock-catalog", {
+    lock: {
+      catalogs: ["catalogs/missing.json"]
+    }
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /references missing catalog catalogs\/missing\.json/);
+});
+
+test("pack-sync rejects catalogs omitted from lockfile coverage", async () => {
+  const root = await makePackRoot("lock-omits-catalog-coverage", {
+    extraFiles: [
+      {
+        path: "overlays/studios.json",
+        json: {
+          studios: {
+            marketing: {
+              displayName: "Marketing Studio",
+              visibleRouterSkill: "marketing-studio",
+              packs: ["example/pack"],
+              defaultLimit: 3,
+              description: "Marketing fixture studio."
+            },
+            design: {
+              displayName: "Design Studio",
+              visibleRouterSkill: "design-studio",
+              packs: ["example/pack"],
+              defaultLimit: 3,
+              description: "Design fixture studio."
+            }
+          }
+        }
+      },
+      {
+        path: "catalogs/design.json",
+        json: [
+          {
+            name: "example-design",
+            title: "Example Design",
+            studio: "design",
+            source: "example/pack",
+            pack: "example/pack",
+            sourceCommit: SHA,
+            sourceUrl: `https://github.com/example/pack/blob/${SHA}/skills/example-design/SKILL.md`,
+            skillPath: "skills/example-design/SKILL.md",
+            description: "Extra catalog entry omitted from lock coverage.",
+            aliases: [],
+            tags: [],
+            capabilities: ["read-only"]
+          }
+        ]
+      }
+    ]
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /catalogs do not match catalog coverage/);
 });

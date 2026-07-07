@@ -17,6 +17,14 @@ test("routing eval checks global studio selection and hard negatives", async () 
   assert.equal(pricing.expectedSelectedStudio, null);
 });
 
+test("committed routing eval proves must-rank-1 scenarios are currently top ranked", async () => {
+  const result = await runRoutingEval(new URL("../evals/skill-routing-evals/v0/scenarios.json", import.meta.url));
+
+  assert.ok(result.metrics.mustRank1Count > 0);
+  assert.equal(result.metrics.mustRank1FailureCount, 0);
+  assert.equal(thresholdFailures(result.metrics).some((failure) => failure.startsWith("must-rank-1")), false);
+});
+
 test("routing eval can run against committed fixture catalogs", async () => {
   const tmpRoot = new URL("./.test-tmp/eval-routing-fixture/", import.meta.url);
   await rm(tmpRoot, { force: true, recursive: true });
@@ -103,6 +111,36 @@ test("routing eval rejects empty or zero-positive scenario suites", async () => 
   await assert.rejects(runRoutingEval(zeroPositivePath, { catalogDir: fixtureCatalogDir }), /positive expectedSkill/);
 });
 
+test("routing eval rejects mustRank1 scenarios without expectedSkill", async () => {
+  const tmpRoot = new URL("./.test-tmp/eval-routing-malformed/", import.meta.url);
+  await rm(tmpRoot, { force: true, recursive: true });
+  await mkdir(tmpRoot, { recursive: true });
+  const scenarioPath = new URL("scenarios.json", tmpRoot);
+  await writeFile(
+    scenarioPath,
+    JSON.stringify([
+      {
+        id: "fixture-positive",
+        studio: "marketing",
+        prompt: "SEO content plan",
+        expectedSkill: "ai-seo"
+      },
+      {
+        id: "malformed-must-rank-1",
+        studio: "marketing",
+        prompt: "Repair a database issue.",
+        expectedSkill: null,
+        mustRank1: true
+      }
+    ])
+  );
+
+  await assert.rejects(
+    runRoutingEval(scenarioPath, { catalogDir: fixtureCatalogDir }),
+    /malformed-must-rank-1 sets mustRank1 without expectedSkill/
+  );
+});
+
 test("routing eval threshold checks use raw metrics before display rounding", () => {
   const failures = thresholdFailures({
     recallAt3: 0.9496,
@@ -110,8 +148,23 @@ test("routing eval threshold checks use raw metrics before display rounding", ()
     top1: 1,
     wrongCategory: 0,
     wrongCategoryCount: 0,
-    negativeFalsePositive: 0
+    negativeFalsePositive: 0,
+    mustRank1FailureCount: 0
   });
 
   assert.deepEqual(failures, ["Recall@3 0.9496"]);
+});
+
+test("routing eval fails smoke regressions marked mustRank1", () => {
+  const failures = thresholdFailures({
+    recallAt3: 1,
+    mrrAt3: 1,
+    top1: 1,
+    wrongCategory: 0,
+    wrongCategoryCount: 0,
+    negativeFalsePositive: 0,
+    mustRank1FailureCount: 1
+  });
+
+  assert.deepEqual(failures, ["must-rank-1 1 failures"]);
 });
