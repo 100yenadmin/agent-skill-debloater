@@ -43,6 +43,8 @@ const REQUIRED_FIELDS = [
   "skillPath",
   "description"
 ];
+const STRING_FIELDS = [...REQUIRED_FIELDS, "useWhen"];
+const ARRAY_FIELDS = ["aliases", "tags", "capabilities"];
 
 function toPath(input) {
   if (input instanceof URL) return fileURLToPath(input);
@@ -105,7 +107,10 @@ function fieldTokens(entry) {
 }
 
 function assertPortableSkillPath(entry) {
-  const skillPath = String(entry.skillPath);
+  const skillPath = entry.skillPath;
+  if (typeof skillPath !== "string") {
+    throw new Error(`Catalog entry ${entry.name} skillPath must be a string`);
+  }
   if (path.isAbsolute(skillPath) || path.win32.isAbsolute(skillPath)) {
     throw new Error(`Catalog entry ${entry.name} has an absolute skillPath`);
   }
@@ -118,6 +123,22 @@ function assertPortableSkillPath(entry) {
   }
   if (!skillPath.endsWith("/SKILL.md")) {
     throw new Error(`Catalog entry ${entry.name} skillPath must end in /SKILL.md`);
+  }
+}
+
+function assertEntryTypes(entry) {
+  for (const field of STRING_FIELDS) {
+    if (typeof entry[field] !== "string") {
+      throw new Error(`Catalog entry ${entry.name ?? "<unknown>"} ${field} must be a string`);
+    }
+  }
+  for (const field of ARRAY_FIELDS) {
+    if (!Array.isArray(entry[field])) {
+      throw new Error(`Catalog entry ${entry.name} ${field} must be an array`);
+    }
+    if (!entry[field].every((value) => typeof value === "string")) {
+      throw new Error(`Catalog entry ${entry.name} ${field} must contain only strings`);
+    }
   }
 }
 
@@ -135,6 +156,8 @@ function normalizeEntry(entry, studio) {
       throw new Error(`Catalog entry missing ${field}: ${JSON.stringify(entry)}`);
     }
   }
+
+  assertEntryTypes(normalized);
 
   if (normalized.studio !== studio) {
     throw new Error(`Catalog entry ${normalized.name} belongs to ${normalized.studio}, not ${studio}`);
@@ -161,10 +184,38 @@ export async function loadCatalog({
   return entries.map((entry) => normalizeEntry(entry, studio));
 }
 
+function ownPackRoot(packRoots, key) {
+  if (!packRoots || typeof packRoots !== "object") return undefined;
+  if (!Object.hasOwn(packRoots, key)) return undefined;
+  const root = packRoots[key];
+  if (root === undefined || root === null || root === "") return undefined;
+  if (typeof root !== "string") {
+    throw new Error(`Pack root for ${key} must be a string`);
+  }
+  return root;
+}
+
+export function packReadPath(pack, skillPath) {
+  return `pack://${encodeURIComponent(pack)}/${skillPath}`;
+}
+
+export function parsePackReadPath(readPath) {
+  const parsed = new URL(readPath);
+  if (parsed.protocol !== "pack:") {
+    throw new Error(`Expected pack: read path, received ${readPath}`);
+  }
+  const pack = decodeURIComponent(parsed.host);
+  const skillPath = parsed.pathname.replace(/^\//, "");
+  if (!pack || !skillPath) {
+    throw new Error(`Invalid pack read path: ${readPath}`);
+  }
+  return { pack, skillPath };
+}
+
 function resolveReadPath(entry, packRoots = {}) {
-  const root = packRoots[entry.pack] ?? packRoots[entry.source];
+  const root = ownPackRoot(packRoots, entry.pack) ?? ownPackRoot(packRoots, entry.source);
   if (root) return path.join(root, entry.skillPath);
-  return `pack://${entry.pack}/${entry.skillPath}`;
+  return packReadPath(entry.pack, entry.skillPath);
 }
 
 function scoreEntry(entry, queryTokens, rawQuery) {
@@ -226,8 +277,17 @@ function confidenceFor(score, topScore) {
 export function searchCatalog(
   catalog,
   query,
-  { limit = DEFAULT_LIMIT, minScore = DEFAULT_MIN_SCORE, packRoots = {} } = {}
+  {
+    limit = DEFAULT_LIMIT,
+    minScore = DEFAULT_MIN_SCORE,
+    minResultScore = Math.ceil(Number(minScore) / 2),
+    packRoots = {}
+  } = {}
 ) {
+  const resultLimit = Number(limit);
+  if (!Number.isInteger(resultLimit) || resultLimit < 1) {
+    throw new Error("limit must be a positive integer");
+  }
   const queryTokens = tokenize(query);
   const rawQuery = String(query ?? "").toLowerCase();
 
@@ -239,10 +299,13 @@ export function searchCatalog(
   const topScore = Math.max(0, ...scored.map((item) => item.score));
   if (topScore < minScore) return [];
 
-  const sorted = scored.sort((a, b) => b.score - a.score || a.entry.name.localeCompare(b.entry.name));
+  const resultScoreFloor = Math.max(1, Number(minResultScore) || 1);
+  const sorted = scored
+    .filter((item) => item.score >= resultScoreFloor)
+    .sort((a, b) => b.score - a.score || a.entry.name.localeCompare(b.entry.name));
 
   return sorted
-    .slice(0, Math.max(1, Number(limit) || DEFAULT_LIMIT))
+    .slice(0, resultLimit)
     .map(({ entry, score, why }, index) => {
       const confidence = confidenceFor(score, topScore);
       const margin = index === 0 && sorted.length > 1 ? topScore - sorted[1].score : null;

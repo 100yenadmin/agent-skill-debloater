@@ -11,6 +11,22 @@ import {
 } from "./search.mjs";
 import { runPackSyncCli } from "./pack-sync.mjs";
 
+function optionValue(name, value) {
+  if (value === undefined || value.startsWith("--")) {
+    throw new Error(`${name} requires a value`);
+  }
+  return value;
+}
+
+function parsePositiveIntegerOption(name, value) {
+  const raw = optionValue(name, value);
+  const parsed = Number(raw);
+  if (!Number.isInteger(parsed) || parsed < 1) {
+    throw new Error(`${name} must be a positive integer`);
+  }
+  return parsed;
+}
+
 function parseSearchArgs(argv) {
   const [studio, query, ...rest] = argv;
   const options = {
@@ -28,20 +44,20 @@ function parseSearchArgs(argv) {
     const next = rest[index + 1];
 
     if (arg === "--catalog-dir") {
-      options.catalogDir = pathToFileURL(path.resolve(next));
+      options.catalogDir = pathToFileURL(path.resolve(optionValue("--catalog-dir", next)));
       index += 1;
     } else if (arg === "--format") {
-      options.format = next;
+      options.format = optionValue("--format", next);
       index += 1;
     } else if (arg === "--limit") {
-      options.limit = Number(next);
+      options.limit = parsePositiveIntegerOption("--limit", next);
       index += 1;
     } else if (arg === "--pack-root") {
-      const [pack, root] = parsePackRoot(next);
+      const [pack, root] = parsePackRoot(optionValue("--pack-root", next));
       options.packRoots[pack] = root;
       index += 1;
     } else if (arg === "--rerank") {
-      options.rerank = next;
+      options.rerank = optionValue("--rerank", next);
       index += 1;
     } else {
       throw new Error(`Unknown argument: ${arg}`);
@@ -61,7 +77,14 @@ function searchUsage() {
 }
 
 export async function searchMain(argv) {
-  const options = parseSearchArgs(argv);
+  let options;
+  try {
+    options = parseSearchArgs(argv);
+  } catch (error) {
+    console.error(error.message);
+    console.error(searchUsage());
+    return 2;
+  }
 
   if (!options.studio || !options.query) {
     console.error(searchUsage());

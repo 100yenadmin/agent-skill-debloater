@@ -37,12 +37,17 @@ test("public artifacts do not ship machine-local absolute paths", async () => {
 });
 
 test("machine-local path detector catches common user-home formats", () => {
+  const spacedVolume = "/" + "Volumes/" + "My Drive/repos/example";
   const body = [
     "/" + "Users/alice/.codex/skills/foo/SKILL.md",
     "/" + "home/bob/.agents/skills/bar/SKILL.md",
     "/" + "Volumes/LEXAR/repos/example",
+    spacedVolume,
+    "/" + "workspaces/agent-skill-debloater/skills/foo/SKILL.md",
+    "/" + "tmp/agent-skill-debloater/skills/foo/SKILL.md",
     "C:" + String.raw`\Users\Casey\skills\baz\SKILL.md`
   ].join("\n");
 
-  assert.equal(findMachineLocalPaths(body).length, 4);
+  assert.equal(findMachineLocalPaths(body).length, 7);
+  assert.ok(findMachineLocalPaths(body).some((match) => match.value === spacedVolume));
 });

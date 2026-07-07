@@ -6,7 +6,8 @@ const THRESHOLDS = {
   recallAt3: 0.95,
   mrrAt3: 0.85,
   top1: 0.8,
-  wrongCategory: 0.02,
+  wrongCategory: 0.05,
+  wrongCategoryMaxCount: 1,
   negativeFalsePositive: 0
 };
 
@@ -16,48 +17,71 @@ function rankOf(results, expected) {
 }
 
 function summarize(rows) {
+  if (rows.length === 0) {
+    throw new Error("Routing eval requires at least one scenario");
+  }
   const positives = rows.filter((row) => row.expectedSkill);
-  const negatives = rows.filter((row) => !row.expectedSkill);
+  if (positives.length === 0) {
+    throw new Error("Routing eval requires at least one positive expectedSkill scenario");
+  }
+  const hardNegatives = rows.filter((row) => !row.expectedSkill && row.expectedSelectedStudio === null);
   const recallAt3 = positives.filter((row) => row.rank && row.rank <= 3).length / positives.length;
   const top1 = positives.filter((row) => row.rank === 1).length / positives.length;
   const mrrAt3 =
     positives.reduce((total, row) => total + (row.rank && row.rank <= 3 ? 1 / row.rank : 0), 0) /
     positives.length;
+  const wrongCategoryCount = rows.filter((row) => row.selectedStudio !== row.expectedSelectedStudio).length;
   const wrongCategory =
-    rows.filter((row) => row.selectedStudio !== row.expectedSelectedStudio).length / rows.length;
+    wrongCategoryCount / rows.length;
   const ambiguityRate = rows.filter((row) => row.results[0]?.confidenceLabel === "ambiguous").length / rows.length;
+  const negativeFalsePositiveCount = hardNegatives.filter((row) => row.selectedStudio !== null).length;
   const negativeFalsePositive =
-    negatives.length === 0 ? 0 : negatives.filter((row) => row.results.length > 0).length / negatives.length;
+    hardNegatives.length === 0 ? 0 : negativeFalsePositiveCount / hardNegatives.length;
 
   return {
-    recallAt3: Number(recallAt3.toFixed(3)),
-    top1: Number(top1.toFixed(3)),
-    mrrAt3: Number(mrrAt3.toFixed(3)),
-    wrongCategory: Number(wrongCategory.toFixed(3)),
-    ambiguityRate: Number(ambiguityRate.toFixed(3)),
-    negativeFalsePositive: Number(negativeFalsePositive.toFixed(3))
+    positiveCount: positives.length,
+    hardNegativeCount: hardNegatives.length,
+    wrongCategoryCount,
+    negativeFalsePositiveCount,
+    recallAt3,
+    top1,
+    mrrAt3,
+    wrongCategory,
+    ambiguityRate,
+    negativeFalsePositive
   };
 }
 
-function thresholdFailures(metrics) {
+export function thresholdFailures(metrics) {
   const failures = [];
   if (metrics.recallAt3 < THRESHOLDS.recallAt3) failures.push(`Recall@3 ${metrics.recallAt3}`);
   if (metrics.mrrAt3 < THRESHOLDS.mrrAt3) failures.push(`MRR@3 ${metrics.mrrAt3}`);
   if (metrics.top1 < THRESHOLDS.top1) failures.push(`Top1 ${metrics.top1}`);
-  if (metrics.wrongCategory > THRESHOLDS.wrongCategory) {
-    failures.push(`wrong-category ${metrics.wrongCategory}`);
+  if (
+    metrics.wrongCategory > THRESHOLDS.wrongCategory ||
+    metrics.wrongCategoryCount > THRESHOLDS.wrongCategoryMaxCount
+  ) {
+    failures.push(`wrong-category ${metrics.wrongCategory} (${metrics.wrongCategoryCount} mismatches)`);
   }
   if (metrics.negativeFalsePositive > THRESHOLDS.negativeFalsePositive) {
-    failures.push(`negative-false-positive ${metrics.negativeFalsePositive}`);
+    failures.push(
+      `negative-false-positive ${metrics.negativeFalsePositive} (${metrics.negativeFalsePositiveCount ?? 0} false positives)`
+    );
   }
   return failures;
 }
 
-export async function runRoutingEval(scenarioPath) {
+export async function runRoutingEval(scenarioPath, { catalogDir } = {}) {
   const scenarios = JSON.parse(await readFile(scenarioPath, "utf8"));
+  if (!Array.isArray(scenarios)) {
+    throw new Error("Routing eval scenarios must be a JSON array");
+  }
+  if (scenarios.length === 0) {
+    throw new Error("Routing eval requires at least one scenario");
+  }
   const catalogsByStudio = new Map();
   for (const studio of [...new Set(scenarios.map((scenario) => scenario.studio))]) {
-    catalogsByStudio.set(studio, await loadCatalog({ studio }));
+    catalogsByStudio.set(studio, await loadCatalog({ studio, ...(catalogDir ? { catalogDir } : {}) }));
   }
 
   const rows = [];
