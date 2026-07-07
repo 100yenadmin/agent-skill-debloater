@@ -10,6 +10,7 @@ import {
   runVoyageRerank,
   searchCatalog
 } from "./search.mjs";
+import { runOpenClawAdapterCli } from "./openclaw-adapter.mjs";
 import { runPackSyncCli } from "./pack-sync.mjs";
 
 function optionValue(name, value) {
@@ -167,6 +168,7 @@ function mainUsage() {
     "",
     "Commands:",
     "  search <studio> <query>   Search a hidden skill catalog",
+    "  openclaw-adapter search   Emit OpenClaw adapter search/audit JSON",
     "  pack-sync <command>       Check or update pack metadata",
     "  help                      Show this message"
   ].join("\n");
@@ -182,6 +184,11 @@ export function runMainCli(argv) {
 
   if (command === "pack-sync") {
     runPackSyncCli(rest);
+    return;
+  }
+
+  if (command === "openclaw-adapter") {
+    runOpenClawAdapterCli(rest);
     return;
   }
 

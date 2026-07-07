@@ -1,10 +1,11 @@
 {
   "name": "agent-skill-debloater",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
   "type": "module",
   "license": "MIT",
   "files": [
+    ".codex-plugin/",
     "bin/",
     "catalogs/",
     "docs/",
@@ -23,7 +24,11 @@
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "eval:routing": "node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json --summary"
+    "eval:routing": "node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json --summary",
+    "release:check": "node src/release-report.mjs check",
+    "release:notes": "node src/release-report.mjs notes",
+    "pack:dry-run": "npm pack --dry-run --json",
+    "smoke:openclaw-adapter": "node bin/agent-skill-debloater openclaw-adapter search design \"launch hero cover image\""
   },
   "engines": {
     "node": ">=22.13.0"

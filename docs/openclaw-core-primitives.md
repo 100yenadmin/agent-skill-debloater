@@ -19,6 +19,36 @@ back into core only after eval and adapter evidence.
 - Adapter contracts: plugins can provide catalogs and studio overlays without
   forking runtime policy.
 
+## Adapter Shape Proven
+
+AgentSkillDebloater exposes a plugin-local adapter first:
+
+```bash
+agent-skill-debloater openclaw-adapter search <studio> "<query>"
+```
+
+The response contains compact ranked `candidates` and a `selectedSkillTrace`
+with source pack, capability labels, confidence, why, source URL, and exact
+`SKILL.md` read path. This is the minimum useful primitive for OpenClaw core:
+query a hidden catalog, record what the agent selected, and let the agent read
+only the chosen backing skill.
+
+## Ownership Split
+
+OpenClaw core should eventually own generic primitives:
+
+- catalog registration and prompt visibility semantics
+- search API and ranking/rerank hooks
+- read-path resolution and selected-skill audit traces
+- capability labels as policy inputs
+
+AgentSkillDebloater should continue to own curated policy:
+
+- seed pack manifests, overlays, locks, and catalogs
+- studio UX defaults
+- update cadence and release notes
+- routing evals and pack provenance checks
+
 ## Non-Goals
 
 - No curated default pack list in OpenClaw core at this stage.

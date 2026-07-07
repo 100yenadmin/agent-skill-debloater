@@ -3,10 +3,167 @@
   "repoUrl": "https://github.com/mattpocock/skills",
   "resolvedRef": "main",
   "resolvedSha": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-  "resolvedAt": "2026-07-07",
+  "resolvedAt": "2026-07-08",
   "license": {
     "status": "recorded",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/LICENSE"
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/LICENSE",
+    "blobSha": "f1dd2c09108dde1a5f56097cee8461b3ea834499"
   },
-  "catalogs": ["catalogs/engineering.json"]
+  "catalogs": [
+    "catalogs/engineering.json"
+  ],
+  "skills": [
+    {
+      "path": "skills/deprecated/design-an-interface/SKILL.md",
+      "blobSha": "d056bd183229ca93bd41cf1b8c10c6fd1f30e75f"
+    },
+    {
+      "path": "skills/deprecated/qa/SKILL.md",
+      "blobSha": "305e43fbc1a171987fcab977ebd124c3f9792d39"
+    },
+    {
+      "path": "skills/deprecated/request-refactor-plan/SKILL.md",
+      "blobSha": "7e8b2e41d7ce805746d18b8e9dba4559301db251"
+    },
+    {
+      "path": "skills/deprecated/ubiquitous-language/SKILL.md",
+      "blobSha": "35b649ddcd4f6da16d70f27662e0dfb86fb34870"
+    },
+    {
+      "path": "skills/engineering/ask-matt/SKILL.md",
+      "blobSha": "f19a17c52e66572bcddbbb554b8030e3da700e6a"
+    },
+    {
+      "path": "skills/engineering/code-review/SKILL.md",
+      "blobSha": "2a0b5240731b927caa9ac0bf43c3e2af9dc3f0a7"
+    },
+    {
+      "path": "skills/engineering/codebase-design/SKILL.md",
+      "blobSha": "16620c24528b737408e78d95dd6a0e01a98d3d63"
+    },
+    {
+      "path": "skills/engineering/diagnosing-bugs/SKILL.md",
+      "blobSha": "f400de7c1937377fec7ff9bae3b0c072670f1e81"
+    },
+    {
+      "path": "skills/engineering/domain-modeling/SKILL.md",
+      "blobSha": "d0f7e1a5ccb06a7184056ff9af02b67bc77f9dda"
+    },
+    {
+      "path": "skills/engineering/grill-with-docs/SKILL.md",
+      "blobSha": "bed05d2bd3245306267cea57cd696b5dd94d50fe"
+    },
+    {
+      "path": "skills/engineering/implement/SKILL.md",
+      "blobSha": "02b27b2f3e015e9b424e7ff2963a247aa4a08c4d"
+    },
+    {
+      "path": "skills/engineering/improve-codebase-architecture/SKILL.md",
+      "blobSha": "a79b493ea386d537208beacc41ad26336da257eb"
+    },
+    {
+      "path": "skills/engineering/prototype/SKILL.md",
+      "blobSha": "9425f7dbc7665029c72ba4ae22ad303df039a5e5"
+    },
+    {
+      "path": "skills/engineering/research/SKILL.md",
+      "blobSha": "0ba594a07f306479baa67104381f48e209ab6aae"
+    },
+    {
+      "path": "skills/engineering/resolving-merge-conflicts/SKILL.md",
+      "blobSha": "aadb3fcb1dfb43413dff30c2fb4b18b7cf58e90e"
+    },
+    {
+      "path": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+      "blobSha": "c42b3f245bae530b188948b266ab886ef122e6c3"
+    },
+    {
+      "path": "skills/engineering/tdd/SKILL.md",
+      "blobSha": "9a2e1d2a1ad856b0d5903dd002209ff8c32c9a48"
+    },
+    {
+      "path": "skills/engineering/to-issues/SKILL.md",
+      "blobSha": "657e311a78a43d3510cd306629b82567d104b89d"
+    },
+    {
+      "path": "skills/engineering/to-prd/SKILL.md",
+      "blobSha": "e5f11413b09c19f59150dac52125536ccda34e2d"
+    },
+    {
+      "path": "skills/engineering/triage/SKILL.md",
+      "blobSha": "be47b78100c8524c3af3681790d2bb8b9ff150b7"
+    },
+    {
+      "path": "skills/in-progress/claude-handoff/SKILL.md",
+      "blobSha": "88ce8be28217c9dbcd5f8cef0ead2502bf2e2b1c"
+    },
+    {
+      "path": "skills/in-progress/loop-me/SKILL.md",
+      "blobSha": "3a8c52c8d0a429905bfe728b91e31b01ab57adaf"
+    },
+    {
+      "path": "skills/in-progress/wayfinder/SKILL.md",
+      "blobSha": "6549dd38ad5e41ed47315b78a264a65044eb4a28"
+    },
+    {
+      "path": "skills/in-progress/wizard/SKILL.md",
+      "blobSha": "a754784080d85f559ee2d4ba6327c68098a02029"
+    },
+    {
+      "path": "skills/in-progress/writing-beats/SKILL.md",
+      "blobSha": "1cdb7dec65d1168c8516c3e83af32149226f79e3"
+    },
+    {
+      "path": "skills/in-progress/writing-fragments/SKILL.md",
+      "blobSha": "3d0ea7527ac01405ce94857e8a5e0c4c1e105087"
+    },
+    {
+      "path": "skills/in-progress/writing-shape/SKILL.md",
+      "blobSha": "a9694e345d585e58778a5541f6a35fd4479d6f7f"
+    },
+    {
+      "path": "skills/misc/git-guardrails-claude-code/SKILL.md",
+      "blobSha": "d943c68219d0f47512f10c5018a11fd8358e9bb5"
+    },
+    {
+      "path": "skills/misc/migrate-to-shoehorn/SKILL.md",
+      "blobSha": "ae4f965e204fc93cedbc4e2c306e92829d93f800"
+    },
+    {
+      "path": "skills/misc/scaffold-exercises/SKILL.md",
+      "blobSha": "d87df28e7d8abb4e57ecc6e47d71c274d16054c7"
+    },
+    {
+      "path": "skills/misc/setup-pre-commit/SKILL.md",
+      "blobSha": "395a77b5f7e33911092f7bc86e7d87c4ca70d189"
+    },
+    {
+      "path": "skills/personal/edit-article/SKILL.md",
+      "blobSha": "2a6ad33e969068afa6917b5ed778b5f53aa357ca"
+    },
+    {
+      "path": "skills/personal/obsidian-vault/SKILL.md",
+      "blobSha": "b9393654a90811d6e1ce25163b3bd77f803c1026"
+    },
+    {
+      "path": "skills/productivity/grill-me/SKILL.md",
+      "blobSha": "9470cfcfe231a35e46494cddbacdd395991afb1e"
+    },
+    {
+      "path": "skills/productivity/grilling/SKILL.md",
+      "blobSha": "219930f78b238d0980f5036af7d7736b855bbaea"
+    },
+    {
+      "path": "skills/productivity/handoff/SKILL.md",
+      "blobSha": "ec762d97a70ec7474893671aa1a51ef209a1be0a"
+    },
+    {
+      "path": "skills/productivity/teach/SKILL.md",
+      "blobSha": "b1603e5ac536d2b5c29496c06df4db0bb9f74e69"
+    },
+    {
+      "path": "skills/productivity/writing-great-skills/SKILL.md",
+      "blobSha": "82abd0dce264eecb3ed461b3eac17bdafb52f84b"
+    }
+  ]
 }

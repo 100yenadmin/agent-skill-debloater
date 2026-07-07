@@ -45,14 +45,14 @@
     "id": "design-social-carousel",
     "studio": "design",
     "prompt": "Create social carousel image cards for an educational post.",
-    "expectedSkill": "baoyu-image-cards",
+    "expectedSkill": "baoyu-xhs-images",
     "scenarioGroup": "curated-intent"
   },
   {
     "id": "design-card-series",
     "studio": "design",
     "prompt": "Design a shareable educational card series.",
-    "expectedSkill": "baoyu-image-cards",
+    "expectedSkill": "baoyu-xhs-images",
     "scenarioGroup": "curated-intent"
   },
   {

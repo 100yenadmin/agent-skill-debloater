@@ -3,10 +3,71 @@
   "repoUrl": "https://github.com/obra/superpowers",
   "resolvedRef": "main",
   "resolvedSha": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-  "resolvedAt": "2026-07-07",
+  "resolvedAt": "2026-07-08",
   "license": {
     "status": "recorded",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/LICENSE"
+    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/LICENSE",
+    "blobSha": "abf0390320aa14406af7a520b9b0739fdda9bf08"
   },
-  "catalogs": ["catalogs/engineering.json"]
+  "catalogs": [
+    "catalogs/engineering.json"
+  ],
+  "skills": [
+    {
+      "path": "skills/brainstorming/SKILL.md",
+      "blobSha": "b0d52b258929b75d408fa4292b3f078a1104f078"
+    },
+    {
+      "path": "skills/dispatching-parallel-agents/SKILL.md",
+      "blobSha": "75e7e22cef2e7adc0963e74457cf2664514dee33"
+    },
+    {
+      "path": "skills/executing-plans/SKILL.md",
+      "blobSha": "075a1038f1b98181c54193df1b6bcf0ac8b302f0"
+    },
+    {
+      "path": "skills/finishing-a-development-branch/SKILL.md",
+      "blobSha": "7f5337aaf9efff305db15836412106216dae4756"
+    },
+    {
+      "path": "skills/receiving-code-review/SKILL.md",
+      "blobSha": "4c77a10ee338fb7bddec6f5acf3455c8f2e4465a"
+    },
+    {
+      "path": "skills/requesting-code-review/SKILL.md",
+      "blobSha": "4b8aa605fc2ddf12e90840d2e06015d386c0d68d"
+    },
+    {
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "blobSha": "d8ca081570c1ae7cc86e15f125c2b6063000f755"
+    },
+    {
+      "path": "skills/systematic-debugging/SKILL.md",
+      "blobSha": "b0eca38b3cf9523ea86c9211e96949c8e69d1d1c"
+    },
+    {
+      "path": "skills/test-driven-development/SKILL.md",
+      "blobSha": "60d2609ca56c7177a98f462fb71af77844ce92af"
+    },
+    {
+      "path": "skills/using-git-worktrees/SKILL.md",
+      "blobSha": "212c56926e1c9efab0ce0afd756ac2d1fb8f1b58"
+    },
+    {
+      "path": "skills/using-superpowers/SKILL.md",
+      "blobSha": "8a08873ba07c1437f4f3cfd0d06c333eaf2e2715"
+    },
+    {
+      "path": "skills/verification-before-completion/SKILL.md",
+      "blobSha": "2f14076e59e6ce5cd6f88007421a85f0bd772520"
+    },
+    {
+      "path": "skills/writing-plans/SKILL.md",
+      "blobSha": "b1613eb0578ae4483912bb1f227bd127fa79b577"
+    },
+    {
+      "path": "skills/writing-skills/SKILL.md",
+      "blobSha": "6d3ded6e62ffdaaed7a84b52bc53f66e00e548be"
+    }
+  ]
 }

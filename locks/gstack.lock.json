@@ -3,13 +3,248 @@
   "repoUrl": "https://github.com/garrytan/gstack",
   "resolvedRef": "main",
   "resolvedSha": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-  "resolvedAt": "2026-07-07",
+  "resolvedAt": "2026-07-08",
   "license": {
     "status": "recorded",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/LICENSE"
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/LICENSE",
+    "blobSha": "35029511144443297cad2d26e4bac17d0e352f93"
   },
   "catalogs": [
     "catalogs/ceo.json",
     "catalogs/engineering.json"
+  ],
+  "skills": [
+    {
+      "path": "autoplan/SKILL.md",
+      "blobSha": "5346f1d4379e5e2b97b41abd4f442a90090706a3"
+    },
+    {
+      "path": "benchmark-models/SKILL.md",
+      "blobSha": "6a9d62616d33a51009aa59e3370204363f6db295"
+    },
+    {
+      "path": "benchmark/SKILL.md",
+      "blobSha": "9451d2d4f9bf11fd240380a2c27424a0c5b84649"
+    },
+    {
+      "path": "browse/SKILL.md",
+      "blobSha": "a8138dbbc3a8e9d5df8c644dfe0f28d1acbe1cd1"
+    },
+    {
+      "path": "browser-skills/hackernews-frontpage/SKILL.md",
+      "blobSha": "aa90258f6b9332fff82ed1903f9268181d9d7873"
+    },
+    {
+      "path": "canary/SKILL.md",
+      "blobSha": "08d4d7369e199435f30cd1dd8a001711fe09355a"
+    },
+    {
+      "path": "careful/SKILL.md",
+      "blobSha": "c646c8b6091539e4cba0de72ddfa6afa2c7fb982"
+    },
+    {
+      "path": "codex/SKILL.md",
+      "blobSha": "33228ff9b8c69a40dbbb850db0c2798971d5daf2"
+    },
+    {
+      "path": "context-restore/SKILL.md",
+      "blobSha": "59b40e82c2458a7f09d1d121c55025f5fca00900"
+    },
+    {
+      "path": "context-save/SKILL.md",
+      "blobSha": "a1eb2459500cac5593f70524a9d37ee813bfd3d8"
+    },
+    {
+      "path": "cso/SKILL.md",
+      "blobSha": "a08d7e9fe2bf1dc1685bcc558d933d251dbbef4e"
+    },
+    {
+      "path": "design-consultation/SKILL.md",
+      "blobSha": "83eed0a2d9ecae3be822651e8cea652547c6b329"
+    },
+    {
+      "path": "design-html/SKILL.md",
+      "blobSha": "a480bd62c4637aeb7b953aef8ceeb0c43f6399ba"
+    },
+    {
+      "path": "design-review/SKILL.md",
+      "blobSha": "6454531625b461542b6a56729e18130a93c20e77"
+    },
+    {
+      "path": "design-shotgun/SKILL.md",
+      "blobSha": "3386d18fa5aeacd23f0c27040c765010356bea30"
+    },
+    {
+      "path": "devex-review/SKILL.md",
+      "blobSha": "7ef324b3ecc7c52ba526e39963fdcd6a87d5b010"
+    },
+    {
+      "path": "diagram/SKILL.md",
+      "blobSha": "9e5a41066c07b3bfaa1a2e8587675e628f8b2ced"
+    },
+    {
+      "path": "document-generate/SKILL.md",
+      "blobSha": "30846fc4dddd2750902ce4054e0c33a821972c75"
+    },
+    {
+      "path": "document-release/SKILL.md",
+      "blobSha": "b95873625b9ad49a3ead9bc76378cd3b52beb031"
+    },
+    {
+      "path": "freeze/SKILL.md",
+      "blobSha": "d6ba29b24f732f11c4b21a7211205e0044f44b36"
+    },
+    {
+      "path": "gstack-upgrade/SKILL.md",
+      "blobSha": "9f0f2f7ea690dfce85c43bb7c6bc52360b050139"
+    },
+    {
+      "path": "guard/SKILL.md",
+      "blobSha": "d9ae63de8fc95baed9698e539b14e3fd5e140ce7"
+    },
+    {
+      "path": "health/SKILL.md",
+      "blobSha": "e68199dec5e42286d4aae01c15bd49904cc65347"
+    },
+    {
+      "path": "investigate/SKILL.md",
+      "blobSha": "5d54b425673aaaff938a56892031cea930d242b5"
+    },
+    {
+      "path": "ios-clean/SKILL.md",
+      "blobSha": "1276496465c8d45df405b2f7adaefb6af9eb1a1a"
+    },
+    {
+      "path": "ios-design-review/SKILL.md",
+      "blobSha": "904da7589b56722b5ce4356d2dd1d7b39e65de27"
+    },
+    {
+      "path": "ios-fix/SKILL.md",
+      "blobSha": "3ddae1ac0cd26f01f0abcd65784e1ca8446e13a6"
+    },
+    {
+      "path": "ios-qa/SKILL.md",
+      "blobSha": "a5d4575d4394a02f722af6a940a3291a63a9aac1"
+    },
+    {
+      "path": "ios-sync/SKILL.md",
+      "blobSha": "2f689c4d65e7df49f9dec90cc8c7848da167b61d"
+    },
+    {
+      "path": "land-and-deploy/SKILL.md",
+      "blobSha": "54ebf52c0f484393bdffd77f8c1b60942ffe5daf"
+    },
+    {
+      "path": "landing-report/SKILL.md",
+      "blobSha": "8f7e6e210361fbf90f4af9beee9ab1272827ff0c"
+    },
+    {
+      "path": "learn/SKILL.md",
+      "blobSha": "a0c6ae053b71d327e1f7ad042217b0de17bdf049"
+    },
+    {
+      "path": "make-pdf/SKILL.md",
+      "blobSha": "600eb47ca4fda97ee3f523234fd3334bce94ba2d"
+    },
+    {
+      "path": "office-hours/SKILL.md",
+      "blobSha": "83161b8ca9c9d52da286dc84cf17f6f73fb03cd2"
+    },
+    {
+      "path": "open-gstack-browser/SKILL.md",
+      "blobSha": "28fb1ddb27246c92342c5a18c5777b87d8548f17"
+    },
+    {
+      "path": "openclaw/skills/gstack-openclaw-ceo-review/SKILL.md",
+      "blobSha": "c0b191cfb5a5d0e7ecd7318df70a2cc0328a1338"
+    },
+    {
+      "path": "openclaw/skills/gstack-openclaw-investigate/SKILL.md",
+      "blobSha": "829476f9b3ebc73f0fa7e00e0ec3d7a2e2948264"
+    },
+    {
+      "path": "openclaw/skills/gstack-openclaw-office-hours/SKILL.md",
+      "blobSha": "9d52b3134e65a40454d3ee4172910e32cb4aaef0"
+    },
+    {
+      "path": "openclaw/skills/gstack-openclaw-retro/SKILL.md",
+      "blobSha": "eefc981810f10a1e7668ce1ed3b74b4bcf8ddef1"
+    },
+    {
+      "path": "pair-agent/SKILL.md",
+      "blobSha": "eed9d171afc9be3a58d306869d3408ae894618b0"
+    },
+    {
+      "path": "plan-ceo-review/SKILL.md",
+      "blobSha": "3d3208bee688891e6b45f33088336f0e4566fadc"
+    },
+    {
+      "path": "plan-design-review/SKILL.md",
+      "blobSha": "e81f7f12af2836add118df833ebc24daac266ccb"
+    },
+    {
+      "path": "plan-devex-review/SKILL.md",
+      "blobSha": "20a32da8bb2576fa8b7b3edef4acb776e112ebb1"
+    },
+    {
+      "path": "plan-eng-review/SKILL.md",
+      "blobSha": "5557a33fa0c0329deadf075843c3d2335ab71570"
+    },
+    {
+      "path": "plan-tune/SKILL.md",
+      "blobSha": "f49b66fac3b2235e7052621284564ae1f211d320"
+    },
+    {
+      "path": "qa-only/SKILL.md",
+      "blobSha": "801a935c0684e56536a368879f1799af70b4f485"
+    },
+    {
+      "path": "qa/SKILL.md",
+      "blobSha": "c1ac10253f51256f1059cfb46377f8bf8c3e8a0b"
+    },
+    {
+      "path": "retro/SKILL.md",
+      "blobSha": "3fbc44726100c56b0a6a543a764e411d0547f3af"
+    },
+    {
+      "path": "review/SKILL.md",
+      "blobSha": "5f26e2e426e8cc8feaedb2e0f8c5daa8fc5c205d"
+    },
+    {
+      "path": "scrape/SKILL.md",
+      "blobSha": "dc965ec5f79ae974fa247c17d5f45072f563bfb5"
+    },
+    {
+      "path": "setup-browser-cookies/SKILL.md",
+      "blobSha": "77df27da2cdb3aa2a09c83f7d335f386fb998a75"
+    },
+    {
+      "path": "setup-deploy/SKILL.md",
+      "blobSha": "3465dc564b57990a42cb4ccd45a2d2b28e027703"
+    },
+    {
+      "path": "setup-gbrain/SKILL.md",
+      "blobSha": "89c2ffbc37716065a7f1139ded32fe7454a4c1e9"
+    },
+    {
+      "path": "ship/SKILL.md",
+      "blobSha": "eadffaa8f6604f4748726319b7dc18627804196c"
+    },
+    {
+      "path": "skillify/SKILL.md",
+      "blobSha": "7cb434d0cac79929f87b98712824d985636e66af"
+    },
+    {
+      "path": "spec/SKILL.md",
+      "blobSha": "0894e98d185076ecd391287309eed31874136828"
+    },
+    {
+      "path": "sync-gbrain/SKILL.md",
+      "blobSha": "bfaf291d221ae834444337980a380f130c96c00e"
+    },
+    {
+      "path": "unfreeze/SKILL.md",
+      "blobSha": "a07f1cf5f7a8e1403714b0b4bbf8c2c1e6bc54a1"
+    }
   ]
 }

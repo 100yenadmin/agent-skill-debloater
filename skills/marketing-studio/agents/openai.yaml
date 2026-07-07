@@ -1,3 +1,6 @@
-name: marketing-studio
-model_visibility: true
-description: Compact router for hidden marketing skill catalogs.
+interface:
+  display_name: "Marketing Studio"
+  short_description: "Search hidden marketing skill catalogs"
+  default_prompt: "Use Marketing Studio to find the right backing marketing skill."
+policy:
+  allow_implicit_invocation: true

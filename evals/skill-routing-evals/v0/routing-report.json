@@ -499,23 +499,23 @@
       "scenarioGroup": "curated-intent",
       "overlapCluster": null,
       "selectedStudio": "design",
-      "selectedSkill": "baoyu-image-cards",
+      "selectedSkill": "baoyu-xhs-images",
       "selectedSkillTrace": {
-        "name": "baoyu-image-cards",
-        "title": "Baoyu Image Cards",
+        "name": "baoyu-xhs-images",
+        "title": "Baoyu XHS Images",
         "studio": "design",
         "source": "jimliu/baoyu-skills",
         "pack": "jimliu/baoyu-skills",
-        "skillPath": "skills/baoyu-image-cards/SKILL.md",
-        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+        "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
         "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
         "capabilities": [
           "file-write"
         ],
         "confidence": 0.98,
         "confidenceLabel": "high",
-        "score": 244,
+        "score": 218,
         "why": [
           "aliases:social",
           "tags:social",
@@ -532,21 +532,21 @@
       "selectedStudioTrace": {
         "studio": "design",
         "selectedSkillTrace": {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
           "capabilities": [
             "file-write"
           ],
           "confidence": 0.98,
           "confidenceLabel": "high",
-          "score": 244,
+          "score": 218,
           "why": [
             "aliases:social",
             "tags:social",
@@ -567,65 +567,65 @@
       "scenarioGroup": "curated-intent",
       "overlapCluster": null,
       "selectedStudio": "design",
-      "selectedSkill": "baoyu-image-cards",
+      "selectedSkill": "baoyu-xhs-images",
       "selectedSkillTrace": {
-        "name": "baoyu-image-cards",
-        "title": "Baoyu Image Cards",
+        "name": "baoyu-xhs-images",
+        "title": "Baoyu XHS Images",
         "studio": "design",
         "source": "jimliu/baoyu-skills",
         "pack": "jimliu/baoyu-skills",
-        "skillPath": "skills/baoyu-image-cards/SKILL.md",
-        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+        "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
         "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
         "capabilities": [
           "file-write"
         ],
         "confidence": 0.98,
         "confidenceLabel": "high",
-        "score": 113,
+        "score": 87,
         "why": [
           "tags:shareable",
           "useWhen:shareable",
           "description:shareable",
           "useWhen:educational",
           "description:educational",
-          "name:card",
-          "title:card",
           "aliases:card",
           "tags:card",
-          "useWhen:card"
+          "useWhen:card",
+          "description:card",
+          "tags:sery"
         ]
       },
       "selectedStudioTrace": {
         "studio": "design",
         "selectedSkillTrace": {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
           "capabilities": [
             "file-write"
           ],
           "confidence": 0.98,
           "confidenceLabel": "high",
-          "score": 113,
+          "score": 87,
           "why": [
             "tags:shareable",
             "useWhen:shareable",
             "description:shareable",
             "useWhen:educational",
             "description:educational",
-            "name:card",
-            "title:card",
             "aliases:card",
             "tags:card",
-            "useWhen:card"
+            "useWhen:card",
+            "description:card",
+            "tags:sery"
           ]
         }
       }
@@ -15897,17 +15897,18 @@
           ]
         },
         {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "description": "Use for social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
-          "useWhen": "social image cards, carousel posts, short educational cards, and shareable visual series",
+          "description": "Use for XHS-style social images, social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
+          "useWhen": "XHS-style social images, social image cards, carousel posts, short educational cards, and shareable visual series",
           "aliases": [
             "image cards",
             "carousel",
-            "social cards"
+            "social cards",
+            "xhs images"
           ],
           "tags": [
             "cards",
@@ -15915,15 +15916,16 @@
             "social",
             "series",
             "post",
-            "shareable"
+            "shareable",
+            "xhs"
           ],
           "capabilities": [
             "file-write"
           ],
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
           "score": 48,
           "confidence": 0.57,
           "confidenceLabel": "ambiguous",
@@ -16641,21 +16643,21 @@
       "selectedStudioTrace": {
         "studio": "design",
         "selectedSkillTrace": {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
           "capabilities": [
             "file-write"
           ],
           "confidence": 0.98,
           "confidenceLabel": "high",
-          "score": 244,
+          "score": 218,
           "why": [
             "aliases:social",
             "tags:social",
@@ -16670,24 +16672,24 @@
           ]
         }
       },
-      "expectedSkill": "baoyu-image-cards",
-      "selectedSkill": "baoyu-image-cards",
+      "expectedSkill": "baoyu-xhs-images",
+      "selectedSkill": "baoyu-xhs-images",
       "selectedSkillTrace": {
-        "name": "baoyu-image-cards",
-        "title": "Baoyu Image Cards",
+        "name": "baoyu-xhs-images",
+        "title": "Baoyu XHS Images",
         "studio": "design",
         "source": "jimliu/baoyu-skills",
         "pack": "jimliu/baoyu-skills",
-        "skillPath": "skills/baoyu-image-cards/SKILL.md",
-        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+        "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
         "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
         "capabilities": [
           "file-write"
         ],
         "confidence": 0.98,
         "confidenceLabel": "high",
-        "score": 244,
+        "score": 218,
         "why": [
           "aliases:social",
           "tags:social",
@@ -16704,17 +16706,18 @@
       "mustRank1": false,
       "results": [
         {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "description": "Use for social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
-          "useWhen": "social image cards, carousel posts, short educational cards, and shareable visual series",
+          "description": "Use for XHS-style social images, social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
+          "useWhen": "XHS-style social images, social image cards, carousel posts, short educational cards, and shareable visual series",
           "aliases": [
             "image cards",
             "carousel",
-            "social cards"
+            "social cards",
+            "xhs images"
           ],
           "tags": [
             "cards",
@@ -16722,16 +16725,17 @@
             "social",
             "series",
             "post",
-            "shareable"
+            "shareable",
+            "xhs"
           ],
           "capabilities": [
             "file-write"
           ],
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
-          "score": 244,
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
+          "score": 218,
           "confidence": 0.98,
           "confidenceLabel": "high",
           "why": [
@@ -16778,7 +16782,7 @@
           "skillPath": "skills/baoyu-cover-image/SKILL.md",
           "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
           "score": 76,
-          "confidence": 0.82,
+          "confidence": 0.83,
           "confidenceLabel": "ambiguous",
           "why": [
             "name:image",
@@ -16807,80 +16811,81 @@
       "selectedStudioTrace": {
         "studio": "design",
         "selectedSkillTrace": {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
           "capabilities": [
             "file-write"
           ],
           "confidence": 0.98,
           "confidenceLabel": "high",
-          "score": 113,
+          "score": 87,
           "why": [
             "tags:shareable",
             "useWhen:shareable",
             "description:shareable",
             "useWhen:educational",
             "description:educational",
-            "name:card",
-            "title:card",
             "aliases:card",
             "tags:card",
-            "useWhen:card"
+            "useWhen:card",
+            "description:card",
+            "tags:sery"
           ]
         }
       },
-      "expectedSkill": "baoyu-image-cards",
-      "selectedSkill": "baoyu-image-cards",
+      "expectedSkill": "baoyu-xhs-images",
+      "selectedSkill": "baoyu-xhs-images",
       "selectedSkillTrace": {
-        "name": "baoyu-image-cards",
-        "title": "Baoyu Image Cards",
+        "name": "baoyu-xhs-images",
+        "title": "Baoyu XHS Images",
         "studio": "design",
         "source": "jimliu/baoyu-skills",
         "pack": "jimliu/baoyu-skills",
-        "skillPath": "skills/baoyu-image-cards/SKILL.md",
-        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
+        "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+        "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
         "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
+        "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
         "capabilities": [
           "file-write"
         ],
         "confidence": 0.98,
         "confidenceLabel": "high",
-        "score": 113,
+        "score": 87,
         "why": [
           "tags:shareable",
           "useWhen:shareable",
           "description:shareable",
           "useWhen:educational",
           "description:educational",
-          "name:card",
-          "title:card",
           "aliases:card",
           "tags:card",
-          "useWhen:card"
+          "useWhen:card",
+          "description:card",
+          "tags:sery"
         ]
       },
       "mustRank1": false,
       "results": [
         {
-          "name": "baoyu-image-cards",
-          "title": "Baoyu Image Cards",
+          "name": "baoyu-xhs-images",
+          "title": "Baoyu XHS Images",
           "studio": "design",
           "source": "jimliu/baoyu-skills",
           "pack": "jimliu/baoyu-skills",
-          "description": "Use for social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
-          "useWhen": "social image cards, carousel posts, short educational cards, and shareable visual series",
+          "description": "Use for XHS-style social images, social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
+          "useWhen": "XHS-style social images, social image cards, carousel posts, short educational cards, and shareable visual series",
           "aliases": [
             "image cards",
             "carousel",
-            "social cards"
+            "social cards",
+            "xhs images"
           ],
           "tags": [
             "cards",
@@ -16888,16 +16893,17 @@
             "social",
             "series",
             "post",
-            "shareable"
+            "shareable",
+            "xhs"
           ],
           "capabilities": [
             "file-write"
           ],
           "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md",
-          "skillPath": "skills/baoyu-image-cards/SKILL.md",
-          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-image-cards/SKILL.md",
-          "score": 113,
+          "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
+          "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+          "readPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-xhs-images/SKILL.md",
+          "score": 87,
           "confidence": 0.98,
           "confidenceLabel": "high",
           "why": [
@@ -16906,11 +16912,11 @@
             "description:shareable",
             "useWhen:educational",
             "description:educational",
-            "name:card",
-            "title:card",
             "aliases:card",
             "tags:card",
-            "useWhen:card"
+            "useWhen:card",
+            "description:card",
+            "tags:sery"
           ]
         }
       ],

@@ -13,7 +13,9 @@ primitives.
 
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`
 - `agent-skill-debloater search <studio> "<query>"`
-- `pack-sync check`
+- `agent-skill-debloater openclaw-adapter search <studio> "<query>"`
+- `pack-sync check`, `pack-sync diff`, and `pack-sync update`
+- `.codex-plugin/plugin.json` for Codex/OpenClaw plugin installation
 - `design-studio`, `marketing-studio`, `ceo-studio`, and `engineering-studio`
   visible router skills
 - portable seed catalogs for Baoyu design skills, Cory Haines marketing skills,
@@ -25,6 +27,7 @@ primitives.
 - SQLite FTS5 search fast path by default, with portable JSON deterministic
   fallback
 - optional Voyage rerank shadow mode for compact candidate cards
+- release preflight and scheduled upstream pack diff workflows
 
 ## Schema Contracts
 
@@ -41,6 +44,9 @@ catalog entries must point at declared packs, exact lock SHAs, allowed manifest
 paths, matching GitHub blob URLs, matching studio catalog files, and active
 overlay studios with declared packs. Deferred studios track future roadmap packs
 through `plannedPacks`; `packs` is reserved for manifest-backed bindings.
+Generated lockfiles can also record upstream `skills[]` blob hashes and license
+blob hashes so `pack-sync diff` can report adds, removals, moves, body changes,
+and license changes without vendoring upstream skill bodies.
 
 ## Example
 
@@ -77,6 +83,15 @@ debloat-skill-search engineering \
   --format text
 ```
 
+For OpenClaw/Codex adapter smoke, use the plugin-local JSON adapter:
+
+```bash
+agent-skill-debloater openclaw-adapter search design "launch hero cover image"
+```
+
+The adapter returns compact candidates plus `selectedSkillTrace`. It does not
+read or return full skill bodies.
+
 Optional Voyage reranking is default-off and shadow-only. It does not reorder the
 normal search results; JSON output reports whether Voyage would have changed the
 top candidate. The API receives compact candidate cards only: names, source
@@ -99,6 +114,30 @@ The routing eval gate proves deterministic search quality only. Voyage ordering
 must stay shadow-only until a separate rerank-quality eval proves lift without
 Recall@3 regression.
 
+## Pack Updates
+
+Check current metadata:
+
+```bash
+node bin/pack-sync check
+```
+
+Preview upstream drift without writing files:
+
+```bash
+node bin/pack-sync diff --pack jimliu/baoyu-skills --to main
+```
+
+Update lock/catalog provenance after reviewing the diff:
+
+```bash
+node bin/pack-sync update --pack jimliu/baoyu-skills --to main
+```
+
+Updates preserve upstream repositories as source of truth. Catalogs remain
+curated overlays; new upstream skills are not made router-visible until a
+catalog/eval change selects them.
+
 ## Routing Evals
 
 Run the routing gate with a compact console summary:
@@ -114,6 +153,19 @@ node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json \
   --summary \
   --report artifacts/skill-routing-evals/v0/report.json
 ```
+
+## Release Preflight
+
+```bash
+npm run release:check
+npm run release:notes
+npm run smoke:openclaw-adapter
+npm run pack:dry-run
+```
+
+GitHub Actions includes CI, a manual release preflight workflow, and a scheduled
+upstream pack refresh workflow that runs `pack-sync diff` for seed packs. The
+release workflow does not publish to npm.
 
 ## Proof Boundary
 

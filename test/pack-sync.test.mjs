@@ -1,10 +1,19 @@
 import assert from "node:assert/strict";
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import test from "node:test";
 
-import { checkPackMetadata } from "../src/pack-sync.mjs";
+import { checkPackMetadata, diffPackMetadata, updatePackMetadata } from "../src/pack-sync.mjs";
 
 const SHA = "0000000000000000000000000000000000000000";
+const SHA_1 = "1111111111111111111111111111111111111111";
+const SHA_2 = "2222222222222222222222222222222222222222";
+const SHA_3 = "3333333333333333333333333333333333333333";
+const SHA_4 = "4444444444444444444444444444444444444444";
+const SHA_5 = "5555555555555555555555555555555555555555";
+const SHA_6 = "6666666666666666666666666666666666666666";
+const SHA_7 = "7777777777777777777777777777777777777777";
+const SHA_8 = "8888888888888888888888888888888888888888";
 
 async function writeJson(file, value) {
   await writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
@@ -178,6 +187,32 @@ test("pack-sync rejects catalog paths outside manifest allowedPaths", async () =
   });
 
   await assert.rejects(checkPackMetadata({ root }), /allowedPaths/);
+});
+
+test("pack-sync rejects lock skill paths outside manifest allowedPaths", async () => {
+  const root = await makePackRoot("lock-skill-outside-allowed-paths", {
+    lock: {
+      skills: [
+        { path: "skills/example-skill/SKILL.md", blobSha: SHA_1 },
+        { path: "other/example-skill/SKILL.md", blobSha: SHA_2 }
+      ]
+    }
+  });
+
+  await assert.rejects(checkPackMetadata({ root }), /Lock example\/pack skills\[1\]\.path is outside manifest allowedPaths/);
+});
+
+test("pack-sync rejects lock skill records that omit curated catalog paths", async () => {
+  const root = await makePackRoot("lock-skills-omit-catalog-path", {
+    lock: {
+      skills: [{ path: "skills/other-skill/SKILL.md", blobSha: SHA_1 }]
+    }
+  });
+
+  await assert.rejects(
+    checkPackMetadata({ root }),
+    /Lock example\/pack skills is missing catalog skillPath skills\/example-skill\/SKILL\.md/
+  );
 });
 
 test("pack-sync rejects duplicate pack and lock identities", async () => {
@@ -377,4 +412,268 @@ test("pack-sync rejects catalogs omitted from lockfile coverage", async () => {
   });
 
   await assert.rejects(checkPackMetadata({ root }), /catalogs do not match catalog coverage/);
+});
+
+test("pack-sync diff reports deterministic upstream add, remove, move, body, and license changes", async () => {
+  const root = await makePackRoot("diff-report", {
+    lock: {
+      skills: [
+        { path: "skills/changed/SKILL.md", blobSha: SHA_1 },
+        { path: "skills/old-name/SKILL.md", blobSha: SHA_2 },
+        { path: "skills/removed/SKILL.md", blobSha: SHA_3 },
+        { path: "skills/unchanged/SKILL.md", blobSha: SHA_4 }
+      ],
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/example/pack/blob/${SHA}/LICENSE`,
+        blobSha: SHA_5
+      }
+    }
+  });
+
+  const report = await diffPackMetadata({
+    root,
+    packId: "example/pack",
+    target: {
+      resolvedRef: "main",
+      resolvedSha: SHA_1,
+      license: { path: "LICENSE", blobSha: SHA_8 },
+      skills: [
+        { path: "skills/added/SKILL.md", blobSha: SHA_7 },
+        { path: "skills/changed/SKILL.md", blobSha: SHA_6 },
+        { path: "skills/new-name/SKILL.md", blobSha: SHA_2 },
+        { path: "skills/unchanged/SKILL.md", blobSha: SHA_4 }
+      ]
+    }
+  });
+  const lockAfterDiff = JSON.parse(await readFile(new URL("locks/example.lock.json", root), "utf8"));
+
+  assert.deepEqual(report.changes.added, [{ path: "skills/added/SKILL.md", blobSha: SHA_7 }]);
+  assert.deepEqual(report.changes.removed, [{ path: "skills/removed/SKILL.md", blobSha: SHA_3 }]);
+  assert.deepEqual(report.changes.movedOrRenamed, [
+    {
+      from: "skills/old-name/SKILL.md",
+      to: "skills/new-name/SKILL.md",
+      blobSha: SHA_2
+    }
+  ]);
+  assert.deepEqual(report.changes.bodyChanged, [
+    {
+      path: "skills/changed/SKILL.md",
+      fromBlobSha: SHA_1,
+      toBlobSha: SHA_6
+    }
+  ]);
+  assert.equal(report.changes.unchangedCount, 1);
+  assert.deepEqual(report.changes.license, {
+    changed: true,
+    fromBlobSha: SHA_5,
+    toBlobSha: SHA_8,
+    path: "LICENSE"
+  });
+  assert.equal(lockAfterDiff.resolvedSha, SHA);
+  assert.deepEqual(
+    lockAfterDiff.skills,
+    [
+      { path: "skills/changed/SKILL.md", blobSha: SHA_1 },
+      { path: "skills/old-name/SKILL.md", blobSha: SHA_2 },
+      { path: "skills/removed/SKILL.md", blobSha: SHA_3 },
+      { path: "skills/unchanged/SKILL.md", blobSha: SHA_4 }
+    ]
+  );
+});
+
+test("pack-sync update writes resolved lock provenance and catalog source URLs", async () => {
+  const root = await makePackRoot("update-lock-and-catalog", {
+    lock: {
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_1 }],
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/example/pack/blob/${SHA}/LICENSE`,
+        blobSha: SHA_2
+      }
+    }
+  });
+
+  const result = await updatePackMetadata({
+    root,
+    packId: "example/pack",
+    resolvedAt: "2026-07-08",
+    target: {
+      resolvedRef: "main",
+      resolvedSha: SHA_3,
+      license: { path: "LICENSE", blobSha: SHA_4 },
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_5 }]
+    }
+  });
+
+  const lock = JSON.parse(await readFile(new URL("locks/example.lock.json", root), "utf8"));
+  const catalog = JSON.parse(await readFile(new URL("catalogs/marketing.json", root), "utf8"));
+
+  assert.equal(result.ok, true);
+  assert.equal(lock.resolvedRef, "main");
+  assert.equal(lock.resolvedSha, SHA_3);
+  assert.equal(lock.resolvedAt, "2026-07-08");
+  assert.equal(lock.license.sourceUrl, `https://github.com/example/pack/blob/${SHA_3}/LICENSE`);
+  assert.equal(lock.license.blobSha, SHA_4);
+  assert.deepEqual(lock.skills, [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_5 }]);
+  assert.equal(catalog[0].sourceCommit, SHA_3);
+  assert.equal(
+    catalog[0].sourceUrl,
+    `https://github.com/example/pack/blob/${SHA_3}/skills/example-skill/SKILL.md`
+  );
+});
+
+test("pack-sync CLI diff and update accept fixture target trees", async () => {
+  const root = await makePackRoot("cli-diff-update", {
+    lock: {
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_1 }],
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/example/pack/blob/${SHA}/LICENSE`,
+        blobSha: SHA_2
+      }
+    }
+  });
+  const targetPath = new URL("target-tree.json", root);
+  await writeJson(targetPath, {
+    resolvedRef: "release",
+    resolvedSha: SHA_3,
+    license: { path: "LICENSE", blobSha: SHA_4 },
+    skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_5 }]
+  });
+
+  const diffOutput = execFileSync(
+    process.execPath,
+    ["bin/pack-sync", "diff", "--root", root.pathname, "--pack", "example/pack", "--target-tree", targetPath.pathname],
+    { cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" }
+  );
+  const diff = JSON.parse(diffOutput);
+  assert.equal(diff.to.resolvedSha, SHA_3);
+  assert.equal(diff.changes.bodyChanged[0].path, "skills/example-skill/SKILL.md");
+
+  const updateOutput = execFileSync(
+    process.execPath,
+    [
+      "bin/pack-sync",
+      "update",
+      "--root",
+      root.pathname,
+      "--pack",
+      "example/pack",
+      "--target-tree",
+      targetPath.pathname,
+      "--resolved-at",
+      "2026-07-08"
+    ],
+    { cwd: new URL("..", import.meta.url).pathname, encoding: "utf8" }
+  );
+  const update = JSON.parse(updateOutput);
+  const lock = JSON.parse(await readFile(new URL("locks/example.lock.json", root), "utf8"));
+
+  assert.equal(update.ok, true);
+  assert.equal(lock.resolvedRef, "release");
+  assert.equal(lock.resolvedSha, SHA_3);
+  assert.deepEqual(lock.skills, [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_5 }]);
+});
+
+test("pack-sync diff reports missing current skill hashes instead of fake body changes", async () => {
+  const root = await makePackRoot("diff-missing-current-hashes");
+
+  const report = await diffPackMetadata({
+    root,
+    packId: "example/pack",
+    target: {
+      resolvedRef: "main",
+      resolvedSha: SHA_1,
+      license: { path: "LICENSE", blobSha: SHA_2 },
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_3 }]
+    }
+  });
+
+  assert.deepEqual(report.changes.added, []);
+  assert.deepEqual(report.changes.removed, []);
+  assert.deepEqual(report.changes.bodyChanged, []);
+  assert.deepEqual(report.changes.missingCurrentHashes, ["skills/example-skill/SKILL.md"]);
+});
+
+test("pack-sync diff and update reject target skill paths outside manifest allowedPaths before writing", async () => {
+  const root = await makePackRoot("target-outside-allowed-paths", {
+    lock: {
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_1 }]
+    }
+  });
+  const before = await readFile(new URL("locks/example.lock.json", root), "utf8");
+  const target = {
+    resolvedRef: "main",
+    resolvedSha: SHA_2,
+    license: { path: "LICENSE", blobSha: SHA_3 },
+    skills: [
+      { path: "skills/example-skill/SKILL.md", blobSha: SHA_4 },
+      { path: "other/example-skill/SKILL.md", blobSha: SHA_5 }
+    ]
+  };
+
+  await assert.rejects(
+    diffPackMetadata({ root, packId: "example/pack", target }),
+    /target.skills\[1\]\.path is outside manifest allowedPaths/
+  );
+  await assert.rejects(
+    updatePackMetadata({ root, packId: "example/pack", target }),
+    /target.skills\[1\]\.path is outside manifest allowedPaths/
+  );
+
+  assert.equal(await readFile(new URL("locks/example.lock.json", root), "utf8"), before);
+});
+
+test("pack-sync update rejects invalid resolvedAt before writing", async () => {
+  const root = await makePackRoot("invalid-resolved-at-before-write", {
+    lock: {
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_1 }]
+    }
+  });
+  const before = await readFile(new URL("locks/example.lock.json", root), "utf8");
+
+  await assert.rejects(
+    updatePackMetadata({
+      root,
+      packId: "example/pack",
+      resolvedAt: "today",
+      target: {
+        resolvedRef: "main",
+        resolvedSha: SHA_2,
+        license: { path: "LICENSE", blobSha: SHA_3 },
+        skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_4 }]
+      }
+    }),
+    /resolvedAt must match YYYY-MM-DD/
+  );
+
+  assert.equal(await readFile(new URL("locks/example.lock.json", root), "utf8"), before);
+});
+
+test("pack-sync diff and update reject target license paths other than LICENSE before writing", async () => {
+  const root = await makePackRoot("target-license-not-license", {
+    lock: {
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_1 }]
+    }
+  });
+  const before = await readFile(new URL("locks/example.lock.json", root), "utf8");
+  const target = {
+    resolvedRef: "main",
+    resolvedSha: SHA_2,
+    license: { path: "skills/example-skill/SKILL.md", blobSha: SHA_3 },
+    skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_4 }]
+  };
+
+  await assert.rejects(
+    diffPackMetadata({ root, packId: "example/pack", target }),
+    /target\.license\.path must be LICENSE/
+  );
+  await assert.rejects(
+    updatePackMetadata({ root, packId: "example/pack", target }),
+    /target\.license\.path must be LICENSE/
+  );
+
+  assert.equal(await readFile(new URL("locks/example.lock.json", root), "utf8"), before);
 });

@@ -60,18 +60,19 @@
     "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-diagram/SKILL.md"
   },
   {
-    "name": "baoyu-image-cards",
-    "title": "Baoyu Image Cards",
+    "name": "baoyu-xhs-images",
+    "title": "Baoyu XHS Images",
     "studio": "design",
     "source": "jimliu/baoyu-skills",
     "pack": "jimliu/baoyu-skills",
-    "skillPath": "skills/baoyu-image-cards/SKILL.md",
-    "description": "Use for social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
-    "useWhen": "social image cards, carousel posts, short educational cards, and shareable visual series",
+    "skillPath": "skills/baoyu-xhs-images/SKILL.md",
+    "description": "Use for XHS-style social images, social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
+    "useWhen": "XHS-style social images, social image cards, carousel posts, short educational cards, and shareable visual series",
     "aliases": [
       "image cards",
       "carousel",
-      "social cards"
+      "social cards",
+      "xhs images"
     ],
     "tags": [
       "cards",
@@ -79,13 +80,14 @@
       "social",
       "series",
       "post",
-      "shareable"
+      "shareable",
+      "xhs"
     ],
     "capabilities": [
       "file-write"
     ],
     "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
-    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md"
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md"
   },
   {
     "name": "baoyu-infographic",
