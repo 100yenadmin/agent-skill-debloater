@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+import { runMainCli } from "../src/cli.mjs";
+
+runMainCli(process.argv.slice(2));

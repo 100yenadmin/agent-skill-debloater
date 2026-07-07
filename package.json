@@ -1,0 +1,19 @@
+{
+  "name": "agent-skill-debloater",
+  "version": "0.1.0",
+  "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "agent-skill-debloater": "bin/agent-skill-debloater",
+    "debloat-skill-search": "bin/debloat-skill-search",
+    "pack-sync": "bin/pack-sync"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "eval:routing": "node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json --summary"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

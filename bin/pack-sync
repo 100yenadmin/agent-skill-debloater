@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+import { runPackSyncCli } from "../src/pack-sync.mjs";
+
+runPackSyncCli(process.argv.slice(2));

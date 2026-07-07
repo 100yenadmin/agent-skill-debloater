@@ -1,0 +1,249 @@
+[
+  {
+    "name": "product-marketing",
+    "title": "Product Marketing Context",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/product-marketing/SKILL.md",
+    "description": "Use for positioning, ICP, ideal customer profile, product context, target audience, category, and foundational messaging.",
+    "useWhen": "positioning, ICP, ideal customer profile, target audience, category, and foundational messaging",
+    "aliases": [
+      "positioning",
+      "ICP",
+      "ideal customer profile",
+      "product marketing"
+    ],
+    "tags": [
+      "positioning",
+      "icp",
+      "audience",
+      "category",
+      "messaging",
+      "context",
+      "offer"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/product-marketing/SKILL.md"
+  },
+  {
+    "name": "customer-research",
+    "title": "Customer Research",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/customer-research/SKILL.md",
+    "description": "Use for customer research, voice of customer, interviews, reviews, personas, JTBD, Reddit mining, and market evidence.",
+    "useWhen": "customer research, voice of customer, interviews, reviews, personas, JTBD, Reddit mining, and market evidence",
+    "aliases": [
+      "customer research",
+      "voice of customer",
+      "VOC",
+      "JTBD"
+    ],
+    "tags": [
+      "research",
+      "customer",
+      "voc",
+      "persona",
+      "jtbd",
+      "reviews",
+      "reddit",
+      "interviews"
+    ],
+    "capabilities": [
+      "read-only",
+      "network"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/customer-research/SKILL.md"
+  },
+  {
+    "name": "copywriting",
+    "title": "Copywriting",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/copywriting/SKILL.md",
+    "description": "Use for landing page copy, hero copy, value proposition, tagline, CTA, conversion copy, and offer expression.",
+    "useWhen": "landing page copy, hero copy, value proposition, tagline, CTA, conversion copy, and offers",
+    "aliases": [
+      "copywriting",
+      "landing page copy",
+      "hero copy",
+      "CTA"
+    ],
+    "tags": [
+      "copy",
+      "copywriting",
+      "hero",
+      "cta",
+      "value",
+      "proposition",
+      "tagline",
+      "conversion",
+      "offer"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/copywriting/SKILL.md"
+  },
+  {
+    "name": "ai-seo",
+    "title": "AI SEO",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/ai-seo/SKILL.md",
+    "description": "Use for AI SEO, GEO, AEO, LLM optimization, AI citations, AI Overviews, Perplexity, ChatGPT visibility, and llms.txt.",
+    "useWhen": "AI SEO, GEO, AEO, LLM optimization, citations, AI Overviews, Perplexity, ChatGPT visibility, and llms.txt",
+    "aliases": [
+      "SEO",
+      "AI SEO",
+      "GEO",
+      "AEO",
+      "LLM visibility"
+    ],
+    "tags": [
+      "seo",
+      "ai",
+      "geo",
+      "aeo",
+      "llm",
+      "citation",
+      "perplexity",
+      "chatgpt",
+      "visibility",
+      "content"
+    ],
+    "capabilities": [
+      "read-only",
+      "network"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/ai-seo/SKILL.md"
+  },
+  {
+    "name": "content-strategy",
+    "title": "Content Strategy",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/content-strategy/SKILL.md",
+    "description": "Use for content strategy, topic clusters, editorial planning, blog strategy, content pillars, and content roadmap.",
+    "useWhen": "content strategy, topic clusters, editorial planning, blog strategy, content pillars, and roadmaps",
+    "aliases": [
+      "content strategy",
+      "topic clusters",
+      "editorial plan"
+    ],
+    "tags": [
+      "content",
+      "strategy",
+      "topics",
+      "blog",
+      "cluster",
+      "roadmap",
+      "editorial"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/content-strategy/SKILL.md"
+  },
+  {
+    "name": "launch",
+    "title": "Launch Strategy",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/launch/SKILL.md",
+    "description": "Use for product launches, feature announcements, beta launch, Product Hunt, waitlist, release strategy, and GTM launch plans.",
+    "useWhen": "product launches, feature announcements, beta launch, Product Hunt, waitlist, release strategy, and GTM launch plans",
+    "aliases": [
+      "launch",
+      "go-to-market",
+      "GTM",
+      "release announcement"
+    ],
+    "tags": [
+      "launch",
+      "gtm",
+      "go-to-market",
+      "announcement",
+      "release",
+      "product-hunt",
+      "waitlist"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/launch/SKILL.md"
+  },
+  {
+    "name": "marketing-plan",
+    "title": "Marketing Plan",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/marketing-plan/SKILL.md",
+    "description": "Use for comprehensive marketing plans, growth plans, GTM plans, AARRR, 90-day plans, and fractional CMO roadmaps.",
+    "useWhen": "comprehensive marketing plans, growth plans, GTM plans, AARRR, 90-day plans, and fractional CMO roadmaps",
+    "aliases": [
+      "marketing plan",
+      "growth plan",
+      "90-day plan"
+    ],
+    "tags": [
+      "plan",
+      "growth",
+      "roadmap",
+      "aarrr",
+      "fcmo",
+      "strategy",
+      "gtm"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/marketing-plan/SKILL.md"
+  },
+  {
+    "name": "ad-creative",
+    "title": "Ad Creative",
+    "studio": "marketing",
+    "source": "coreyhaines31/marketingskills",
+    "pack": "coreyhaines31/marketingskills",
+    "skillPath": "skills/ad-creative/SKILL.md",
+    "description": "Use for ad copy variations, ad creative, paid creative testing, Google Ads headlines, Facebook ads, LinkedIn ads, and bulk ad copy.",
+    "useWhen": "ad copy variations, ad creative, paid creative testing, Google Ads headlines, Facebook ads, LinkedIn ads, and bulk ad copy",
+    "aliases": [
+      "ad creative",
+      "ad copy",
+      "paid creative"
+    ],
+    "tags": [
+      "ads",
+      "ad",
+      "creative",
+      "headlines",
+      "paid",
+      "facebook",
+      "google",
+      "linkedin"
+    ],
+    "capabilities": [
+      "read-only"
+    ],
+    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/ad-creative/SKILL.md"
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "id": "design-cover-hero",
+    "studio": "design",
+    "prompt": "Create a polished launch hero cover image for a new product page.",
+    "expectedSkill": "baoyu-cover-image"
+  },
+  {
+    "id": "design-cover-thumbnail",
+    "studio": "design",
+    "prompt": "Design an article thumbnail poster visual for a technical essay.",
+    "expectedSkill": "baoyu-cover-image"
+  },
+  {
+    "id": "design-architecture-diagram",
+    "studio": "design",
+    "prompt": "Diagram the runtime architecture and data flow between the gateway, catalog, and skill reader.",
+    "expectedSkill": "baoyu-diagram"
+  },
+  {
+    "id": "design-sequence-flowchart",
+    "studio": "design",
+    "prompt": "Make a sequence flowchart for system state transitions.",
+    "expectedSkill": "baoyu-diagram"
+  },
+  {
+    "id": "design-infographic-report",
+    "studio": "design",
+    "prompt": "Create an infographic for a dense report summary.",
+    "expectedSkill": "baoyu-infographic"
+  },
+  {
+    "id": "design-information-graphic",
+    "studio": "design",
+    "prompt": "Turn this data into a visual explanation and information graphic.",
+    "expectedSkill": "baoyu-infographic"
+  },
+  {
+    "id": "design-social-carousel",
+    "studio": "design",
+    "prompt": "Create social carousel image cards for an educational post.",
+    "expectedSkill": "baoyu-image-cards"
+  },
+  {
+    "id": "design-card-series",
+    "studio": "design",
+    "prompt": "Design a shareable educational card series.",
+    "expectedSkill": "baoyu-image-cards"
+  },
+  {
+    "id": "design-pitch-deck",
+    "studio": "design",
+    "prompt": "Create a pitch slide deck for an investor update.",
+    "expectedSkill": "baoyu-slide-deck"
+  },
+  {
+    "id": "design-presentation-visuals",
+    "studio": "design",
+    "prompt": "Design presentation visuals for a sales deck.",
+    "expectedSkill": "baoyu-slide-deck"
+  },
+  {
+    "id": "marketing-positioning",
+    "studio": "marketing",
+    "prompt": "Position our new developer tool for an ICP of early-stage SaaS founders.",
+    "expectedSkill": "product-marketing"
+  },
+  {
+    "id": "marketing-category-messaging",
+    "studio": "marketing",
+    "prompt": "Define the target audience, category, and foundational messaging.",
+    "expectedSkill": "product-marketing"
+  },
+  {
+    "id": "marketing-voc-research",
+    "studio": "marketing",
+    "prompt": "Run voice of customer research from reviews and interviews.",
+    "expectedSkill": "customer-research"
+  },
+  {
+    "id": "marketing-jtbd-persona",
+    "studio": "marketing",
+    "prompt": "Create a JTBD customer persona from Reddit market evidence.",
+    "expectedSkill": "customer-research"
+  },
+  {
+    "id": "marketing-landing-copy",
+    "studio": "marketing",
+    "prompt": "Write landing page hero copy with CTA options.",
+    "expectedSkill": "copywriting"
+  },
+  {
+    "id": "marketing-conversion-copy",
+    "studio": "marketing",
+    "prompt": "Generate conversion copy, a tagline, and value proposition options.",
+    "expectedSkill": "copywriting"
+  },
+  {
+    "id": "marketing-ai-seo",
+    "studio": "marketing",
+    "prompt": "Create an AI SEO and GEO content plan for organic acquisition.",
+    "expectedSkill": "ai-seo"
+  },
+  {
+    "id": "marketing-llm-visibility",
+    "studio": "marketing",
+    "prompt": "Improve ChatGPT and Perplexity visibility with llms.txt and AI citations.",
+    "expectedSkill": "ai-seo"
+  },
+  {
+    "id": "marketing-topic-cluster",
+    "studio": "marketing",
+    "prompt": "Build a topic cluster and editorial plan for the blog.",
+    "expectedSkill": "content-strategy"
+  },
+  {
+    "id": "marketing-content-pillars",
+    "studio": "marketing",
+    "prompt": "Create content pillars and a content roadmap.",
+    "expectedSkill": "content-strategy"
+  },
+  {
+    "id": "marketing-launch",
+    "studio": "marketing",
+    "prompt": "Write the launch strategy for a beta release and Product Hunt announcement.",
+    "expectedSkill": "launch"
+  },
+  {
+    "id": "marketing-feature-announcement",
+    "studio": "marketing",
+    "prompt": "Plan a feature announcement, waitlist, and release strategy.",
+    "expectedSkill": "launch"
+  },
+  {
+    "id": "marketing-gtm-plan",
+    "studio": "marketing",
+    "prompt": "Create a 90-day growth GTM marketing plan.",
+    "expectedSkill": "marketing-plan"
+  },
+  {
+    "id": "marketing-fcmo-roadmap",
+    "studio": "marketing",
+    "prompt": "Draft a fractional CMO AARRR roadmap.",
+    "expectedSkill": "marketing-plan"
+  },
+  {
+    "id": "marketing-google-ads",
+    "studio": "marketing",
+    "prompt": "Generate Google Ads headlines and LinkedIn ad creative.",
+    "expectedSkill": "ad-creative"
+  },
+  {
+    "id": "marketing-paid-creative",
+    "studio": "marketing",
+    "prompt": "Create Facebook ads for paid creative testing with ad copy variants.",
+    "expectedSkill": "ad-creative"
+  },
+  {
+    "id": "marketing-pricing-unseeded",
+    "studio": "marketing",
+    "expectedStudio": null,
+    "prompt": "Build a pricing strategy for a new SaaS tier.",
+    "expectedSkill": null
+  },
+  {
+    "id": "marketing-hard-negative",
+    "studio": "marketing",
+    "expectedStudio": null,
+    "prompt": "Repair a Kubernetes storage class bug in a production cluster.",
+    "expectedSkill": null
+  },
+  {
+    "id": "design-hard-negative",
+    "studio": "design",
+    "expectedStudio": null,
+    "prompt": "Write a Stripe webhook handler and database migration.",
+    "expectedSkill": null
+  }
+]

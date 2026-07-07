@@ -1,0 +1,145 @@
+[
+  {
+    "name": "baoyu-cover-image",
+    "title": "Baoyu Cover Image",
+    "studio": "design",
+    "source": "jimliu/baoyu-skills",
+    "pack": "jimliu/baoyu-skills",
+    "skillPath": "skills/baoyu-cover-image/SKILL.md",
+    "description": "Use for article covers, hero visuals, launch graphics, thumbnails, posters, and polished visual directions.",
+    "useWhen": "covers, hero images, launch visuals, thumbnails, posters, and brand visuals",
+    "aliases": [
+      "cover image",
+      "hero image",
+      "launch graphic"
+    ],
+    "tags": [
+      "cover",
+      "hero",
+      "image",
+      "poster",
+      "thumbnail",
+      "launch",
+      "visual",
+      "brand"
+    ],
+    "capabilities": [
+      "file-write"
+    ],
+    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-cover-image/SKILL.md"
+  },
+  {
+    "name": "baoyu-diagram",
+    "title": "Baoyu Diagram",
+    "studio": "design",
+    "source": "jimliu/baoyu-skills",
+    "pack": "jimliu/baoyu-skills",
+    "skillPath": "skills/baoyu-diagram/SKILL.md",
+    "description": "Use for architecture diagrams, flowcharts, system maps, sequence diagrams, state machines, and conceptual SVG visuals.",
+    "useWhen": "architecture diagrams, flowcharts, system maps, sequence diagrams, state machines, and SVG visuals",
+    "aliases": [
+      "architecture diagram",
+      "system diagram",
+      "flow chart"
+    ],
+    "tags": [
+      "diagram",
+      "architecture",
+      "flowchart",
+      "svg",
+      "map",
+      "system",
+      "sequence",
+      "state"
+    ],
+    "capabilities": [
+      "file-write"
+    ],
+    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-diagram/SKILL.md"
+  },
+  {
+    "name": "baoyu-infographic",
+    "title": "Baoyu Infographic",
+    "studio": "design",
+    "source": "jimliu/baoyu-skills",
+    "pack": "jimliu/baoyu-skills",
+    "skillPath": "skills/baoyu-infographic/SKILL.md",
+    "description": "Use for infographics, dense visual summaries, reports, visual explanations, and publishable information graphics.",
+    "useWhen": "infographics, dense visual summaries, reports, visual explanations, and information graphics",
+    "aliases": [
+      "infographic",
+      "visual summary",
+      "information graphic"
+    ],
+    "tags": [
+      "infographic",
+      "summary",
+      "visualization",
+      "report",
+      "explain",
+      "information"
+    ],
+    "capabilities": [
+      "file-write"
+    ],
+    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-infographic/SKILL.md"
+  },
+  {
+    "name": "baoyu-image-cards",
+    "title": "Baoyu Image Cards",
+    "studio": "design",
+    "source": "jimliu/baoyu-skills",
+    "pack": "jimliu/baoyu-skills",
+    "skillPath": "skills/baoyu-image-cards/SKILL.md",
+    "description": "Use for social image cards, carousel-style visual posts, short educational cards, and shareable visual series.",
+    "useWhen": "social image cards, carousel posts, short educational cards, and shareable visual series",
+    "aliases": [
+      "image cards",
+      "carousel",
+      "social cards"
+    ],
+    "tags": [
+      "cards",
+      "carousel",
+      "social",
+      "series",
+      "post",
+      "shareable"
+    ],
+    "capabilities": [
+      "file-write"
+    ],
+    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-cards/SKILL.md"
+  },
+  {
+    "name": "baoyu-slide-deck",
+    "title": "Baoyu Slide Deck",
+    "studio": "design",
+    "source": "jimliu/baoyu-skills",
+    "pack": "jimliu/baoyu-skills",
+    "skillPath": "skills/baoyu-slide-deck/SKILL.md",
+    "description": "Use for slide decks, presentation visuals, pitch slides, and scrollable slide-image decks.",
+    "useWhen": "slide decks, presentation visuals, pitch slides, and scrollable decks",
+    "aliases": [
+      "slide deck",
+      "pitch deck",
+      "presentation"
+    ],
+    "tags": [
+      "slides",
+      "deck",
+      "presentation",
+      "pitch",
+      "ppt"
+    ],
+    "capabilities": [
+      "file-write"
+    ],
+    "sourceCommit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+    "sourceUrl": "https://github.com/jimliu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-slide-deck/SKILL.md"
+  }
+]

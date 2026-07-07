@@ -1,0 +1,10 @@
+{
+  "id": "jimliu/baoyu-skills",
+  "repoUrl": "https://github.com/jimliu/baoyu-skills",
+  "allowedPaths": ["skills/**/SKILL.md", "*/SKILL.md"],
+  "pinPolicy": "sha",
+  "licensePolicy": "record-and-review",
+  "hiddenByDefault": true,
+  "visibility": "catalog-only",
+  "defaultStudio": "design"
+}
