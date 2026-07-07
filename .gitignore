@@ -3,4 +3,5 @@ node_modules/
 coverage/
 dist/
 artifacts/
+evals/**/routing-report.json
 *.log

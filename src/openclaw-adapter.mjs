@@ -1,7 +1,7 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { defaultCatalogDir, loadCatalog, searchCatalog } from "./search.mjs";
+import { defaultCatalogDir, loadCatalog, parsePackRoot, parsePackRootsEnv, searchCatalog } from "./search.mjs";
 
 const ADAPTER_ID = "agent-skill-debloater/openclaw-adapter/v1";
 const DEFAULT_LIMIT = 3;
@@ -112,14 +112,6 @@ export async function searchOpenClawSkillCatalog({
   });
 }
 
-function parsePackRoot(value) {
-  const separator = value.indexOf("=");
-  if (separator === -1) {
-    throw new Error(`--pack-root must be PACK=PATH, received ${value}`);
-  }
-  return [value.slice(0, separator), value.slice(separator + 1)];
-}
-
 function parseOpenClawAdapterArgs(argv) {
   const [command, studio, query, ...rest] = argv;
   if (command !== "search") {
@@ -131,7 +123,7 @@ function parseOpenClawAdapterArgs(argv) {
     catalogDir: defaultCatalogDir(),
     limit: DEFAULT_LIMIT,
     engine: DEFAULT_ENGINE,
-    packRoots: {}
+    packRoots: parsePackRootsEnv()
   };
 
   for (let index = 0; index < rest.length; index += 1) {

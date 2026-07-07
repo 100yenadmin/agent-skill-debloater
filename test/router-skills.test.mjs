@@ -13,7 +13,8 @@ test("design-studio is a compact visible router skill", async () => {
 
   assert.match(body, /^---\nname: design-studio\n/m);
   assert.match(body, /visual design/i);
-  assert.match(body, /debloat-skill-search design/);
+  assert.match(body, /plugin-local CLI/);
+  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" design/);
   assert.match(body, /read the returned `SKILL\.md`/);
   assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
   assert.ok(body.split(/\s+/).length < 290);
@@ -24,7 +25,8 @@ test("marketing-studio is a compact visible router skill", async () => {
 
   assert.match(body, /^---\nname: marketing-studio\n/m);
   assert.match(body, /positioning/i);
-  assert.match(body, /debloat-skill-search marketing/);
+  assert.match(body, /plugin-local CLI/);
+  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" marketing/);
   assert.match(body, /read the returned `SKILL\.md`/);
   assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
   assert.ok(body.split(/\s+/).length < 290);
@@ -35,7 +37,8 @@ test("ceo-studio is a compact visible router skill", async () => {
 
   assert.match(body, /^---\nname: ceo-studio\n/m);
   assert.match(body, /founder judgment/i);
-  assert.match(body, /debloat-skill-search ceo/);
+  assert.match(body, /plugin-local CLI/);
+  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" ceo/);
   assert.match(body, /read the returned `SKILL\.md`/);
   assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
   assert.ok(body.split(/\s+/).length < 290);
@@ -46,7 +49,8 @@ test("engineering-studio is a compact visible router skill", async () => {
 
   assert.match(body, /^---\nname: engineering-studio\n/m);
   assert.match(body, /implementation/i);
-  assert.match(body, /debloat-skill-search engineering/);
+  assert.match(body, /plugin-local CLI/);
+  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" engineering/);
   assert.match(body, /read the returned `SKILL\.md`/);
   assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
   assert.ok(body.split(/\s+/).length < 290);

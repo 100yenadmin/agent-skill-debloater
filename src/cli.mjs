@@ -6,6 +6,7 @@ import {
   defaultCatalogDir,
   formatResultsText,
   loadCatalog,
+  parsePackRootsEnv,
   parsePackRoot,
   runVoyageRerank,
   searchCatalog
@@ -38,7 +39,7 @@ function parseSearchArgs(argv) {
     format: "text",
     limit: 3,
     engine: "fts",
-    packRoots: {},
+    packRoots: parsePackRootsEnv(),
     rerank: "off"
   };
 
@@ -78,7 +79,8 @@ function searchUsage() {
     'Usage: debloat-skill-search <studio> "<query>" [--format json|text] [--limit N]',
     "       [--catalog-dir PATH] [--engine fts|json] [--pack-root PACK=PATH] [--rerank off|voyage]",
     "",
-    "Default output is top 3 compact results. Rerank is default-off shadow mode and receives candidate cards only."
+    "Default output is top 3 compact results. Rerank is default-off shadow mode and receives candidate cards only.",
+    'Set AGENT_SKILL_DEBLOATER_PACK_ROOTS=\'{"pack/id":"/path/to/root"}\' to resolve pack:// read paths.'
   ].join("\n");
 }
 

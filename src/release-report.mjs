@@ -34,6 +34,7 @@ const REQUIRED_PACKED_FILES = [
   "catalogs/marketing.json",
   "catalogs/ceo.json",
   "catalogs/engineering.json",
+  "evals/skill-routing-evals/v0/scenarios.json",
   "docs/openclaw-adapter.md",
   "locks/baoyu-skills.lock.json",
   "overlays/studios.json",
@@ -48,6 +49,10 @@ const REQUIRED_PACKED_FILES = [
   "src/pack-sync.mjs",
   "src/release-report.mjs",
   "src/search.mjs"
+];
+
+const FORBIDDEN_PACKED_FILES = [
+  "evals/skill-routing-evals/v0/routing-report.json"
 ];
 
 function toPath(input) {
@@ -143,6 +148,7 @@ export async function buildReleaseChecklist({
   const packDryRun = await runPack();
   const packedFiles = packedFileSet(packDryRun);
   const missingPackedFiles = REQUIRED_PACKED_FILES.filter((file) => !packedFiles.has(file));
+  const forbiddenPackedFiles = FORBIDDEN_PACKED_FILES.filter((file) => packedFiles.has(file));
   const ok = Boolean(
     packageJson.name === "agent-skill-debloater" &&
     packageJson.version &&
@@ -151,6 +157,7 @@ export async function buildReleaseChecklist({
     pluginManifest?.version === packageJson.version &&
     missingScripts.length === 0 &&
     missingPackedFiles.length === 0 &&
+    forbiddenPackedFiles.length === 0 &&
     publishSurfaces.length === 0
   );
 
@@ -173,7 +180,9 @@ export async function buildReleaseChecklist({
     },
     packageContents: {
       required: REQUIRED_PACKED_FILES,
-      missing: missingPackedFiles
+      missing: missingPackedFiles,
+      forbidden: FORBIDDEN_PACKED_FILES,
+      forbiddenPresent: forbiddenPackedFiles
     },
     validationCommands: VALIDATION_COMMANDS,
     publishSurfaces,

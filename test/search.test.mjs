@@ -11,6 +11,8 @@ import {
   formatResultsText,
   loadCatalog,
   parsePackReadPath,
+  parsePackRoot,
+  parsePackRootsEnv,
   runVoyageRerank,
   searchCatalog
 } from "../src/search.mjs";
@@ -374,6 +376,31 @@ test("inherited packRoots properties cannot crash read path resolution", () => {
   assert.equal(result.readPath, "pack://__proto__/skills/proto/SKILL.md");
 });
 
+test("env pack roots preserve special pack ids as own properties", () => {
+  const packRoots = parsePackRootsEnv('{"__proto__":"/env/packs/proto"}');
+  const catalog = [
+    {
+      name: "proto",
+      title: "Proto",
+      studio: "marketing",
+      source: "__proto__",
+      pack: "__proto__",
+      sourceCommit: "0000000000000000000000000000000000000000",
+      sourceUrl: "https://github.com/example/proto/blob/0000000000000000000000000000000000000000/skills/proto/SKILL.md",
+      skillPath: "skills/proto/SKILL.md",
+      description: "Proto search fixture.",
+      aliases: ["proto"],
+      tags: ["proto"],
+      capabilities: ["read-only"],
+      useWhen: "proto"
+    }
+  ];
+
+  assert.equal(Object.hasOwn(packRoots, "__proto__"), true);
+  const [result] = searchCatalog(catalog, "proto", { packRoots });
+  assert.equal(result.readPath, "/env/packs/proto/skills/proto/SKILL.md");
+});
+
 test("unseeded pricing prompts do not route on generic strategy alone", async () => {
   const catalog = await loadCatalog({ studio: "marketing", catalogDir: fixtureDir });
 
@@ -584,6 +611,77 @@ test("CLI returns compact JSON with top 3 by default", () => {
   assert.ok(parsed.results[0].why.length > 0);
 });
 
+test("CLI resolves read paths from AGENT_SKILL_DEBLOATER_PACK_ROOTS", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      "bin/debloat-skill-search",
+      "marketing",
+      "SEO content plan for organic acquisition",
+      "--catalog-dir",
+      new URL("./fixtures/catalogs", import.meta.url).pathname,
+      "--format",
+      "json"
+    ],
+    {
+      cwd: new URL("..", import.meta.url).pathname,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        AGENT_SKILL_DEBLOATER_PACK_ROOTS: JSON.stringify({
+          "coreyhaines31/marketingskills": "/env/packs/marketingskills"
+        })
+      }
+    }
+  );
+
+  const parsed = JSON.parse(output);
+  assert.equal(parsed.results[0].name, "ai-seo");
+  assert.equal(parsed.results[0].readPath, "/env/packs/marketingskills/skills/ai-seo/SKILL.md");
+});
+
+test("CLI --pack-root overrides AGENT_SKILL_DEBLOATER_PACK_ROOTS", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      "bin/debloat-skill-search",
+      "marketing",
+      "SEO content plan for organic acquisition",
+      "--catalog-dir",
+      new URL("./fixtures/catalogs", import.meta.url).pathname,
+      "--pack-root",
+      "coreyhaines31/marketingskills=/flag/packs/marketingskills",
+      "--format",
+      "json"
+    ],
+    {
+      cwd: new URL("..", import.meta.url).pathname,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        AGENT_SKILL_DEBLOATER_PACK_ROOTS: JSON.stringify({
+          "coreyhaines31/marketingskills": "/env/packs/marketingskills"
+        })
+      }
+    }
+  );
+
+  const parsed = JSON.parse(output);
+  assert.equal(parsed.results[0].readPath, "/flag/packs/marketingskills/skills/ai-seo/SKILL.md");
+});
+
+test("--pack-root rejects empty pack ids and roots", () => {
+  for (const value of ["=root", "example/pack="]) {
+    assert.throws(() => parsePackRoot(value), /--pack-root/);
+  }
+});
+
+test("AGENT_SKILL_DEBLOATER_PACK_ROOTS rejects malformed values", () => {
+  for (const value of ["not-json", "[]", JSON.stringify({ "example/pack": "" })]) {
+    assert.throws(() => parsePackRootsEnv(value), /AGENT_SKILL_DEBLOATER_PACK_ROOTS/);
+  }
+});
+
 test("CLI can force JSON fallback search engine", () => {
   const output = execFileSync(
     process.execPath,
@@ -635,11 +733,12 @@ test("CLI returns Voyage shadow metadata without an API key", () => {
   assert.ok(parsed.rerank.candidateCards.every((card) => !("readPath" in card)));
 });
 
-test("CLI rejects invalid and missing --limit values", () => {
-  for (const args of [
-    ["marketing", "SEO content", "--limit", "nope"],
-    ["marketing", "SEO content", "--limit", "0"],
-    ["marketing", "SEO content", "--limit"]
+test("CLI rejects invalid usage values", () => {
+  for (const [args, pattern] of [
+    [["marketing", "SEO content", "--limit", "nope"], /--limit/],
+    [["marketing", "SEO content", "--limit", "0"], /--limit/],
+    [["marketing", "SEO content", "--limit"], /--limit/],
+    [["marketing", "SEO content", "--pack-root", "coreyhaines31/marketingskills="], /--pack-root/]
   ]) {
     assert.throws(
       () =>
@@ -648,7 +747,7 @@ test("CLI rejects invalid and missing --limit values", () => {
           encoding: "utf8",
           stdio: "pipe"
         }),
-      /--limit/
+      pattern
     );
   }
 });

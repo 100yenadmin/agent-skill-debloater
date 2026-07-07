@@ -11,14 +11,15 @@ without loading the whole engineering library into the prompt.
 ## Workflow
 
 1. Turn the user's task into a short search query.
-2. Run:
-   `debloat-skill-search engineering "<query>" --format text --limit 3`
-3. Inspect the ranked set. If confidence is low or the top results conflict,
+2. Resolve `<plugin-root>` as the directory two levels above this `SKILL.md`.
+3. Run the plugin-local CLI, not a global command:
+   `node "<plugin-root>/bin/debloat-skill-search" engineering "<query>" --format text --limit 3`
+4. Inspect the ranked set. If confidence is low or the top results conflict,
    ask a narrow clarification or continue with general engineering judgment.
-4. Before doing the engineering work, read the returned `SKILL.md` path.
+5. Before doing the engineering work, read the returned `SKILL.md` path.
    If the path is `pack://...`, resolve it through the host adapter or rerun
-   search with `--pack-root PACK=PATH`.
-5. Follow that backing skill's instructions and disclose the selected source
+   search with `--pack-root PACK=PATH`; do not broad-search the filesystem.
+6. Follow that backing skill's instructions and disclose the selected source
    and capabilities when they matter.
 
 Never paste or summarize the whole engineering catalog into the prompt.
