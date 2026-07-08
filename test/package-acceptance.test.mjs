@@ -11,6 +11,7 @@ const requiredFiles = [
   "catalogs/marketing.json",
   "catalogs/ceo.json",
   "catalogs/engineering.json",
+  "docs/pack-update-cadence.md",
   "docs/rerank-quality.md",
   "evals/rerank-quality/v0/scenarios.json",
   "skills/design-studio/SKILL.md",
@@ -20,6 +21,7 @@ const requiredFiles = [
   "src/cli.mjs",
   "src/eval-rerank.mjs",
   "src/openclaw-adapter.mjs",
+  "src/pack-update-cadence.mjs",
   "src/search.mjs"
 ];
 

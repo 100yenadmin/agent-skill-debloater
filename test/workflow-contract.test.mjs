@@ -34,9 +34,11 @@ test("release-preflight workflow is manual, validates artifacts, and does not pu
 
 test("upstream pack refresh workflow diffs every seed pack without writing updates", async () => {
   const workflow = await readWorkflow("upstream-pack-refresh.yml");
+  const diffJob = workflow.split("  prepare-update-pr:")[0];
 
   assert.match(workflow, /schedule:/);
   assert.match(workflow, /GITHUB_TOKEN: \$\{\{ github\.token \}\}/);
+  assert.match(diffJob, /permissions:\n      contents: read/);
   for (const pack of [
     "jimliu/baoyu-skills",
     "coreyhaines31/marketingskills",
@@ -46,5 +48,25 @@ test("upstream pack refresh workflow diffs every seed pack without writing updat
   ]) {
     assert.match(workflow, new RegExp(`pack-sync diff --pack ${pack.replace("/", "\\/")}`));
   }
-  assert.doesNotMatch(workflow, /pack-sync update/);
+  assert.doesNotMatch(diffJob, /pack-sync update/);
+});
+
+test("upstream pack refresh workflow can prepare manual draft update PRs", async () => {
+  const workflow = await readWorkflow("upstream-pack-refresh.yml");
+  const updateJob = workflow.split("  prepare-update-pr:")[1];
+
+  assert.match(workflow, /mode:/);
+  assert.match(workflow, /update-pr/);
+  assert.match(updateJob, /permissions:\n      contents: write\n      pull-requests: write/);
+  assert.match(updateJob, /update-pr mode requires one concrete seed pack/);
+  assert.match(updateJob, /pack-sync diff --pack "\$PACK_ID" --to "\$TARGET_REF"/);
+  assert.match(updateJob, /pack-sync update --pack "\$PACK_ID" --to "\$TARGET_REF"/);
+  assert.match(updateJob, /node bin\/pack-sync check > artifacts\/pack-sync\/pack-check\.json/);
+  assert.match(updateJob, /npm run eval:routing/);
+  assert.match(updateJob, /npm run eval:rerank/);
+  assert.match(updateJob, /node src\/pack-update-cadence\.mjs packet/);
+  assert.match(updateJob, /node src\/pack-update-cadence\.mjs pr-body/);
+  assert.match(updateJob, /gh pr create --draft/);
+  assert.match(updateJob, /upstream-pack-update-pr-packet/);
+  assert.doesNotMatch(updateJob, /npm publish/);
 });

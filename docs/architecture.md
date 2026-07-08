@@ -56,6 +56,9 @@ added, removed, moved/renamed, body-changed, license-changed, and missing-hash
 states without vendoring skill bodies. `pack-sync update` writes reviewed
 provenance changes into locks and catalogs, then runs the same metadata check.
 
-The scheduled upstream pack refresh workflow runs diffs only. It does not open
-rollout gates, publish npm packages, mutate OpenClaw core, or install defaults
-on customer VMs.
+The scheduled upstream pack refresh workflow runs diffs only. Manual
+`update-pr` runs can prepare a draft update PR for one seed pack after writing
+a deterministic update packet and rerunning metadata, routing, rerank, release,
+and package checks. New upstream skills remain hidden until catalog and eval
+review. Neither workflow opens rollout gates, publishes npm packages, mutates
+OpenClaw core, or installs defaults on customer VMs.
