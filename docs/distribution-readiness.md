@@ -48,6 +48,7 @@ npm test
 npm run eval:routing
 node bin/pack-sync check
 npm run smoke:openclaw-adapter
+npm run acceptance:clean-room
 npm run acceptance:package
 git diff --check
 npm run release:check
@@ -58,6 +59,7 @@ For a shareable evidence packet, save:
 
 ```bash
 node src/package-acceptance.mjs check --report artifacts/package-acceptance.json
+node src/clean-room-install.mjs check --report artifacts/clean-room-install.json
 npm pack --dry-run --json > artifacts/npm-pack-dry-run.json
 node src/release-report.mjs check > artifacts/release-check.json
 ```
@@ -71,6 +73,7 @@ catalogs change.
 
 - `release:check` reports `ok: true`.
 - `publishSurfaces` is empty.
+- `clean-room-install/v0` reports only router skills visible and no backing body exposure.
 - package metadata is complete.
 - `docs/distribution-readiness.md` is packaged.
 - `npm pack --dry-run --json` includes only expected portable artifacts.

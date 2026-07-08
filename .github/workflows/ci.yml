@@ -39,6 +39,7 @@ jobs:
           path: artifacts/rerank-quality/v0/report-node-${{ matrix.node-version }}.json
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
+      - run: npm run acceptance:clean-room
       - run: npm run acceptance:package
       - run: git diff --check
       - run: npm run release:check

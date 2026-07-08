@@ -30,6 +30,7 @@ const REQUIRED_PACKED_FILES = [
   "skills/marketing-studio/SKILL.md",
   "skills/ceo-studio/SKILL.md",
   "skills/engineering-studio/SKILL.md",
+  "src/clean-room-install.mjs",
   "src/cli.mjs",
   "src/eval-rerank.mjs",
   "src/openclaw-adapter.mjs",

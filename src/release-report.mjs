@@ -15,6 +15,7 @@ const REQUIRED_SCRIPTS = [
   "release:notes",
   "pack:dry-run",
   "pack:update-pr-body",
+  "acceptance:clean-room",
   "acceptance:package",
   "smoke:openclaw-adapter"
 ];
@@ -25,6 +26,7 @@ const VALIDATION_COMMANDS = [
   "npm run eval:rerank",
   "node bin/pack-sync check",
   "npm run smoke:openclaw-adapter",
+  "npm run acceptance:clean-room",
   "npm run acceptance:package",
   "git diff --check",
   "npm run pack:dry-run"
@@ -56,6 +58,7 @@ const REQUIRED_PACKED_FILES = [
   "skills/ceo-studio/SKILL.md",
   "skills/engineering-studio/SKILL.md",
   "src/cli.mjs",
+  "src/clean-room-install.mjs",
   "src/openclaw-adapter.mjs",
   "src/pack-update-cadence.mjs",
   "src/package-acceptance.mjs",
@@ -281,6 +284,7 @@ export async function buildReleaseNotes({ root = repoRoot } = {}) {
     "- Plugin-first Codex manifest with Design, Marketing, CEO, and Engineering router skills.",
     "- Pack provenance automation through `pack-sync diff/update` with lockfile skill blob hashes.",
     "- OpenClaw adapter JSON for compact candidates and selected-skill audit traces.",
+    "- Clean-room install acceptance for router-only visibility and installed package search.",
     "- Rerank-quality shadow evals for optional Voyage comparison without promotion.",
     "- Release/update automation for local preflight, CI preflight, and scheduled upstream pack checks.",
     "- Distribution readiness checklist for future npm/public publish review without publishing.",

@@ -16,6 +16,7 @@ jobs:
       - run: npm run eval:rerank
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
+      - run: npm run acceptance:clean-room -- --report clean-room-install.json
       - run: npm run acceptance:package -- --report package-acceptance.json
       - run: git diff --check
       - run: npm run release:check
@@ -28,4 +29,5 @@ jobs:
           path: |
             release-notes.md
             npm-pack-dry-run.json
+            clean-room-install.json
             package-acceptance.json

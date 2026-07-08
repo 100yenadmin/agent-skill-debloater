@@ -28,6 +28,7 @@ Required before any runtime canary:
 - `npm run eval:routing`
 - `node bin/pack-sync check`
 - `npm run smoke:openclaw-adapter`
+- `npm run acceptance:clean-room`
 - `npm run acceptance:package`
 - `npm run release:check`
 - `npm run pack:dry-run`
@@ -40,7 +41,7 @@ Evidence packet:
 ```
 
 Record release/tag or commit SHA, package shasum, CI URL, plugin install source,
-and the `package-acceptance/v0` JSON report.
+and the `package-acceptance/v0` plus `clean-room-install/v0` JSON reports.
 
 ## Phase 1: Golden VM Canary
 
