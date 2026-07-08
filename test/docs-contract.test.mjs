@@ -35,10 +35,10 @@ test("launch packet stays market-facing without crossing approval boundaries", a
 
   for (const required of [
     "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs",
-    "GitHub prerelease",
+    "GitHub release",
     "Tagged artifact acceptance",
     "Supported Studios And Seed Packs",
-    "Quickstart For RC Evaluation",
+    "Quickstart For Release Evaluation",
     "Maintainer Launch Checklist",
     "does not publish to npm",
     "does not include upstream OpenClaw core changes",

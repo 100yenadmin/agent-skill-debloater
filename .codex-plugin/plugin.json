@@ -1,6 +1,6 @@
 {
   "name": "agent-skill-debloater",
-  "version": "1.0.2-rc.2",
+  "version": "1.0.2",
   "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
   "author": {
     "name": "100yenadmin",

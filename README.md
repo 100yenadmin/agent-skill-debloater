@@ -12,7 +12,7 @@ primitives.
 ## Launch Packet
 
 The current market-facing release packet lives in `docs/launch-packet.md`. It
-includes the concise value proposition, RC install/evaluation path, supported
+includes the concise value proposition, release install/evaluation path, supported
 studios and seed packs, proof links, non-goals, and maintainer launch checklist.
 See `docs/demo-router-flow.md` for a small router-to-search-to-read-path
 transcript.

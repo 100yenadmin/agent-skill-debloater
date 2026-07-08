@@ -12,7 +12,7 @@ context bloat and weakens routing. AgentSkillDebloater turns curated packs into
 portable catalogs, ranks compact candidate cards, and returns exact backing
 `SKILL.md` read paths so agents can load only the instruction they need.
 
-The current release candidate is best described as:
+The current stable release is best described as:
 
 > Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.
 
@@ -24,21 +24,23 @@ The current release candidate is best described as:
 - Codex/OpenClaw plugin users who want compact studio routers plus auditable
   selected-skill traces.
 
-## RC2 Candidate
+## Current Stable Release
 
-- Version: `1.0.2-rc.2`
-- GitHub prerelease: created after PR #56 merges and linked from issue #55.
-- Tagged artifact acceptance: required in issue #55 before this RC is accepted.
-- PR CI proof: https://github.com/100yenadmin/agent-skill-debloater/actions/runs/28950316297
-- Main CI proof: required after merge and linked from issue #55.
+- Version: `1.0.2`
+- GitHub release: created after the stable release prep merges and linked from
+  issue #57.
+- Tagged artifact acceptance: required in issue #57 before this release is
+  accepted.
+- PR CI proof: linked from issue #57.
+- Main CI proof: required after merge and linked from issue #57.
 - GA tracker: https://github.com/100yenadmin/agent-skill-debloater/issues/37
 
 Pre-merge package dry-run proof covers the candidate source tree only:
 
-- Package: `agent-skill-debloater-1.0.2-rc.2.tgz`
+- Package: `agent-skill-debloater-1.0.2.tgz`
 - npm shasum, integrity, sha256, and packed-file count are recorded in issue
-  #55 after exact tagged package acceptance.
-- The exact acceptance comment permalink is added to #55 after the tag is
+  #57 after exact tagged package acceptance.
+- The exact acceptance comment permalink is added to #57 after the tag is
   created and the tagged tarball smoke passes.
 
 ## Supported Studios And Seed Packs
@@ -53,15 +55,15 @@ Pre-merge package dry-run proof covers the candidate source tree only:
 The current compact catalogs contain 104 searchable entries. They do not vendor
 or prompt-load full upstream skill bodies.
 
-## Quickstart For RC Evaluation
+## Quickstart For Release Evaluation
 
-The package is not published to npm by this workflow. Evaluate the RC from the
-GitHub tag:
+The package is not published to npm by this workflow. Evaluate the release from
+the GitHub tag:
 
 ```bash
 git clone https://github.com/100yenadmin/agent-skill-debloater.git
 cd agent-skill-debloater
-git checkout v1.0.2-rc.2
+git checkout v1.0.2
 npm run acceptance:package
 npm run acceptance:clean-room
 ```
@@ -102,7 +104,7 @@ can prepare reviewed draft PRs for one pack at a time.
 
 ## Evidence Summary
 
-Pre-merge proof for the `v1.0.2-rc.2` candidate includes:
+Pre-merge proof for the `v1.0.2` candidate includes:
 
 - CI on Node 22.13.0 and 26.x.
 - `npm test`.
@@ -115,32 +117,32 @@ Pre-merge proof for the `v1.0.2-rc.2` candidate includes:
 - Package acceptance from a packed artifact.
 - `release:check` and `pack:dry-run`.
 
-Before `v1.0.2-rc.2` is considered accepted, issue #55 must record:
+Before `v1.0.2` is considered accepted, issue #57 must record:
 
 - main-branch CI for the merged release-prep commit;
-- the GitHub prerelease URL;
-- exact tagged package acceptance from the `v1.0.2-rc.2` tag;
+- the GitHub release URL;
+- exact tagged package acceptance from the `v1.0.2` tag;
 - exact-tarball CLI smoke from the tagged `.tgz`;
 - npm shasum, integrity, sha256, entry count, and an acceptance-comment
   permalink.
 
 Voyage reranking remains optional, default-off, and shadow-only. Real-key shadow
-evidence did not justify promoting Voyage ordering for this RC.
+evidence did not justify promoting Voyage ordering for this release.
 
 ## Non-Goals And Boundaries
 
 - Hidden/read-on-demand reduces prompt bloat; it is not a security boundary.
-- This RC does not publish to npm.
-- This RC does not include upstream OpenClaw core changes, pull requests, or
+- This release does not publish to npm.
+- This release does not include upstream OpenClaw core changes, pull requests, or
   merges.
-- This RC does not prove customer VM rollout readiness, fleet deployment
+- This release does not prove customer VM rollout readiness, fleet deployment
   safety, runtime policy enforcement, or customer-data safety.
 - OpenClaw/customer runtime rollout requires the separate approval gates tracked
   in issues #45 through #48.
 
 ## Maintainer Launch Checklist
 
-- Confirm the current GitHub prerelease links to CI, tagged artifact acceptance,
+- Confirm the current GitHub release links to CI, tagged artifact acceptance,
   and the GA tracker.
 - Confirm `docs/distribution-readiness.md` still says npm publication is
   deferred unless a maintainer explicitly approves it.
@@ -162,7 +164,7 @@ evidence did not justify promoting Voyage ordering for this RC.
 
 ## Public Message
 
-AgentSkillDebloater is ready for RC evaluation as a plugin-first way to route
-large agent skill packs through compact searchable catalogs. It is marketable as
-a release candidate with strong local/CI artifact proof, while npm publication
-and runtime/customer rollout remain explicit approval gates.
+AgentSkillDebloater is ready for stable release evaluation as a plugin-first way
+to route large agent skill packs through compact searchable catalogs. It is
+marketable as a stable GitHub release with strong local/CI artifact proof, while
+npm publication and runtime/customer rollout remain explicit approval gates.

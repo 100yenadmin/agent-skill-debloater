@@ -6,7 +6,7 @@ repository does not publish to npm without a separate explicit approval.
 ## Current State
 
 - Package name: `agent-skill-debloater`
-- Package version: `1.0.2-rc.2`
+- Package version: `1.0.2`
 - Decision state: `ready-for-publish-review`
 - npm publication state: not published by this workflow
 - Approval gate: do not run `npm publish`, create registry credentials, add
