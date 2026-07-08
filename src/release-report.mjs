@@ -36,6 +36,8 @@ const REQUIRED_PACKED_FILES = [
   "catalogs/marketing.json",
   "catalogs/ceo.json",
   "catalogs/engineering.json",
+  "docs/distribution-readiness.md",
+  "docs/openclaw-adapter-contract-fixtures.json",
   "evals/skill-routing-evals/v0/scenarios.json",
   "docs/openclaw-adapter.md",
   "locks/baoyu-skills.lock.json",
@@ -60,6 +62,8 @@ const FORBIDDEN_PACKED_FILE_PATTERNS = [
     pattern: /^evals\/skill-routing-evals\/[^/]+\/routing-report\.json$/
   }
 ];
+const REQUIRED_KEYWORDS = ["agent-skills", "codex", "openclaw", "plugin", "skill-search", "skills"];
+const DISTRIBUTION_DOC = "docs/distribution-readiness.md";
 
 function toPath(input) {
   if (input instanceof URL) return fileURLToPath(input);
@@ -128,6 +132,41 @@ function findForbiddenPackedFiles(packedFiles) {
     .sort();
 }
 
+function packageMetadataStatus(packageJson) {
+  const missing = [];
+  if (packageJson.repository?.type !== "git") missing.push("repository.type");
+  if (packageJson.repository?.url !== "git+https://github.com/100yenadmin/agent-skill-debloater.git") {
+    missing.push("repository.url");
+  }
+  if (packageJson.bugs?.url !== "https://github.com/100yenadmin/agent-skill-debloater/issues") {
+    missing.push("bugs.url");
+  }
+  if (packageJson.homepage !== "https://github.com/100yenadmin/agent-skill-debloater#readme") {
+    missing.push("homepage");
+  }
+  for (const keyword of REQUIRED_KEYWORDS) {
+    if (!packageJson.keywords?.includes(keyword)) missing.push(`keywords.${keyword}`);
+  }
+  return {
+    repository: packageJson.repository ?? null,
+    bugs: packageJson.bugs ?? null,
+    homepage: packageJson.homepage ?? null,
+    keywords: packageJson.keywords ?? [],
+    requiredKeywords: REQUIRED_KEYWORDS,
+    missing
+  };
+}
+
+function distributionDocStatus(text) {
+  const normalized = String(text).replace(/\s+/g, " ");
+  return {
+    path: DISTRIBUTION_DOC,
+    approvalGate: /do not run `npm publish`/i.test(normalized) && /explicitly approves publication/i.test(normalized),
+    npmAvailabilityDisclaimer: /Do not document `npm install agent-skill-debloater` as generally available until/i.test(normalized),
+    proofBoundary: /distribution readiness only/i.test(normalized) && /does not prove npm publication/i.test(normalized)
+  };
+}
+
 export async function buildReleaseChecklist({
   root = repoRoot,
   readText,
@@ -145,6 +184,16 @@ export async function buildReleaseChecklist({
   const pluginManifest = manifestPresent
     ? JSON.parse(await readTextImpl(".codex-plugin/plugin.json"))
     : null;
+  const packageMetadata = packageMetadataStatus(packageJson);
+  const distributionDocPresent = await existsFn(DISTRIBUTION_DOC);
+  const distributionReadiness = distributionDocPresent
+    ? distributionDocStatus(await readTextImpl(DISTRIBUTION_DOC))
+    : {
+        path: DISTRIBUTION_DOC,
+        approvalGate: false,
+        npmAvailabilityDisclaimer: false,
+        proofBoundary: false
+      };
   const missingScripts = REQUIRED_SCRIPTS.filter((script) => !packageJson.scripts?.[script]);
   const packageFiles = packageJson.files ?? [];
   const workflows = await listWorkflows();
@@ -167,6 +216,10 @@ export async function buildReleaseChecklist({
     packageFiles.includes(".codex-plugin/") &&
     manifestPresent &&
     pluginManifest?.version === packageJson.version &&
+    packageMetadata.missing.length === 0 &&
+    distributionReadiness.approvalGate &&
+    distributionReadiness.npmAvailabilityDisclaimer &&
+    distributionReadiness.proofBoundary &&
     missingScripts.length === 0 &&
     missingPackedFiles.length === 0 &&
     forbiddenPackedFiles.length === 0 &&
@@ -180,6 +233,8 @@ export async function buildReleaseChecklist({
       version: packageJson.version,
       files: packageFiles
     },
+    packageMetadata,
+    distributionReadiness,
     pluginManifest: {
       present: manifestPresent,
       name: pluginManifest?.name ?? null,
@@ -215,6 +270,7 @@ export async function buildReleaseNotes({ root = repoRoot } = {}) {
     "- Pack provenance automation through `pack-sync diff/update` with lockfile skill blob hashes.",
     "- OpenClaw adapter JSON for compact candidates and selected-skill audit traces.",
     "- Release/update automation for local preflight, CI preflight, and scheduled upstream pack checks.",
+    "- Distribution readiness checklist for future npm/public publish review without publishing.",
     "",
     "## Validation",
     "",
@@ -223,6 +279,7 @@ export async function buildReleaseNotes({ root = repoRoot } = {}) {
     "## Boundary",
     "",
     "- No npm publish is included in this release workflow.",
+    "- Distribution state is ready-for-publish-review, not npm-published.",
     "- This release proves plugin routing and artifact quality only; it does not prove customer VM rollout readiness, OpenClaw core runtime safety, or fleet deployment safety."
   ].join("\n");
 }

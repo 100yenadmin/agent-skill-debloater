@@ -183,6 +183,10 @@ Runtime rollout remains separate from package proof. Use
 `docs/runtime-canary-plan.md` for the Golden VM, one-customer canary, rollback,
 and evidence checklist before any customer or fleet change.
 
+Use `docs/distribution-readiness.md` for the future npm/public distribution
+review checklist. The package is not considered npm-published until a maintainer
+explicitly approves and records a separate publish step.
+
 ## Proof Boundary
 
 This proves local plugin routing only. It does not prove customer VM rollout
