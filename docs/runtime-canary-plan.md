@@ -51,6 +51,19 @@ and the `package-acceptance/v0`, `fresh-agent-smokes/v0`, and
 Goal: prove that one controlled Golden VM can install/load AgentSkillDebloater
 without prompt bloat, stale command resolution, or wrong backing-skill reads.
 
+Issue #47 is approval to maintain this plan only. Runtime install/execution
+requires a separate approval comment naming the Golden/local target, exact
+artifact, operator, support owner, rollback owner, and evidence packet.
+
+Suggested approval language:
+
+```text
+I approve running the AgentSkillDebloater Golden/local runtime canary for
+<target> using <version/tag/package checksum>. This approval does not authorize
+customer VM writes, fleet rollout, npm publication, or upstream OpenClaw
+changes.
+```
+
 Preconditions:
 
 - package gate passed on the exact candidate artifact;
@@ -58,6 +71,20 @@ Preconditions:
 - no customer data is present in the smoke prompts;
 - upstream skill pack roots are known and pinned;
 - current OpenClaw/plugin configuration is exported before change.
+
+Install method template:
+
+```text
+target:
+artifact:
+tag:
+commit:
+package shasum/integrity:
+pre-change plugin list command:
+install command:
+rollback command:
+evidence packet:
+```
 
 Smoke tasks:
 
@@ -103,6 +130,10 @@ Rollback:
 
 Goal: prove the same behavior on one explicitly approved customer VM after the
 Golden VM canary passes.
+
+Use `docs/customer-canary-plan.md` for the opt-in customer approval, support,
+communications, redaction, and rollback checklist. This document alone does not
+authorize any customer mutation.
 
 Additional preconditions:
 

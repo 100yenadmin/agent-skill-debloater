@@ -12,6 +12,7 @@ repository does not publish to npm without a separate explicit approval.
 - Approval gate: do not run `npm publish`, create registry credentials, add
   npm publish workflows, or use `NPM_TOKEN`/`NODE_AUTH_TOKEN` unless a future
   maintainer explicitly approves publication in a new issue or release task.
+- npm publication gate: `docs/npm-publication-gate.md`
 - Launch packet: `docs/launch-packet.md`
 - Router-flow demo transcript: `docs/demo-router-flow.md`
 
@@ -76,6 +77,7 @@ catalogs change.
 
 ## Approval Checklist
 
+- `docs/npm-publication-gate.md` is complete and current.
 - `release:check` reports `ok: true`.
 - `publishSurfaces` is empty.
 - `fresh-agent-smokes/v0` passes positives, ambiguity, and hard-negative scenarios.

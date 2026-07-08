@@ -17,6 +17,10 @@ studios and seed packs, proof links, non-goals, and maintainer launch checklist.
 See `docs/demo-router-flow.md` for a small router-to-search-to-read-path
 transcript.
 
+Approval gates for publish/runtime expansion are documented separately:
+`docs/npm-publication-gate.md`, `docs/openclaw-core-primitives.md`,
+`docs/runtime-canary-plan.md`, and `docs/customer-canary-plan.md`.
+
 ## What Ships
 
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`
