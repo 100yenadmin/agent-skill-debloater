@@ -522,6 +522,42 @@ test("pack-sync update writes resolved lock provenance and catalog source URLs",
     catalog[0].sourceUrl,
     `https://github.com/example/pack/blob/${SHA_3}/skills/example-skill/SKILL.md`
   );
+  assert.deepEqual(result.updated, ["locks/example.lock.json", "catalogs/marketing.json"]);
+});
+
+test("pack-sync update reports no updated files when lock and catalog content are unchanged", async () => {
+  const root = await makePackRoot("update-noop", {
+    lock: {
+      resolvedRef: "main",
+      resolvedSha: SHA_3,
+      resolvedAt: "2026-07-08",
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_5 }],
+      license: {
+        status: "recorded",
+        sourceUrl: `https://github.com/example/pack/blob/${SHA_3}/LICENSE`,
+        blobSha: SHA_4
+      }
+    },
+    entry: {
+      sourceCommit: SHA_3,
+      sourceUrl: `https://github.com/example/pack/blob/${SHA_3}/skills/example-skill/SKILL.md`
+    }
+  });
+
+  const result = await updatePackMetadata({
+    root,
+    packId: "example/pack",
+    resolvedAt: "2026-07-08",
+    target: {
+      resolvedRef: "main",
+      resolvedSha: SHA_3,
+      license: { path: "LICENSE", blobSha: SHA_4 },
+      skills: [{ path: "skills/example-skill/SKILL.md", blobSha: SHA_5 }]
+    }
+  });
+
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.updated, []);
 });
 
 test("pack-sync CLI diff and update accept fixture target trees", async () => {
