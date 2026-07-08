@@ -4,6 +4,22 @@
   "description": "Plugin-first searchable catalogs for hidden/read-on-demand agent skill packs.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/100yenadmin/agent-skill-debloater.git"
+  },
+  "bugs": {
+    "url": "https://github.com/100yenadmin/agent-skill-debloater/issues"
+  },
+  "homepage": "https://github.com/100yenadmin/agent-skill-debloater#readme",
+  "keywords": [
+    "agent-skills",
+    "codex",
+    "openclaw",
+    "plugin",
+    "skill-search",
+    "skills"
+  ],
   "files": [
     ".codex-plugin/",
     "bin/",
