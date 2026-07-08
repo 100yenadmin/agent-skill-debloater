@@ -28,6 +28,7 @@
     "release:check": "node src/release-report.mjs check",
     "release:notes": "node src/release-report.mjs notes",
     "pack:dry-run": "npm pack --dry-run --json",
+    "acceptance:package": "node src/package-acceptance.mjs check",
     "smoke:openclaw-adapter": "node bin/agent-skill-debloater openclaw-adapter search design \"launch hero cover image\""
   },
   "engines": {

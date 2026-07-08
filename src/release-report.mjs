@@ -13,6 +13,7 @@ const REQUIRED_SCRIPTS = [
   "release:check",
   "release:notes",
   "pack:dry-run",
+  "acceptance:package",
   "smoke:openclaw-adapter"
 ];
 
@@ -21,6 +22,7 @@ const VALIDATION_COMMANDS = [
   "npm run eval:routing",
   "node bin/pack-sync check",
   "npm run smoke:openclaw-adapter",
+  "npm run acceptance:package",
   "git diff --check",
   "npm run pack:dry-run"
 ];
@@ -46,6 +48,7 @@ const REQUIRED_PACKED_FILES = [
   "skills/engineering-studio/SKILL.md",
   "src/cli.mjs",
   "src/openclaw-adapter.mjs",
+  "src/package-acceptance.mjs",
   "src/pack-sync.mjs",
   "src/release-report.mjs",
   "src/search.mjs"

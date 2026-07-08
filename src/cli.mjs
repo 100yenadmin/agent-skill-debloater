@@ -12,6 +12,7 @@ import {
   searchCatalog
 } from "./search.mjs";
 import { runOpenClawAdapterCli } from "./openclaw-adapter.mjs";
+import { packageAcceptanceMain } from "./package-acceptance.mjs";
 import { runPackSyncCli } from "./pack-sync.mjs";
 
 function optionValue(name, value) {
@@ -171,6 +172,7 @@ function mainUsage() {
     "Commands:",
     "  search <studio> <query>   Search a hidden skill catalog",
     "  openclaw-adapter search   Emit OpenClaw adapter search/audit JSON",
+    "  package-acceptance check  Pack, extract, and smoke-test the package artifact",
     "  pack-sync <command>       Check or update pack metadata",
     "  help                      Show this message"
   ].join("\n");
@@ -191,6 +193,18 @@ export function runMainCli(argv) {
 
   if (command === "openclaw-adapter") {
     runOpenClawAdapterCli(rest);
+    return;
+  }
+
+  if (command === "package-acceptance") {
+    packageAcceptanceMain(rest)
+      .then((code) => {
+        process.exitCode = code;
+      })
+      .catch((error) => {
+        console.error(error.message);
+        process.exitCode = 1;
+      });
     return;
   }
 

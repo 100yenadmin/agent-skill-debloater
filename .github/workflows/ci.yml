@@ -29,6 +29,7 @@ jobs:
           path: artifacts/skill-routing-evals/v0/report-node-${{ matrix.node-version }}.json
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
+      - run: npm run acceptance:package
       - run: git diff --check
       - run: npm run release:check
       - run: npm run pack:dry-run

@@ -14,6 +14,7 @@ primitives.
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`
 - `agent-skill-debloater search <studio> "<query>"`
 - `agent-skill-debloater openclaw-adapter search <studio> "<query>"`
+- `agent-skill-debloater package-acceptance check`
 - `pack-sync check`, `pack-sync diff`, and `pack-sync update`
 - `.codex-plugin/plugin.json` for Codex/OpenClaw plugin installation
 - `design-studio`, `marketing-studio`, `ceo-studio`, and `engineering-studio`
@@ -166,12 +167,17 @@ node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json \
 npm run release:check
 npm run release:notes
 npm run smoke:openclaw-adapter
+npm run acceptance:package
 npm run pack:dry-run
 ```
 
 GitHub Actions includes CI, a manual release preflight workflow, and a scheduled
 upstream pack refresh workflow that runs `pack-sync diff` for seed packs. The
 release workflow does not publish to npm.
+
+`npm run acceptance:package` packs the repo, extracts the produced tarball, runs
+the extracted package CLIs, and emits a portable `package-acceptance/v0` report.
+See `docs/package-acceptance.md` for the report boundary and checks.
 
 ## Proof Boundary
 

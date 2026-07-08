@@ -56,3 +56,17 @@
 - Runtime/customer canary rollout.
 - npm publication.
 - Promoting Voyage rerank from shadow mode to ordering behavior.
+
+## Phase 2
+
+- Add packaged install acceptance reports so release proof exercises the built
+  tarball instead of only the source checkout.
+- Write the runtime-safe canary and rollback plan before any customer VM or
+  fleet rollout.
+- Harden plugin-side OpenClaw adapter contracts without upstream OpenClaw code
+  changes.
+- Prepare npm/public distribution readiness without publishing.
+- Add a rerank-quality eval before any Voyage ordering promotion.
+- Operationalize upstream pack update PR cadence.
+- Plan future studios through discovery/eval rubrics before adding new visible
+  router skills.
