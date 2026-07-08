@@ -12,6 +12,8 @@ const requiredFiles = [
   "catalogs/ceo.json",
   "catalogs/engineering.json",
   "docs/future-studios.md",
+  "docs/demo-router-flow.md",
+  "docs/launch-packet.md",
   "docs/pack-update-cadence.md",
   "docs/rerank-quality.md",
   "evals/fresh-agent-smokes/v0/scenarios.json",
