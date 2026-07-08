@@ -142,11 +142,13 @@ evidence did not justify promoting Voyage ordering for this RC.
   `release:check`, and `pack:dry-run`.
 - If publishing to npm is approved later, complete issue #45 first and record
   the exact package version, registry URL, provenance, rollback plan, and
-  support owner.
+  support owner. Use `docs/npm-publication-gate.md`.
 - If enabling runtime canaries later, complete issues #47 and #48 first with
-  Golden/local proof, one opted-in customer canary, rollback, and evidence.
+  Golden/local proof, one opted-in customer canary, rollback, and evidence. Use
+  `docs/runtime-canary-plan.md` and `docs/customer-canary-plan.md`.
 - If proposing OpenClaw core adoption later, keep curated pack policy in this
-  repo and use issue #46 for generic primitive proposals only.
+  repo and use issue #46 for generic primitive proposals only. Use
+  `docs/openclaw-core-primitives.md`.
 
 ## Public Message
 

@@ -53,3 +53,28 @@ test("launch packet stays market-facing without crossing approval boundaries", a
   assert.match(demo, /pack:\/\/jimliu%2Fbaoyu-skills\/skills\/baoyu-cover-image\/SKILL\.md/);
   assert.match(demo, /does\s+not\s+prove\s+customer VM rollout readiness/i);
 });
+
+test("GA approval gates require explicit approval before publish or runtime mutation", async () => {
+  const npmGate = await readDoc("npm-publication-gate.md");
+  const openClaw = await readDoc("openclaw-core-primitives.md");
+  const runtime = await readDoc("runtime-canary-plan.md");
+  const customer = await readDoc("customer-canary-plan.md");
+
+  for (const required of [
+    "Do not run a real `npm publish`",
+    "explicit approval comment",
+    "Do not publish an untagged working tree",
+    "npm publish --dry-run --ignore-scripts --provenance=false --tag rc",
+    "does not prove customer VM rollout readiness"
+  ]) {
+    assert.match(npmGate, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  assert.match(openClaw, /No upstream OpenClaw code changes, pull requests, merges, or runtime config/);
+  assert.match(openClaw, /Keep AgentSkillDebloater as the proving ground/);
+  assert.match(runtime, /Issue #47 is approval to maintain this plan only/);
+  assert.match(runtime, /This approval does not authorize\s+customer VM writes/i);
+  assert.match(customer, /Do not write to a customer VM/);
+  assert.match(customer, /Customer canary execution requires a separate explicit approval comment/);
+  assert.match(customer, /This plan can define an opt-in customer canary/);
+});
