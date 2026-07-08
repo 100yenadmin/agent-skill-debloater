@@ -22,11 +22,21 @@ jobs:
           node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json
           --summary
           --report artifacts/skill-routing-evals/v0/report-node-${{ matrix.node-version }}.json
+      - run: mkdir -p artifacts/rerank-quality/v0
+      - run: >
+          node src/eval-rerank.mjs evals/rerank-quality/v0/scenarios.json
+          --summary
+          --report artifacts/rerank-quality/v0/report-node-${{ matrix.node-version }}.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: skill-routing-evals-v0-node-${{ matrix.node-version }}
           path: artifacts/skill-routing-evals/v0/report-node-${{ matrix.node-version }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rerank-quality-v0-node-${{ matrix.node-version }}
+          path: artifacts/rerank-quality/v0/report-node-${{ matrix.node-version }}.json
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
       - run: npm run acceptance:package

@@ -11,11 +11,14 @@ const requiredFiles = [
   "catalogs/marketing.json",
   "catalogs/ceo.json",
   "catalogs/engineering.json",
+  "docs/rerank-quality.md",
+  "evals/rerank-quality/v0/scenarios.json",
   "skills/design-studio/SKILL.md",
   "skills/marketing-studio/SKILL.md",
   "skills/ceo-studio/SKILL.md",
   "skills/engineering-studio/SKILL.md",
   "src/cli.mjs",
+  "src/eval-rerank.mjs",
   "src/openclaw-adapter.mjs",
   "src/search.mjs"
 ];
@@ -91,6 +94,7 @@ test("package acceptance report rejects generated reports and test files in the 
       files: [
         ...requiredFiles,
         "evals/skill-routing-evals/v0/routing-report.json",
+        "evals/rerank-quality/v0/rerank-report.json",
         "test/search.test.mjs"
       ]
     }),
@@ -99,6 +103,7 @@ test("package acceptance report rejects generated reports and test files in the 
 
   assert.equal(report.ok, false);
   assert.deepEqual(report.checks.find((item) => item.id === "forbidden-files").detail.forbiddenPresent, [
+    "evals/rerank-quality/v0/rerank-report.json",
     "evals/skill-routing-evals/v0/routing-report.json",
     "test/search.test.mjs"
   ]);

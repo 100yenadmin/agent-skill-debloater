@@ -1,0 +1,51 @@
+[
+  {
+    "id": "engineering-tdd-overlap",
+    "studio": "engineering",
+    "prompt": "Write a TDD plan for a case-insensitive todo API search filter before implementation.",
+    "expectedSkill": "tdd",
+    "overlapCluster": "engineering-tdd"
+  },
+  {
+    "id": "engineering-debugging-overlap",
+    "studio": "engineering",
+    "prompt": "Debug a flaky production failure systematically before proposing a fix.",
+    "expectedSkill": "systematic-debugging",
+    "overlapCluster": "engineering-debugging"
+  },
+  {
+    "id": "engineering-code-review-overlap",
+    "studio": "engineering",
+    "prompt": "Review this pull request for behavioral regressions, missing tests, and risky implementation details.",
+    "expectedSkill": "code-review",
+    "overlapCluster": "engineering-code-review"
+  },
+  {
+    "id": "marketing-launch-copy-overlap",
+    "studio": "marketing",
+    "prompt": "Create launch copy and a campaign plan for a new developer tool.",
+    "expectedSkill": "launch",
+    "overlapCluster": "marketing-launch-copy"
+  },
+  {
+    "id": "marketing-seo-content-overlap",
+    "studio": "marketing",
+    "prompt": "Create an AI SEO content plan with topic clusters and LLM visibility angles.",
+    "expectedSkill": "ai-seo",
+    "overlapCluster": "marketing-content-seo"
+  },
+  {
+    "id": "design-diagram-overlap",
+    "studio": "design",
+    "prompt": "Design an architecture diagram and flowchart for the hidden skill catalog runtime.",
+    "expectedSkill": "baoyu-diagram",
+    "overlapCluster": "design-diagram"
+  },
+  {
+    "id": "design-hero-cover-overlap",
+    "studio": "design",
+    "prompt": "Create a launch hero cover image and social thumbnail for a product announcement.",
+    "expectedSkill": "baoyu-cover-image",
+    "overlapCluster": "design-cover"
+  }
+]
