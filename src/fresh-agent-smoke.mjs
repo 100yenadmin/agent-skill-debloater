@@ -89,7 +89,7 @@ function routerTokenMatches(tokens, queryToken) {
     const tokenStem = stemRouterToken(token);
     return (
       token === queryToken ||
-      token.startsWith(queryToken) ||
+      (queryToken.length > 3 && token.startsWith(queryToken)) ||
       (queryStem.length > 3 && tokenStem === queryStem)
     );
   });
@@ -127,7 +127,7 @@ function scoreRouterDescription(routerBody, prompt) {
   );
 }
 
-function compactResult(result) {
+function baseResultFields(result) {
   return {
     name: result.name,
     title: result.title,
@@ -143,22 +143,16 @@ function compactResult(result) {
   };
 }
 
+function compactResult(result) {
+  return baseResultFields(result);
+}
+
 function selectedTrace(result) {
   if (!result) return null;
   return {
-    name: result.name,
-    title: result.title,
-    studio: result.studio,
-    source: result.source,
-    pack: result.pack,
-    capabilities: result.capabilities,
-    skillPath: result.skillPath,
-    readPath: result.readPath,
+    ...baseResultFields(result),
     sourceCommit: result.sourceCommit,
-    sourceUrl: result.sourceUrl,
-    confidence: result.confidence,
-    confidenceLabel: result.confidenceLabel,
-    why: result.why
+    sourceUrl: result.sourceUrl
   };
 }
 
@@ -216,8 +210,8 @@ function validateScenario(scenario, index) {
       throw new Error(`Fresh-agent smoke ${label} is missing ${field}`);
     }
   }
-  if (scenario.query !== undefined && (typeof scenario.query !== "string" || !scenario.query)) {
-    throw new Error(`Fresh-agent smoke ${label} query must be a non-empty string when provided`);
+  if (scenario.query !== undefined) {
+    throw new Error(`Fresh-agent smoke ${label} query is not supported; use prompt as the searched task text`);
   }
   if (scenario.expectedDisposition && !DISPOSITIONS.includes(scenario.expectedDisposition)) {
     throw new Error(`Fresh-agent smoke ${label} expectedDisposition must be one of ${DISPOSITIONS.join(", ")}`);
@@ -303,6 +297,13 @@ async function selectRouterFromPrompt(prompt, options) {
   };
 }
 
+function topResultsWereInspected(results, topResults) {
+  return (
+    topResults.length === Math.min(results.length, DEFAULT_LIMIT) &&
+    topResults.every((result) => typeof result.name === "string" && typeof result.readPath === "string")
+  );
+}
+
 async function runPositiveScenario(scenario, options) {
   const routerBody = await readRouterSkill(scenario.studio);
   const expectedDisposition = scenario.expectedDisposition ?? (scenario.kind === "ambiguity" ? "clarify" : "select");
@@ -351,7 +352,9 @@ async function runPositiveScenario(scenario, options) {
     selectedRouter: routerDecision.selectedRouter,
     selectedStudio: routerDecision.selectedStudio,
     searchCommand: searchCommand(scenario.studio, scenario.prompt),
-    top3Inspected: topResults.length <= DEFAULT_LIMIT,
+    resultCount: results.length,
+    inspectedResultCount: topResults.length,
+    top3Inspected: topResultsWereInspected(results, topResults),
     topResults,
     selectedSkillTrace: selectedTrace(selected),
     candidateSkillTrace: selectedTrace(candidate),
@@ -415,6 +418,9 @@ async function runHardNegativeScenario(scenario, options) {
       studio,
       router: routerForStudio(studio),
       searchCommand: searchCommand(studio, scenario.prompt),
+      resultCount: results.length,
+      inspectedResultCount: rawTopResults.length,
+      top3Inspected: topResultsWereInspected(results, rawTopResults.map(compactResult)),
       topResults: rawTopResults.map(compactResult)
     });
   }
@@ -436,7 +442,7 @@ async function runHardNegativeScenario(scenario, options) {
     selectedStudio: null,
     searchedStudios,
     falsePositiveStudios,
-    top3Inspected: true,
+    top3Inspected: searchedStudios.every((entry) => entry.top3Inspected),
     selectedSkillTrace: null,
     sourceCapabilityDisclosure: null,
     chosenReadPath: null,

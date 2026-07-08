@@ -29,6 +29,7 @@ test("committed fresh-agent smoke suite proves router/search/read-path behavior"
   assert.match(hero.searchCommand, /debloat-skill-search design/);
   assert.match(hero.searchCommand, /--engine fts/);
   assert.match(hero.searchCommand, /Create a polished launch hero cover image/);
+  assert.equal(hero.resultCount, hero.inspectedResultCount);
   assert.equal(hero.top3Inspected, true);
   assert.equal(hero.selectedSkillTrace.name, "baoyu-cover-image");
   assert.equal(hero.selectedSkillTrace.readPath, "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md");
@@ -47,6 +48,7 @@ test("committed fresh-agent smoke suite proves router/search/read-path behavior"
   const negative = report.rows.find((row) => row.id === "hard-negative-general-trivia");
   assert.equal(negative.selectedRouter, null);
   assert.equal(negative.routerDecision.disposition, "abstain");
+  assert.equal(negative.searchedStudios.every((entry) => entry.resultCount === entry.inspectedResultCount), true);
   assert.deepEqual(negative.falsePositiveStudios, []);
 });
 
@@ -119,7 +121,6 @@ test("fresh-agent smoke derives router selection from prompt, not scenario studi
         kind: "positive",
         prompt: "What is the capital of France?",
         studio: "design",
-        query: "hero cover image",
         expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
@@ -150,7 +151,6 @@ test("fresh-agent smoke detects raw body fields before compacting results", asyn
         kind: "positive",
         prompt: "Create a polished launch hero cover image.",
         studio: "design",
-        query: "hero cover image",
         expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
@@ -186,6 +186,32 @@ test("fresh-agent smoke detects raw body fields before compacting results", asyn
   assert.equal(row.wholePackLoaded, true);
   assert.deepEqual(row.bodyLeakFields, ["$[0].body"]);
   assert.ok(row.failures.includes("body-field-leak"));
+});
+
+test("fresh-agent smoke rejects separate query fields so prompt evidence stays authoritative", async () => {
+  const tmpRoot = new URL("./.test-tmp/fresh-agent-smoke-query-field/", import.meta.url);
+  await rm(tmpRoot, { recursive: true, force: true });
+  await mkdir(tmpRoot, { recursive: true });
+  const queryPath = new URL("scenarios.json", tmpRoot);
+  await writeFile(
+    queryPath,
+    JSON.stringify([
+      {
+        id: "query-is-dead",
+        kind: "positive",
+        prompt: "Create a polished launch hero cover image.",
+        query: "unrelated marketing launch copy",
+        studio: "design",
+        expectedRouter: "design-studio",
+        expectedSkill: "baoyu-cover-image",
+        expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
+        expectedCapabilities: ["file-write"],
+        expectedDisposition: "select"
+      }
+    ])
+  );
+
+  await assert.rejects(runFreshAgentSmokes(queryPath), /query is not supported/);
 });
 
 test("fresh-agent smoke CLI writes a JSON report and prints summary", async () => {
@@ -243,7 +269,6 @@ test("fresh-agent smoke rejects duplicate scenario ids", async () => {
         kind: "positive",
         prompt: "Hero image",
         studio: "design",
-        query: "hero image",
         expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
