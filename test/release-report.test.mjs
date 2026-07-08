@@ -8,7 +8,7 @@ test("release checklist captures v1.0 package, plugin, validation, package conte
   const checklist = await buildReleaseChecklist();
 
   assert.equal(checklist.package.name, "agent-skill-debloater");
-  assert.equal(checklist.package.version, "1.0.1");
+  assert.equal(checklist.package.version, "1.0.2-rc.1");
   assert.ok(checklist.package.files.includes(".codex-plugin/"));
   assert.ok(checklist.package.files.includes("evals/skill-routing-evals/v0/scenarios.json"));
   assert.deepEqual(checklist.packageContents.missing, []);
@@ -21,7 +21,7 @@ test("release checklist captures v1.0 package, plugin, validation, package conte
   assert.equal(checklist.distributionReadiness.proofBoundary, true);
   assert.ok(checklist.pluginManifest.present);
   assert.equal(checklist.pluginManifest.name, "agent-skill-debloater");
-  assert.equal(checklist.pluginManifest.version, "1.0.1");
+  assert.equal(checklist.pluginManifest.version, "1.0.2-rc.1");
   assert.deepEqual(checklist.requiredScripts.missing, []);
   assert.deepEqual(checklist.publishSurfaces, []);
   assert.ok(checklist.validationCommands.includes("npm test"));
@@ -36,7 +36,7 @@ test("release checklist captures v1.0 package, plugin, validation, package conte
 test("release notes describe plugin scope, proof boundary, and no npm publish", async () => {
   const notes = await buildReleaseNotes();
 
-  assert.match(notes, /^# AgentSkillDebloater v1\.0\.1/m);
+  assert.match(notes, /^# AgentSkillDebloater v1\.0\.2-rc\.1/m);
   assert.match(notes, /OpenClaw adapter/i);
   assert.match(notes, /pack-sync diff\/update/i);
   assert.match(notes, /Rerank-quality shadow evals/i);
@@ -54,7 +54,7 @@ test("release-report CLI check prints stable JSON", () => {
   const checklist = JSON.parse(output);
 
   assert.equal(checklist.ok, true);
-  assert.equal(checklist.package.version, "1.0.1");
+  assert.equal(checklist.package.version, "1.0.2-rc.1");
   assert.equal(checklist.distributionReadiness.approvalGate, true);
 });
 
@@ -310,5 +310,5 @@ test("release-report CLI notes prints markdown", () => {
     encoding: "utf8"
   });
 
-  assert.match(output, /^# AgentSkillDebloater v1\.0\.1/m);
+  assert.match(output, /^# AgentSkillDebloater v1\.0\.2-rc\.1/m);
 });

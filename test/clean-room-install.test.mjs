@@ -103,8 +103,8 @@ test("clean-room install report passes for router-only visible skills and compac
   const report = buildCleanRoomInstallReportFromResults({
     packageSummary: {
       name: "agent-skill-debloater",
-      version: "1.0.1",
-      filename: "agent-skill-debloater-1.0.1.tgz"
+      version: "1.0.2-rc.1",
+      filename: "agent-skill-debloater-1.0.2-rc.1.tgz"
     },
     pluginSummary: {
       skillsPath: "./skills/",
@@ -131,8 +131,8 @@ test("clean-room install report fails when a backing skill body becomes prompt-v
   const report = buildCleanRoomInstallReportFromResults({
     packageSummary: {
       name: "agent-skill-debloater",
-      version: "1.0.1",
-      filename: "agent-skill-debloater-1.0.1.tgz"
+      version: "1.0.2-rc.1",
+      filename: "agent-skill-debloater-1.0.2-rc.1.tgz"
     },
     pluginSummary: {
       skillsPath: "./skills/",
@@ -158,8 +158,8 @@ test("clean-room install report rejects machine-local paths in shareable output"
       buildCleanRoomInstallReportFromResults({
         packageSummary: {
           name: "agent-skill-debloater",
-          version: "1.0.1",
-          filename: "agent-skill-debloater-1.0.1.tgz"
+          version: "1.0.2-rc.1",
+          filename: "agent-skill-debloater-1.0.2-rc.1.tgz"
         },
         pluginSummary: {
           skillsPath: "./skills/",
@@ -187,8 +187,8 @@ test("clean-room install rejects malformed pack read paths and leaked candidate 
     packPackage: async () => ({
       packEntry: {
         name: "agent-skill-debloater",
-        version: "1.0.1",
-        filename: "agent-skill-debloater-1.0.1.tgz",
+        version: "1.0.2-rc.1",
+        filename: "agent-skill-debloater-1.0.2-rc.1.tgz",
         files: []
       },
       tarballPath: "unused.tgz"
