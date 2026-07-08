@@ -14,6 +14,7 @@ const REQUIRED_SCRIPTS = [
   "release:check",
   "release:notes",
   "pack:dry-run",
+  "pack:update-pr-body",
   "acceptance:package",
   "smoke:openclaw-adapter"
 ];
@@ -43,6 +44,7 @@ const REQUIRED_PACKED_FILES = [
   "evals/skill-routing-evals/v0/scenarios.json",
   "evals/rerank-quality/v0/scenarios.json",
   "docs/openclaw-adapter.md",
+  "docs/pack-update-cadence.md",
   "docs/rerank-quality.md",
   "locks/baoyu-skills.lock.json",
   "overlays/studios.json",
@@ -54,6 +56,7 @@ const REQUIRED_PACKED_FILES = [
   "skills/engineering-studio/SKILL.md",
   "src/cli.mjs",
   "src/openclaw-adapter.mjs",
+  "src/pack-update-cadence.mjs",
   "src/package-acceptance.mjs",
   "src/pack-sync.mjs",
   "src/release-report.mjs",

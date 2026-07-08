@@ -2,27 +2,114 @@ name: Upstream pack refresh
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Run diff-only artifacts or prepare a draft update PR"
+        type: choice
+        options:
+          - diff
+          - update-pr
+        default: diff
+      pack:
+        description: "Seed pack to update; use all only for diff mode"
+        type: choice
+        options:
+          - all
+          - jimliu/baoyu-skills
+          - coreyhaines31/marketingskills
+          - garrytan/gstack
+          - obra/superpowers
+          - mattpocock/skills
+        default: all
+      to:
+        description: "Upstream ref, tag, or SHA to diff/update"
+        default: main
+      resolved_at:
+        description: "Optional YYYY-MM-DD resolvedAt override for update-pr mode"
+        required: false
   schedule:
     - cron: "17 9 * * 1"
 
 jobs:
   diff-seed-packs:
+    if: github.event_name == 'schedule' || inputs.mode == 'diff'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       GITHUB_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ inputs.to || 'main' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
       - run: mkdir -p artifacts/pack-sync
-      - run: node bin/pack-sync diff --pack jimliu/baoyu-skills --to main > artifacts/pack-sync/baoyu-skills.json
-      - run: node bin/pack-sync diff --pack coreyhaines31/marketingskills --to main > artifacts/pack-sync/marketingskills.json
-      - run: node bin/pack-sync diff --pack garrytan/gstack --to main > artifacts/pack-sync/gstack.json
-      - run: node bin/pack-sync diff --pack obra/superpowers --to main > artifacts/pack-sync/superpowers.json
-      - run: node bin/pack-sync diff --pack mattpocock/skills --to main > artifacts/pack-sync/mattpocock-skills.json
+      - run: node bin/pack-sync diff --pack jimliu/baoyu-skills --to "$TARGET_REF" > artifacts/pack-sync/baoyu-skills.json
+      - run: node bin/pack-sync diff --pack coreyhaines31/marketingskills --to "$TARGET_REF" > artifacts/pack-sync/marketingskills.json
+      - run: node bin/pack-sync diff --pack garrytan/gstack --to "$TARGET_REF" > artifacts/pack-sync/gstack.json
+      - run: node bin/pack-sync diff --pack obra/superpowers --to "$TARGET_REF" > artifacts/pack-sync/superpowers.json
+      - run: node bin/pack-sync diff --pack mattpocock/skills --to "$TARGET_REF" > artifacts/pack-sync/mattpocock-skills.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: upstream-pack-diffs
           path: artifacts/pack-sync/*.json
+
+  prepare-update-pr:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'update-pr'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PACK_ID: ${{ inputs.pack }}
+      TARGET_REF: ${{ inputs.to }}
+      RESOLVED_AT: ${{ inputs.resolved_at }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate update input
+        run: |
+          if [ "$PACK_ID" = "all" ]; then
+            echo "::error::update-pr mode requires one concrete seed pack"
+            exit 1
+          fi
+      - run: mkdir -p artifacts/pack-sync
+      - name: Write provenance diff
+        run: node bin/pack-sync diff --pack "$PACK_ID" --to "$TARGET_REF" > artifacts/pack-sync/pack-diff.json
+      - name: Update lock and catalog provenance
+        run: |
+          RESOLVED="${RESOLVED_AT:-$(date -u +%F)}"
+          node bin/pack-sync update --pack "$PACK_ID" --to "$TARGET_REF" --resolved-at "$RESOLVED" > artifacts/pack-sync/pack-update.json
+      - run: node bin/pack-sync check > artifacts/pack-sync/pack-check.json
+      - run: npm run eval:routing
+      - run: npm run eval:rerank
+      - run: npm run release:check
+      - run: npm run pack:dry-run
+      - run: node src/pack-update-cadence.mjs packet --diff artifacts/pack-sync/pack-diff.json --update artifacts/pack-sync/pack-update.json --output artifacts/pack-sync/update-packet.json
+      - run: node src/pack-update-cadence.mjs pr-body --diff artifacts/pack-sync/pack-diff.json --update artifacts/pack-sync/pack-update.json --output artifacts/pack-sync/update-pr-body.md
+      - run: node src/pack-update-cadence.mjs branch-name --pack "$PACK_ID" --to "$TARGET_REF" --prefix "pack-update/${{ github.run_id }}" --output artifacts/pack-sync/branch-name.txt
+      - name: Create draft update PR
+        run: |
+          if git diff --quiet -- locks catalogs; then
+            echo "::notice::No lock/catalog changes to publish"
+            exit 0
+          fi
+          BRANCH="$(cat artifacts/pack-sync/branch-name.txt)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add locks catalogs
+          git commit -m "Update ${PACK_ID} skill pack to ${TARGET_REF}"
+          git push origin "$BRANCH"
+          gh pr create --draft --base main --head "$BRANCH" --title "Update ${PACK_ID} skill pack to ${TARGET_REF}" --body-file artifacts/pack-sync/update-pr-body.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upstream-pack-update-pr-packet
+          path: artifacts/pack-sync/*

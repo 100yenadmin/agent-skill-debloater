@@ -156,6 +156,11 @@ Updates preserve upstream repositories as source of truth. Catalogs remain
 curated overlays; new upstream skills are not made router-visible until a
 catalog/eval change selects them.
 
+The `Upstream pack refresh` workflow runs scheduled diff-only reports for seed
+packs. Maintainers can run it manually in `update-pr` mode for one concrete pack
+to create a draft PR with provenance diff, eval commands, and proof boundary.
+See `docs/pack-update-cadence.md`.
+
 ## Routing Evals
 
 Run the routing gate with a compact console summary:
@@ -189,9 +194,10 @@ npm run acceptance:package
 npm run pack:dry-run
 ```
 
-GitHub Actions includes CI, a manual release preflight workflow, and a scheduled
-upstream pack refresh workflow that runs `pack-sync diff` for seed packs. The
-release workflow does not publish to npm.
+GitHub Actions includes CI, a manual release preflight workflow, and an upstream
+pack refresh workflow. Scheduled pack refresh runs are diff-only; manual
+`update-pr` runs can prepare reviewed draft update PRs. The release workflow
+does not publish to npm.
 
 `npm run acceptance:package` packs the repo, extracts the produced tarball, runs
 the extracted package CLIs, and emits a portable `package-acceptance/v0` report.
