@@ -34,7 +34,16 @@ async function readJsonFile(file) {
 }
 
 async function writeJsonFile(file, json) {
-  await writeFile(file, `${JSON.stringify(json, null, 2)}\n`);
+  const nextBody = `${JSON.stringify(json, null, 2)}\n`;
+  let currentBody = null;
+  try {
+    currentBody = await readFile(file, "utf8");
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  if (currentBody === nextBody) return false;
+  await writeFile(file, nextBody);
+  return true;
 }
 
 async function listJson(root, dir) {
@@ -466,10 +475,13 @@ export async function updatePackMetadata({ root = repoRoot, packId, target, reso
     skills: targetState.skills
   };
 
-  await writeJsonFile(state.lockRecord.file, lock);
+  const updated = [];
+  if (await writeJsonFile(state.lockRecord.file, lock)) {
+    updated.push(toPortableRelative(state.root, state.lockRecord.file));
+  }
   for (const record of state.catalogRecords) {
     let changed = false;
-    const updated = record.json.map((entry) => {
+    const catalog = record.json.map((entry) => {
       if (entry.pack !== packId) return entry;
       changed = true;
       return {
@@ -479,7 +491,9 @@ export async function updatePackMetadata({ root = repoRoot, packId, target, reso
       };
     });
     if (changed) {
-      await writeJsonFile(record.file, updated);
+      if (await writeJsonFile(record.file, catalog)) {
+        updated.push(toPortableRelative(state.root, record.file));
+      }
     }
   }
 
@@ -489,12 +503,7 @@ export async function updatePackMetadata({ root = repoRoot, packId, target, reso
     resolvedRef: targetState.resolvedRef,
     resolvedSha: targetState.resolvedSha,
     resolvedAt,
-    updated: [
-      toPortableRelative(state.root, state.lockRecord.file),
-      ...state.catalogRecords
-        .filter((record) => record.json.some((entry) => entry.pack === packId))
-        .map((record) => toPortableRelative(state.root, record.file))
-    ]
+    updated
   };
 }
 
