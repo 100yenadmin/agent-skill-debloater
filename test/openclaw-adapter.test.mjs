@@ -269,7 +269,7 @@ test("Codex plugin manifest exposes router skills and keeps runtime policy in th
   const manifest = JSON.parse(await readFile(new URL("../.codex-plugin/plugin.json", import.meta.url), "utf8"));
 
   assert.equal(manifest.name, "agent-skill-debloater");
-  assert.equal(manifest.version, "1.0.1");
+  assert.equal(manifest.version, "1.0.2-rc.1");
   assert.equal(manifest.skills, "./skills/");
   assert.equal(manifest.repository, "https://github.com/100yenadmin/agent-skill-debloater");
   assert.equal(manifest.interface.displayName, "AgentSkillDebloater");
