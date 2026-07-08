@@ -10,6 +10,7 @@ const execFileAsync = promisify(execFile);
 const REQUIRED_SCRIPTS = [
   "test",
   "eval:routing",
+  "eval:rerank",
   "release:check",
   "release:notes",
   "pack:dry-run",
@@ -20,6 +21,7 @@ const REQUIRED_SCRIPTS = [
 const VALIDATION_COMMANDS = [
   "npm test",
   "npm run eval:routing",
+  "npm run eval:rerank",
   "node bin/pack-sync check",
   "npm run smoke:openclaw-adapter",
   "npm run acceptance:package",
@@ -39,7 +41,9 @@ const REQUIRED_PACKED_FILES = [
   "docs/distribution-readiness.md",
   "docs/openclaw-adapter-contract-fixtures.json",
   "evals/skill-routing-evals/v0/scenarios.json",
+  "evals/rerank-quality/v0/scenarios.json",
   "docs/openclaw-adapter.md",
+  "docs/rerank-quality.md",
   "locks/baoyu-skills.lock.json",
   "overlays/studios.json",
   "packs/baoyu-skills.json",
@@ -60,6 +64,10 @@ const FORBIDDEN_PACKED_FILE_PATTERNS = [
   {
     label: "evals/skill-routing-evals/*/routing-report.json",
     pattern: /^evals\/skill-routing-evals\/[^/]+\/routing-report\.json$/
+  },
+  {
+    label: "evals/rerank-quality/*/rerank-report.json",
+    pattern: /^evals\/rerank-quality\/[^/]+\/rerank-report\.json$/
   }
 ];
 const REQUIRED_KEYWORDS = ["agent-skills", "codex", "openclaw", "plugin", "skill-search", "skills"];
@@ -269,6 +277,7 @@ export async function buildReleaseNotes({ root = repoRoot } = {}) {
     "- Plugin-first Codex manifest with Design, Marketing, CEO, and Engineering router skills.",
     "- Pack provenance automation through `pack-sync diff/update` with lockfile skill blob hashes.",
     "- OpenClaw adapter JSON for compact candidates and selected-skill audit traces.",
+    "- Rerank-quality shadow evals for optional Voyage comparison without promotion.",
     "- Release/update automation for local preflight, CI preflight, and scheduled upstream pack checks.",
     "- Distribution readiness checklist for future npm/public publish review without publishing.",
     "",

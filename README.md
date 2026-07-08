@@ -28,6 +28,7 @@ primitives.
 - SQLite FTS5 search fast path by default, with portable JSON deterministic
   fallback
 - optional Voyage rerank shadow mode for compact candidate cards
+- rerank-quality shadow evals for optional Voyage comparison without promotion
 - release preflight and scheduled upstream pack diff workflows
 
 ## Schema Contracts
@@ -121,6 +122,16 @@ The routing eval gate proves deterministic search quality only. Voyage ordering
 must stay shadow-only until a separate rerank-quality eval proves lift without
 Recall@3 regression.
 
+Run the advisory rerank comparison gate:
+
+```bash
+npm run eval:rerank
+```
+
+Without `VOYAGE_API_KEY`, the suite exits cleanly with
+`skipped-missing-api-key` rows. With a key, it records shadow ranking deltas and
+promotion eligibility, but still does not reorder normal search results.
+
 ## Pack Updates
 
 Check current metadata:
@@ -161,11 +172,18 @@ node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json \
   --report artifacts/skill-routing-evals/v0/report.json
 ```
 
+Run the rerank-quality shadow eval:
+
+```bash
+npm run eval:rerank
+```
+
 ## Release Preflight
 
 ```bash
 npm run release:check
 npm run release:notes
+npm run eval:rerank
 npm run smoke:openclaw-adapter
 npm run acceptance:package
 npm run pack:dry-run

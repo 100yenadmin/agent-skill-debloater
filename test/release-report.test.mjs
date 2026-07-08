@@ -26,6 +26,7 @@ test("release checklist captures v1.0 package, plugin, validation, package conte
   assert.deepEqual(checklist.publishSurfaces, []);
   assert.ok(checklist.validationCommands.includes("npm test"));
   assert.ok(checklist.validationCommands.includes("npm run eval:routing"));
+  assert.ok(checklist.validationCommands.includes("npm run eval:rerank"));
   assert.ok(checklist.validationCommands.includes("node bin/pack-sync check"));
   assert.ok(checklist.validationCommands.includes("npm run acceptance:package"));
 });
@@ -36,6 +37,7 @@ test("release notes describe plugin scope, proof boundary, and no npm publish", 
   assert.match(notes, /^# AgentSkillDebloater v1\.0\.1/m);
   assert.match(notes, /OpenClaw adapter/i);
   assert.match(notes, /pack-sync diff\/update/i);
+  assert.match(notes, /Rerank-quality shadow evals/i);
   assert.match(notes, /No npm publish/i);
   assert.match(notes, /ready-for-publish-review, not npm-published/i);
   assert.match(notes, /does not prove customer VM rollout/i);

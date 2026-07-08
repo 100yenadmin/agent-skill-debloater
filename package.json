@@ -26,6 +26,7 @@
     "catalogs/",
     "docs/",
     "evals/skill-routing-evals/v0/scenarios.json",
+    "evals/rerank-quality/v0/scenarios.json",
     "locks/",
     "overlays/",
     "packs/",
@@ -41,6 +42,7 @@
   "scripts": {
     "test": "node --test test/*.test.mjs",
     "eval:routing": "node src/eval-routing.mjs evals/skill-routing-evals/v0/scenarios.json --summary",
+    "eval:rerank": "node src/eval-rerank.mjs evals/rerank-quality/v0/scenarios.json --summary",
     "release:check": "node src/release-report.mjs check",
     "release:notes": "node src/release-report.mjs notes",
     "pack:dry-run": "npm pack --dry-run --json",

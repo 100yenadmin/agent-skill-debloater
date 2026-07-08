@@ -13,6 +13,7 @@ jobs:
           node-version: "22.13.0"
       - run: npm test
       - run: npm run eval:routing
+      - run: npm run eval:rerank
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
       - run: npm run acceptance:package -- --report package-acceptance.json

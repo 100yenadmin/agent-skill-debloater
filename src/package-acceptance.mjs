@@ -22,17 +22,21 @@ const REQUIRED_PACKED_FILES = [
   "catalogs/marketing.json",
   "catalogs/ceo.json",
   "catalogs/engineering.json",
+  "docs/rerank-quality.md",
+  "evals/rerank-quality/v0/scenarios.json",
   "skills/design-studio/SKILL.md",
   "skills/marketing-studio/SKILL.md",
   "skills/ceo-studio/SKILL.md",
   "skills/engineering-studio/SKILL.md",
   "src/cli.mjs",
+  "src/eval-rerank.mjs",
   "src/openclaw-adapter.mjs",
   "src/search.mjs"
 ];
 
 const FORBIDDEN_PACKED_FILE_PATTERNS = [
   /^evals\/skill-routing-evals\/[^/]+\/routing-report\.json$/,
+  /^evals\/rerank-quality\/[^/]+\/rerank-report\.json$/,
   /^artifacts\//,
   /^test\//
 ];
