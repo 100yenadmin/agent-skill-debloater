@@ -12,6 +12,8 @@ test("CI workflow runs release preflight checks without publishing", async () =>
   assert.match(workflow, /npm test/);
   assert.match(workflow, /node bin\/pack-sync check/);
   assert.match(workflow, /npm run smoke:openclaw-adapter/);
+  assert.match(workflow, /node src\/fresh-agent-smoke\.mjs evals\/fresh-agent-smokes\/v0\/scenarios\.json/);
+  assert.match(workflow, /name: fresh-agent-smokes-v0-node-\$\{\{ matrix\.node-version \}\}/);
   assert.match(workflow, /npm run acceptance:clean-room -- --report artifacts\/clean-room-install\/v0\/report-node-\$\{\{ matrix\.node-version \}\}\.json/);
   assert.match(workflow, /name: clean-room-install-v0-node-\$\{\{ matrix\.node-version \}\}/);
   assert.match(workflow, /npm run release:check/);
@@ -25,6 +27,7 @@ test("release-preflight workflow is manual, validates artifacts, and does not pu
   assert.match(workflow, /workflow_dispatch/);
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run eval:routing/);
+  assert.match(workflow, /npm run smoke:fresh-agents -- --report fresh-agent-smokes\.json/);
   assert.match(workflow, /node bin\/pack-sync check/);
   assert.match(workflow, /npm run smoke:openclaw-adapter/);
   assert.match(workflow, /git diff --check/);

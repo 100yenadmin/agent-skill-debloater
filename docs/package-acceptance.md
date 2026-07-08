@@ -6,6 +6,7 @@ intend to ship?"
 
 ```bash
 npm run acceptance:package
+npm run smoke:fresh-agents
 npm run acceptance:clean-room
 ```
 
@@ -13,6 +14,7 @@ To save a shareable JSON report:
 
 ```bash
 node src/package-acceptance.mjs check --report artifacts/package-acceptance.json
+node src/fresh-agent-smoke.mjs evals/fresh-agent-smokes/v0/scenarios.json --summary --report artifacts/fresh-agent-smokes.json
 node src/clean-room-install.mjs check --report artifacts/clean-room-install.json
 ```
 
@@ -34,6 +36,12 @@ the artifact, installs it into a fresh local profile shape, confirms the plugin
 exposes only the four studio router `SKILL.md` files, confirms catalogs contain
 compact projections rather than backing skill bodies, and runs installed CLI
 searches for Design, Marketing, CEO, Engineering, and a hard negative.
+
+`fresh-agent-smokes/v0` is the local proxy for fresh-agent routing behavior. It
+requires positive Design, Marketing, CEO, and Engineering prompts, an ambiguity
+prompt, and a hard negative to inspect top-3 search results, identify the exact
+backing `SKILL.md` path, disclose source/capability labels, and avoid loading
+whole backing packs.
 
 ## Proof Boundary
 
