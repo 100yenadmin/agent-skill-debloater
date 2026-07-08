@@ -14,6 +14,7 @@ primitives.
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`
 - `agent-skill-debloater search <studio> "<query>"`
 - `agent-skill-debloater openclaw-adapter search <studio> "<query>"`
+- `agent-skill-debloater clean-room-install check`
 - `agent-skill-debloater package-acceptance check`
 - `pack-sync check`, `pack-sync diff`, and `pack-sync update`
 - `.codex-plugin/plugin.json` for Codex/OpenClaw plugin installation
@@ -195,6 +196,7 @@ npm run release:check
 npm run release:notes
 npm run eval:rerank
 npm run smoke:openclaw-adapter
+npm run acceptance:clean-room
 npm run acceptance:package
 npm run pack:dry-run
 ```
@@ -207,6 +209,9 @@ does not publish to npm.
 `npm run acceptance:package` packs the repo, extracts the produced tarball, runs
 the extracted package CLIs, and emits a portable `package-acceptance/v0` report.
 See `docs/package-acceptance.md` for the report boundary and checks.
+`npm run acceptance:clean-room` additionally installs the packed artifact into a
+fresh local profile shape, confirms only router skills are visible, and proves
+catalog-backed searches stay read-on-demand.
 
 Runtime rollout remains separate from package proof. Use
 `docs/runtime-canary-plan.md` for the Golden VM, one-customer canary, rollback,

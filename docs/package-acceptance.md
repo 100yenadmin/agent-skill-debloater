@@ -6,12 +6,14 @@ intend to ship?"
 
 ```bash
 npm run acceptance:package
+npm run acceptance:clean-room
 ```
 
 To save a shareable JSON report:
 
 ```bash
 node src/package-acceptance.mjs check --report artifacts/package-acceptance.json
+node src/clean-room-install.mjs check --report artifacts/clean-room-install.json
 ```
 
 The command:
@@ -27,9 +29,14 @@ The command:
 The report includes package metadata, checks, compact scenario summaries, and a
 proof boundary. It does not include full skill bodies or local temp paths.
 
+`clean-room-install/v0` adds the install-shape check for GA readiness: it packs
+the artifact, installs it into a fresh local profile shape, confirms the plugin
+exposes only the four studio router `SKILL.md` files, confirms catalogs contain
+compact projections rather than backing skill bodies, and runs installed CLI
+searches for Design, Marketing, CEO, Engineering, and a hard negative.
+
 ## Proof Boundary
 
 Package acceptance proves packaged plugin artifact behavior only. It does not
 prove customer VM rollout readiness, OpenClaw core runtime safety, fleet
 deployment safety, or npm publication.
-
