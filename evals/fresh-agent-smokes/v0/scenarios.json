@@ -8,7 +8,8 @@
     "expectedRouter": "design-studio",
     "expectedSkill": "baoyu-cover-image",
     "expectedReadPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
-    "expectedCapabilities": ["file-write"]
+    "expectedCapabilities": ["file-write"],
+    "expectedDisposition": "select"
   },
   {
     "id": "design-architecture-diagram",
@@ -19,7 +20,8 @@
     "expectedRouter": "design-studio",
     "expectedSkill": "baoyu-diagram",
     "expectedReadPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-diagram/SKILL.md",
-    "expectedCapabilities": ["file-write"]
+    "expectedCapabilities": ["file-write"],
+    "expectedDisposition": "select"
   },
   {
     "id": "marketing-positioning-icp",
@@ -30,7 +32,8 @@
     "expectedRouter": "marketing-studio",
     "expectedSkill": "product-marketing",
     "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/product-marketing/SKILL.md",
-    "expectedCapabilities": ["read-only"]
+    "expectedCapabilities": ["read-only"],
+    "expectedDisposition": "select"
   },
   {
     "id": "marketing-seo-content",
@@ -41,7 +44,8 @@
     "expectedRouter": "marketing-studio",
     "expectedSkill": "ai-seo",
     "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/ai-seo/SKILL.md",
-    "expectedCapabilities": ["read-only", "network"]
+    "expectedCapabilities": ["read-only", "network"],
+    "expectedDisposition": "select"
   },
   {
     "id": "marketing-launch-copy",
@@ -52,7 +56,8 @@
     "expectedRouter": "marketing-studio",
     "expectedSkill": "launch",
     "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/launch/SKILL.md",
-    "expectedCapabilities": ["read-only"]
+    "expectedCapabilities": ["read-only"],
+    "expectedDisposition": "select"
   },
   {
     "id": "ceo-founder-strategy",
@@ -63,7 +68,8 @@
     "expectedRouter": "ceo-studio",
     "expectedSkill": "plan-ceo-review",
     "expectedReadPath": "pack://garrytan%2Fgstack/plan-ceo-review/SKILL.md",
-    "expectedCapabilities": ["read-only", "file-write", "network"]
+    "expectedCapabilities": ["read-only", "file-write", "network"],
+    "expectedDisposition": "select"
   },
   {
     "id": "engineering-tdd",
@@ -74,7 +80,8 @@
     "expectedRouter": "engineering-studio",
     "expectedSkill": "tdd",
     "expectedReadPath": "pack://mattpocock%2Fskills/skills/engineering/tdd/SKILL.md",
-    "expectedCapabilities": ["read-only", "file-write"]
+    "expectedCapabilities": ["read-only", "file-write"],
+    "expectedDisposition": "select"
   },
   {
     "id": "cross-studio-launch-hero-copy",
@@ -86,6 +93,7 @@
     "expectedSkill": "launch",
     "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/launch/SKILL.md",
     "expectedCapabilities": ["read-only"],
+    "expectedDisposition": "clarify",
     "alternateStudios": ["design"]
   },
   {
@@ -93,6 +101,7 @@
     "kind": "hard-negative",
     "prompt": "What is the capital of France?",
     "expectedSelectedStudio": null,
+    "expectedDisposition": "abstain",
     "studios": ["design", "marketing", "ceo", "engineering"]
   }
 ]
