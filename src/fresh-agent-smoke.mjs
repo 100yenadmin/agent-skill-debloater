@@ -7,7 +7,7 @@ import { parsePackReadPath, loadCatalog, searchCatalog } from "./search.mjs";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SUITE = "fresh-agent-smokes/v0";
 const DEFAULT_LIMIT = 3;
-const DEFAULT_ENGINE = "json";
+const DEFAULT_ENGINE = "fts";
 const ALL_STUDIOS = ["design", "marketing", "ceo", "engineering"];
 const REQUIRED_KINDS = ["positive", "ambiguity", "hard-negative"];
 const REQUIRED_POSITIVE_STUDIOS = [...ALL_STUDIOS].sort();
@@ -97,6 +97,25 @@ function routerTokenMatches(tokens, queryToken) {
 
 function routerDescription(routerBody) {
   return routerBody.match(/^description:\s*(.+)$/m)?.[1] ?? "";
+}
+
+function hasScopedCatalogLeakGuard(routerBody, studio) {
+  const normalized = routerBody.toLowerCase().replace(/\s+/g, " ");
+  const hasBlockingLanguage = /\b(never|do not|don't)\b/.test(normalized);
+  const hasInlineAction = /\b(paste|summarize|inline|load)\b/.test(normalized);
+  const hasPromptBoundary = /\bprompt\b/.test(normalized);
+  const scopedCatalogPhrases = [
+    `whole ${studio} catalog`,
+    `entire ${studio} catalog`,
+    `whole ${studio} library`,
+    `entire ${studio} library`
+  ];
+  return (
+    hasBlockingLanguage &&
+    hasInlineAction &&
+    hasPromptBoundary &&
+    scopedCatalogPhrases.some((phrase) => normalized.includes(phrase))
+  );
 }
 
 function scoreRouterDescription(routerBody, prompt) {
@@ -301,7 +320,7 @@ async function runPositiveScenario(scenario, options) {
   const readPathFailures = topResults.map((result) => result.readPath).filter((readPath) => !isValidPackSkillReadPath(readPath));
   const failures = [];
   if (!routerBody.includes(`debloat-skill-search" ${scenario.studio}`)) failures.push("router-does-not-run-studio-search");
-  if (!/Never paste or summarize the whole .*catalog into the prompt\./.test(routerBody)) {
+  if (!hasScopedCatalogLeakGuard(routerBody, scenario.studio)) {
     failures.push("router-missing-whole-pack-warning");
   }
   if (routerDecision.disposition !== expectedDisposition) failures.push("router-disposition");

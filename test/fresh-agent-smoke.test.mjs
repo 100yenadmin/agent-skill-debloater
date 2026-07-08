@@ -27,7 +27,7 @@ test("committed fresh-agent smoke suite proves router/search/read-path behavior"
   assert.equal(hero.routerDecision.disposition, "select");
   assert.equal(hero.routerDecision.selectedRouter, "design-studio");
   assert.match(hero.searchCommand, /debloat-skill-search design/);
-  assert.match(hero.searchCommand, /--engine json/);
+  assert.match(hero.searchCommand, /--engine fts/);
   assert.match(hero.searchCommand, /Create a polished launch hero cover image/);
   assert.equal(hero.top3Inspected, true);
   assert.equal(hero.selectedSkillTrace.name, "baoyu-cover-image");
