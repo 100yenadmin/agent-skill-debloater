@@ -68,5 +68,5 @@
 - Prepare npm/public distribution readiness without publishing.
 - Add a rerank-quality eval before any Voyage ordering promotion.
 - Operationalize upstream pack update PR cadence.
-- Plan future studios through discovery/eval rubrics before adding new visible
-  router skills.
+- Plan future studios through `docs/future-studios.md` discovery/eval rubrics
+  before adding new visible router skills.
