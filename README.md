@@ -179,6 +179,10 @@ release workflow does not publish to npm.
 the extracted package CLIs, and emits a portable `package-acceptance/v0` report.
 See `docs/package-acceptance.md` for the report boundary and checks.
 
+Runtime rollout remains separate from package proof. Use
+`docs/runtime-canary-plan.md` for the Golden VM, one-customer canary, rollback,
+and evidence checklist before any customer or fleet change.
+
 ## Proof Boundary
 
 This proves local plugin routing only. It does not prove customer VM rollout
