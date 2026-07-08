@@ -36,8 +36,8 @@ const requiredFiles = [
 function packEntry({ files = requiredFiles } = {}) {
   return {
     name: "agent-skill-debloater",
-    version: "1.0.2-rc.1",
-    filename: "agent-skill-debloater-1.0.2-rc.1.tgz",
+    version: "1.0.2-rc.2",
+    filename: "agent-skill-debloater-1.0.2-rc.2.tgz",
     size: 75406,
     unpackedSize: 351857,
     shasum: "48fb9795bb1342657bc57a559ba235f933cbcec5",
@@ -78,7 +78,7 @@ test("package acceptance report passes with required files and successful scenar
   assert.equal(report.ok, true);
   assert.equal(report.suite, "package-acceptance/v0");
   assert.equal(report.package.name, "agent-skill-debloater");
-  assert.equal(report.package.filename, "agent-skill-debloater-1.0.2-rc.1.tgz");
+  assert.equal(report.package.filename, "agent-skill-debloater-1.0.2-rc.2.tgz");
   assert.equal(report.checks.find((item) => item.id === "required-files").ok, true);
   assert.equal(report.checks.find((item) => item.id === "scenario-results").ok, true);
   assert.match(report.proofBoundary, /does not prove customer VM rollout/i);

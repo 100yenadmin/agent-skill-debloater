@@ -26,18 +26,18 @@ The current release candidate is best described as:
 
 ## Current RC
 
-- Version: `1.0.2-rc.1`
-- GitHub prerelease: https://github.com/100yenadmin/agent-skill-debloater/releases/tag/v1.0.2-rc.1
-- Tagged artifact acceptance: https://github.com/100yenadmin/agent-skill-debloater/issues/43#issuecomment-4915439176
-- Main CI proof: https://github.com/100yenadmin/agent-skill-debloater/actions/runs/28947150244
+- Version: `1.0.2-rc.2`
+- GitHub prerelease: https://github.com/100yenadmin/agent-skill-debloater/releases/tag/v1.0.2-rc.2
+- Tagged artifact acceptance: https://github.com/100yenadmin/agent-skill-debloater/issues/55
+- Main CI proof: https://github.com/100yenadmin/agent-skill-debloater/actions/runs/28949997975
 - GA tracker: https://github.com/100yenadmin/agent-skill-debloater/issues/37
 
-The RC tarball proof recorded:
+The RC2 tarball proof is recorded on issue #55 after the tag is created:
 
-- Package: `agent-skill-debloater-1.0.2-rc.1.tgz`
-- sha256: `26777ff6405780c10e44c6ededb141d27416108a5b82e379c12f046a5c23acae`
-- npm shasum: `dbb7544c0cec2a5879b1c9d9b4ddfb5d7a59b647`
-- Packed files: 62
+- Package: `agent-skill-debloater-1.0.2-rc.2.tgz`
+- sha256: recorded in #55 after exact tagged package acceptance.
+- npm shasum: recorded in #55 after exact tagged package acceptance.
+- Packed files: recorded in #55 after exact tagged package acceptance.
 
 ## Supported Studios And Seed Packs
 
@@ -59,7 +59,7 @@ GitHub tag:
 ```bash
 git clone https://github.com/100yenadmin/agent-skill-debloater.git
 cd agent-skill-debloater
-git checkout v1.0.2-rc.1
+git checkout v1.0.2-rc.2
 npm run acceptance:package
 npm run acceptance:clean-room
 ```
@@ -100,7 +100,7 @@ can prepare reviewed draft PRs for one pack at a time.
 
 ## Evidence Summary
 
-Release proof for `v1.0.2-rc.1` includes:
+Release proof for `v1.0.2-rc.2` includes:
 
 - CI on Node 22.13.0 and 26.x.
 - `npm test`.
