@@ -24,20 +24,22 @@ The current release candidate is best described as:
 - Codex/OpenClaw plugin users who want compact studio routers plus auditable
   selected-skill traces.
 
-## Current RC
+## RC2 Candidate
 
 - Version: `1.0.2-rc.2`
-- GitHub prerelease: https://github.com/100yenadmin/agent-skill-debloater/releases/tag/v1.0.2-rc.2
-- Tagged artifact acceptance: https://github.com/100yenadmin/agent-skill-debloater/issues/55
-- Main CI proof: https://github.com/100yenadmin/agent-skill-debloater/actions/runs/28949997975
+- GitHub prerelease: created after PR #56 merges and linked from issue #55.
+- Tagged artifact acceptance: required in issue #55 before this RC is accepted.
+- PR CI proof: https://github.com/100yenadmin/agent-skill-debloater/actions/runs/28950316297
+- Main CI proof: required after merge and linked from issue #55.
 - GA tracker: https://github.com/100yenadmin/agent-skill-debloater/issues/37
 
-The RC2 tarball proof is recorded on issue #55 after the tag is created:
+Pre-merge package dry-run proof covers the candidate source tree only:
 
 - Package: `agent-skill-debloater-1.0.2-rc.2.tgz`
-- sha256: recorded in #55 after exact tagged package acceptance.
-- npm shasum: recorded in #55 after exact tagged package acceptance.
-- Packed files: recorded in #55 after exact tagged package acceptance.
+- npm shasum, integrity, sha256, and packed-file count are recorded in issue
+  #55 after exact tagged package acceptance.
+- The exact acceptance comment permalink is added to #55 after the tag is
+  created and the tagged tarball smoke passes.
 
 ## Supported Studios And Seed Packs
 
@@ -100,7 +102,7 @@ can prepare reviewed draft PRs for one pack at a time.
 
 ## Evidence Summary
 
-Release proof for `v1.0.2-rc.2` includes:
+Pre-merge proof for the `v1.0.2-rc.2` candidate includes:
 
 - CI on Node 22.13.0 and 26.x.
 - `npm test`.
@@ -111,8 +113,16 @@ Release proof for `v1.0.2-rc.2` includes:
 - OpenClaw adapter smoke.
 - Clean-room install acceptance.
 - Package acceptance from a packed artifact.
-- Exact-tarball CLI smoke from the tagged `.tgz`.
 - `release:check` and `pack:dry-run`.
+
+Before `v1.0.2-rc.2` is considered accepted, issue #55 must record:
+
+- main-branch CI for the merged release-prep commit;
+- the GitHub prerelease URL;
+- exact tagged package acceptance from the `v1.0.2-rc.2` tag;
+- exact-tarball CLI smoke from the tagged `.tgz`;
+- npm shasum, integrity, sha256, entry count, and an acceptance-comment
+  permalink.
 
 Voyage reranking remains optional, default-off, and shadow-only. Real-key shadow
 evidence did not justify promoting Voyage ordering for this RC.
