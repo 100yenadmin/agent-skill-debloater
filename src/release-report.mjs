@@ -39,6 +39,7 @@ const REQUIRED_PACKED_FILES = [
   "catalogs/marketing.json",
   "catalogs/ceo.json",
   "catalogs/engineering.json",
+  "docs/future-studios.md",
   "docs/distribution-readiness.md",
   "docs/openclaw-adapter-contract-fixtures.json",
   "evals/skill-routing-evals/v0/scenarios.json",

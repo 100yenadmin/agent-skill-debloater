@@ -161,6 +161,11 @@ packs. Maintainers can run it manually in `update-pr` mode for one concrete pack
 to create a draft PR with provenance diff, eval commands, and proof boundary.
 See `docs/pack-update-cadence.md`.
 
+Future studios such as Sales, Support, Research, Ops, Docs, Finance, and
+Customer Success are discovery backlog only. See `docs/future-studios.md` for
+the rubric, eval requirements, and promotion checklist. No new router skill is
+added by that backlog.
+
 ## Routing Evals
 
 Run the routing gate with a compact console summary:
