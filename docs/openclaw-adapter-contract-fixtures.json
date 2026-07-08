@@ -1,0 +1,46 @@
+[
+  {
+    "id": "design-success",
+    "studio": "design",
+    "query": "launch hero cover image",
+    "engine": "json",
+    "expectedCandidateCount": 1,
+    "expectedSelectedSkill": "baoyu-cover-image",
+    "expectedReadPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
+    "packRootsSupplied": false
+  },
+  {
+    "id": "marketing-no-match",
+    "studio": "marketing",
+    "query": "repair a kubernetes storage class bug",
+    "engine": "json",
+    "expectedCandidateCount": 0,
+    "expectedSelectedSkill": null,
+    "expectedReadPath": null,
+    "packRootsSupplied": false
+  },
+  {
+    "id": "design-ambiguous",
+    "studio": "design",
+    "query": "diagram slide",
+    "engine": "json",
+    "limit": 1,
+    "expectedCandidateCount": 1,
+    "expectedSelectedSkill": null,
+    "expectedReadPath": null,
+    "packRootsSupplied": false
+  },
+  {
+    "id": "design-pack-root-resolved",
+    "studio": "design",
+    "query": "launch hero cover image",
+    "engine": "json",
+    "packRoots": {
+      "jimliu/baoyu-skills": "/install/packs/baoyu-skills"
+    },
+    "expectedCandidateCount": 1,
+    "expectedSelectedSkill": "baoyu-cover-image",
+    "expectedReadPath": "/install/packs/baoyu-skills/skills/baoyu-cover-image/SKILL.md",
+    "packRootsSupplied": true
+  }
+]

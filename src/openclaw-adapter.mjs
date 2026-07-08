@@ -1,11 +1,55 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { defaultCatalogDir, loadCatalog, parsePackRoot, parsePackRootsEnv, searchCatalog } from "./search.mjs";
+import {
+  defaultCatalogDir,
+  loadCatalog,
+  parsePackReadPath,
+  parsePackRoot,
+  parsePackRootsEnv,
+  searchCatalog
+} from "./search.mjs";
 
 const ADAPTER_ID = "agent-skill-debloater/openclaw-adapter/v1";
+const CONTRACT_VERSION = "openclaw-adapter-contract/v0";
 const DEFAULT_LIMIT = 3;
 const DEFAULT_ENGINE = "fts";
+const REQUIRED_CANDIDATE_FIELDS = [
+  "name",
+  "title",
+  "studio",
+  "source",
+  "pack",
+  "description",
+  "useWhen",
+  "capabilities",
+  "sourceCommit",
+  "sourceUrl",
+  "skillPath",
+  "readPath",
+  "confidence",
+  "confidenceLabel",
+  "score",
+  "why"
+];
+const REQUIRED_TRACE_FIELDS = [
+  "name",
+  "title",
+  "studio",
+  "source",
+  "pack",
+  "skillPath",
+  "readPath",
+  "sourceCommit",
+  "sourceUrl",
+  "capabilities",
+  "confidence",
+  "confidenceLabel",
+  "score",
+  "rank",
+  "why"
+];
+const BODY_FIELD_NAMES = new Set(["body", "rawBody", "skillBody", "content", "instructions"]);
 
 function optionValue(name, value) {
   if (value === undefined || value.startsWith("--")) {
@@ -76,6 +120,7 @@ export function toOpenClawAdapterResponse({
   const selectedCandidate = candidates[0]?.confidenceLabel === "high" ? candidates[0] : null;
   return {
     adapter: ADAPTER_ID,
+    contractVersion: CONTRACT_VERSION,
     request: {
       studio,
       query,
@@ -85,6 +130,151 @@ export function toOpenClawAdapterResponse({
     candidates,
     selectedSkillTrace: toSelectedSkillTrace(selectedCandidate, { rank: 1 })
   };
+}
+
+function assertObject(value, label) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`${label} must be an object`);
+  }
+}
+
+function assertString(value, label) {
+  if (typeof value !== "string" || value.length === 0) {
+    throw new Error(`${label} must be a non-empty string`);
+  }
+}
+
+function assertNumber(value, label) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    throw new Error(`${label} must be a finite number`);
+  }
+}
+
+function assertStringArray(value, label) {
+  if (!Array.isArray(value) || !value.every((entry) => typeof entry === "string")) {
+    throw new Error(`${label} must be an array of strings`);
+  }
+}
+
+function assertNoBodyFields(value, label) {
+  if (!value || typeof value !== "object") return;
+  for (const key of Object.keys(value)) {
+    if (BODY_FIELD_NAMES.has(key)) {
+      throw new Error(`${label} must not include ${key}`);
+    }
+  }
+}
+
+function assertReadPath(value, label, { packRootsSupplied }) {
+  assertString(value, label);
+  if (value.startsWith("pack://")) {
+    parsePackReadPath(value);
+    return;
+  }
+  if (path.isAbsolute(value) || path.win32.isAbsolute(value)) {
+    if (!packRootsSupplied) {
+      throw new Error(`${label} must use pack:// unless pack roots are supplied`);
+    }
+    return;
+  }
+  throw new Error(`${label} must be a pack:// URI or pack-root-resolved absolute path`);
+}
+
+function assertCandidate(candidate, index, { packRootsSupplied }) {
+  const label = `candidates[${index}]`;
+  assertObject(candidate, label);
+  assertNoBodyFields(candidate, label);
+  for (const field of REQUIRED_CANDIDATE_FIELDS) {
+    if (!(field in candidate)) {
+      throw new Error(`${label}.${field} is required`);
+    }
+  }
+
+  for (const field of ["name", "title", "studio", "source", "pack", "description", "useWhen", "sourceCommit", "sourceUrl", "skillPath"]) {
+    assertString(candidate[field], `${label}.${field}`);
+  }
+  assertReadPath(candidate.readPath, `${label}.readPath`, { packRootsSupplied });
+  assertStringArray(candidate.capabilities, `${label}.capabilities`);
+  assertStringArray(candidate.why, `${label}.why`);
+  assertNumber(candidate.confidence, `${label}.confidence`);
+  assertNumber(candidate.score, `${label}.score`);
+  if (!["high", "ambiguous", "low"].includes(candidate.confidenceLabel)) {
+    throw new Error(`${label}.confidenceLabel must be high, ambiguous, or low`);
+  }
+  const sourceUrl = new URL(candidate.sourceUrl);
+  if (!["http:", "https:"].includes(sourceUrl.protocol)) {
+    throw new Error(`${label}.sourceUrl must be http(s)`);
+  }
+}
+
+function assertSelectedTrace(trace, response, { packRootsSupplied }) {
+  if (trace === null) {
+    const top = response.candidates[0];
+    if (top?.confidenceLabel === "high") {
+      throw new Error("selectedSkillTrace must be present for high-confidence top candidates");
+    }
+    return;
+  }
+
+  assertObject(trace, "selectedSkillTrace");
+  assertNoBodyFields(trace, "selectedSkillTrace");
+  for (const field of REQUIRED_TRACE_FIELDS) {
+    if (!(field in trace)) {
+      throw new Error(`selectedSkillTrace.${field} is required`);
+    }
+  }
+  if ("description" in trace || "useWhen" in trace) {
+    throw new Error("selectedSkillTrace must omit candidate prose fields");
+  }
+  assertReadPath(trace.readPath, "selectedSkillTrace.readPath", { packRootsSupplied });
+  assertStringArray(trace.capabilities, "selectedSkillTrace.capabilities");
+  assertStringArray(trace.why, "selectedSkillTrace.why");
+  assertNumber(trace.confidence, "selectedSkillTrace.confidence");
+  assertNumber(trace.score, "selectedSkillTrace.score");
+  if (trace.rank !== 1) {
+    throw new Error("selectedSkillTrace.rank must be 1");
+  }
+
+  const top = response.candidates[0];
+  if (!top) {
+    throw new Error("selectedSkillTrace requires at least one candidate");
+  }
+  if (top.confidenceLabel !== "high") {
+    throw new Error("selectedSkillTrace must only be present for high-confidence top candidates");
+  }
+  for (const field of ["name", "studio", "source", "pack", "skillPath", "readPath", "confidenceLabel"]) {
+    if (trace[field] !== top[field]) {
+      throw new Error(`selectedSkillTrace.${field} must match candidates[0].${field}`);
+    }
+  }
+}
+
+export function assertOpenClawAdapterContract(response, { packRootsSupplied = false } = {}) {
+  assertObject(response, "response");
+  if (response.adapter !== ADAPTER_ID) {
+    throw new Error(`response.adapter must be ${ADAPTER_ID}`);
+  }
+  if (response.contractVersion !== CONTRACT_VERSION) {
+    throw new Error(`response.contractVersion must be ${CONTRACT_VERSION}`);
+  }
+  assertObject(response.request, "response.request");
+  assertString(response.request.studio, "response.request.studio");
+  assertString(response.request.query, "response.request.query");
+  if (!Number.isInteger(response.request.limit) || response.request.limit < 1) {
+    throw new Error("response.request.limit must be a positive integer");
+  }
+  if (!["fts", "json"].includes(response.request.engine)) {
+    throw new Error("response.request.engine must be fts or json");
+  }
+  if (!Array.isArray(response.candidates)) {
+    throw new Error("response.candidates must be an array");
+  }
+  if (response.candidates.length > response.request.limit) {
+    throw new Error("response.candidates must not exceed response.request.limit");
+  }
+  response.candidates.forEach((candidate, index) => assertCandidate(candidate, index, { packRootsSupplied }));
+  assertSelectedTrace(response.selectedSkillTrace, response, { packRootsSupplied });
+  return true;
 }
 
 export async function searchOpenClawSkillCatalog({
