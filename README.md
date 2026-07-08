@@ -9,6 +9,14 @@ curated packs, studios, overlays, manifests, catalogs, evals, and release cadenc
 live here; OpenClaw core should eventually own only generic catalog/search
 primitives.
 
+## Launch Packet
+
+The current market-facing release packet lives in `docs/launch-packet.md`. It
+includes the concise value proposition, RC install/evaluation path, supported
+studios and seed packs, proof links, non-goals, and maintainer launch checklist.
+See `docs/demo-router-flow.md` for a small router-to-search-to-read-path
+transcript.
+
 ## What Ships
 
 - `debloat-skill-search <studio> "<query>" --format json|text --limit 3`

@@ -12,6 +12,8 @@ repository does not publish to npm without a separate explicit approval.
 - Approval gate: do not run `npm publish`, create registry credentials, add
   npm publish workflows, or use `NPM_TOKEN`/`NODE_AUTH_TOKEN` unless a future
   maintainer explicitly approves publication in a new issue or release task.
+- Launch packet: `docs/launch-packet.md`
+- Router-flow demo transcript: `docs/demo-router-flow.md`
 
 ## Package Metadata
 
