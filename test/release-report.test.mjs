@@ -27,6 +27,7 @@ test("release checklist captures v1.0 package, plugin, validation, package conte
   assert.ok(checklist.validationCommands.includes("npm test"));
   assert.ok(checklist.validationCommands.includes("npm run eval:routing"));
   assert.ok(checklist.validationCommands.includes("npm run eval:rerank"));
+  assert.ok(checklist.validationCommands.includes("npm run smoke:fresh-agents"));
   assert.ok(checklist.validationCommands.includes("node bin/pack-sync check"));
   assert.ok(checklist.validationCommands.includes("npm run acceptance:package"));
   assert.ok(checklist.validationCommands.includes("npm run acceptance:clean-room"));
@@ -39,6 +40,7 @@ test("release notes describe plugin scope, proof boundary, and no npm publish", 
   assert.match(notes, /OpenClaw adapter/i);
   assert.match(notes, /pack-sync diff\/update/i);
   assert.match(notes, /Rerank-quality shadow evals/i);
+  assert.match(notes, /Fresh-agent smoke/i);
   assert.match(notes, /Clean-room install/i);
   assert.match(notes, /No npm publish/i);
   assert.match(notes, /ready-for-publish-review, not npm-published/i);

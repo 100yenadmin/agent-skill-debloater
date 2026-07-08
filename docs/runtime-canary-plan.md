@@ -26,6 +26,8 @@ Required before any runtime canary:
 
 - `npm test`
 - `npm run eval:routing`
+- `npm run eval:rerank`
+- `npm run smoke:fresh-agents`
 - `node bin/pack-sync check`
 - `npm run smoke:openclaw-adapter`
 - `npm run acceptance:clean-room`
@@ -41,7 +43,8 @@ Evidence packet:
 ```
 
 Record release/tag or commit SHA, package shasum, CI URL, plugin install source,
-and the `package-acceptance/v0` plus `clean-room-install/v0` JSON reports.
+and the `package-acceptance/v0`, `fresh-agent-smokes/v0`, and
+`clean-room-install/v0` JSON reports.
 
 ## Phase 1: Golden VM Canary
 

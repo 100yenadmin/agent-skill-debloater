@@ -1,0 +1,99 @@
+[
+  {
+    "id": "design-hero-cover",
+    "kind": "positive",
+    "prompt": "Create a polished launch hero cover image for an AgentSkillDebloater announcement.",
+    "studio": "design",
+    "expectedRouter": "design-studio",
+    "expectedSkill": "baoyu-cover-image",
+    "expectedReadPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
+    "expectedCapabilities": ["file-write"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "design-architecture-diagram",
+    "kind": "positive",
+    "prompt": "Draw an architecture diagram for a multi-agent routing system with searchable hidden catalogs.",
+    "studio": "design",
+    "expectedRouter": "design-studio",
+    "expectedSkill": "baoyu-diagram",
+    "expectedReadPath": "pack://jimliu%2Fbaoyu-skills/skills/baoyu-diagram/SKILL.md",
+    "expectedCapabilities": ["file-write"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "marketing-positioning-icp",
+    "kind": "positive",
+    "prompt": "Create positioning and an ICP for a new developer tool that reduces agent prompt bloat.",
+    "studio": "marketing",
+    "expectedRouter": "marketing-studio",
+    "expectedSkill": "product-marketing",
+    "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/product-marketing/SKILL.md",
+    "expectedCapabilities": ["read-only"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "marketing-seo-content",
+    "kind": "positive",
+    "prompt": "Build an SEO content plan for an AI agent product launch.",
+    "studio": "marketing",
+    "expectedRouter": "marketing-studio",
+    "expectedSkill": "ai-seo",
+    "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/ai-seo/SKILL.md",
+    "expectedCapabilities": ["read-only", "network"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "marketing-launch-copy",
+    "kind": "positive",
+    "prompt": "Write launch copy and a lightweight campaign plan for a new AI agent product.",
+    "studio": "marketing",
+    "expectedRouter": "marketing-studio",
+    "expectedSkill": "launch",
+    "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/launch/SKILL.md",
+    "expectedCapabilities": ["read-only"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "ceo-founder-strategy",
+    "kind": "positive",
+    "prompt": "Review this founder strategy and tell us whether to expand scope or focus.",
+    "studio": "ceo",
+    "expectedRouter": "ceo-studio",
+    "expectedSkill": "plan-ceo-review",
+    "expectedReadPath": "pack://garrytan%2Fgstack/plan-ceo-review/SKILL.md",
+    "expectedCapabilities": ["read-only", "file-write", "network"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "engineering-tdd",
+    "kind": "positive",
+    "prompt": "Write a TDD plan for a case-insensitive todo API search filter.",
+    "studio": "engineering",
+    "expectedRouter": "engineering-studio",
+    "expectedSkill": "tdd",
+    "expectedReadPath": "pack://mattpocock%2Fskills/skills/engineering/tdd/SKILL.md",
+    "expectedCapabilities": ["read-only", "file-write"],
+    "expectedDisposition": "select"
+  },
+  {
+    "id": "cross-studio-launch-hero-copy",
+    "kind": "ambiguity",
+    "prompt": "Create launch hero copy and visual direction for a product announcement.",
+    "studio": "marketing",
+    "expectedRouter": "marketing-studio",
+    "expectedSkill": "launch",
+    "expectedReadPath": "pack://coreyhaines31%2Fmarketingskills/skills/launch/SKILL.md",
+    "expectedCapabilities": ["read-only"],
+    "expectedDisposition": "clarify",
+    "alternateStudios": ["design"]
+  },
+  {
+    "id": "hard-negative-general-trivia",
+    "kind": "hard-negative",
+    "prompt": "What is the capital of France?",
+    "expectedSelectedStudio": null,
+    "expectedDisposition": "abstain",
+    "studios": ["design", "marketing", "ceo", "engineering"]
+  }
+]

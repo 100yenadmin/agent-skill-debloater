@@ -14,6 +14,7 @@ jobs:
       - run: npm test
       - run: npm run eval:routing
       - run: npm run eval:rerank
+      - run: npm run smoke:fresh-agents -- --report fresh-agent-smokes.json
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
       - run: npm run acceptance:clean-room -- --report clean-room-install.json
@@ -29,5 +30,6 @@ jobs:
           path: |
             release-notes.md
             npm-pack-dry-run.json
+            fresh-agent-smokes.json
             clean-room-install.json
             package-acceptance.json

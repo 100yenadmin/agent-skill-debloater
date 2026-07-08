@@ -46,6 +46,8 @@ Run these before any publish-review decision:
 ```bash
 npm test
 npm run eval:routing
+npm run eval:rerank
+npm run smoke:fresh-agents
 node bin/pack-sync check
 npm run smoke:openclaw-adapter
 npm run acceptance:clean-room
@@ -59,6 +61,7 @@ For a shareable evidence packet, save:
 
 ```bash
 node src/package-acceptance.mjs check --report artifacts/package-acceptance.json
+node src/fresh-agent-smoke.mjs evals/fresh-agent-smokes/v0/scenarios.json --summary --report artifacts/fresh-agent-smokes.json
 node src/clean-room-install.mjs check --report artifacts/clean-room-install.json
 npm pack --dry-run --json > artifacts/npm-pack-dry-run.json
 node src/release-report.mjs check > artifacts/release-check.json
@@ -73,6 +76,7 @@ catalogs change.
 
 - `release:check` reports `ok: true`.
 - `publishSurfaces` is empty.
+- `fresh-agent-smokes/v0` passes positives, ambiguity, and hard-negative scenarios.
 - `clean-room-install/v0` reports only router skills visible and no backing body exposure.
 - package metadata is complete.
 - `docs/distribution-readiness.md` is packaged.

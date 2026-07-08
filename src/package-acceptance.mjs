@@ -25,6 +25,7 @@ const REQUIRED_PACKED_FILES = [
   "docs/future-studios.md",
   "docs/pack-update-cadence.md",
   "docs/rerank-quality.md",
+  "evals/fresh-agent-smokes/v0/scenarios.json",
   "evals/rerank-quality/v0/scenarios.json",
   "skills/design-studio/SKILL.md",
   "skills/marketing-studio/SKILL.md",
@@ -33,6 +34,7 @@ const REQUIRED_PACKED_FILES = [
   "src/clean-room-install.mjs",
   "src/cli.mjs",
   "src/eval-rerank.mjs",
+  "src/fresh-agent-smoke.mjs",
   "src/openclaw-adapter.mjs",
   "src/pack-update-cadence.mjs",
   "src/search.mjs"

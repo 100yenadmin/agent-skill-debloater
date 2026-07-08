@@ -195,6 +195,7 @@ npm run eval:rerank
 npm run release:check
 npm run release:notes
 npm run eval:rerank
+npm run smoke:fresh-agents
 npm run smoke:openclaw-adapter
 npm run acceptance:clean-room
 npm run acceptance:package
@@ -212,6 +213,10 @@ See `docs/package-acceptance.md` for the report boundary and checks.
 `npm run acceptance:clean-room` additionally installs the packed artifact into a
 fresh local profile shape, confirms only router skills are visible, and proves
 catalog-backed searches stay read-on-demand.
+`npm run smoke:fresh-agents` runs the local fresh-agent proxy suite for Design,
+Marketing, CEO, Engineering, one ambiguity prompt, and one hard negative. It
+records the router, top-3 search result set, selected `SKILL.md` read path,
+source/capability disclosure, and whole-pack-loading guard.
 
 Runtime rollout remains separate from package proof. Use
 `docs/runtime-canary-plan.md` for the Golden VM, one-customer canary, rollback,
