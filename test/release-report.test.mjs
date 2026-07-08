@@ -21,6 +21,7 @@ test("release checklist captures v1.0 package, plugin, validation, package conte
   assert.ok(checklist.validationCommands.includes("npm test"));
   assert.ok(checklist.validationCommands.includes("npm run eval:routing"));
   assert.ok(checklist.validationCommands.includes("node bin/pack-sync check"));
+  assert.ok(checklist.validationCommands.includes("npm run acceptance:package"));
 });
 
 test("release notes describe plugin scope, proof boundary, and no npm publish", async () => {
@@ -55,6 +56,7 @@ test("release checklist rejects publish command variants in scripts and workflow
         "release:check": "node src/release-report.mjs check",
         "release:notes": "node src/release-report.mjs notes",
         "pack:dry-run": "npm pack --dry-run --json",
+        "acceptance:package": "node src/package-acceptance.mjs check",
         "smoke:openclaw-adapter": "node bin/agent-skill-debloater openclaw-adapter search design \"launch hero cover image\"",
         publishish: "npm --tag latest publish"
       }
@@ -87,6 +89,7 @@ test("release checklist rejects publish command variants in scripts and workflow
           { path: "skills/engineering-studio/SKILL.md" },
           { path: "src/cli.mjs" },
           { path: "src/openclaw-adapter.mjs" },
+          { path: "src/package-acceptance.mjs" },
           { path: "src/pack-sync.mjs" },
           { path: "src/release-report.mjs" },
           { path: "src/search.mjs" }
@@ -122,6 +125,7 @@ test("release checklist ships eval scenarios but rejects generated eval reports 
         "release:check": "node src/release-report.mjs check",
         "release:notes": "node src/release-report.mjs notes",
         "pack:dry-run": "npm pack --dry-run --json",
+        "acceptance:package": "node src/package-acceptance.mjs check",
         "smoke:openclaw-adapter": "node bin/agent-skill-debloater openclaw-adapter search design \"launch hero cover image\""
       }
     },
@@ -153,6 +157,7 @@ test("release checklist ships eval scenarios but rejects generated eval reports 
           { path: "skills/engineering-studio/SKILL.md" },
           { path: "src/cli.mjs" },
           { path: "src/openclaw-adapter.mjs" },
+          { path: "src/package-acceptance.mjs" },
           { path: "src/pack-sync.mjs" },
           { path: "src/release-report.mjs" },
           { path: "src/search.mjs" },

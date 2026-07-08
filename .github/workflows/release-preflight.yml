@@ -15,6 +15,7 @@ jobs:
       - run: npm run eval:routing
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
+      - run: npm run acceptance:package -- --report package-acceptance.json
       - run: git diff --check
       - run: npm run release:check
       - run: node src/release-report.mjs notes > release-notes.md
@@ -26,3 +27,4 @@ jobs:
           path: |
             release-notes.md
             npm-pack-dry-run.json
+            package-acceptance.json
