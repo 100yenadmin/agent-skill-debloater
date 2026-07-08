@@ -39,7 +39,13 @@ jobs:
           path: artifacts/rerank-quality/v0/report-node-${{ matrix.node-version }}.json
       - run: node bin/pack-sync check
       - run: npm run smoke:openclaw-adapter
-      - run: npm run acceptance:clean-room
+      - run: mkdir -p artifacts/clean-room-install/v0
+      - run: npm run acceptance:clean-room -- --report artifacts/clean-room-install/v0/report-node-${{ matrix.node-version }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clean-room-install-v0-node-${{ matrix.node-version }}
+          path: artifacts/clean-room-install/v0/report-node-${{ matrix.node-version }}.json
       - run: npm run acceptance:package
       - run: git diff --check
       - run: npm run release:check

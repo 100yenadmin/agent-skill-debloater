@@ -6,6 +6,7 @@ import { promisify } from "node:util";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { assertNoMachineLocalPaths } from "./portable-paths.mjs";
+import { parsePackReadPath } from "./search.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const execFileAsync = promisify(execFile);
@@ -23,6 +24,12 @@ const EXPECTED_ROUTER_SKILLS = [
 
 const EXPECTED_STUDIOS = ["design", "marketing", "ceo", "engineering"];
 const FORBIDDEN_CATALOG_BODY_FIELDS = ["body", "content", "instructions", "markdown"];
+const FORBIDDEN_RESULT_BODY_FIELDS = [
+  ...FORBIDDEN_CATALOG_BODY_FIELDS,
+  "rawBody",
+  "skillBody",
+  "skillMarkdown"
+];
 
 const SCENARIOS = [
   {
@@ -111,6 +118,33 @@ function isPortableSkillPath(value) {
   if (value.includes("\\")) return false;
   const normalized = path.posix.normalize(value);
   return normalized === value && normalized !== ".." && !normalized.startsWith("../");
+}
+
+function findForbiddenFields(value, forbiddenFields, prefix = "$") {
+  if (!value || typeof value !== "object") return [];
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) => findForbiddenFields(item, forbiddenFields, `${prefix}[${index}]`));
+  }
+
+  const found = [];
+  for (const [key, child] of Object.entries(value)) {
+    const childPath = `${prefix}.${key}`;
+    if (forbiddenFields.includes(key)) {
+      found.push(childPath);
+    }
+    found.push(...findForbiddenFields(child, forbiddenFields, childPath));
+  }
+  return found;
+}
+
+function isValidPackReadPath(readPath) {
+  if (typeof readPath !== "string") return false;
+  try {
+    const { skillPath } = parsePackReadPath(readPath);
+    return isPortableSkillPath(skillPath);
+  } catch {
+    return false;
+  }
 }
 
 function visibleRouterSkillCheck(visibleSkills) {
@@ -275,22 +309,25 @@ async function runScenario(installedRoot, scenario) {
   const readPaths = results.map((result) => result.readPath);
   const resultCount = results.length;
   const topSkill = results[0]?.name ?? null;
-  const hasBodies = JSON.stringify(results).includes('"body"');
-  const readPathsArePackUris = readPaths.every((readPath) => readPath.startsWith("pack://"));
+  const bodyLeakFields = findForbiddenFields(results, FORBIDDEN_RESULT_BODY_FIELDS);
+  const invalidReadPaths = readPaths.filter((readPath) => !isValidPackReadPath(readPath));
   const expectedResultCount =
     typeof scenario.expectedResultCount === "number" ? resultCount === scenario.expectedResultCount : true;
   const expectedTopSkill = scenario.expectedTopSkill ? topSkill === scenario.expectedTopSkill : true;
 
   return {
     id: scenario.id,
-    ok: expectedResultCount && expectedTopSkill && !hasBodies && readPathsArePackUris,
+    ok: expectedResultCount && expectedTopSkill && bodyLeakFields.length === 0 && invalidReadPaths.length === 0,
     summary: {
       studio: scenario.studio,
       resultCount,
       topSkill,
       readPaths,
-      hasBodies,
-      readPathsArePackUris
+      hasBodies: bodyLeakFields.length > 0,
+      hasBodyLeaks: bodyLeakFields.length > 0,
+      bodyLeakFields,
+      invalidReadPaths,
+      readPathsArePackUris: invalidReadPaths.length === 0
     }
   };
 }
