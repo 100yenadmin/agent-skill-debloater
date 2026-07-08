@@ -8,7 +8,7 @@ an npm publication decision; it does not authorize publication.
 Do not run a real `npm publish`, `npm stage publish`, configure registry
 credentials, add an `NPM_TOKEN`, add a `NODE_AUTH_TOKEN`, or create an npm
 publish workflow unless a maintainer posts an explicit approval comment in issue
-#45 or a linked release issue.
+`#45` or a linked release issue.
 
 Approval must name:
 
@@ -97,16 +97,16 @@ configuration, repository, workflow path, allowed action, and provenance status.
 After explicit approval:
 
 1. Re-confirm clean checkout at the approved tag.
-2. Re-run `npm run release:check`.
-3. Re-run `npm publish --dry-run --ignore-scripts --provenance=false --tag rc`
+1. Re-run `npm run release:check`.
+1. Re-run `npm publish --dry-run --ignore-scripts --provenance=false --tag rc`
    for prerelease versions, or replace `rc` with the explicitly approved
    dist-tag.
-4. Publish using the approved method:
+1. Publish using the approved method:
    - direct prerelease: `npm publish --tag rc`
    - direct stable: `npm publish`
    - staged: `npm stage publish`
-5. Record the npm package URL and package metadata.
-6. Run post-publish install proof from a clean directory:
+1. Record the npm package URL and package metadata.
+1. Run post-publish install proof from a clean directory:
 
 ```bash
 npm view agent-skill-debloater@<version> dist --json
@@ -114,7 +114,7 @@ npm install agent-skill-debloater@<version>
 npx agent-skill-debloater openclaw-adapter search design "launch hero cover image"
 ```
 
-7. Comment on issue #45 with package URL, shasum, integrity, provenance status,
+1. Comment on issue #45 with package URL, shasum, integrity, provenance status,
    install proof, and support owner.
 
 ## Rollback And Deprecation
