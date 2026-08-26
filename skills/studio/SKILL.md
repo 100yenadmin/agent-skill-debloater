@@ -11,7 +11,11 @@ direct skill or native approach fits; engineering search is optional and
 selecting none is valid. Never paste, summarize, or load the whole selected
 domain catalog into the prompt.
 
-1. Pick one domain: `ceo`, `design`, `engineering`, or `marketing`.
+1. Pick one domain using these boundaries:
+   - `design`: visual design, diagrams, covers, hero images, infographics, slides, social cards, brand assets, UI polish, launch visuals, and design direction
+   - `marketing`: positioning, ICP, offers, SEO, GEO, content strategy, copywriting, growth, launches, customer research, ads, and marketing planning
+   - `ceo`: founder judgment, CEO review, company strategy, executive operating, scope ambition, security posture, documentation direction, retrospectives, and strategic planning
+   - `engineering`: long-tail engineering workflows, debugging, planning, code review, TypeScript, and implementation
 2. Turn the task into a short search query.
 3. Resolve `<plugin-root>` as the plugin package root: the parent of `skills/`,
    two directories up from this file's directory.

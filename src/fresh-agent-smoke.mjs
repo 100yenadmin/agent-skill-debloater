@@ -30,16 +30,16 @@ const ROUTER_STOP_WORDS = new Set([
   "to",
   "with"
 ]);
-const STUDIO_ROUTING_DESCRIPTIONS = {
-  design:
-    "visual design, diagrams, covers, hero images, infographics, slides, social cards, brand assets, UI polish, launch visuals, and design direction",
-  marketing:
-    "positioning, ICP, offers, SEO, GEO, content strategy, copywriting, growth, launches, customer research, ads, and marketing planning",
-  ceo:
-    "founder judgment, CEO review, company strategy, executive operating, scope ambition, security posture, documentation direction, retrospectives, and strategic planning",
-  engineering:
-    "long-tail engineering workflows, debugging, planning, code review, TypeScript, and implementation"
-};
+function loadStudioRoutingDescriptions(routerBody) {
+  const out = {};
+  for (const match of routerBody.matchAll(/^\s*-\s*`(ceo|design|engineering|marketing)`:\s*(.+)$/gm)) {
+    out[match[1]] = match[2].trim();
+  }
+  for (const studio of ["ceo", "design", "engineering", "marketing"]) {
+    if (!out[studio]) throw new Error(`router SKILL.md missing domain boundary line for ${studio}`);
+  }
+  return out;
+}
 const PROOF_BOUNDARY =
   "Fresh-agent smokes prove router/search/read-path behavior locally only; they do not prove customer VM rollout readiness, OpenClaw core runtime safety, fleet deployment safety, or npm publication.";
 
@@ -125,9 +125,19 @@ function hasScopedCatalogLeakGuard(routerBody, studio) {
   );
 }
 
-function scoreStudioDescription(studio, prompt) {
+let cachedRoutingDescriptions = null;
+async function studioRoutingDescriptions() {
+  if (!cachedRoutingDescriptions) {
+    const routerBody = await readRouterSkill(ALL_STUDIOS[0]);
+    cachedRoutingDescriptions = loadStudioRoutingDescriptions(routerBody);
+  }
+  return cachedRoutingDescriptions;
+}
+
+async function scoreStudioDescription(studio, prompt) {
   const promptTokens = routerTokens(prompt);
-  const descriptionTokens = routerTokens(STUDIO_ROUTING_DESCRIPTIONS[studio]);
+  const descriptions = await studioRoutingDescriptions();
+  const descriptionTokens = routerTokens(descriptions[studio]);
   return promptTokens.reduce(
     (score, token) => score + (routerTokenMatches(descriptionTokens, token) ? 12 : 0),
     0
@@ -268,7 +278,7 @@ async function selectRouterFromPrompt(prompt, options) {
     const results = await runSearch(studio, prompt, options);
     const topResult = results[0] ?? null;
     if (!topResult) continue;
-    const routerScore = scoreStudioDescription(studio, prompt);
+    const routerScore = await scoreStudioDescription(studio, prompt);
     candidates.push({
       studio,
       router: routerForStudio(studio),
