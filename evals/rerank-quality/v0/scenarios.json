@@ -7,13 +7,6 @@
     "overlapCluster": "engineering-tdd"
   },
   {
-    "id": "engineering-debugging-overlap",
-    "studio": "engineering",
-    "prompt": "Debug a flaky production failure systematically before proposing a fix.",
-    "expectedSkill": "systematic-debugging",
-    "overlapCluster": "engineering-debugging"
-  },
-  {
     "id": "engineering-code-review-overlap",
     "studio": "engineering",
     "prompt": "Review this pull request for behavioral regressions, missing tests, and risky implementation details.",

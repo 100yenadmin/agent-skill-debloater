@@ -23,9 +23,9 @@ test("rerank eval skips cleanly without a Voyage API key", async () => {
   const report = buildRerankEvalReport(result);
 
   assert.equal(report.suite, "rerank-quality/v0");
-  assert.equal(report.scenarioCount, 7);
-  assert.equal(report.statusCounts["skipped-missing-api-key"], 7);
-  assert.equal(report.metrics.deterministic.count, 7);
+  assert.equal(report.scenarioCount, 6);
+  assert.equal(report.statusCounts["skipped-missing-api-key"], 6);
+  assert.equal(report.metrics.deterministic.count, 6);
   assert.equal(report.metrics.shadowCompleted.count, 0);
   assert.deepEqual(report.thresholdFailures, []);
   assert.equal(report.promotion.eligible, false);
@@ -154,7 +154,7 @@ test("rerank eval CLI writes a report and exits cleanly without an API key", asy
   const report = JSON.parse(await readFile(reportPath, "utf8"));
 
   assert.equal(summary.suite, "rerank-quality/v0");
-  assert.equal(summary.statusCounts["skipped-missing-api-key"], 7);
-  assert.equal(report.rows.length, 7);
+  assert.equal(summary.statusCounts["skipped-missing-api-key"], 6);
+  assert.equal(report.rows.length, 6);
   assert.equal(report.proofBoundary.includes("do not promote Voyage ordering"), true);
 });

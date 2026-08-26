@@ -85,7 +85,7 @@ test("engineering catalog routes implementation, debugging, review, and subagent
   assert.equal(searchCatalog(catalog, "implement this PRD with tests")[0].name, "implement");
   assert.equal(
     searchCatalog(catalog, "debug this flaky production bug systematically before proposing fixes")[0].name,
-    "systematic-debugging"
+    "diagnosing-bugs"
   );
   {
     const debugResults = searchCatalog(catalog, "debug this flaky production bug", { limit: 3 });
@@ -96,10 +96,7 @@ test("engineering catalog routes implementation, debugging, review, and subagent
     );
   }
   assert.equal(searchCatalog(catalog, "use TDD and red-green-refactor")[0].name, "tdd");
-  assert.equal(
-    searchCatalog(catalog, "dispatch subagents for parallel engineering tasks")[0].name,
-    "dispatching-parallel-agents"
-  );
+  assert.deepEqual(searchCatalog(catalog, "dispatch subagents for parallel engineering tasks"), []);
   assert.equal(
     searchCatalog(catalog, "Use Matt Pocock code review for a two-axis standards and spec review")[0].name,
     "code-review"
@@ -114,8 +111,6 @@ test("engineering catalog exposes risky external capability labels", async () =>
     "land-and-deploy": ["network", "external-posting", "dangerous"],
     ship: ["network", "external-posting", "dangerous"],
     spec: ["network", "external-posting"],
-    "to-issues": ["network", "external-posting"],
-    "to-prd": ["network", "external-posting"],
     triage: ["network", "external-posting"],
     "benchmark-models": ["network", "api-key-use"],
     "setup-browser-cookies": ["browser", "customer-data"]

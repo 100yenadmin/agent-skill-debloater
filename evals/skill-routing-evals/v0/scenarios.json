@@ -518,20 +518,6 @@
     "scenarioGroup": "generated-provenance"
   },
   {
-    "id": "v06-engineering-brainstorming-description",
-    "studio": "engineering",
-    "prompt": "Brainstorming: You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-    "expectedSkill": "brainstorming",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-brainstorming-use-when",
-    "studio": "engineering",
-    "prompt": "Use Brainstorming for You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
-    "expectedSkill": "brainstorming",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
     "id": "v06-engineering-browse-description",
     "studio": "engineering",
     "prompt": "Browse: Fast headless browser for QA testing and site dogfooding. (gstack)",
@@ -672,20 +658,6 @@
     "scenarioGroup": "generated-provenance"
   },
   {
-    "id": "v06-engineering-dispatching-parallel-agents-description",
-    "studio": "engineering",
-    "prompt": "Dispatching Parallel Agents: Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-    "expectedSkill": "dispatching-parallel-agents",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-dispatching-parallel-agents-use-when",
-    "studio": "engineering",
-    "prompt": "Use dispatching parallel agents for Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-    "expectedSkill": "dispatching-parallel-agents",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
     "id": "v06-engineering-domain-modeling-description",
     "studio": "engineering",
     "prompt": "Domain Modeling: Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.",
@@ -697,34 +669,6 @@
     "studio": "engineering",
     "prompt": "Use domain modeling for Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.",
     "expectedSkill": "domain-modeling",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-executing-plans-description",
-    "studio": "engineering",
-    "prompt": "Executing Plans: Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-    "expectedSkill": "executing-plans",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-executing-plans-use-when",
-    "studio": "engineering",
-    "prompt": "Use executing plans for Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-    "expectedSkill": "executing-plans",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-finishing-a-development-branch-description",
-    "studio": "engineering",
-    "prompt": "Finishing A Development Branch: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
-    "expectedSkill": "finishing-a-development-branch",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-finishing-a-development-branch-use-when",
-    "studio": "engineering",
-    "prompt": "Use finishing a development branch for Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
-    "expectedSkill": "finishing-a-development-branch",
     "scenarioGroup": "generated-provenance"
   },
   {
@@ -1092,34 +1036,6 @@
     "scenarioGroup": "generated-provenance"
   },
   {
-    "id": "v06-engineering-receiving-code-review-description",
-    "studio": "engineering",
-    "prompt": "Receiving Code Review: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-    "expectedSkill": "receiving-code-review",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-receiving-code-review-use-when",
-    "studio": "engineering",
-    "prompt": "Use receiving code review for Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-    "expectedSkill": "receiving-code-review",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-requesting-code-review-description",
-    "studio": "engineering",
-    "prompt": "Requesting Code Review: Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-    "expectedSkill": "requesting-code-review",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-requesting-code-review-use-when",
-    "studio": "engineering",
-    "prompt": "Use requesting code review for Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-    "expectedSkill": "requesting-code-review",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
     "id": "v06-engineering-research-description",
     "studio": "engineering",
     "prompt": "Research: Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.",
@@ -1302,20 +1218,6 @@
     "scenarioGroup": "generated-provenance"
   },
   {
-    "id": "v06-engineering-subagent-driven-development-description",
-    "studio": "engineering",
-    "prompt": "Subagent Driven Development: Use when executing implementation plans with independent tasks in the current session",
-    "expectedSkill": "subagent-driven-development",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-subagent-driven-development-use-when",
-    "studio": "engineering",
-    "prompt": "Use subagent driven development for Use when executing implementation plans with independent tasks in the current session",
-    "expectedSkill": "subagent-driven-development",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
     "id": "v06-engineering-sync-gbrain-description",
     "studio": "engineering",
     "prompt": "Sync Gbrain: Keep gbrain current with this repo's code and refresh agent search guidance in CLAUDE.md. Wraps the gstack-gbrain-sync orchestrator with state (gstack)",
@@ -1327,20 +1229,6 @@
     "studio": "engineering",
     "prompt": "Use sync gbrain for probing, native code-surface registration, capability checks, and a verdict block. Re-runnable, idempotent. Use when: \"sync gbrain\", \"refresh gbrain\", \"re-index this repo\", \"gbrain search isn't finding things\".",
     "expectedSkill": "sync-gbrain",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-systematic-debugging-description",
-    "studio": "engineering",
-    "prompt": "Systematic Debugging: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-    "expectedSkill": "systematic-debugging",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-systematic-debugging-use-when",
-    "studio": "engineering",
-    "prompt": "Use systematic debugging for Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-    "expectedSkill": "systematic-debugging",
     "scenarioGroup": "generated-provenance"
   },
   {
@@ -1372,48 +1260,6 @@
     "scenarioGroup": "generated-provenance"
   },
   {
-    "id": "v06-engineering-test-driven-development-description",
-    "studio": "engineering",
-    "prompt": "Test Driven Development: Use when implementing any feature or bugfix, before writing implementation code",
-    "expectedSkill": "test-driven-development",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-test-driven-development-use-when",
-    "studio": "engineering",
-    "prompt": "Use test driven development for Use when implementing any feature or bugfix, before writing implementation code",
-    "expectedSkill": "test-driven-development",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-to-issues-description",
-    "studio": "engineering",
-    "prompt": "To Issues: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
-    "expectedSkill": "to-issues",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-to-issues-use-when",
-    "studio": "engineering",
-    "prompt": "Use to issues for Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
-    "expectedSkill": "to-issues",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-to-prd-description",
-    "studio": "engineering",
-    "prompt": "To Prd: Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
-    "expectedSkill": "to-prd",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-to-prd-use-when",
-    "studio": "engineering",
-    "prompt": "Use to prd for Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
-    "expectedSkill": "to-prd",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
     "id": "v06-engineering-triage-description",
     "studio": "engineering",
     "prompt": "Triage: Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
@@ -1425,90 +1271,6 @@
     "studio": "engineering",
     "prompt": "Use Triage for Move issues and external PRs through a state machine of triage roles — categorise, verify, grill if needed, and write agent-ready briefs.",
     "expectedSkill": "triage",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-using-git-worktrees-description",
-    "studio": "engineering",
-    "prompt": "Using Git Worktrees: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-    "expectedSkill": "using-git-worktrees",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-using-git-worktrees-use-when",
-    "studio": "engineering",
-    "prompt": "Use using git worktrees for Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-    "expectedSkill": "using-git-worktrees",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-using-superpowers-description",
-    "studio": "engineering",
-    "prompt": "Using Superpowers: Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
-    "expectedSkill": "using-superpowers",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-using-superpowers-use-when",
-    "studio": "engineering",
-    "prompt": "Use using superpowers for Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
-    "expectedSkill": "using-superpowers",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-verification-before-completion-description",
-    "studio": "engineering",
-    "prompt": "Verification Before Completion: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-    "expectedSkill": "verification-before-completion",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-verification-before-completion-use-when",
-    "studio": "engineering",
-    "prompt": "Use verification before completion for Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-    "expectedSkill": "verification-before-completion",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-writing-great-skills-description",
-    "studio": "engineering",
-    "prompt": "Writing Great Skills: Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
-    "expectedSkill": "writing-great-skills",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-writing-great-skills-use-when",
-    "studio": "engineering",
-    "prompt": "Use writing great skills for Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
-    "expectedSkill": "writing-great-skills",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-writing-plans-description",
-    "studio": "engineering",
-    "prompt": "Writing Plans: Use when you have a spec or requirements for a multi-step task, before touching code",
-    "expectedSkill": "writing-plans",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-writing-plans-use-when",
-    "studio": "engineering",
-    "prompt": "Use writing plans for Use when you have a spec or requirements for a multi-step task, before touching code",
-    "expectedSkill": "writing-plans",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-writing-skills-description",
-    "studio": "engineering",
-    "prompt": "Writing Skills: Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-    "expectedSkill": "writing-skills",
-    "scenarioGroup": "generated-provenance"
-  },
-  {
-    "id": "v06-engineering-writing-skills-use-when",
-    "studio": "engineering",
-    "prompt": "Use writing skills for Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-    "expectedSkill": "writing-skills",
     "scenarioGroup": "generated-provenance"
   },
   {
@@ -1544,15 +1306,6 @@
     "scenarioGroup": "curated-intent"
   },
   {
-    "id": "engineering-systematic-debugging",
-    "studio": "engineering",
-    "prompt": "Debug this flaky production bug systematically before proposing fixes.",
-    "expectedSkill": "systematic-debugging",
-    "mustRank1": true,
-    "scenarioGroup": "curated-intent",
-    "overlapCluster": "engineering-debugging"
-  },
-  {
     "id": "engineering-tdd-feature",
     "studio": "engineering",
     "prompt": "Use TDD and red-green-refactor for this new feature.",
@@ -1569,14 +1322,6 @@
     "mustRank1": true,
     "scenarioGroup": "curated-intent",
     "overlapCluster": "engineering-code-review"
-  },
-  {
-    "id": "engineering-subagent-dispatch",
-    "studio": "engineering",
-    "prompt": "Dispatch subagents for several independent engineering tasks in parallel.",
-    "expectedSkill": "dispatching-parallel-agents",
-    "mustRank1": true,
-    "scenarioGroup": "curated-intent"
   },
   {
     "id": "engineering-hard-negative-finance",

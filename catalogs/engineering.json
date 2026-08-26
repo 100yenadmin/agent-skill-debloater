@@ -26,8 +26,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/ask-matt/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/ask-matt/SKILL.md"
   },
   {
     "name": "autoplan",
@@ -65,8 +65,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/autoplan/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/autoplan/SKILL.md"
   },
   {
     "name": "benchmark",
@@ -103,8 +103,8 @@
       "network",
       "browser"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/benchmark/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/benchmark/SKILL.md"
   },
   {
     "name": "benchmark-models",
@@ -143,8 +143,8 @@
       "network",
       "api-key-use"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/benchmark-models/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/benchmark-models/SKILL.md"
   },
   {
     "name": "brainstorming",
@@ -176,8 +176,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/brainstorming/SKILL.md"
+    "sourceCommit": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/brainstorming/SKILL.md"
   },
   {
     "name": "browse",
@@ -214,8 +214,8 @@
       "network",
       "browser"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/browse/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/browse/SKILL.md"
   },
   {
     "name": "canary",
@@ -250,8 +250,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/canary/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/canary/SKILL.md"
   },
   {
     "name": "careful",
@@ -286,8 +286,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/careful/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/careful/SKILL.md"
   },
   {
     "name": "code-review",
@@ -321,8 +321,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/code-review/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/code-review/SKILL.md"
   },
   {
     "name": "codebase-design",
@@ -354,8 +354,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/codebase-design/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/codebase-design/SKILL.md"
   },
   {
     "name": "codex",
@@ -390,8 +390,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/codex/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/codex/SKILL.md"
   },
   {
     "name": "context-restore",
@@ -428,8 +428,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/context-restore/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/context-restore/SKILL.md"
   },
   {
     "name": "context-save",
@@ -465,8 +465,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/context-save/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/context-save/SKILL.md"
   },
   {
     "name": "devex-review",
@@ -503,8 +503,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/devex-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/devex-review/SKILL.md"
   },
   {
     "name": "diagnosing-bugs",
@@ -542,42 +542,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/diagnosing-bugs/SKILL.md"
-  },
-  {
-    "name": "dispatching-parallel-agents",
-    "title": "Dispatching Parallel Agents",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/dispatching-parallel-agents/SKILL.md",
-    "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-    "useWhen": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
-    "aliases": [
-      "dispatching-parallel-agents",
-      "dispatching parallel agents"
-    ],
-    "tags": [
-      "dispatching",
-      "parallel",
-      "agents",
-      "facing",
-      "independent",
-      "tasks",
-      "can",
-      "worked",
-      "without",
-      "shared",
-      "state",
-      "sequential"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/dispatching-parallel-agents/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/diagnosing-bugs/SKILL.md"
   },
   {
     "name": "domain-modeling",
@@ -609,76 +575,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/domain-modeling/SKILL.md"
-  },
-  {
-    "name": "executing-plans",
-    "title": "Executing Plans",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/executing-plans/SKILL.md",
-    "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-    "useWhen": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
-    "aliases": [
-      "executing-plans",
-      "executing plans"
-    ],
-    "tags": [
-      "executing",
-      "plans",
-      "have",
-      "written",
-      "implementation",
-      "plan",
-      "execute",
-      "separate",
-      "session",
-      "review",
-      "checkpoints"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/executing-plans/SKILL.md"
-  },
-  {
-    "name": "finishing-a-development-branch",
-    "title": "Finishing A Development Branch",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/finishing-a-development-branch/SKILL.md",
-    "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
-    "useWhen": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
-    "aliases": [
-      "finishing-a-development-branch",
-      "finishing a development branch",
-      "pull request"
-    ],
-    "tags": [
-      "finishing",
-      "development",
-      "branch",
-      "implementation",
-      "complete",
-      "all",
-      "tests",
-      "pass",
-      "need",
-      "decide",
-      "how",
-      "integrate"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/finishing-a-development-branch/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/domain-modeling/SKILL.md"
   },
   {
     "name": "git-guardrails-claude-code",
@@ -711,8 +609,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/git-guardrails-claude-code/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/git-guardrails-claude-code/SKILL.md"
   },
   {
     "name": "grill-me",
@@ -739,8 +637,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/grill-me/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/grill-me/SKILL.md"
   },
   {
     "name": "grill-with-docs",
@@ -772,8 +670,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/grill-with-docs/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/grill-with-docs/SKILL.md"
   },
   {
     "name": "grilling",
@@ -804,8 +702,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/grilling/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/grilling/SKILL.md"
   },
   {
     "name": "gstack-openclaw-investigate",
@@ -838,8 +736,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-investigate/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/openclaw/skills/gstack-openclaw-investigate/SKILL.md"
   },
   {
     "name": "gstack-upgrade",
@@ -875,8 +773,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/gstack-upgrade/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/gstack-upgrade/SKILL.md"
   },
   {
     "name": "hackernews-frontpage",
@@ -914,8 +812,8 @@
       "network",
       "browser"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/browser-skills/hackernews-frontpage/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/browser-skills/hackernews-frontpage/SKILL.md"
   },
   {
     "name": "handoff",
@@ -943,8 +841,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/handoff/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/handoff/SKILL.md"
   },
   {
     "name": "implement",
@@ -972,8 +870,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/implement/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/implement/SKILL.md"
   },
   {
     "name": "improve-codebase-architecture",
@@ -1005,8 +903,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/improve-codebase-architecture/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/improve-codebase-architecture/SKILL.md"
   },
   {
     "name": "investigate",
@@ -1045,8 +943,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/investigate/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/investigate/SKILL.md"
   },
   {
     "name": "ios-clean",
@@ -1083,8 +981,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-clean/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/ios-clean/SKILL.md"
   },
   {
     "name": "ios-fix",
@@ -1121,8 +1019,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-fix/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/ios-fix/SKILL.md"
   },
   {
     "name": "ios-qa",
@@ -1159,8 +1057,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-qa/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/ios-qa/SKILL.md"
   },
   {
     "name": "ios-sync",
@@ -1197,8 +1095,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ios-sync/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/ios-sync/SKILL.md"
   },
   {
     "name": "land-and-deploy",
@@ -1237,8 +1135,8 @@
       "external-posting",
       "dangerous"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/land-and-deploy/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/land-and-deploy/SKILL.md"
   },
   {
     "name": "make-pdf",
@@ -1274,8 +1172,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/make-pdf/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/make-pdf/SKILL.md"
   },
   {
     "name": "migrate-to-shoehorn",
@@ -1308,8 +1206,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/migrate-to-shoehorn/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/migrate-to-shoehorn/SKILL.md"
   },
   {
     "name": "open-gstack-browser",
@@ -1346,8 +1244,8 @@
       "network",
       "browser"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/open-gstack-browser/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/open-gstack-browser/SKILL.md"
   },
   {
     "name": "pair-agent",
@@ -1385,8 +1283,8 @@
       "network",
       "browser"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/pair-agent/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/pair-agent/SKILL.md"
   },
   {
     "name": "plan-design-review",
@@ -1424,8 +1322,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-design-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/plan-design-review/SKILL.md"
   },
   {
     "name": "plan-devex-review",
@@ -1462,8 +1360,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-devex-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/plan-devex-review/SKILL.md"
   },
   {
     "name": "plan-eng-review",
@@ -1500,8 +1398,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-eng-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/plan-eng-review/SKILL.md"
   },
   {
     "name": "prototype",
@@ -1533,8 +1431,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/prototype/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/prototype/SKILL.md"
   },
   {
     "name": "qa",
@@ -1571,8 +1469,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/qa/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/qa/SKILL.md"
   },
   {
     "name": "qa-only",
@@ -1609,77 +1507,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/qa-only/SKILL.md"
-  },
-  {
-    "name": "receiving-code-review",
-    "title": "Receiving Code Review",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/receiving-code-review/SKILL.md",
-    "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-    "useWhen": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-    "aliases": [
-      "receiving-code-review",
-      "receiving code review",
-      "code review"
-    ],
-    "tags": [
-      "receiving",
-      "code",
-      "review",
-      "feedback",
-      "before",
-      "implementing",
-      "suggestions",
-      "especially",
-      "seems",
-      "unclear",
-      "technically",
-      "questionable"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/receiving-code-review/SKILL.md"
-  },
-  {
-    "name": "requesting-code-review",
-    "title": "Requesting Code Review",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/requesting-code-review/SKILL.md",
-    "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-    "useWhen": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
-    "aliases": [
-      "requesting-code-review",
-      "requesting code review"
-    ],
-    "tags": [
-      "requesting",
-      "code",
-      "review",
-      "completing",
-      "tasks",
-      "implementing",
-      "major",
-      "features",
-      "before",
-      "merging",
-      "verify",
-      "work"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/requesting-code-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/qa-only/SKILL.md"
   },
   {
     "name": "research",
@@ -1711,8 +1540,8 @@
       "read-only",
       "network"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/research/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/research/SKILL.md"
   },
   {
     "name": "resolving-merge-conflicts",
@@ -1743,8 +1572,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/resolving-merge-conflicts/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/resolving-merge-conflicts/SKILL.md"
   },
   {
     "name": "review",
@@ -1782,8 +1611,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/review/SKILL.md"
   },
   {
     "name": "scaffold-exercises",
@@ -1816,8 +1645,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/scaffold-exercises/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/scaffold-exercises/SKILL.md"
   },
   {
     "name": "scrape",
@@ -1855,8 +1684,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/scrape/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/scrape/SKILL.md"
   },
   {
     "name": "setup-browser-cookies",
@@ -1895,8 +1724,8 @@
       "browser",
       "customer-data"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/setup-browser-cookies/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/setup-browser-cookies/SKILL.md"
   },
   {
     "name": "setup-deploy",
@@ -1932,8 +1761,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/setup-deploy/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/setup-deploy/SKILL.md"
   },
   {
     "name": "setup-gbrain",
@@ -1970,8 +1799,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/setup-gbrain/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/setup-gbrain/SKILL.md"
   },
   {
     "name": "setup-matt-pocock-skills",
@@ -2004,8 +1833,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/setup-matt-pocock-skills/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/setup-matt-pocock-skills/SKILL.md"
   },
   {
     "name": "setup-pre-commit",
@@ -2038,8 +1867,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/misc/setup-pre-commit/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/setup-pre-commit/SKILL.md"
   },
   {
     "name": "ship",
@@ -2079,8 +1908,8 @@
       "external-posting",
       "dangerous"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/ship/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/ship/SKILL.md"
   },
   {
     "name": "skillify",
@@ -2117,8 +1946,8 @@
       "network",
       "browser"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/skillify/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/skillify/SKILL.md"
   },
   {
     "name": "spec",
@@ -2158,40 +1987,8 @@
       "network",
       "external-posting"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/spec/SKILL.md"
-  },
-  {
-    "name": "subagent-driven-development",
-    "title": "Subagent Driven Development",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/subagent-driven-development/SKILL.md",
-    "description": "Use when executing implementation plans with independent tasks in the current session",
-    "useWhen": "Use when executing implementation plans with independent tasks in the current session",
-    "aliases": [
-      "subagent-driven-development",
-      "subagent driven development"
-    ],
-    "tags": [
-      "subagent",
-      "driven",
-      "development",
-      "executing",
-      "implementation",
-      "plans",
-      "independent",
-      "tasks",
-      "current",
-      "session"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/subagent-driven-development/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/spec/SKILL.md"
   },
   {
     "name": "sync-gbrain",
@@ -2227,46 +2024,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/sync-gbrain/SKILL.md"
-  },
-  {
-    "name": "systematic-debugging",
-    "title": "Systematic Debugging",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/systematic-debugging/SKILL.md",
-    "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-    "useWhen": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-    "aliases": [
-      "systematic-debugging",
-      "systematic debugging",
-      "debug this flaky production bug systematically before proposing fixes",
-      "systematically before proposing fixes",
-      "debugging"
-    ],
-    "tags": [
-      "systematic",
-      "debugging",
-      "encountering",
-      "any",
-      "bug",
-      "flaky",
-      "production",
-      "test",
-      "failure",
-      "unexpected",
-      "behavior",
-      "before",
-      "proposing",
-      "fixes"
-    ],
-    "capabilities": [
-      "read-only"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/systematic-debugging/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/sync-gbrain/SKILL.md"
   },
   {
     "name": "tdd",
@@ -2306,8 +2065,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/tdd/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/tdd/SKILL.md"
   },
   {
     "name": "teach",
@@ -2332,112 +2091,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/teach/SKILL.md"
-  },
-  {
-    "name": "test-driven-development",
-    "title": "Test Driven Development",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/test-driven-development/SKILL.md",
-    "description": "Use when implementing any feature or bugfix, before writing implementation code",
-    "useWhen": "Use when implementing any feature or bugfix, before writing implementation code",
-    "aliases": [
-      "test-driven-development",
-      "test driven development",
-      "debugging"
-    ],
-    "tags": [
-      "test",
-      "driven",
-      "development",
-      "implementing",
-      "any",
-      "feature",
-      "bugfix",
-      "before",
-      "writing",
-      "implementation",
-      "code"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/test-driven-development/SKILL.md"
-  },
-  {
-    "name": "to-issues",
-    "title": "To Issues",
-    "studio": "engineering",
-    "source": "mattpocock/skills",
-    "pack": "mattpocock/skills",
-    "skillPath": "skills/engineering/to-issues/SKILL.md",
-    "description": "Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
-    "useWhen": "Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices.",
-    "aliases": [
-      "to-issues",
-      "to issues"
-    ],
-    "tags": [
-      "issues",
-      "engineering",
-      "break",
-      "plan",
-      "spec",
-      "prd",
-      "independently",
-      "grabbable",
-      "project",
-      "issue",
-      "tracker",
-      "using"
-    ],
-    "capabilities": [
-      "read-only",
-      "network",
-      "external-posting"
-    ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/to-issues/SKILL.md"
-  },
-  {
-    "name": "to-prd",
-    "title": "To Prd",
-    "studio": "engineering",
-    "source": "mattpocock/skills",
-    "pack": "mattpocock/skills",
-    "skillPath": "skills/engineering/to-prd/SKILL.md",
-    "description": "Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
-    "useWhen": "Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.",
-    "aliases": [
-      "to-prd",
-      "to prd"
-    ],
-    "tags": [
-      "prd",
-      "engineering",
-      "turn",
-      "current",
-      "conversation",
-      "publish",
-      "project",
-      "issue",
-      "tracker",
-      "interview",
-      "just",
-      "synthesis"
-    ],
-    "capabilities": [
-      "read-only",
-      "network",
-      "external-posting"
-    ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/to-prd/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/teach/SKILL.md"
   },
   {
     "name": "triage",
@@ -2470,201 +2125,7 @@
       "network",
       "external-posting"
     ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/engineering/triage/SKILL.md"
-  },
-  {
-    "name": "using-git-worktrees",
-    "title": "Using Git Worktrees",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/using-git-worktrees/SKILL.md",
-    "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-    "useWhen": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-    "aliases": [
-      "using-git-worktrees",
-      "using git worktrees"
-    ],
-    "tags": [
-      "using",
-      "git",
-      "worktrees",
-      "starting",
-      "feature",
-      "work",
-      "needs",
-      "isolation",
-      "current",
-      "workspace",
-      "before",
-      "executing"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/using-git-worktrees/SKILL.md"
-  },
-  {
-    "name": "using-superpowers",
-    "title": "Using Superpowers",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/using-superpowers/SKILL.md",
-    "description": "Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
-    "useWhen": "Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions",
-    "aliases": [
-      "using-superpowers",
-      "using superpowers"
-    ],
-    "tags": [
-      "using",
-      "starting",
-      "any",
-      "conversation",
-      "establishes",
-      "how",
-      "find",
-      "requiring",
-      "invocation",
-      "before",
-      "response",
-      "including"
-    ],
-    "capabilities": [
-      "read-only"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/using-superpowers/SKILL.md"
-  },
-  {
-    "name": "verification-before-completion",
-    "title": "Verification Before Completion",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/verification-before-completion/SKILL.md",
-    "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-    "useWhen": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-    "aliases": [
-      "verification-before-completion",
-      "verification before completion"
-    ],
-    "tags": [
-      "verification",
-      "before",
-      "completion",
-      "about",
-      "claim",
-      "work",
-      "complete",
-      "fixed",
-      "passing",
-      "committing",
-      "creating",
-      "prs"
-    ],
-    "capabilities": [
-      "read-only"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/verification-before-completion/SKILL.md"
-  },
-  {
-    "name": "writing-great-skills",
-    "title": "Writing Great Skills",
-    "studio": "engineering",
-    "source": "mattpocock/skills",
-    "pack": "mattpocock/skills",
-    "skillPath": "skills/productivity/writing-great-skills/SKILL.md",
-    "description": "Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
-    "useWhen": "Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.",
-    "aliases": [
-      "writing-great-skills",
-      "writing great skills"
-    ],
-    "tags": [
-      "writing",
-      "great",
-      "productivity",
-      "reference",
-      "editing",
-      "well",
-      "vocabulary",
-      "principles",
-      "make",
-      "predictable"
-    ],
-    "capabilities": [
-      "read-only"
-    ],
-    "sourceCommit": "8515a080a74dbcf5019a1a78efc24b5fcafb36b8",
-    "sourceUrl": "https://github.com/mattpocock/skills/blob/8515a080a74dbcf5019a1a78efc24b5fcafb36b8/skills/productivity/writing-great-skills/SKILL.md"
-  },
-  {
-    "name": "writing-plans",
-    "title": "Writing Plans",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/writing-plans/SKILL.md",
-    "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
-    "useWhen": "Use when you have a spec or requirements for a multi-step task, before touching code",
-    "aliases": [
-      "writing-plans",
-      "writing plans"
-    ],
-    "tags": [
-      "writing",
-      "plans",
-      "have",
-      "spec",
-      "requirements",
-      "multi",
-      "step",
-      "task",
-      "before",
-      "touching",
-      "code"
-    ],
-    "capabilities": [
-      "read-only"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/writing-plans/SKILL.md"
-  },
-  {
-    "name": "writing-skills",
-    "title": "Writing Skills",
-    "studio": "engineering",
-    "source": "obra/superpowers",
-    "pack": "obra/superpowers",
-    "skillPath": "skills/writing-skills/SKILL.md",
-    "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-    "useWhen": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-    "aliases": [
-      "writing-skills",
-      "writing skills"
-    ],
-    "tags": [
-      "writing",
-      "creating",
-      "new",
-      "editing",
-      "existing",
-      "verifying",
-      "work",
-      "before",
-      "deployment"
-    ],
-    "capabilities": [
-      "read-only",
-      "file-write"
-    ],
-    "sourceCommit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/skills/writing-skills/SKILL.md"
+    "sourceCommit": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+    "sourceUrl": "https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/triage/SKILL.md"
   }
 ]

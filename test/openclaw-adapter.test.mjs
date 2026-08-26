@@ -224,7 +224,13 @@ test("agent-skill-debloater exposes the OpenClaw adapter search command", () => 
       "--catalog-dir",
       fileURLToPath(fixtureDir)
     ],
-    { encoding: "utf8" }
+    {
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        AGENT_SKILL_DEBLOATER_PACK_ROOTS: ""
+      }
+    }
   );
   const response = JSON.parse(output);
 

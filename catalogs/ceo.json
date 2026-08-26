@@ -33,8 +33,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/cso/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/cso/SKILL.md"
   },
   {
     "name": "document-generate",
@@ -73,8 +73,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/document-generate/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/document-generate/SKILL.md"
   },
   {
     "name": "document-release",
@@ -110,8 +110,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/document-release/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/document-release/SKILL.md"
   },
   {
     "name": "freeze",
@@ -146,8 +146,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/freeze/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/freeze/SKILL.md"
   },
   {
     "name": "gstack-openclaw-ceo-review",
@@ -181,8 +181,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-ceo-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/openclaw/skills/gstack-openclaw-ceo-review/SKILL.md"
   },
   {
     "name": "gstack-openclaw-office-hours",
@@ -214,8 +214,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-office-hours/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/openclaw/skills/gstack-openclaw-office-hours/SKILL.md"
   },
   {
     "name": "gstack-openclaw-retro",
@@ -248,8 +248,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/openclaw/skills/gstack-openclaw-retro/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/openclaw/skills/gstack-openclaw-retro/SKILL.md"
   },
   {
     "name": "guard",
@@ -284,8 +284,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/guard/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/guard/SKILL.md"
   },
   {
     "name": "health",
@@ -320,8 +320,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/health/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/health/SKILL.md"
   },
   {
     "name": "landing-report",
@@ -358,8 +358,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/landing-report/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/landing-report/SKILL.md"
   },
   {
     "name": "learn",
@@ -394,8 +394,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/learn/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/learn/SKILL.md"
   },
   {
     "name": "office-hours",
@@ -432,8 +432,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/office-hours/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/office-hours/SKILL.md"
   },
   {
     "name": "plan-ceo-review",
@@ -473,8 +473,8 @@
       "file-write",
       "network"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-ceo-review/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/plan-ceo-review/SKILL.md"
   },
   {
     "name": "plan-tune",
@@ -513,8 +513,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/plan-tune/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/plan-tune/SKILL.md"
   },
   {
     "name": "retro",
@@ -549,8 +549,8 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/retro/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/retro/SKILL.md"
   },
   {
     "name": "unfreeze",
@@ -585,7 +585,7 @@
       "read-only",
       "file-write"
     ],
-    "sourceCommit": "11de390be1be6849eb9a15f91ff4922dd16c589a",
-    "sourceUrl": "https://github.com/garrytan/gstack/blob/11de390be1be6849eb9a15f91ff4922dd16c589a/unfreeze/SKILL.md"
+    "sourceCommit": "ad8400543cd9ce8d07641362db48d44a95417e33",
+    "sourceUrl": "https://github.com/garrytan/gstack/blob/ad8400543cd9ce8d07641362db48d44a95417e33/unfreeze/SKILL.md"
   }
 ]
