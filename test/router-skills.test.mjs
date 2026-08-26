@@ -51,11 +51,18 @@ test("engineering-studio is a compact visible router skill", async () => {
   const body = await readSkill("engineering-studio");
 
   assert.match(body, /^---\nname: engineering-studio\n/m);
-  assert.match(body, /implementation/i);
+  assert.match(body, /long-tail engineering workflow library/i);
+  assert.match(body, /native approach/i);
+  assert.match(body, /selecting (?:no\s+backing skill|none) is valid/i);
+  assert.match(body, /select at most one hidden candidate/i);
+  assert.match(body, /already directly\s+exposed/i);
+  assert.match(body, /candidate cards are sufficient for selection/i);
+  assert.match(body, /only when the authorized task will execute it/i);
+  assert.match(body, /may not expand scope/i);
   assert.match(body, /plugin-local CLI/);
   assert.match(body, /parent of `skills\/`/);
   assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" engineering/);
-  assert.match(body, /read the returned `SKILL\.md`/);
+  assert.match(body, /read the returned `SKILL\.md`/i);
   assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
   assert.ok(body.split(/\s+/).length < 290);
 });
