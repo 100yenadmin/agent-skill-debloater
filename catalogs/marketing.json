@@ -28,8 +28,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/product-marketing/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/product-marketing/SKILL.md"
   },
   {
     "name": "customer-research",
@@ -60,8 +60,8 @@
       "read-only",
       "network"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/customer-research/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/customer-research/SKILL.md"
   },
   {
     "name": "copywriting",
@@ -92,8 +92,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/copywriting/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/copywriting/SKILL.md"
   },
   {
     "name": "ai-seo",
@@ -127,8 +127,8 @@
       "read-only",
       "network"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/ai-seo/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/ai-seo/SKILL.md"
   },
   {
     "name": "content-strategy",
@@ -156,8 +156,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/content-strategy/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/content-strategy/SKILL.md"
   },
   {
     "name": "launch",
@@ -186,8 +186,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/launch/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/launch/SKILL.md"
   },
   {
     "name": "marketing-plan",
@@ -215,8 +215,8 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/marketing-plan/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/marketing-plan/SKILL.md"
   },
   {
     "name": "ad-creative",
@@ -245,7 +245,7 @@
     "capabilities": [
       "read-only"
     ],
-    "sourceCommit": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/skills/ad-creative/SKILL.md"
+    "sourceCommit": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/skills/ad-creative/SKILL.md"
   }
 ]

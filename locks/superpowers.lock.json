@@ -2,11 +2,11 @@
   "pack": "obra/superpowers",
   "repoUrl": "https://github.com/obra/superpowers",
   "resolvedRef": "main",
-  "resolvedSha": "d884ae04edebef577e82ff7c4e143debd0bbec99",
-  "resolvedAt": "2026-07-08",
+  "resolvedSha": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+  "resolvedAt": "2026-08-26",
   "license": {
     "status": "recorded",
-    "sourceUrl": "https://github.com/obra/superpowers/blob/d884ae04edebef577e82ff7c4e143debd0bbec99/LICENSE",
+    "sourceUrl": "https://github.com/obra/superpowers/blob/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/LICENSE",
     "blobSha": "abf0390320aa14406af7a520b9b0739fdda9bf08"
   },
   "catalogs": [
@@ -15,59 +15,59 @@
   "skills": [
     {
       "path": "skills/brainstorming/SKILL.md",
-      "blobSha": "b0d52b258929b75d408fa4292b3f078a1104f078"
+      "blobSha": "b56a3b5ed6ea0d6216501e0e401ecb00a1b4675f"
     },
     {
       "path": "skills/dispatching-parallel-agents/SKILL.md",
-      "blobSha": "75e7e22cef2e7adc0963e74457cf2664514dee33"
+      "blobSha": "3fa091b348bbe0a18eaa0e17e9092c97f7005cbe"
     },
     {
       "path": "skills/executing-plans/SKILL.md",
-      "blobSha": "075a1038f1b98181c54193df1b6bcf0ac8b302f0"
+      "blobSha": "b51d97d2cc4c2ecc5eabecf27e499aa8c933efac"
     },
     {
       "path": "skills/finishing-a-development-branch/SKILL.md",
-      "blobSha": "7f5337aaf9efff305db15836412106216dae4756"
+      "blobSha": "fa8aecaf8813f1b19d19996f7957d1b0121f2d9c"
     },
     {
       "path": "skills/receiving-code-review/SKILL.md",
-      "blobSha": "4c77a10ee338fb7bddec6f5acf3455c8f2e4465a"
+      "blobSha": "950da7b74bf6dbed6b8726d12ddadd65a9f5fda7"
     },
     {
       "path": "skills/requesting-code-review/SKILL.md",
-      "blobSha": "4b8aa605fc2ddf12e90840d2e06015d386c0d68d"
+      "blobSha": "fa4f2f9965591d6d8a7ef4ad47e6ba4d5ac344d0"
     },
     {
       "path": "skills/subagent-driven-development/SKILL.md",
-      "blobSha": "d8ca081570c1ae7cc86e15f125c2b6063000f755"
+      "blobSha": "aac35b91c07af15eca580a205eb0c894b86e87c8"
     },
     {
       "path": "skills/systematic-debugging/SKILL.md",
-      "blobSha": "b0eca38b3cf9523ea86c9211e96949c8e69d1d1c"
+      "blobSha": "095d194ac041502905f15b01d22d294fb94db8b2"
     },
     {
       "path": "skills/test-driven-development/SKILL.md",
-      "blobSha": "60d2609ca56c7177a98f462fb71af77844ce92af"
+      "blobSha": "4320d8879a639d0536c2239bb80c9d7257ad8947"
     },
     {
       "path": "skills/using-git-worktrees/SKILL.md",
-      "blobSha": "212c56926e1c9efab0ce0afd756ac2d1fb8f1b58"
+      "blobSha": "1381dacb3516b94382dd6ec736ede21ee8ede2b3"
     },
     {
       "path": "skills/using-superpowers/SKILL.md",
-      "blobSha": "8a08873ba07c1437f4f3cfd0d06c333eaf2e2715"
+      "blobSha": "7ab2eb678f649c8befb94512359ee0b6e9a9a9a4"
     },
     {
       "path": "skills/verification-before-completion/SKILL.md",
-      "blobSha": "2f14076e59e6ce5cd6f88007421a85f0bd772520"
+      "blobSha": "7d45333cc4a49c57a80df6c1fe2fa777a207afbc"
     },
     {
       "path": "skills/writing-plans/SKILL.md",
-      "blobSha": "b1613eb0578ae4483912bb1f227bd127fa79b577"
+      "blobSha": "f74605bfa9af7a3fb7e4ad7f17750a86a9b0d728"
     },
     {
       "path": "skills/writing-skills/SKILL.md",
-      "blobSha": "6d3ded6e62ffdaaed7a84b52bc53f66e00e548be"
+      "blobSha": "f33f39f523c8a3ae2ec0eaf365a524571df8ff3d"
     }
   ]
 }

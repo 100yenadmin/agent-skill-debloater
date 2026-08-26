@@ -2,11 +2,11 @@
   "pack": "coreyhaines31/marketingskills",
   "repoUrl": "https://github.com/coreyhaines31/marketingskills",
   "resolvedRef": "main",
-  "resolvedSha": "6c6017451dcd340f3aaab3e354e28eed8aa782aa",
-  "resolvedAt": "2026-07-08",
+  "resolvedSha": "becd60ee9df07f7d595c26e092253ba49f7a9ffc",
+  "resolvedAt": "2026-08-26",
   "license": {
     "status": "recorded",
-    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/6c6017451dcd340f3aaab3e354e28eed8aa782aa/LICENSE",
+    "sourceUrl": "https://github.com/coreyhaines31/marketingskills/blob/becd60ee9df07f7d595c26e092253ba49f7a9ffc/LICENSE",
     "blobSha": "7c48dd638a9ebed49a8ef0c0c4eea90105381cdf"
   },
   "catalogs": [
@@ -19,23 +19,27 @@
     },
     {
       "path": "skills/ad-creative/SKILL.md",
-      "blobSha": "e8ef2a105068e436900d6411d1e65945c344e774"
+      "blobSha": "d2cafa2f4559ff595897e8108df3362e1902403e"
     },
     {
       "path": "skills/ads/SKILL.md",
-      "blobSha": "9e896299c61f3c71125bb03f2458706df633e5ea"
+      "blobSha": "3a06fcda47f69c826b00fc54968e749e91230f0a"
     },
     {
       "path": "skills/ai-seo/SKILL.md",
-      "blobSha": "de9dfbd7717f281511c800c10302f9268ad1ebbd"
+      "blobSha": "97c5261d4b2caf13fb87c207114e36334ccbe3f6"
     },
     {
       "path": "skills/analytics/SKILL.md",
-      "blobSha": "da39c1dc1586bc6cb06758e72426198493d00797"
+      "blobSha": "e20a3df64f984d048ab769ec1bb609faf05f8a65"
     },
     {
       "path": "skills/aso/SKILL.md",
-      "blobSha": "bd699a13e3d245b72bda63337ed0406f459774fe"
+      "blobSha": "961bc364429e0571948b4953e23dabab9a25d930"
+    },
+    {
+      "path": "skills/attribution/SKILL.md",
+      "blobSha": "6529ae887e34e9175e420dec3b178315c9ab90b2"
     },
     {
       "path": "skills/churn-prevention/SKILL.md",
@@ -43,7 +47,7 @@
     },
     {
       "path": "skills/co-marketing/SKILL.md",
-      "blobSha": "6788b644f675024e4f4135f561da33d11ec6830d"
+      "blobSha": "4d4849476b4128409414700ddd3dd476881f7e6a"
     },
     {
       "path": "skills/cold-email/SKILL.md",
@@ -51,19 +55,19 @@
     },
     {
       "path": "skills/community-marketing/SKILL.md",
-      "blobSha": "06246dc7515a3f2677147678d04a9ada6f7c62d3"
+      "blobSha": "441463df2bd0cd0bc5349f3151e95bc7afad0f04"
     },
     {
       "path": "skills/competitor-profiling/SKILL.md",
-      "blobSha": "9b0ca708a6f22bf11ae7c241b821788e2a374d83"
+      "blobSha": "615aba793ebbcadf1ef69796e6a1edd984381413"
     },
     {
       "path": "skills/competitors/SKILL.md",
-      "blobSha": "49ef0ffb7f165fe7af8a6a89627e51c2cdc23aa6"
+      "blobSha": "e919fec899061f3d894c2f0bd6dac98709eeb8e4"
     },
     {
       "path": "skills/content-strategy/SKILL.md",
-      "blobSha": "3a54e3f7b0b23d35d1e4c7f2f608fa947d19061f"
+      "blobSha": "b8a26a008ed59a4eef2b46794be9baeeb7e22d57"
     },
     {
       "path": "skills/copy-editing/SKILL.md",
@@ -71,7 +75,7 @@
     },
     {
       "path": "skills/copywriting/SKILL.md",
-      "blobSha": "0793e62270e203de1b2e2ff591a56015e4cf0075"
+      "blobSha": "349426d7f1874815401194d642fa59a0bb5b1842"
     },
     {
       "path": "skills/cro/SKILL.md",
@@ -79,7 +83,7 @@
     },
     {
       "path": "skills/customer-research/SKILL.md",
-      "blobSha": "54577ef2871a00ecb4088e53313170ed17bf8d76"
+      "blobSha": "e8571f8b67f3d096718a3607aa67e852a49b74e5"
     },
     {
       "path": "skills/directory-submissions/SKILL.md",
@@ -90,16 +94,24 @@
       "blobSha": "a9b31c79599095f66d9705090a25d877a437a7d7"
     },
     {
+      "path": "skills/events/SKILL.md",
+      "blobSha": "ca56d1cd1edc7baf05a1cab50f8d56b262fb8f39"
+    },
+    {
       "path": "skills/free-tools/SKILL.md",
-      "blobSha": "e1aa25d56ae3e6fcdb36c83344b7f8e3d8f3ba13"
+      "blobSha": "ead49b70b42507df7dcc888359e3a9ff906ce16c"
     },
     {
       "path": "skills/image/SKILL.md",
       "blobSha": "4ec01425410a26518a3f6ba8b0b5d8dd9fc85bbc"
     },
     {
+      "path": "skills/influencer-marketing/SKILL.md",
+      "blobSha": "53066b284b22a3403f04bd72803dc78849e2f975"
+    },
+    {
       "path": "skills/launch/SKILL.md",
-      "blobSha": "9fce797d47373597ff2fff564b4f6df8048ff81c"
+      "blobSha": "9438859e19c1ec10bf07632de1887b789df8761d"
     },
     {
       "path": "skills/lead-magnets/SKILL.md",
@@ -111,15 +123,15 @@
     },
     {
       "path": "skills/marketing-ideas/SKILL.md",
-      "blobSha": "6aada210bfd95177b916ddc01fc1aee10fefcaab"
+      "blobSha": "c5d681932b8e329236fa9e06fa85d6f5dc632c8d"
     },
     {
       "path": "skills/marketing-loops/SKILL.md",
-      "blobSha": "ef8d23e44431c2526b9f5dd835ec9e0ea7a332fe"
+      "blobSha": "895072416c4c53941d354e48b0bab973f94a3d83"
     },
     {
       "path": "skills/marketing-plan/SKILL.md",
-      "blobSha": "a647a520f6981032a3174dc988f75c9a71558831"
+      "blobSha": "4cb30ec952b7d7001d1d81c58583bbde5ddf433c"
     },
     {
       "path": "skills/marketing-psychology/SKILL.md",
@@ -127,11 +139,11 @@
     },
     {
       "path": "skills/offers/SKILL.md",
-      "blobSha": "7776009bcb766e3f388681b8612c069459b94096"
+      "blobSha": "dac1def431d22858653f41c25fadfa9abb1850e4"
     },
     {
       "path": "skills/onboarding/SKILL.md",
-      "blobSha": "f8ba58a3527ec6b4d01232339f5fdee4683a9a67"
+      "blobSha": "e5bfebe9e380888ab09816e00dc94ca45b3eed06"
     },
     {
       "path": "skills/paywalls/SKILL.md",
@@ -143,11 +155,11 @@
     },
     {
       "path": "skills/pricing/SKILL.md",
-      "blobSha": "13e56104b4d97c9678951f38ade31b547f5ce620"
+      "blobSha": "0ea73d15170f969c68f47adaeca9692467d0ec66"
     },
     {
       "path": "skills/product-marketing/SKILL.md",
-      "blobSha": "850235c1957884521c6753045009c6cb09723a32"
+      "blobSha": "622eab19e823a131fe8b9d500aa53143604fad8a"
     },
     {
       "path": "skills/programmatic-seo/SKILL.md",
@@ -155,15 +167,15 @@
     },
     {
       "path": "skills/prospecting/SKILL.md",
-      "blobSha": "0ddbdb2e70bc2485f29565298c18068b5dd61a6a"
+      "blobSha": "472435c76bb7c0e03d620b9412994ec016615e42"
     },
     {
       "path": "skills/public-relations/SKILL.md",
-      "blobSha": "3d6de7aa11fb1216311ef25f207694ef081ebd2b"
+      "blobSha": "76fbe11745b68099b4019a35c93d1b259d528791"
     },
     {
       "path": "skills/referrals/SKILL.md",
-      "blobSha": "0fd858d0bf4341d6ed29328c6480372f01ff7ba1"
+      "blobSha": "bcd90b1d3d03480ff86dbe914e90f92f7f8673bf"
     },
     {
       "path": "skills/revops/SKILL.md",
@@ -179,7 +191,7 @@
     },
     {
       "path": "skills/seo-audit/SKILL.md",
-      "blobSha": "c525957d9237c20aa6e8eb3ec61b8596a6b3635e"
+      "blobSha": "af014ef82989c61a672cdab26cd898821ef9518b"
     },
     {
       "path": "skills/signup/SKILL.md",
@@ -195,11 +207,11 @@
     },
     {
       "path": "skills/social/SKILL.md",
-      "blobSha": "1cf6aef8fe6cf657175b4316858e34e6d76c6736"
+      "blobSha": "ab1d083ef4a9dd2a91c1eaedfb5cb745c3055d24"
     },
     {
       "path": "skills/video/SKILL.md",
-      "blobSha": "1750ada9a967fe940bdb82934c060102cf735f77"
+      "blobSha": "6c8e9fdeb640594d3bf36690174f1726a721c4e3"
     }
   ]
 }
