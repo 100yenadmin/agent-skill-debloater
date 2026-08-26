@@ -16,10 +16,7 @@ const PROOF_BOUNDARY =
   "Clean-room install proves packaged plugin visibility and local search behavior only; it does not prove customer VM rollout readiness, OpenClaw core runtime safety, fleet deployment safety, or npm publication.";
 
 const EXPECTED_ROUTER_SKILLS = [
-  { name: "ceo-studio", path: "skills/ceo-studio/SKILL.md" },
-  { name: "design-studio", path: "skills/design-studio/SKILL.md" },
-  { name: "engineering-studio", path: "skills/engineering-studio/SKILL.md" },
-  { name: "marketing-studio", path: "skills/marketing-studio/SKILL.md" }
+  { name: "studio", path: "skills/studio/SKILL.md" }
 ];
 
 const EXPECTED_STUDIOS = ["design", "marketing", "ceo", "engineering"];

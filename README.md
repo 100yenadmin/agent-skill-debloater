@@ -17,9 +17,9 @@ studios and seed packs, proof links, non-goals, and maintainer launch checklist.
 See `docs/demo-router-flow.md` for a small router-to-search-to-read-path
 transcript.
 
-Approval gates for publish/runtime expansion are documented separately:
-`docs/npm-publication-gate.md`, `docs/openclaw-core-primitives.md`,
-`docs/runtime-canary-plan.md`, and `docs/customer-canary-plan.md`.
+The npm publication approval gate is documented separately in
+`docs/npm-publication-gate.md`. Runtime and customer rollout remain outside
+this repository's package proof and require separate issue-level approval.
 
 ## What Ships
 
@@ -30,8 +30,8 @@ Approval gates for publish/runtime expansion are documented separately:
 - `agent-skill-debloater package-acceptance check`
 - `pack-sync check`, `pack-sync diff`, and `pack-sync update`
 - `.codex-plugin/plugin.json` for Codex/OpenClaw plugin installation
-- `design-studio`, `marketing-studio`, `ceo-studio`, and `engineering-studio`
-  visible router skills
+- one `studio` visible router skill that selects among Design, Marketing, CEO,
+  and Engineering domains
 - portable seed catalogs for Baoyu design skills, Cory Haines marketing skills,
   GStack, Superpowers, and Matt Pocock skills
 - lockfiles with exact upstream seed commits
@@ -230,9 +230,9 @@ Marketing, CEO, Engineering, one ambiguity prompt, and one hard negative. It
 records the router, top-3 search result set, selected `SKILL.md` read path,
 source/capability disclosure, and whole-pack-loading guard.
 
-Runtime rollout remains separate from package proof. Use
-`docs/runtime-canary-plan.md` for the Golden VM, one-customer canary, rollback,
-and evidence checklist before any customer or fleet change.
+Runtime rollout remains separate from package proof and is governed by the
+separate runtime/customer approval issues; this repository does not execute
+those changes.
 
 Use `docs/distribution-readiness.md` for the future npm/public distribution
 review checklist. The package is not considered npm-published until a maintainer

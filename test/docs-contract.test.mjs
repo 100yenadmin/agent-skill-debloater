@@ -1,33 +1,10 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function readDoc(name) {
   return readFile(new URL(`../docs/${name}`, import.meta.url), "utf8");
 }
-
-test("runtime canary plan captures rollout boundary, rollback, and evidence gates", async () => {
-  const plan = await readDoc("runtime-canary-plan.md");
-
-  for (const required of [
-    "upstream OpenClaw code changes, pull requests, or merges",
-    "customer VM writes",
-    "fleet default skill-stack rollout",
-    "npm publication",
-    "Phase 1: Golden VM Canary",
-    "Phase 2: One Customer VM Canary",
-    "Rollback",
-    "Stop conditions",
-    "Evidence Checklist",
-    "package-acceptance/v0",
-    "runtime_safe"
-  ]) {
-    assert.match(plan, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  }
-
-  assert.match(plan, /does not prove runtime safety/i);
-  assert.match(plan, /Hidden\/read-on-demand reduces prompt bloat\. It is not a security boundary\./);
-});
 
 test("launch packet stays market-facing without crossing approval boundaries", async () => {
   const packet = await readDoc("launch-packet.md");
@@ -54,11 +31,22 @@ test("launch packet stays market-facing without crossing approval boundaries", a
   assert.match(demo, /does\s+not\s+prove\s+customer VM rollout readiness/i);
 });
 
-test("GA approval gates require explicit approval before publish or runtime mutation", async () => {
+test("retired OpenClaw strategy docs and roadmap item stay removed", async () => {
+  const docs = await readdir(new URL("../docs/", import.meta.url));
+  for (const retired of [
+    "openclaw-core-primitives.md",
+    "runtime-canary-plan.md",
+    "customer-canary-plan.md"
+  ]) {
+    assert.equal(docs.includes(retired), false);
+  }
+
+  const roadmap = await readDoc("roadmap.md");
+  assert.doesNotMatch(roadmap, /OpenClaw core primitive adoption/i);
+});
+
+test("npm approval gate remains explicit without retired strategy docs", async () => {
   const npmGate = await readDoc("npm-publication-gate.md");
-  const openClaw = await readDoc("openclaw-core-primitives.md");
-  const runtime = await readDoc("runtime-canary-plan.md");
-  const customer = await readDoc("customer-canary-plan.md");
 
   for (const required of [
     "Do not run a real `npm publish`",
@@ -69,12 +57,4 @@ test("GA approval gates require explicit approval before publish or runtime muta
   ]) {
     assert.match(npmGate, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
-
-  assert.match(openClaw, /No upstream OpenClaw code changes, pull requests, merges, or runtime config/);
-  assert.match(openClaw, /Keep AgentSkillDebloater as the proving ground/);
-  assert.match(runtime, /Issue #47 is approval to maintain this plan only/);
-  assert.match(runtime, /This approval does not authorize\s+customer VM writes/i);
-  assert.match(customer, /Do not write to a customer VM/);
-  assert.match(customer, /Customer canary execution requires a separate explicit approval comment/);
-  assert.match(customer, /This plan can define an opt-in customer canary/);
 });

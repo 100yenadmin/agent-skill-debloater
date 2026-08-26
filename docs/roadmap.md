@@ -52,7 +52,6 @@
 
 ## Deferred After v1.0
 
-- OpenClaw core primitive adoption.
 - Runtime/customer canary rollout.
 - npm publication.
 - Promoting Voyage rerank from shadow mode to ordering behavior.

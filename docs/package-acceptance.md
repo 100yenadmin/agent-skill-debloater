@@ -33,7 +33,7 @@ proof boundary. It does not include full skill bodies or local temp paths.
 
 `clean-room-install/v0` adds the install-shape check for GA readiness: it packs
 the artifact, installs it into a fresh local profile shape, confirms the plugin
-exposes only the four studio router `SKILL.md` files, confirms catalogs contain
+exposes only the unified studio router `SKILL.md` file, confirms catalogs contain
 compact projections rather than backing skill bodies, and runs installed CLI
 searches for Design, Marketing, CEO, Engineering, and a hard negative.
 

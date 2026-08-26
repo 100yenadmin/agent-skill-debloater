@@ -1,8 +1,8 @@
 # AgentSkillDebloater Architecture
 
 AgentSkillDebloater is a plugin-first proving ground for hidden but searchable
-skill libraries. It keeps visible prompt surface small by exposing compact role
-studio router skills, then searching catalogs that point at upstream skill files.
+skill libraries. It keeps visible prompt surface small by exposing one compact
+Studio router, then searching catalogs that point at upstream skill files.
 
 ## Boundaries
 
@@ -15,8 +15,8 @@ studio router skills, then searching catalogs that point at upstream skill files
 
 ## Flow
 
-1. A visible role studio skill is triggered, such as `design-studio`,
-   `marketing-studio`, `ceo-studio`, or `engineering-studio`.
+1. The visible `studio` router is triggered and selects one domain: Design,
+   Marketing, CEO, or Engineering.
 2. The router runs `debloat-skill-search <studio> "<query>" --limit 3`.
 3. Search returns compact candidate cards with source, confidence, capabilities,
    reason codes, and a read path.

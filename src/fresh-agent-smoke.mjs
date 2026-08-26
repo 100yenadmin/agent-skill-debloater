@@ -30,6 +30,16 @@ const ROUTER_STOP_WORDS = new Set([
   "to",
   "with"
 ]);
+const STUDIO_ROUTING_DESCRIPTIONS = {
+  design:
+    "visual design, diagrams, covers, hero images, infographics, slides, social cards, brand assets, UI polish, launch visuals, and design direction",
+  marketing:
+    "positioning, ICP, offers, SEO, GEO, content strategy, copywriting, growth, launches, customer research, ads, and marketing planning",
+  ceo:
+    "founder judgment, CEO review, company strategy, executive operating, scope ambition, security posture, documentation direction, retrospectives, and strategic planning",
+  engineering:
+    "long-tail engineering workflows, debugging, planning, code review, TypeScript, and implementation"
+};
 const PROOF_BOUNDARY =
   "Fresh-agent smokes prove router/search/read-path behavior locally only; they do not prove customer VM rollout readiness, OpenClaw core runtime safety, fleet deployment safety, or npm publication.";
 
@@ -50,7 +60,7 @@ function optionValue(name, value) {
 }
 
 function routerForStudio(studio) {
-  return `${studio}-studio`;
+  return "studio";
 }
 
 function searchCommand(studio, query) {
@@ -95,10 +105,6 @@ function routerTokenMatches(tokens, queryToken) {
   });
 }
 
-function routerDescription(routerBody) {
-  return routerBody.match(/^description:\s*(.+)$/m)?.[1] ?? "";
-}
-
 function hasScopedCatalogLeakGuard(routerBody, studio) {
   const normalized = routerBody.toLowerCase().replace(/\s+/g, " ");
   const hasBlockingLanguage = /\b(never|do not|don't)\b/.test(normalized);
@@ -110,20 +116,29 @@ function hasScopedCatalogLeakGuard(routerBody, studio) {
     `whole ${studio} library`,
     `entire ${studio} library`
   ];
+  const unifiedCatalogPhrase = /\bwhole selected domain catalog\b/.test(normalized);
   return (
     hasBlockingLanguage &&
     hasInlineAction &&
     hasPromptBoundary &&
-    scopedCatalogPhrases.some((phrase) => normalized.includes(phrase))
+    (scopedCatalogPhrases.some((phrase) => normalized.includes(phrase)) || unifiedCatalogPhrase)
   );
 }
 
-function scoreRouterDescription(routerBody, prompt) {
+function scoreStudioDescription(studio, prompt) {
   const promptTokens = routerTokens(prompt);
-  const descriptionTokens = routerTokens(routerDescription(routerBody));
+  const descriptionTokens = routerTokens(STUDIO_ROUTING_DESCRIPTIONS[studio]);
   return promptTokens.reduce(
     (score, token) => score + (routerTokenMatches(descriptionTokens, token) ? 12 : 0),
     0
+  );
+}
+
+function hasCrossStudioAmbiguity(prompt) {
+  const normalized = String(prompt ?? "").toLowerCase();
+  return (
+    /\b(copy|content|positioning|campaign)\b/.test(normalized) &&
+    /\b(visual|image|diagram|design|hero)\b/.test(normalized)
   );
 }
 
@@ -250,13 +265,10 @@ async function runSearch(studio, query, options = {}) {
 async function selectRouterFromPrompt(prompt, options) {
   const candidates = [];
   for (const studio of ALL_STUDIOS) {
-    const [routerBody, results] = await Promise.all([
-      readRouterSkill(studio),
-      runSearch(studio, prompt, options)
-    ]);
+    const results = await runSearch(studio, prompt, options);
     const topResult = results[0] ?? null;
     if (!topResult) continue;
-    const routerScore = scoreRouterDescription(routerBody, prompt);
+    const routerScore = scoreStudioDescription(studio, prompt);
     candidates.push({
       studio,
       router: routerForStudio(studio),
@@ -280,7 +292,7 @@ async function selectRouterFromPrompt(prompt, options) {
   const hasMeaningfulConflict =
     top.confidenceLabel === "high" &&
     second?.confidenceLabel === "high" &&
-    second.score / top.score >= ROUTER_AMBIGUITY_RATIO;
+    (second.score / top.score >= ROUTER_AMBIGUITY_RATIO || hasCrossStudioAmbiguity(prompt));
   if (hasMeaningfulConflict) {
     return {
       disposition: "clarify",
@@ -320,7 +332,7 @@ async function runPositiveScenario(scenario, options) {
   const bodyFields = findBodyFields(rawTopResults);
   const readPathFailures = topResults.map((result) => result.readPath).filter((readPath) => !isValidPackSkillReadPath(readPath));
   const failures = [];
-  if (!routerBody.includes(`debloat-skill-search" ${scenario.studio}`)) failures.push("router-does-not-run-studio-search");
+  if (!routerBody.includes('debloat-skill-search" <domain>')) failures.push("router-does-not-run-studio-search");
   if (!hasScopedCatalogLeakGuard(routerBody, scenario.studio)) {
     failures.push("router-missing-whole-pack-warning");
   }

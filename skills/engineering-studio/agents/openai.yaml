@@ -1,6 +1,0 @@
-interface:
-  display_name: "Engineering Studio"
-  short_description: "Optionally search the long-tail engineering library"
-  default_prompt: "Search the long-tail engineering library only if no native or directly exposed skill fits; selecting none is valid."
-policy:
-  allow_implicit_invocation: true

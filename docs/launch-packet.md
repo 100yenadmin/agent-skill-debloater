@@ -2,7 +2,7 @@
 
 AgentSkillDebloater is a plugin-first skill catalog layer for agents that need
 large expert skill libraries without loading every skill into the prompt. It
-exposes a few compact studio routers and keeps backing skill packs searchable,
+exposes one compact Studio router and keeps backing skill packs searchable,
 hidden by default, and readable only after selection.
 
 ## Value Proposition
@@ -21,7 +21,7 @@ The current stable release is best described as:
 - Agent runtime maintainers evaluating skill catalog search before baking
   primitives into their runtime.
 - Teams curating default skill packs but trying to avoid prompt bloat.
-- Codex/OpenClaw plugin users who want compact studio routers plus auditable
+- Codex/OpenClaw plugin users who want a compact studio router plus auditable
   selected-skill traces.
 
 ## Current Stable Release
@@ -156,11 +156,9 @@ evidence did not justify promoting Voyage ordering for this release.
   the exact package version, registry URL, provenance, rollback plan, and
   support owner. Use `docs/npm-publication-gate.md`.
 - If enabling runtime canaries later, complete issues #47 and #48 first with
-  Golden/local proof, one opted-in customer canary, rollback, and evidence. Use
-  `docs/runtime-canary-plan.md` and `docs/customer-canary-plan.md`.
+  Golden/local proof, one opted-in customer canary, rollback, and evidence.
 - If proposing OpenClaw core adoption later, keep curated pack policy in this
-  repo and use issue #46 for generic primitive proposals only. Use
-  `docs/openclaw-core-primitives.md`.
+  repo and use issue #46 for generic primitive proposals only.
 
 ## Public Message
 
