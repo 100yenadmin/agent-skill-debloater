@@ -12,10 +12,7 @@ const candidateStudios = [
   "Customer Success Studio"
 ];
 const activeRouterSkills = [
-  "ceo-studio",
-  "design-studio",
-  "engineering-studio",
-  "marketing-studio"
+  "studio"
 ];
 
 async function readFutureStudiosDoc() {

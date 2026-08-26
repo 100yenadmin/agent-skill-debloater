@@ -2,7 +2,7 @@
   "studios": {
     "design": {
       "displayName": "Design Studio",
-      "visibleRouterSkill": "design-studio",
+      "visibleRouterSkill": "studio",
       "packs": [
         "jimliu/baoyu-skills"
       ],
@@ -11,7 +11,7 @@
     },
     "marketing": {
       "displayName": "Marketing Studio",
-      "visibleRouterSkill": "marketing-studio",
+      "visibleRouterSkill": "studio",
       "packs": [
         "coreyhaines31/marketingskills"
       ],
@@ -20,7 +20,7 @@
     },
     "ceo": {
       "displayName": "CEO Studio",
-      "visibleRouterSkill": "ceo-studio",
+      "visibleRouterSkill": "studio",
       "packs": [
         "garrytan/gstack"
       ],
@@ -29,7 +29,7 @@
     },
     "engineering": {
       "displayName": "Engineering Studio",
-      "visibleRouterSkill": "engineering-studio",
+      "visibleRouterSkill": "studio",
       "packs": [
         "garrytan/gstack",
         "obra/superpowers",

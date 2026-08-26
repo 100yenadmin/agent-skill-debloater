@@ -72,7 +72,7 @@ async function makePackRoot(name, { pack = {}, lock = {}, entry = {}, extraFiles
     studios: {
       marketing: {
         displayName: "Marketing Studio",
-        visibleRouterSkill: "marketing-studio",
+        visibleRouterSkill: "studio",
         packs: ["example/pack"],
         defaultLimit: 3,
         description: "Marketing fixture studio."
@@ -308,7 +308,7 @@ test("pack-sync rejects active overlays that reference undeclared packs", async 
           studios: {
             marketing: {
               displayName: "Marketing Studio",
-              visibleRouterSkill: "marketing-studio",
+              visibleRouterSkill: "studio",
               packs: ["missing/pack"],
               defaultLimit: 3,
               description: "Broken active studio."
@@ -331,7 +331,7 @@ test("pack-sync rejects invalid overlay studio ids", async () => {
           studios: {
             "Marketing Studio": {
               displayName: "Marketing Studio",
-              visibleRouterSkill: "marketing-studio",
+              visibleRouterSkill: "studio",
               packs: ["example/pack"],
               defaultLimit: 3,
               description: "Broken studio id."
@@ -374,14 +374,14 @@ test("pack-sync rejects catalogs omitted from lockfile coverage", async () => {
           studios: {
             marketing: {
               displayName: "Marketing Studio",
-              visibleRouterSkill: "marketing-studio",
+              visibleRouterSkill: "studio",
               packs: ["example/pack"],
               defaultLimit: 3,
               description: "Marketing fixture studio."
             },
             design: {
               displayName: "Design Studio",
-              visibleRouterSkill: "design-studio",
+              visibleRouterSkill: "studio",
               packs: ["example/pack"],
               defaultLimit: 3,
               description: "Design fixture studio."

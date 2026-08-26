@@ -1,0 +1,6 @@
+interface:
+  display_name: "Studio"
+  short_description: "Route CEO, design, engineering, and marketing requests"
+  default_prompt: "Use Studio to choose a domain and find the right backing skill."
+policy:
+  allow_implicit_invocation: true

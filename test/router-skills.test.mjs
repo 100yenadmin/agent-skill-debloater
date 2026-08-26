@@ -8,61 +8,21 @@ async function readSkill(name) {
   return readFile(new URL(`skills/${name}/SKILL.md`, repoRoot), "utf8");
 }
 
-test("design-studio is a compact visible router skill", async () => {
-  const body = await readSkill("design-studio");
+test("studio is the compact unified visible router skill", async () => {
+  const body = await readSkill("studio");
 
-  assert.match(body, /^---\nname: design-studio\n/m);
-  assert.match(body, /visual design/i);
+  assert.match(body, /^---\nname: studio\n/m);
+  assert.match(body, /CEO\/founder strategy/i);
+  assert.match(body, /design\/visual work/i);
+  assert.match(body, /marketing\/growth/i);
+  assert.match(body, /specialized engineering workflows/i);
+  assert.match(body, /direct skill or native approach fits/i);
+  assert.match(body, /selecting none is valid/i);
+  assert.match(body, /whole selected\s+domain catalog/i);
   assert.match(body, /plugin-local CLI/);
   assert.match(body, /parent of `skills\/`/);
-  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" design/);
-  assert.match(body, /read the returned `SKILL\.md`/);
-  assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
-  assert.ok(body.split(/\s+/).length < 290);
-});
-
-test("marketing-studio is a compact visible router skill", async () => {
-  const body = await readSkill("marketing-studio");
-
-  assert.match(body, /^---\nname: marketing-studio\n/m);
-  assert.match(body, /positioning/i);
-  assert.match(body, /plugin-local CLI/);
-  assert.match(body, /parent of `skills\/`/);
-  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" marketing/);
-  assert.match(body, /read the returned `SKILL\.md`/);
-  assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
-  assert.ok(body.split(/\s+/).length < 290);
-});
-
-test("ceo-studio is a compact visible router skill", async () => {
-  const body = await readSkill("ceo-studio");
-
-  assert.match(body, /^---\nname: ceo-studio\n/m);
-  assert.match(body, /founder judgment/i);
-  assert.match(body, /plugin-local CLI/);
-  assert.match(body, /parent of `skills\/`/);
-  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" ceo/);
-  assert.match(body, /read the returned `SKILL\.md`/);
-  assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
-  assert.ok(body.split(/\s+/).length < 290);
-});
-
-test("engineering-studio is a compact visible router skill", async () => {
-  const body = await readSkill("engineering-studio");
-
-  assert.match(body, /^---\nname: engineering-studio\n/m);
-  assert.match(body, /long-tail engineering workflow library/i);
-  assert.match(body, /native approach/i);
-  assert.match(body, /selecting (?:no\s+backing skill|none) is valid/i);
-  assert.match(body, /select at most one hidden candidate/i);
-  assert.match(body, /already directly\s+exposed/i);
-  assert.match(body, /candidate cards are sufficient for selection/i);
-  assert.match(body, /only when the authorized task will execute it/i);
-  assert.match(body, /may not expand scope/i);
-  assert.match(body, /plugin-local CLI/);
-  assert.match(body, /parent of `skills\/`/);
-  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" engineering/);
-  assert.match(body, /read the returned `SKILL\.md`/i);
+  assert.match(body, /node "<plugin-root>\/bin\/debloat-skill-search" <domain>/);
+  assert.match(body, /read the selected `SKILL\.md`/i);
   assert.doesNotMatch(body, /\/Users\/lume|\/Volumes\/LEXAR/);
   assert.ok(body.split(/\s+/).length < 290);
 });
