@@ -137,8 +137,9 @@ evidence did not justify promoting Voyage ordering for this release.
   merges.
 - This release does not prove customer VM rollout readiness, fleet deployment
   safety, runtime policy enforcement, or customer-data safety.
-- OpenClaw/customer runtime rollout requires the separate approval gates tracked
-  in issues #45 through #48.
+- OpenClaw/customer runtime rollout requires separate, freshly drafted approval
+  gates (the original #45-#48 gate plans were retired as superseded on
+  2026-08-26 — see their supersession comments).
 
 ## Maintainer Launch Checklist
 
@@ -152,9 +153,10 @@ evidence did not justify promoting Voyage ordering for this release.
   evals, fresh-agent smokes, `pack-sync check`, OpenClaw adapter smoke,
   clean-room acceptance, package acceptance, `git diff --check`,
   `release:check`, and `pack:dry-run`.
-- If publishing to npm is approved later, complete issue #45 first and record
-  the exact package version, registry URL, provenance, rollback plan, and
-  support owner. Use `docs/npm-publication-gate.md`.
+- If publishing to npm is approved later, record the exact package version,
+  registry URL, provenance, rollback plan, and support owner under a fresh
+  approval record (original gate #45 superseded 2026-08-26). Use
+  `docs/npm-publication-gate.md`.
 - If enabling runtime canaries later, draft a fresh canary plan first, with
   explicit scope, rollback, and an approval record (the original #47/#48 plans
   were retired as superseded on 2026-08-26 — see their supersession comments).
