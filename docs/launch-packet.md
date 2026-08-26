@@ -2,7 +2,7 @@
 
 AgentSkillDebloater is a plugin-first skill catalog layer for agents that need
 large expert skill libraries without loading every skill into the prompt. It
-exposes one compact Studio router and keeps backing skill packs searchable,
+exposes four compact domain funnels and keeps backing skill packs searchable,
 hidden by default, and readable only after selection.
 
 ## Value Proposition
@@ -21,7 +21,7 @@ The current stable release is best described as:
 - Agent runtime maintainers evaluating skill catalog search before baking
   primitives into their runtime.
 - Teams curating default skill packs but trying to avoid prompt bloat.
-- Codex/OpenClaw plugin users who want a compact studio router plus auditable
+- Codex/OpenClaw plugin users who want compact domain funnels plus auditable
   selected-skill traces.
 
 ## Current Stable Release

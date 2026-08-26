@@ -2,7 +2,7 @@
 
 This transcript shows the intended AgentSkillDebloater loop:
 
-1. The visible studio router stays tiny.
+1. The visible domain funnel stays tiny and keyword-rich.
 2. The agent searches the matching hidden catalog.
 3. Search returns compact candidates with capability labels and exact `SKILL.md`
    read paths.

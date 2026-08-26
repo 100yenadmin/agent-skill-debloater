@@ -30,8 +30,8 @@ this repository's package proof and require separate issue-level approval.
 - `agent-skill-debloater package-acceptance check`
 - `pack-sync check`, `pack-sync diff`, and `pack-sync update`
 - `.codex-plugin/plugin.json` for Codex/OpenClaw plugin installation
-- one `studio` visible router skill that selects among Design, Marketing, CEO,
-  and Engineering domains
+- four visible domain funnels: `design-studio`, `marketing-studio`,
+  `ceo-studio`, and `engineering-studio`
 - portable seed catalogs for Baoyu design skills, Cory Haines marketing skills,
   GStack, Superpowers, and Matt Pocock skills
 - lockfiles with exact upstream seed commits
