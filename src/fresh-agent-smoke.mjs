@@ -273,24 +273,21 @@ async function runSearch(studio, query, options = {}) {
 }
 
 async function selectRouterFromPrompt(prompt, options) {
+  // Mirror the unified router's contract: choose ONE domain from the router's
+  // own domain-boundary text FIRST, then search only that domain's catalog.
   const candidates = [];
   for (const studio of ALL_STUDIOS) {
-    const results = await runSearch(studio, prompt, options);
-    const topResult = results[0] ?? null;
-    if (!topResult) continue;
     const routerScore = await scoreStudioDescription(studio, prompt);
     candidates.push({
       studio,
       router: routerForStudio(studio),
-      score: (topResult.score ?? 0) + routerScore,
-      catalogScore: topResult.score ?? 0,
-      routerScore,
-      confidenceLabel: topResult.confidenceLabel,
-      topResult: compactResult(topResult)
+      score: routerScore,
+      routerScore
     });
   }
   candidates.sort((left, right) => right.score - left.score || left.studio.localeCompare(right.studio));
-  if (candidates.length === 0) {
+  const scored = candidates.filter((candidate) => candidate.score > 0);
+  if (scored.length === 0) {
     return {
       disposition: "abstain",
       selectedStudio: null,
@@ -298,10 +295,9 @@ async function selectRouterFromPrompt(prompt, options) {
       candidates
     };
   }
-  const [top, second] = candidates;
+  const [top, second] = scored;
   const hasMeaningfulConflict =
-    top.confidenceLabel === "high" &&
-    second?.confidenceLabel === "high" &&
+    second !== undefined &&
     (second.score / top.score >= ROUTER_AMBIGUITY_RATIO || hasCrossStudioAmbiguity(prompt));
   if (hasMeaningfulConflict) {
     return {

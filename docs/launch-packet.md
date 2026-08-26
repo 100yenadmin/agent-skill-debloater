@@ -155,9 +155,9 @@ evidence did not justify promoting Voyage ordering for this release.
 - If publishing to npm is approved later, complete issue #45 first and record
   the exact package version, registry URL, provenance, rollback plan, and
   support owner. Use `docs/npm-publication-gate.md`.
-- If enabling runtime canaries later, draft a fresh canary plan first (the
-  original #47/#48 plans were retired as superseded on 2026-08-26 — see their
-  supersession comments) with
+- If enabling runtime canaries later, draft a fresh canary plan first, with
+  explicit scope, rollback, and an approval record (the original #47/#48 plans
+  were retired as superseded on 2026-08-26 — see their supersession comments).
 - If proposing OpenClaw core adoption later, keep curated pack policy in this
   repo and use issue #46 for generic primitive proposals only.
 
