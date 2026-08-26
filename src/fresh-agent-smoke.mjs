@@ -9,6 +9,7 @@ const SUITE = "fresh-agent-smokes/v0";
 const DEFAULT_LIMIT = 3;
 const DEFAULT_ENGINE = "fts";
 const ALL_STUDIOS = ["design", "marketing", "ceo", "engineering"];
+const FUNNEL_FLOW_PATH = path.join(repoRoot, "skills", "studio-flow.md");
 const REQUIRED_KINDS = ["positive", "ambiguity", "hard-negative"];
 const REQUIRED_POSITIVE_STUDIOS = [...ALL_STUDIOS].sort();
 const DISPOSITIONS = ["select", "clarify", "abstain"];
@@ -30,13 +31,14 @@ const ROUTER_STOP_WORDS = new Set([
   "to",
   "with"
 ]);
-function loadStudioRoutingDescriptions(routerBody) {
+function loadStudioRoutingDescriptions(funnelBodies) {
   const out = {};
-  for (const match of routerBody.matchAll(/^\s*-\s*`(ceo|design|engineering|marketing)`:\s*(.+)$/gm)) {
-    out[match[1]] = match[2].trim();
+  for (const [studio, funnelBody] of Object.entries(funnelBodies)) {
+    const match = funnelBody.match(/^description:\s*(.+)$/m);
+    if (match) out[studio] = match[1].trim();
   }
   for (const studio of ["ceo", "design", "engineering", "marketing"]) {
-    if (!out[studio]) throw new Error(`router SKILL.md missing domain boundary line for ${studio}`);
+    if (!out[studio]) throw new Error(`funnel SKILL.md missing description for ${studio}`);
   }
   return out;
 }
@@ -60,7 +62,7 @@ function optionValue(name, value) {
 }
 
 function routerForStudio(studio) {
-  return "studio";
+  return `${studio}-studio`;
 }
 
 function searchCommand(studio, query) {
@@ -128,8 +130,12 @@ function hasScopedCatalogLeakGuard(routerBody, studio) {
 let cachedRoutingDescriptions = null;
 async function studioRoutingDescriptions() {
   if (!cachedRoutingDescriptions) {
-    const routerBody = await readRouterSkill(ALL_STUDIOS[0]);
-    cachedRoutingDescriptions = loadStudioRoutingDescriptions(routerBody);
+    const funnelBodies = Object.fromEntries(
+      await Promise.all(
+        ALL_STUDIOS.map(async (studio) => [studio, await readRouterSkill(studio)])
+      )
+    );
+    cachedRoutingDescriptions = loadStudioRoutingDescriptions(funnelBodies);
   }
   return cachedRoutingDescriptions;
 }
@@ -254,6 +260,12 @@ async function readRouterSkill(studio) {
   return readFile(path.join(repoRoot, "skills", router, "SKILL.md"), "utf8");
 }
 
+let cachedSharedFlow = null;
+async function readSharedFlow() {
+  if (!cachedSharedFlow) cachedSharedFlow = await readFile(FUNNEL_FLOW_PATH, "utf8");
+  return cachedSharedFlow;
+}
+
 async function runSearch(studio, query, options = {}) {
   const { catalogDir, searchImpl } = options;
   if (searchImpl) {
@@ -273,8 +285,8 @@ async function runSearch(studio, query, options = {}) {
 }
 
 async function selectRouterFromPrompt(prompt, options) {
-  // Mirror the unified router's contract: choose ONE domain from the router's
-  // own domain-boundary text FIRST, then search only that domain's catalog.
+  // Mirror the funnel contract: choose ONE domain from the funnel descriptions
+  // FIRST, then search only that domain's catalog.
   const candidates = [];
   for (const studio of ALL_STUDIOS) {
     const routerScore = await scoreStudioDescription(studio, prompt);
@@ -324,6 +336,7 @@ function topResultsWereInspected(results, topResults) {
 
 async function runPositiveScenario(scenario, options) {
   const routerBody = await readRouterSkill(scenario.studio);
+  const flowBody = await readSharedFlow();
   const expectedDisposition = scenario.expectedDisposition ?? (scenario.kind === "ambiguity" ? "clarify" : "select");
   const routerDecision = await selectRouterFromPrompt(scenario.prompt, options);
   const results = await runSearch(scenario.studio, scenario.prompt, options);
@@ -338,10 +351,9 @@ async function runPositiveScenario(scenario, options) {
   const bodyFields = findBodyFields(rawTopResults);
   const readPathFailures = topResults.map((result) => result.readPath).filter((readPath) => !isValidPackSkillReadPath(readPath));
   const failures = [];
-  if (!routerBody.includes('debloat-skill-search" <domain>')) failures.push("router-does-not-run-studio-search");
-  if (!hasScopedCatalogLeakGuard(routerBody, scenario.studio)) {
-    failures.push("router-missing-whole-pack-warning");
-  }
+  if (!routerBody.includes("../studio-flow.md")) failures.push("funnel-does-not-defer-to-shared-flow");
+  if (!flowBody.includes('debloat-skill-search" <domain>')) failures.push("flow-does-not-run-studio-search");
+  if (!hasScopedCatalogLeakGuard(flowBody, scenario.studio)) failures.push("flow-missing-whole-pack-warning");
   if (routerDecision.disposition !== expectedDisposition) failures.push("router-disposition");
   if (expectedDisposition === "select" && routerDecision.selectedRouter !== scenario.expectedRouter) {
     failures.push("router-selection");

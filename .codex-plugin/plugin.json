@@ -30,7 +30,9 @@
     ],
     "defaultPrompt": [
       "Search the Design Studio for the right backing skill.",
-      "Search the Marketing Studio for the right backing skill."
+      "Search the Marketing Studio for the right backing skill.",
+      "Search the CEO Studio for the right backing skill.",
+      "Search the Engineering Studio for the right backing skill."
     ],
     "websiteURL": "https://github.com/100yenadmin/agent-skill-debloater",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",

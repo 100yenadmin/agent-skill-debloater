@@ -23,9 +23,9 @@ test("committed fresh-agent smoke suite proves router/search/read-path behavior"
   assert.deepEqual(report.requiredCoverage.missingPositiveStudios, []);
 
   const hero = report.rows.find((row) => row.id === "design-hero-cover");
-  assert.equal(hero.selectedRouter, "studio");
+  assert.equal(hero.selectedRouter, "design-studio");
   assert.equal(hero.routerDecision.disposition, "select");
-  assert.equal(hero.routerDecision.selectedRouter, "studio");
+  assert.equal(hero.routerDecision.selectedRouter, "design-studio");
   assert.match(hero.searchCommand, /debloat-skill-search design/);
   assert.match(hero.searchCommand, /--engine fts/);
   assert.match(hero.searchCommand, /Create a polished launch hero cover image/);
@@ -61,7 +61,7 @@ test("fresh-agent smoke report fails missing required coverage and hard-negative
         kind: "hard-negative",
         ok: false,
         prompt: "What is the capital of France?",
-        selectedRouter: "studio",
+        selectedRouter: "design-studio",
         falsePositiveStudios: ["marketing"],
         failures: ["hard-negative-false-positive"]
       }
@@ -121,7 +121,7 @@ test("fresh-agent smoke derives router selection from prompt, not scenario studi
         kind: "positive",
         prompt: "What is the capital of France?",
         studio: "design",
-        expectedRouter: "studio",
+        expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
         expectedCapabilities: ["file-write"],
@@ -151,7 +151,7 @@ test("fresh-agent smoke detects raw body fields before compacting results", asyn
         kind: "positive",
         prompt: "Create a polished launch hero cover image.",
         studio: "design",
-        expectedRouter: "studio",
+        expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
         expectedCapabilities: ["file-write"],
@@ -202,7 +202,7 @@ test("fresh-agent smoke rejects separate query fields so prompt evidence stays a
         prompt: "Create a polished launch hero cover image.",
         query: "unrelated marketing launch copy",
         studio: "design",
-        expectedRouter: "studio",
+        expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
         expectedCapabilities: ["file-write"],
@@ -269,7 +269,7 @@ test("fresh-agent smoke rejects duplicate scenario ids", async () => {
         kind: "positive",
         prompt: "Hero image",
         studio: "design",
-        expectedRouter: "studio",
+        expectedRouter: "design-studio",
         expectedSkill: "baoyu-cover-image",
         expectedReadPath: "pack://jimliu%2Fbaoyu-skills/skills/baoyu-cover-image/SKILL.md",
         expectedCapabilities: ["file-write"]

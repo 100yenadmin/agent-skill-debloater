@@ -9,7 +9,10 @@ import {
 } from "../src/clean-room-install.mjs";
 
 const routerSkills = [
-  { name: "studio", path: "skills/studio/SKILL.md" }
+  { name: "ceo-studio", path: "skills/ceo-studio/SKILL.md" },
+  { name: "design-studio", path: "skills/design-studio/SKILL.md" },
+  { name: "engineering-studio", path: "skills/engineering-studio/SKILL.md" },
+  { name: "marketing-studio", path: "skills/marketing-studio/SKILL.md" }
 ];
 
 const catalogSummaries = [
@@ -117,7 +120,7 @@ test("clean-room install report passes for router-only visible skills and compac
   assert.equal(report.suite, "clean-room-install/v0");
   assert.deepEqual(
     report.visibleSkills.map((skill) => skill.name),
-    ["studio"]
+    ["ceo-studio", "design-studio", "engineering-studio", "marketing-studio"]
   );
   assert.equal(report.checks.find((item) => item.id === "visible-router-skills").ok, true);
   assert.equal(report.checks.find((item) => item.id === "backing-skill-bodies-hidden").ok, true);

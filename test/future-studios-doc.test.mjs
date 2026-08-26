@@ -12,7 +12,10 @@ const candidateStudios = [
   "Customer Success Studio"
 ];
 const activeRouterSkills = [
-  "studio"
+  "ceo-studio",
+  "design-studio",
+  "engineering-studio",
+  "marketing-studio"
 ];
 
 async function readFutureStudiosDoc() {
@@ -65,7 +68,9 @@ test("future studio promotion checklist requires schemas, evals, hard negatives,
 });
 
 test("future studio discovery does not add new visible router skills or overlay studios", async () => {
-  const skillDirs = await readdir(new URL("../skills/", import.meta.url));
+  const skillDirs = (await readdir(new URL("../skills/", import.meta.url), { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
   const overlay = JSON.parse(await readFile(new URL("../overlays/studios.json", import.meta.url), "utf8"));
 
   assert.deepEqual(skillDirs.sort(), activeRouterSkills.sort());
