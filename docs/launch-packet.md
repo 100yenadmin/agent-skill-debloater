@@ -138,8 +138,8 @@ evidence did not justify promoting Voyage ordering for this release.
 - This release does not prove customer VM rollout readiness, fleet deployment
   safety, runtime policy enforcement, or customer-data safety.
 - OpenClaw/customer runtime rollout requires separate, freshly drafted approval
-  gates (the original #45-#48 gate plans were retired as superseded on
-  2026-08-26 — see their supersession comments).
+  gates; the plans formerly tracked in issues #45 through #48 were retired as
+  superseded on 2026-08-26 (see their supersession comments).
 
 ## Maintainer Launch Checklist
 
