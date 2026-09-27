@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-09-28",
+  "note": "Live TypeSafe System One exchange recorded through runJevRerank; request/response bodies only (no headers or credentials).",
+  "url": "https://api.typesafe.ai/v1/systemone",
+  "method": "POST",
+  "request": {
+    "state": {
+      "user_request": "Review this pull request for behavioral regressions, missing tests, and risky implementation details."
+    },
+    "model": "jev-1.13.0",
+    "questions": {
+      "skill": {
+        "type": "choice",
+        "instructions": "A coding agent received the user request in the state. Which one skill should it load to handle the request? Pick 'none' if no listed skill fits the request.",
+        "criteria": {
+          "review": "name: review\ntitle: Review\nstudio: engineering\nsource: garrytan/gstack\ndescription: Pre-landing PR review. (gstack)\nuse_when: Analyzes diff against the base branch for SQL safety, LLM trust boundary violations, conditional side effects, and other structural issues. Use when asked to \"review this PR\", \"code review\", \"pre-landing review\", or \"check my diff\". Proactively suggest when th\naliases: review, review this pr, code review, check my diff, pre-landing review, pull request\ntags: review, pre, landing, analyzes, diff, against, base, branch, sql, safety, llm, trust\ncapabilities: read-only, file-write, network\nskill_path: review/SKILL.md\nlexical_confidence: 0.98\nlexical_why: name:review, title:review, aliases:review, tags:review, useWhen:review, description:review, aliases:thi, useWhen:thi, aliases:pull, aliases:request",
+          "code-review": "name: code-review\ntitle: Code Review\nstudio: engineering\nsource: mattpocock/skills\ndescription: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes \u2014 Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\".\nuse_when: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes \u2014 Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews i\naliases: code-review, code review, pull request\ntags: code, review, engineering, changes, since, fixed, point, commit, branch, tag, merge, base\ncapabilities: read-only, file-write\nskill_path: skills/engineering/code-review/SKILL.md\nlexical_confidence: 0.89\nlexical_why: name:review, title:review, aliases:review, tags:review, useWhen:review, description:review, useWhen:thi, description:thi, aliases:pull, aliases:request",
+          "ship": "name: ship\ntitle: Ship\nstudio: engineering\nsource: garrytan/gstack\ndescription: Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION, update CHANGELOG, commit, push, create PR. (gstack)\nuse_when: Use when asked to \"ship\", \"deploy\", \"push to main\", \"create a PR\", \"merge and push\", or \"get it deployed\". Proactively invoke this skill (do NOT push/PR directly) when the user says code is ready, asks about deploying, wants to push code up, or asks to create\naliases: ship, ship it, create a pr, push to main, deploy this, pull request\ntags: ship, workflow, detect, merge, base, branch, run, tests, review, diff, bump, version\ncapabilities: read-only, file-write, network, external-posting, dangerous\nskill_path: ship/SKILL.md\nlexical_confidence: 0.87\nlexical_why: tags:review, description:review, aliases:thi, useWhen:thi, aliases:pull, aliases:request, tags:test, description:test, phrase:pull request, tag-phrase:tests",
+          "none": "No listed skill fits; the agent should handle the request without loading any of these skills."
+        }
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "skill": {
+        "type": "choice",
+        "choice": "review",
+        "confidence": 0.61,
+        "probabilities": {
+          "review": 0.71,
+          "ship": 0,
+          "code-review": 0.29,
+          "none": 0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 1206,
+      "output_tokens": 46
+    }
+  }
+}

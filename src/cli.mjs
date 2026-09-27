@@ -8,6 +8,7 @@ import {
   loadCatalog,
   parsePackRootsEnv,
   parsePackRoot,
+  runJevRerank,
   runVoyageRerank,
   searchCatalog
 } from "./search.mjs";
@@ -79,7 +80,7 @@ function parseSearchArgs(argv) {
 function searchUsage() {
   return [
     'Usage: debloat-skill-search <studio> "<query>" [--format json|text] [--limit N]',
-    "       [--catalog-dir PATH] [--engine fts|json] [--pack-root PACK=PATH] [--rerank off|voyage]",
+    "       [--catalog-dir PATH] [--engine fts|json] [--pack-root PACK=PATH] [--rerank off|voyage|jev]",
     "",
     "Default output is top 3 compact results. Rerank is default-off shadow mode and receives candidate cards only.",
     'Set AGENT_SKILL_DEBLOATER_PACK_ROOTS=\'{"pack/id":"/path/to/root"}\' to resolve pack:// read paths.'
@@ -89,14 +90,25 @@ function searchUsage() {
 function formatRerankText(rerank) {
   if (!rerank) return "";
   const top = rerank.ranked?.[0];
-  const topText = top ? ` top: ${top.name} (${top.relevanceScore ?? "n/a"})` : "";
-  const changeText = rerank.status === "completed" && top
+  const topText = rerank.provider === "jev"
+    ? rerank.status === "completed"
+      ? ` pick: ${rerank.choice} (${rerank.confidence ?? "n/a"})`
+      : ""
+    : top
+      ? ` top: ${top.name} (${top.relevanceScore ?? "n/a"})`
+      : "";
+  const changeText = rerank.status === "completed" && (top || rerank.abstained)
     ? rerank.selectedSkillWouldChange
       ? " would-change-top1"
       : " preserves-top1"
     : "";
-  return `\n\nrerank: voyage shadow ${rerank.status}${topText}${changeText}`;
+  return `\n\nrerank: ${rerank.provider ?? "voyage"} shadow ${rerank.status}${topText}${changeText}`;
 }
+
+const RERANK_PROVIDERS = {
+  voyage: runVoyageRerank,
+  jev: runJevRerank
+};
 
 export async function searchMain(argv) {
   let options;
@@ -121,19 +133,19 @@ export async function searchMain(argv) {
     throw new Error(`Unsupported search engine: ${options.engine}`);
   }
 
-  if (!["off", "voyage"].includes(options.rerank)) {
+  if (options.rerank !== "off" && !Object.hasOwn(RERANK_PROVIDERS, options.rerank)) {
     throw new Error(`Unsupported rerank provider: ${options.rerank}`);
   }
 
   const catalog = await loadCatalog(options);
   const results = searchCatalog(catalog, options.query, options);
   const rerank =
-    options.rerank === "voyage"
-      ? await runVoyageRerank({
+    options.rerank === "off"
+      ? undefined
+      : await RERANK_PROVIDERS[options.rerank]({
           query: options.query,
           candidateCards: buildRerankCandidateCards(results)
-        })
-      : undefined;
+        });
 
   if (options.format === "json") {
     console.log(
