@@ -584,7 +584,13 @@ function normalizeVoyageRankings(payload, candidateCards) {
 }
 
 function rerankTimeoutMs(value, fallback = DEFAULT_VOYAGE_RERANK_TIMEOUT_MS) {
-  const parsed = Number(value);
+  let parsed;
+  try {
+    parsed = Number(value);
+  } catch {
+    // Symbols and objects with throwing coercion fall back instead of breaking the never-throws contract.
+    return fallback;
+  }
   return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
 }
 

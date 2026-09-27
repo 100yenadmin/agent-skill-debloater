@@ -740,6 +740,26 @@ test("Shadow rerankers return failed instead of throwing on malformed candidate 
   }
 });
 
+test("Shadow rerankers fall back to the default timeout for values that cannot be coerced", async () => {
+  const cards = jevCards(["first"]);
+  const throwing = { [Symbol.toPrimitive]() { throw new Error("no coercion"); } };
+  for (const run of [runJevRerank, runVoyageRerank]) {
+    for (const timeoutMs of [Symbol("t"), throwing]) {
+      const rerank = await run({
+        query: "q",
+        candidateCards: cards,
+        apiKey: "k",
+        timeoutMs,
+        fetchImpl: async () => {
+          throw new Error("network down");
+        }
+      });
+      assert.equal(rerank.status, "failed");
+      assert.match(rerank.error, /network down/);
+    }
+  }
+});
+
 test("CLI output is byte-identical with --rerank omitted and --rerank off", () => {
   const args = [
     "bin/debloat-skill-search",
