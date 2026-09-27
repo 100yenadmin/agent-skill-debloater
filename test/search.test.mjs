@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import test from "node:test";
 
 import {
+  buildJevRerankRequest,
   buildRerankCandidateCards,
   buildVoyageRerankRequest,
   ftsCandidateIndexes,
@@ -13,6 +14,7 @@ import {
   parsePackReadPath,
   parsePackRoot,
   parsePackRootsEnv,
+  runJevRerank,
   runVoyageRerank,
   searchCatalog
 } from "../src/search.mjs";
@@ -581,6 +583,206 @@ test("Voyage rerank treats empty or invalid success payloads as invalid response
   }
 });
 
+function jevCards(names) {
+  return names.map((name, index) => ({
+    ...fixtureEntry(name, { description: `${name} skill.` }),
+    confidence: 0.9 - index / 10,
+    why: [`fixture:${name}`],
+    readPath: `/private/${name}/SKILL.md`,
+    body: "PRIVATE_FULL_SKILL_BODY"
+  }));
+}
+
+function jevFetch(payload, capture = {}) {
+  return async (url, options) => {
+    capture.url = url;
+    capture.options = options;
+    capture.body = JSON.parse(options.body);
+    return { ok: true, json: async () => payload };
+  };
+}
+
+test("Jev rerank sends one Choice question over compact cards and ranks by probability", async () => {
+  const fixture = JSON.parse(await readFile(new URL("./fixtures/jev-systemone-choice.json", import.meta.url), "utf8"));
+  const capture = {};
+  const rerank = await runJevRerank({
+    query: "Review this pull request",
+    candidateCards: jevCards(["review", "code-review", "ship"]),
+    apiKey: "test-key",
+    model: "jev-test",
+    fetchImpl: jevFetch(fixture.response, capture)
+  });
+
+  assert.equal(capture.url, fixture.url);
+  assert.equal(capture.options.method, "POST");
+  assert.equal(capture.options.headers.Authorization, "Bearer test-key");
+  assert.deepEqual(Object.keys(capture.body), Object.keys(fixture.request));
+  assert.equal(capture.body.model, "jev-test");
+  assert.equal(capture.body.questions.skill.type, "choice");
+  assert.deepEqual(Object.keys(capture.body.questions.skill.criteria), ["review", "code-review", "ship", "none"]);
+  assert.deepEqual(Object.keys(capture.body.questions.skill.criteria), Object.keys(fixture.request.questions.skill.criteria));
+  assert.doesNotMatch(JSON.stringify(capture.body), /PRIVATE_FULL_SKILL_BODY|readPath|\/private\//);
+  assert.equal(rerank.provider, "jev");
+  assert.equal(rerank.status, "completed");
+  assert.deepEqual(rerank.ranked.map((row) => [row.name, row.probability]), [
+    ["review", 0.71],
+    ["code-review", 0.29],
+    ["ship", 0]
+  ]);
+  assert.equal(rerank.choice, "review");
+  assert.equal(rerank.confidence, 0.61);
+  assert.equal(rerank.abstained, false);
+  assert.equal(rerank.selectedSkillWouldChange, false);
+  assert.deepEqual(rerank.usage, { inputTokens: 1206, outputTokens: 46 });
+  assert.ok(rerank.candidateCards.every((card) => !("body" in card) && !("readPath" in card)));
+});
+
+test("Jev rerank reports abstention and a changed pick as would-change", async () => {
+  const answer = (choice, probabilities) => ({
+    model: "jev-test",
+    answers: { skill: { type: "choice", choice, confidence: 0.8, probabilities } },
+    usage: { input_tokens: 10, output_tokens: 1 }
+  });
+  const cards = jevCards(["first", "second"]);
+  const abstained = await runJevRerank({
+    query: "translate a poem",
+    candidateCards: cards,
+    apiKey: "test-key",
+    fetchImpl: jevFetch(answer("none", { first: 0.1, second: 0.05, none: 0.85 }))
+  });
+  assert.equal(abstained.status, "completed");
+  assert.equal(abstained.choice, "none");
+  assert.equal(abstained.abstained, true);
+  assert.equal(abstained.noneProbability, 0.85);
+  assert.equal(abstained.selectedSkillWouldChange, true);
+  assert.deepEqual(abstained.ranked.map((row) => row.name), ["first", "second"]);
+
+  const changed = await runJevRerank({
+    query: "second thing",
+    candidateCards: cards,
+    apiKey: "test-key",
+    fetchImpl: jevFetch(answer("second", { first: 0.2, second: 0.8, none: 0 }))
+  });
+  assert.equal(changed.choice, "second");
+  assert.equal(changed.ranked[0].name, "second");
+  assert.equal(changed.selectedSkillWouldChange, true);
+});
+
+test("Jev rerank keeps its explicit choice first even when another option reports a higher probability", async () => {
+  const cards = jevCards(["first", "second", "third"]);
+  const rerank = await runJevRerank({
+    query: "pick the first",
+    candidateCards: cards,
+    apiKey: "test-key",
+    fetchImpl: jevFetch({
+      answers: { skill: { type: "choice", choice: "first", confidence: 0.4, probabilities: { first: 0.3, second: 0.5, third: 0.2, none: 0 } } }
+    })
+  });
+  assert.equal(rerank.choice, "first");
+  assert.deepEqual(rerank.ranked.map((row) => row.name), ["first", "second", "third"]);
+  assert.equal(rerank.selectedSkillWouldChange, false);
+});
+
+test("Jev rerank never throws and reports each skip or failure status", async () => {
+  const cards = jevCards(["first"]);
+  const cases = [
+    [{ candidateCards: [], apiKey: "k", fetchImpl: jevFetch({}) }, "skipped-empty-candidates"],
+    [{ candidateCards: cards, apiKey: "", fetchImpl: jevFetch({}) }, "skipped-missing-api-key"],
+    [{ candidateCards: cards, apiKey: "k", fetchImpl: null }, "skipped-missing-fetch"],
+    [{ candidateCards: cards, apiKey: "k", fetchImpl: async () => ({ ok: false, status: 429 }) }, "failed", /HTTP 429/],
+    [{ candidateCards: cards, apiKey: "k", fetchImpl: async () => { throw new Error("socket closed"); } }, "failed", /socket closed/],
+    [
+      {
+        candidateCards: cards,
+        apiKey: "k",
+        timeoutMs: 5,
+        fetchImpl: (url, options) =>
+          new Promise((resolve, reject) => {
+            options.signal.addEventListener("abort", () => reject(Object.assign(new Error("aborted"), { name: "AbortError" })));
+          })
+      },
+      "failed",
+      /timed out after 5ms/
+    ],
+    [{ candidateCards: cards, apiKey: "k", fetchImpl: async () => ({ ok: true, json: async () => { throw new SyntaxError("bad json"); } }) }, "failed", /bad json/],
+    [{ candidateCards: cards, apiKey: "k", fetchImpl: jevFetch({ answers: {} }) }, "invalid-response", /valid choice/],
+    [{ candidateCards: cards, apiKey: "k", fetchImpl: jevFetch({ answers: { skill: { choice: "not-a-candidate" } } }) }, "invalid-response", /valid choice/]
+  ];
+
+  for (const [options, status, errorPattern] of cases) {
+    const rerank = await runJevRerank({ query: "q", ...options });
+    assert.equal(rerank.status, status);
+    assert.equal(rerank.provider, "jev");
+    assert.equal(rerank.mode, "shadow");
+    assert.deepEqual(rerank.ranked, []);
+    assert.equal(rerank.abstained, null);
+    if (errorPattern) assert.match(rerank.error, errorPattern);
+  }
+});
+
+test("Shadow rerankers return failed instead of throwing on malformed candidate cards", async () => {
+  for (const run of [runJevRerank, runVoyageRerank]) {
+    for (const candidateCards of [[null], [undefined], [{ name: "ok" }, null]]) {
+      const rerank = await run({
+        query: "q",
+        candidateCards,
+        apiKey: "k",
+        fetchImpl: async () => {
+          throw new Error("fetch must not be called");
+        }
+      });
+      assert.equal(rerank.status, "failed");
+      assert.equal(rerank.mode, "shadow");
+      assert.deepEqual(rerank.ranked, []);
+      assert.equal(rerank.selectedSkillWouldChange, false);
+      assert.match(rerank.error, /Invalid rerank candidate cards/);
+    }
+  }
+});
+
+test("Shadow rerankers fall back to the default timeout for values that cannot be coerced", async () => {
+  const cards = jevCards(["first"]);
+  const throwing = { [Symbol.toPrimitive]() { throw new Error("no coercion"); } };
+  for (const run of [runJevRerank, runVoyageRerank]) {
+    for (const timeoutMs of [Symbol("t"), throwing]) {
+      const rerank = await run({
+        query: "q",
+        candidateCards: cards,
+        apiKey: "k",
+        timeoutMs,
+        fetchImpl: async () => {
+          throw new Error("network down");
+        }
+      });
+      assert.equal(rerank.status, "failed");
+      assert.match(rerank.error, /network down/);
+    }
+  }
+});
+
+test("CLI output is byte-identical with --rerank omitted and --rerank off", () => {
+  const args = [
+    "bin/debloat-skill-search",
+    "marketing",
+    "SEO content plan for organic acquisition",
+    "--catalog-dir",
+    new URL("./fixtures/catalogs", import.meta.url).pathname,
+    "--pack-root",
+    "coreyhaines31/marketingskills=/packs/marketingskills"
+  ];
+  const cwd = new URL("..", import.meta.url).pathname;
+  for (const format of ["json", "text"]) {
+    const omitted = execFileSync(process.execPath, [...args, "--format", format], { cwd, encoding: "utf8" });
+    const off = execFileSync(process.execPath, [...args, "--format", format, "--rerank", "off"], { cwd, encoding: "utf8" });
+    assert.equal(off, omitted);
+  }
+});
+
+test("Jev request gives duplicate skill names unique option labels", () => {
+  const request = buildJevRerankRequest("q", [fixtureEntry("dup"), fixtureEntry("dup"), fixtureEntry("none")]);
+  assert.deepEqual(Object.keys(request.questions.skill.criteria), ["dup", "dup#2", "none#3", "none"]);
+});
+
 test("CLI returns compact JSON with top 3 by default", () => {
   const output = execFileSync(
     process.execPath,
@@ -728,6 +930,38 @@ test("CLI returns Voyage shadow metadata without an API key", () => {
   assert.equal(parsed.rerank.status, "skipped-missing-api-key");
   assert.ok(parsed.rerank.candidateCards.every((card) => !("body" in card)));
   assert.ok(parsed.rerank.candidateCards.every((card) => !("readPath" in card)));
+});
+
+test("CLI returns Jev shadow metadata without an API key and rejects unknown providers", () => {
+  const cwd = new URL("..", import.meta.url).pathname;
+  const catalogDir = new URL("./fixtures/catalogs", import.meta.url).pathname;
+  const output = execFileSync(
+    process.execPath,
+    ["bin/debloat-skill-search", "marketing", "SEO content plan", "--catalog-dir", catalogDir, "--rerank", "jev", "--format", "json"],
+    { cwd, encoding: "utf8", env: { ...process.env, TYPESAFE_API_KEY: "" } }
+  );
+  const parsed = JSON.parse(output);
+  assert.equal(parsed.results[0].name, "ai-seo");
+  assert.equal(parsed.rerank.provider, "jev");
+  assert.equal(parsed.rerank.status, "skipped-missing-api-key");
+  assert.ok(parsed.rerank.candidateCards.every((card) => !("readPath" in card)));
+
+  const text = execFileSync(
+    process.execPath,
+    ["bin/debloat-skill-search", "marketing", "SEO content plan", "--catalog-dir", catalogDir, "--rerank", "jev"],
+    { cwd, encoding: "utf8", env: { ...process.env, TYPESAFE_API_KEY: "" } }
+  );
+  assert.match(text, /rerank: jev shadow skipped-missing-api-key/);
+
+  assert.throws(
+    () =>
+      execFileSync(process.execPath, ["bin/debloat-skill-search", "marketing", "SEO content", "--rerank", "cohere"], {
+        cwd,
+        encoding: "utf8",
+        stdio: "pipe"
+      }),
+    /Unsupported rerank provider: cohere/
+  );
 });
 
 test("CLI rejects invalid usage values", () => {

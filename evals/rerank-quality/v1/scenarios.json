@@ -1,0 +1,575 @@
+[
+  {
+    "id": "engineering-tdd-overlap",
+    "studio": "engineering",
+    "prompt": "Write a TDD plan for a case-insensitive todo API search filter before implementation.",
+    "expectedSkill": "tdd",
+    "overlapCluster": "engineering-tdd",
+    "provenance": {
+      "source": "evals/rerank-quality/v0/scenarios.json",
+      "id": "engineering-tdd-overlap"
+    }
+  },
+  {
+    "id": "engineering-code-review-overlap",
+    "studio": "engineering",
+    "prompt": "Review this pull request for behavioral regressions, missing tests, and risky implementation details.",
+    "expectedSkill": "code-review",
+    "overlapCluster": "engineering-code-review",
+    "provenance": {
+      "source": "evals/rerank-quality/v0/scenarios.json",
+      "id": "engineering-code-review-overlap"
+    }
+  },
+  {
+    "id": "marketing-launch-copy-overlap",
+    "studio": "marketing",
+    "prompt": "Create launch copy and a campaign plan for a new developer tool.",
+    "expectedSkill": "launch",
+    "overlapCluster": "marketing-launch-copy",
+    "provenance": {
+      "source": "evals/rerank-quality/v0/scenarios.json",
+      "id": "marketing-launch-copy-overlap"
+    }
+  },
+  {
+    "id": "marketing-seo-content-overlap",
+    "studio": "marketing",
+    "prompt": "Create an AI SEO content plan with topic clusters and LLM visibility angles.",
+    "expectedSkill": "ai-seo",
+    "overlapCluster": "marketing-content-seo",
+    "provenance": {
+      "source": "evals/rerank-quality/v0/scenarios.json",
+      "id": "marketing-seo-content-overlap"
+    }
+  },
+  {
+    "id": "design-diagram-overlap",
+    "studio": "design",
+    "prompt": "Design an architecture diagram and flowchart for the hidden skill catalog runtime.",
+    "expectedSkill": "baoyu-diagram",
+    "overlapCluster": "design-diagram",
+    "provenance": {
+      "source": "evals/rerank-quality/v0/scenarios.json",
+      "id": "design-diagram-overlap"
+    }
+  },
+  {
+    "id": "design-hero-cover-overlap",
+    "studio": "design",
+    "prompt": "Create a launch hero cover image and social thumbnail for a product announcement.",
+    "expectedSkill": "baoyu-cover-image",
+    "overlapCluster": "design-cover",
+    "provenance": {
+      "source": "evals/rerank-quality/v0/scenarios.json",
+      "id": "design-hero-cover-overlap"
+    }
+  },
+  {
+    "id": "design-cover-hero",
+    "studio": "design",
+    "prompt": "Create a polished launch hero cover image for a new product page.",
+    "expectedSkill": "baoyu-cover-image",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-cover-hero",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-cover-thumbnail",
+    "studio": "design",
+    "prompt": "Design an article thumbnail poster visual for a technical essay.",
+    "expectedSkill": "baoyu-cover-image",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-cover-thumbnail",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-architecture-diagram",
+    "studio": "design",
+    "prompt": "Diagram the runtime architecture and data flow between the gateway, catalog, and skill reader.",
+    "expectedSkill": "baoyu-diagram",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-architecture-diagram",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-sequence-flowchart",
+    "studio": "design",
+    "prompt": "Make a sequence flowchart for system state transitions.",
+    "expectedSkill": "baoyu-diagram",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-sequence-flowchart",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-infographic-report",
+    "studio": "design",
+    "prompt": "Create an infographic for a dense report summary.",
+    "expectedSkill": "baoyu-infographic",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-infographic-report",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-information-graphic",
+    "studio": "design",
+    "prompt": "Turn this data into a visual explanation and information graphic.",
+    "expectedSkill": "baoyu-infographic",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-information-graphic",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-social-carousel",
+    "studio": "design",
+    "prompt": "Create social carousel image cards for an educational post.",
+    "expectedSkill": "baoyu-xhs-images",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-social-carousel",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-card-series",
+    "studio": "design",
+    "prompt": "Design a shareable educational card series.",
+    "expectedSkill": "baoyu-xhs-images",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-card-series",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-pitch-deck",
+    "studio": "design",
+    "prompt": "Create a pitch slide deck for an investor update.",
+    "expectedSkill": "baoyu-slide-deck",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-pitch-deck",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-presentation-visuals",
+    "studio": "design",
+    "prompt": "Design presentation visuals for a sales deck.",
+    "expectedSkill": "baoyu-slide-deck",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-presentation-visuals",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-positioning",
+    "studio": "marketing",
+    "prompt": "Position our new developer tool for an ICP of early-stage SaaS founders.",
+    "expectedSkill": "product-marketing",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-positioning",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-category-messaging",
+    "studio": "marketing",
+    "prompt": "Define the target audience, category, and foundational messaging.",
+    "expectedSkill": "product-marketing",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-category-messaging",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-positioning-core-offer-launch",
+    "studio": "marketing",
+    "prompt": "Clarify ICP positioning and the core offer for a developer-tool launch.",
+    "expectedSkill": "product-marketing",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-positioning-core-offer-launch",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-core-offer-positioning",
+    "studio": "marketing",
+    "prompt": "Clarify the ICP, buying trigger, and core offer for a developer tool.",
+    "expectedSkill": "product-marketing",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-core-offer-positioning",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-voc-research",
+    "studio": "marketing",
+    "prompt": "Run voice of customer research from reviews and interviews.",
+    "expectedSkill": "customer-research",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-voc-research",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-jtbd-persona",
+    "studio": "marketing",
+    "prompt": "Create a JTBD customer persona from Reddit market evidence.",
+    "expectedSkill": "customer-research",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-jtbd-persona",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-landing-copy",
+    "studio": "marketing",
+    "prompt": "Write landing page hero copy with CTA options.",
+    "expectedSkill": "copywriting",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-landing-copy",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-core-offer-copy",
+    "studio": "marketing",
+    "prompt": "Write landing page copy that expresses the core offer and CTA.",
+    "expectedSkill": "copywriting",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-core-offer-copy",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-conversion-copy",
+    "studio": "marketing",
+    "prompt": "Generate conversion copy, a tagline, and value proposition options.",
+    "expectedSkill": "copywriting",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-conversion-copy",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-ai-seo",
+    "studio": "marketing",
+    "prompt": "Create an AI SEO and GEO content plan for organic acquisition.",
+    "expectedSkill": "ai-seo",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-ai-seo",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-llm-visibility",
+    "studio": "marketing",
+    "prompt": "Improve ChatGPT and Perplexity visibility with llms.txt and AI citations.",
+    "expectedSkill": "ai-seo",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-llm-visibility",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-topic-cluster",
+    "studio": "marketing",
+    "prompt": "Build a topic cluster and editorial plan for the blog.",
+    "expectedSkill": "content-strategy",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-topic-cluster",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-content-pillars",
+    "studio": "marketing",
+    "prompt": "Create content pillars and a content roadmap.",
+    "expectedSkill": "content-strategy",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-content-pillars",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-launch",
+    "studio": "marketing",
+    "prompt": "Write the launch strategy for a beta release and Product Hunt announcement.",
+    "expectedSkill": "launch",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-launch",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-launch-copy-campaign",
+    "studio": "marketing",
+    "prompt": "Write launch copy and a lightweight campaign plan for a new AI agent product.",
+    "expectedSkill": "launch",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-launch-copy-campaign",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-feature-announcement",
+    "studio": "marketing",
+    "prompt": "Plan a feature announcement, waitlist, and release strategy.",
+    "expectedSkill": "launch",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-feature-announcement",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-gtm-plan",
+    "studio": "marketing",
+    "prompt": "Create a 90-day growth GTM marketing plan.",
+    "expectedSkill": "marketing-plan",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-gtm-plan",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-fcmo-roadmap",
+    "studio": "marketing",
+    "prompt": "Draft a fractional CMO AARRR roadmap.",
+    "expectedSkill": "marketing-plan",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-fcmo-roadmap",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-google-ads",
+    "studio": "marketing",
+    "prompt": "Generate Google Ads headlines and LinkedIn ad creative.",
+    "expectedSkill": "ad-creative",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-google-ads",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-paid-creative",
+    "studio": "marketing",
+    "prompt": "Create Facebook ads for paid creative testing with ad copy variants.",
+    "expectedSkill": "ad-creative",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-paid-creative",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "ceo-think-bigger-plan-review",
+    "studio": "ceo",
+    "prompt": "Think bigger and rethink this plan before we commit the roadmap.",
+    "expectedSkill": "plan-ceo-review",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "ceo-think-bigger-plan-review",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "ceo-cso-security-audit",
+    "studio": "ceo",
+    "prompt": "Run a CSO security audit for secrets, dependencies, CI, and OWASP risks.",
+    "expectedSkill": "cso",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "ceo-cso-security-audit",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "ceo-post-ship-docs",
+    "studio": "ceo",
+    "prompt": "Update documentation after this release and document what changed.",
+    "expectedSkill": "document-release",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "ceo-post-ship-docs",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-implement-prd",
+    "studio": "engineering",
+    "prompt": "Implement this PRD with tests and commit the work on this branch.",
+    "expectedSkill": "implement",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-implement-prd",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-tdd-feature",
+    "studio": "engineering",
+    "prompt": "Use TDD and red-green-refactor for this new feature.",
+    "expectedSkill": "tdd",
+    "mustRank1": true,
+    "overlapCluster": "engineering-tdd",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-tdd-feature",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-code-review-branch",
+    "studio": "engineering",
+    "prompt": "Use Matt Pocock code review for a two-axis standards and spec review of this branch.",
+    "expectedSkill": "code-review",
+    "mustRank1": true,
+    "overlapCluster": "engineering-code-review",
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-code-review-branch",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-red-green-refactor-tdd",
+    "studio": "engineering",
+    "overlapCluster": "engineering-tdd",
+    "prompt": "red-green-refactor this feature test first",
+    "expectedSkill": "tdd",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-red-green-refactor-tdd",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-generic-code-review-pr",
+    "studio": "engineering",
+    "overlapCluster": "engineering-code-review",
+    "prompt": "code review this PR before landing",
+    "expectedSkill": "review",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-generic-code-review-pr",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-generic-debug-bug",
+    "studio": "engineering",
+    "overlapCluster": "engineering-debugging",
+    "prompt": "debug this flaky production bug",
+    "expectedSkill": "diagnosing-bugs",
+    "mustRank1": true,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-generic-debug-bug",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-pricing-unseeded",
+    "studio": "marketing",
+    "expectedStudio": null,
+    "prompt": "Build a pricing strategy for a new SaaS tier.",
+    "expectedSkill": null,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-pricing-unseeded",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "marketing-hard-negative",
+    "studio": "marketing",
+    "expectedStudio": null,
+    "prompt": "Translate a short French poem into English prose.",
+    "expectedSkill": null,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "marketing-hard-negative",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "design-hard-negative",
+    "studio": "design",
+    "expectedStudio": null,
+    "prompt": "Summarize this quarterly finance spreadsheet in plain English.",
+    "expectedSkill": null,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "design-hard-negative",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "engineering-hard-negative-finance",
+    "studio": "engineering",
+    "expectedStudio": null,
+    "prompt": "Summarize this personal bank statement into a household budget.",
+    "expectedSkill": null,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "engineering-hard-negative-finance",
+      "scenarioGroup": "curated-intent"
+    }
+  },
+  {
+    "id": "ceo-hard-negative-algebra",
+    "studio": "ceo",
+    "expectedStudio": null,
+    "prompt": "Create a quadratic equation worksheet for a middle-school algebra class.",
+    "expectedSkill": null,
+    "provenance": {
+      "source": "evals/skill-routing-evals/v0/scenarios.json",
+      "id": "ceo-hard-negative-algebra",
+      "scenarioGroup": "curated-intent"
+    }
+  }
+]

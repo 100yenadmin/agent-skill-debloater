@@ -11,6 +11,15 @@ const DEFAULT_CANDIDATE_LIMIT = 40;
 const DEFAULT_VOYAGE_RERANK_MODEL = "rerank-2.5-lite";
 const DEFAULT_VOYAGE_RERANK_TIMEOUT_MS = 8000;
 const VOYAGE_RERANK_ENDPOINT = "https://api.voyageai.com/v1/rerank";
+const DEFAULT_JEV_MODEL = "jev-1.13.0";
+const DEFAULT_JEV_RERANK_TIMEOUT_MS = 8000;
+const JEV_SYSTEM_ONE_ENDPOINT = "https://api.typesafe.ai/v1/systemone";
+const JEV_QUESTION_NAME = "skill";
+const JEV_NONE_OPTION = "none";
+const JEV_PICK_INSTRUCTIONS =
+  "A coding agent received the user request in the state. Which one skill should it load to handle the request? " +
+  "Pick 'none' if no listed skill fits the request.";
+const JEV_NONE_DESCRIPTION = "No listed skill fits; the agent should handle the request without loading any of these skills.";
 const STOP_WORDS = new Set([
   "a",
   "an",
@@ -574,9 +583,15 @@ function normalizeVoyageRankings(payload, candidateCards) {
     .filter(Boolean);
 }
 
-function rerankTimeoutMs(value) {
-  const parsed = Number(value);
-  return Number.isInteger(parsed) && parsed > 0 ? parsed : DEFAULT_VOYAGE_RERANK_TIMEOUT_MS;
+function rerankTimeoutMs(value, fallback = DEFAULT_VOYAGE_RERANK_TIMEOUT_MS) {
+  let parsed;
+  try {
+    parsed = Number(value);
+  } catch {
+    // Symbols and objects with throwing coercion fall back instead of breaking the never-throws contract.
+    return fallback;
+  }
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
 }
 
 function failedVoyageRerank(base, message) {
@@ -599,6 +614,18 @@ function invalidVoyageRerank(base) {
   };
 }
 
+// Shadow rerankers must never throw: malformed candidate cards become a `failed` status.
+function safeRerankCandidateCards(candidateCards) {
+  try {
+    return {
+      cards: Array.isArray(candidateCards) ? sanitizeRerankCandidateCards(candidateCards) : [],
+      error: null
+    };
+  } catch (error) {
+    return { cards: [], error: `Invalid rerank candidate cards: ${error?.message ?? "sanitization failed"}` };
+  }
+}
+
 export async function runVoyageRerank({
   query,
   candidateCards,
@@ -607,7 +634,7 @@ export async function runVoyageRerank({
   fetchImpl = globalThis.fetch,
   timeoutMs = rerankTimeoutMs(process.env.VOYAGE_RERANK_TIMEOUT_MS)
 } = {}) {
-  const cards = Array.isArray(candidateCards) ? sanitizeRerankCandidateCards(candidateCards) : [];
+  const { cards, error: cardError } = safeRerankCandidateCards(candidateCards);
   const base = {
     provider: "voyage",
     mode: "shadow",
@@ -616,6 +643,16 @@ export async function runVoyageRerank({
     inputCount: cards.length,
     candidateCards: cards
   };
+
+  if (cardError) {
+    return {
+      ...base,
+      status: "failed",
+      error: compactValue(cardError).slice(0, 240),
+      ranked: [],
+      selectedSkillWouldChange: false
+    };
+  }
 
   if (cards.length === 0) {
     return {
@@ -644,13 +681,13 @@ export async function runVoyageRerank({
     };
   }
 
-  const request = buildVoyageRerankRequest(query, cards, { model });
   const controller = typeof AbortController === "function" ? new AbortController() : null;
   const timeout = controller
     ? setTimeout(() => controller.abort(), rerankTimeoutMs(timeoutMs))
     : null;
 
   try {
+    const request = buildVoyageRerankRequest(query, cards, { model });
     const response = await fetchImpl(VOYAGE_RERANK_ENDPOINT, {
       method: "POST",
       headers: {
@@ -686,6 +723,179 @@ export async function runVoyageRerank({
       ? `Voyage rerank request timed out after ${rerankTimeoutMs(timeoutMs)}ms`
       : error?.message ?? "Voyage rerank request failed";
     return failedVoyageRerank(base, message);
+  } finally {
+    if (timeout) clearTimeout(timeout);
+  }
+}
+
+// One Choice label per candidate card; a repeated skill name gets a positional suffix so
+// labels stay unique. The reserved "none" option is always appended last.
+export function jevOptionLabels(candidateCards) {
+  const used = new Set([JEV_NONE_OPTION]);
+  return candidateCards.map((card, index) => {
+    const name = String(card?.name ?? "");
+    const label = name && !used.has(name) ? name : `${name || "candidate"}#${index + 1}`;
+    used.add(label);
+    return label;
+  });
+}
+
+// Wire shape confirmed against typesafe-sdk 0.7.2 (`_core/endpoints.py` prepare_system_one and
+// `_core/transport.py` prepare): POST {base}/v1/systemone with `Authorization: Bearer <key>` and
+// body `{ state, model, questions: { <name>: { type: "choice", instructions, criteria } } }`, where
+// `criteria` maps each option label to its description. The response is
+// `{ model, answers: { <name>: { type: "choice", choice, confidence, probabilities } }, usage }`.
+export function buildJevRerankRequest(query, candidateCards, { model = DEFAULT_JEV_MODEL } = {}) {
+  if (!Array.isArray(candidateCards)) {
+    throw new Error("candidateCards must be an array");
+  }
+
+  const labels = jevOptionLabels(candidateCards);
+  const criteria = {};
+  candidateCards.forEach((card, index) => {
+    criteria[labels[index]] = formatRerankCandidateDocument(card);
+  });
+  criteria[JEV_NONE_OPTION] = JEV_NONE_DESCRIPTION;
+
+  return {
+    state: { user_request: String(query ?? "") },
+    model,
+    questions: {
+      [JEV_QUESTION_NAME]: {
+        type: "choice",
+        instructions: JEV_PICK_INSTRUCTIONS,
+        criteria
+      }
+    }
+  };
+}
+
+function finiteProbability(value) {
+  const parsed = Number(value);
+  return value !== null && value !== undefined && Number.isFinite(parsed) ? Number(parsed.toFixed(6)) : null;
+}
+
+function normalizeJevAnswer(payload, candidateCards) {
+  const answer = payload?.answers?.[JEV_QUESTION_NAME];
+  const labels = jevOptionLabels(candidateCards);
+  const choice = typeof answer?.choice === "string" ? answer.choice : null;
+  if (!choice || (choice !== JEV_NONE_OPTION && !labels.includes(choice))) return null;
+
+  const probabilities = answer?.probabilities && typeof answer.probabilities === "object" ? answer.probabilities : {};
+  const ranked = candidateCards
+    .map((card, index) => ({
+      index,
+      originalRank: index + 1,
+      name: card.name,
+      source: card.source,
+      skillPath: card.skillPath,
+      probability: finiteProbability(probabilities[labels[index]]),
+      chosen: labels[index] === choice
+    }))
+    // Jev's explicit choice always ranks first, even if another option reports a higher
+    // probability, so `choice`, `ranked[0]` and `selectedSkillWouldChange` agree.
+    .sort((a, b) =>
+      Number(b.chosen) - Number(a.chosen) || (b.probability ?? -1) - (a.probability ?? -1) || a.index - b.index
+    )
+    .map(({ chosen, ...entry }, rankIndex) => ({ rank: rankIndex + 1, ...entry }));
+
+  return {
+    choice,
+    choiceIndex: choice === JEV_NONE_OPTION ? null : labels.indexOf(choice),
+    confidence: finiteProbability(answer?.confidence),
+    noneProbability: finiteProbability(probabilities[JEV_NONE_OPTION]),
+    ranked
+  };
+}
+
+function jevResult(base, status, fields) {
+  return {
+    ...base,
+    status,
+    ranked: [],
+    selectedSkillWouldChange: false,
+    choice: null,
+    confidence: null,
+    noneProbability: null,
+    abstained: null,
+    ...fields
+  };
+}
+
+export async function runJevRerank({
+  query,
+  candidateCards,
+  apiKey = process.env.TYPESAFE_API_KEY,
+  model = process.env.TYPESAFE_MODEL || DEFAULT_JEV_MODEL,
+  fetchImpl = globalThis.fetch,
+  timeoutMs = rerankTimeoutMs(process.env.TYPESAFE_RERANK_TIMEOUT_MS, DEFAULT_JEV_RERANK_TIMEOUT_MS)
+} = {}) {
+  const { cards, error: cardError } = safeRerankCandidateCards(candidateCards);
+  const base = {
+    provider: "jev",
+    mode: "shadow",
+    status: "not-run",
+    model,
+    inputCount: cards.length,
+    candidateCards: cards
+  };
+
+  if (cardError) return jevResult(base, "failed", { error: compactValue(cardError).slice(0, 240) });
+  if (cards.length === 0) return jevResult(base, "skipped-empty-candidates");
+  if (!apiKey) return jevResult(base, "skipped-missing-api-key");
+  if (typeof fetchImpl !== "function") return jevResult(base, "skipped-missing-fetch");
+
+  const effectiveTimeoutMs = rerankTimeoutMs(timeoutMs, DEFAULT_JEV_RERANK_TIMEOUT_MS);
+  const controller = typeof AbortController === "function" ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), effectiveTimeoutMs) : null;
+
+  try {
+    const request = buildJevRerankRequest(query, cards, { model });
+    const response = await fetchImpl(JEV_SYSTEM_ONE_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(request),
+      signal: controller?.signal
+    });
+
+    if (!response?.ok) {
+      return jevResult(base, "failed", {
+        error: `Jev rerank request failed with HTTP ${response?.status ?? "unknown"}`
+      });
+    }
+
+    const payload = await response.json();
+    const answer = normalizeJevAnswer(payload, cards);
+    if (!answer) {
+      return jevResult(base, "invalid-response", {
+        error: "Jev rerank response did not include a valid choice among the candidates",
+        selectedSkillWouldChange: null
+      });
+    }
+    const abstained = answer.choice === JEV_NONE_OPTION;
+
+    return jevResult(base, "completed", {
+      responseModel: typeof payload?.model === "string" ? payload.model : null,
+      usage: {
+        inputTokens: Number.isFinite(Number(payload?.usage?.input_tokens)) ? Number(payload.usage.input_tokens) : null,
+        outputTokens: Number.isFinite(Number(payload?.usage?.output_tokens)) ? Number(payload.usage.output_tokens) : null
+      },
+      ranked: answer.ranked,
+      choice: abstained ? JEV_NONE_OPTION : cards[answer.choiceIndex].name,
+      confidence: answer.confidence,
+      noneProbability: answer.noneProbability,
+      abstained,
+      selectedSkillWouldChange: abstained || answer.choiceIndex !== 0
+    });
+  } catch (error) {
+    const message = error?.name === "AbortError"
+      ? `Jev rerank request timed out after ${effectiveTimeoutMs}ms`
+      : error?.message ?? "Jev rerank request failed";
+    return jevResult(base, "failed", { error: compactValue(message).slice(0, 240) });
   } finally {
     if (timeout) clearTimeout(timeout);
   }

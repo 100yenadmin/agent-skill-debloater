@@ -6,11 +6,17 @@ import {
   buildRerankCandidateCards,
   defaultCatalogDir,
   loadCatalog,
+  runJevRerank,
   runVoyageRerank,
   searchCatalog
 } from "./search.mjs";
 
 const SUITE = "rerank-quality/v0";
+const PROVIDER_IMPLS = {
+  voyage: runVoyageRerank,
+  jev: runJevRerank
+};
+const DEFAULT_PROVIDER = "voyage";
 const DEFAULT_LIMIT = 5;
 const THRESHOLDS = {
   promotionMrrAt3Gain: 0.05,
@@ -19,7 +25,7 @@ const THRESHOLDS = {
   privacyLeakCount: 0
 };
 const PROOF_BOUNDARY =
-  "Rerank quality evals are advisory shadow evidence only; they do not promote Voyage ordering.";
+  "Rerank quality evals are advisory shadow evidence only; they do not promote Voyage ordering or Jev picks.";
 
 function toPath(input) {
   if (input instanceof URL) return fileURLToPath(input);
@@ -30,17 +36,49 @@ function toPath(input) {
   return input;
 }
 
+function suiteFor(scenarioPath) {
+  const match = toPath(scenarioPath).split(path.sep).join("/").match(/rerank-quality\/(v\d+)\/[^/]+$/);
+  return match ? `rerank-quality/${match[1]}` : SUITE;
+}
+
+// A scenario with `expectedSkill: null` is a hard negative: no skill should be selected.
 function validateScenario(scenario) {
-  for (const field of ["id", "studio", "prompt", "expectedSkill"]) {
+  for (const field of ["id", "studio", "prompt"]) {
     if (typeof scenario[field] !== "string" || scenario[field].length === 0) {
       throw new Error(`Rerank scenario ${scenario.id ?? "<unknown>"} ${field} must be a non-empty string`);
     }
+  }
+  if (scenario.expectedSkill !== null && (typeof scenario.expectedSkill !== "string" || scenario.expectedSkill.length === 0)) {
+    throw new Error(`Rerank scenario ${scenario.id ?? "<unknown>"} expectedSkill must be a non-empty string or null`);
   }
 }
 
 function rankOfNames(names, expectedSkill) {
   const index = names.indexOf(expectedSkill);
   return index === -1 ? null : index + 1;
+}
+
+// Providers that can abstain (Jev) rank "none" among the candidates by its probability, so an
+// abstention on a positive scenario pushes the expected skill down one place.
+function shadowNames(rerank) {
+  if (rerank?.status !== "completed") return [];
+  const ranked = rerank.ranked ?? [];
+  const names = ranked.map((entry) => entry.name);
+  if (typeof rerank.abstained !== "boolean") return names;
+  // A non-abstaining pick is ranked[0] and stays ahead of "none"; the remaining candidates are in
+  // probability order, so "none" goes after those at or above its probability.
+  const noneAt = rerank.abstained
+    ? 0
+    : 1 + ranked.slice(1).filter((entry) => (entry.probability ?? -1) >= (rerank.noneProbability ?? -1)).length;
+  names.splice(noneAt, 0, null);
+  return names;
+}
+
+function latencySummary(values) {
+  if (values.length === 0) return { count: 0, p50: null, p95: null, max: null };
+  const sorted = [...values].sort((a, b) => a - b);
+  const at = (p) => sorted[Math.min(sorted.length - 1, Math.ceil(p * sorted.length) - 1)];
+  return { count: sorted.length, p50: at(0.5), p95: at(0.95), max: sorted[sorted.length - 1] };
 }
 
 function rankMetrics(ranks) {
@@ -92,15 +130,15 @@ function countPrivateFieldLeaks(cards) {
   };
 }
 
-function statusCounts(rows) {
+function statusCounts(entries) {
   const counts = {};
-  for (const row of rows) {
-    counts[row.rerank.status] = (counts[row.rerank.status] ?? 0) + 1;
+  for (const entry of entries) {
+    counts[entry.rerank.status] = (counts[entry.rerank.status] ?? 0) + 1;
   }
   return Object.fromEntries(Object.entries(counts).sort(([a], [b]) => a.localeCompare(b)));
 }
 
-function promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy }) {
+function promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy, negatives, deterministicNegatives, negativeCoverage }) {
   const reasons = [];
   const deltas = {
     recallAt3: deltaMetric(shadowCompleted.recallAt3, deterministicCompleted.recallAt3),
@@ -119,27 +157,33 @@ function promotionDecision({ completedRows, deterministicCompleted, shadowComple
   if (completedRows.length > 0 && !mrrGain && !top1Gain) {
     reasons.push("insufficient-mrr-or-top1-gain");
   }
+  // Hard negatives: the provider must not accept more "no skill" requests than deterministic search did.
+  if (negatives?.count > 0 && negatives.correct < (deterministicNegatives?.correct ?? 0)) {
+    reasons.push("hard-negative-regression");
+  }
+  // Negatives with no candidates never reach the reranker, so they are not evidence about it.
+  if (!negativeCoverage || negativeCoverage.completedCount === 0) {
+    reasons.push("no-negative-coverage");
+  } else if (negativeCoverage.completedCount < negativeCoverage.candidateCount) {
+    reasons.push("incomplete-negative-coverage");
+  }
 
   return {
     eligible: reasons.length === 0,
     reasons,
     deltas,
     criteria:
-      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, and no privacy regression."
+      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, no hard-negative regression, every candidate-bearing hard negative reranked to completion (at least one), and no privacy regression."
   };
 }
 
-export function buildRerankEvalReport(result) {
-  const completedRows = result.rows.filter((row) => row.rerank.status === "completed");
-  const deterministic = rankMetrics(result.rows.map((row) => row.deterministic.rank));
-  const deterministicCompleted = rankMetrics(completedRows.map((row) => row.deterministic.rank));
-  const shadowCompleted = rankMetrics(completedRows.map((row) => row.shadow.rank));
-  const privacy = result.rows.reduce(
-    (acc, row) => ({
-      candidateBodyLeaks: acc.candidateBodyLeaks + row.privacy.candidateBodyLeaks,
-      candidateReadPathLeaks: acc.candidateReadPathLeaks + row.privacy.candidateReadPathLeaks,
-      rerankBodyLeaks: acc.rerankBodyLeaks + row.privacy.rerankBodyLeaks,
-      rerankReadPathLeaks: acc.rerankReadPathLeaks + row.privacy.rerankReadPathLeaks
+function sumPrivacy(entries) {
+  return entries.reduce(
+    (acc, entry) => ({
+      candidateBodyLeaks: acc.candidateBodyLeaks + entry.privacy.candidateBodyLeaks,
+      candidateReadPathLeaks: acc.candidateReadPathLeaks + entry.privacy.candidateReadPathLeaks,
+      rerankBodyLeaks: acc.rerankBodyLeaks + entry.privacy.rerankBodyLeaks,
+      rerankReadPathLeaks: acc.rerankReadPathLeaks + entry.privacy.rerankReadPathLeaks
     }),
     {
       candidateBodyLeaks: 0,
@@ -148,30 +192,143 @@ export function buildRerankEvalReport(result) {
       rerankReadPathLeaks: 0
     }
   );
-  const promotion = promotionDecision({
-    completedRows,
-    deterministicCompleted,
-    shadowCompleted,
-    privacy
-  });
-  const thresholdFailures = [];
-  if (promotion.reasons.includes("privacy-leak")) thresholdFailures.push("privacy-leak");
+}
+
+function negativeSummary(flags) {
+  const correct = flags.filter(Boolean).length;
+  return { count: flags.length, correct, accuracy: flags.length ? correct / flags.length : null };
+}
+
+function providerReport(rows, name) {
+  const entries = rows.map((row) => ({ row, ...row.providers[name] }));
+  const positives = entries.filter((entry) => !entry.row.negative);
+  const completedRows = positives.filter((entry) => entry.rerank.status === "completed");
+  const deterministicCompleted = rankMetrics(completedRows.map((entry) => entry.row.deterministic.rank));
+  const shadowCompleted = rankMetrics(completedRows.map((entry) => entry.shadow.rank));
+  const privacy = sumPrivacy(entries);
+  const completed = entries.filter((entry) => entry.rerank.status === "completed");
+  const negativeEntries = entries.filter((entry) => entry.row.negative);
+  const negatives = negativeSummary(negativeEntries.map((entry) => entry.negativeCorrect));
+  const deterministicNegatives = negativeSummary(negativeEntries.map((entry) => entry.row.deterministic.negativeCorrect));
+  const candidateNegatives = negativeEntries.filter((entry) => (entry.row.deterministic.topResults?.length ?? 0) > 0);
+  const negativeCoverage = {
+    candidateCount: candidateNegatives.length,
+    completedCount: candidateNegatives.filter((entry) => entry.rerank.status === "completed").length
+  };
+  const usageRows = completed.filter((entry) => entry.rerank.usage);
 
   return {
-    suite: SUITE,
-    scenarioCount: result.rows.length,
-    thresholds: THRESHOLDS,
-    statusCounts: statusCounts(result.rows),
-    metrics: {
-      deterministic,
-      deterministicCompleted,
-      shadowCompleted
-    },
+    statusCounts: statusCounts(entries),
+    metrics: { deterministicCompleted, shadowCompleted },
+    negatives,
+    negativeCoverage,
+    wouldChangeTop1Count: completed.filter((entry) => entry.rerank.selectedSkillWouldChange === true).length,
+    abstainedCount: completed.filter((entry) => entry.rerank.abstained === true).length,
+    latencyMs: latencySummary(completed.map((entry) => entry.latencyMs)),
+    ...(usageRows.length
+      ? {
+          usage: {
+            inputTokens: usageRows.reduce((sum, entry) => sum + (entry.rerank.usage.inputTokens ?? 0), 0),
+            outputTokens: usageRows.reduce((sum, entry) => sum + (entry.rerank.usage.outputTokens ?? 0), 0)
+          }
+        }
+      : {}),
     privacy,
-    promotion,
+    promotion: promotionDecision({
+      completedRows,
+      deterministicCompleted,
+      shadowCompleted,
+      privacy,
+      negatives,
+      deterministicNegatives,
+      negativeCoverage
+    })
+  };
+}
+
+export function buildRerankEvalReport(result) {
+  const providerNames = result.providers ?? [DEFAULT_PROVIDER];
+  const providers = Object.fromEntries(providerNames.map((name) => [name, providerReport(result.rows, name)]));
+  const primary = providers[providerNames[0]];
+  const positives = result.rows.filter((row) => !row.negative);
+  const negatives = result.rows.filter((row) => row.negative);
+  const thresholdFailures = [];
+  if (Object.values(providers).some((report) => report.promotion.reasons.includes("privacy-leak"))) {
+    thresholdFailures.push("privacy-leak");
+  }
+
+  return {
+    suite: result.suite ?? SUITE,
+    scenarioCount: result.rows.length,
+    positiveCount: positives.length,
+    negativeCount: negatives.length,
+    candidateLimit: result.candidateLimit ?? DEFAULT_LIMIT,
+    thresholds: THRESHOLDS,
+    statusCounts: primary.statusCounts,
+    metrics: {
+      deterministic: rankMetrics(positives.map((row) => row.deterministic.rank)),
+      deterministicCompleted: primary.metrics.deterministicCompleted,
+      shadowCompleted: primary.metrics.shadowCompleted
+    },
+    deterministicNegatives: negativeSummary(negatives.map((row) => row.deterministic.negativeCorrect)),
+    privacy: primary.privacy,
+    promotion: primary.promotion,
+    providers,
     thresholdFailures,
     proofBoundary: PROOF_BOUNDARY,
     rows: result.rows
+  };
+}
+
+function resolveProviders({ providers, rerankImpl, rerankOptions }) {
+  if (!providers) return [[DEFAULT_PROVIDER, { impl: rerankImpl, options: rerankOptions }]];
+  const list = Array.isArray(providers) ? providers.map((name) => [name, {}]) : Object.entries(providers);
+  if (list.length === 0) throw new Error("Rerank eval requires at least one provider");
+  return list.map(([name, spec]) => {
+    const impl = typeof spec === "function" ? spec : spec?.impl ?? PROVIDER_IMPLS[name];
+    if (typeof impl !== "function") throw new Error(`Unknown rerank provider: ${name}`);
+    return [name, { impl, options: typeof spec === "function" ? {} : spec?.options ?? {} }];
+  });
+}
+
+async function runProvider(impl, options, { query, candidateCards, deterministicEmpty }) {
+  const startedAt = performance.now();
+  // Scorers receive the query and compact candidate cards only, never the scenario or its label.
+  const rerank = await impl({ ...options, query, candidateCards });
+  const latencyMs = Number((performance.now() - startedAt).toFixed(1));
+  const rerankLeaks = countPrivateFieldLeaks(rerank?.candidateCards);
+  const candidateLeaks = countPrivateFieldLeaks(candidateCards);
+  const status = rerank?.status ?? "failed";
+
+  return {
+    rerank: {
+      provider: rerank?.provider ?? null,
+      mode: rerank?.mode ?? "shadow",
+      status,
+      model: rerank?.model ?? null,
+      inputCount: rerank?.inputCount ?? candidateCards.length,
+      selectedSkillWouldChange: rerank?.selectedSkillWouldChange ?? null,
+      error: rerank?.error ?? null,
+      ranked: rerank?.ranked ?? [],
+      ...(typeof rerank?.abstained === "boolean" || rerank?.provider === "jev"
+        ? {
+            choice: rerank?.choice ?? null,
+            confidence: rerank?.confidence ?? null,
+            noneProbability: rerank?.noneProbability ?? null,
+            abstained: rerank?.abstained ?? null
+          }
+        : {}),
+      ...(rerank?.usage ? { usage: rerank.usage } : {})
+    },
+    shadowNames: shadowNames(rerank),
+    latencyMs,
+    negativeCorrect: deterministicEmpty || (status === "completed" && rerank?.abstained === true),
+    privacy: {
+      candidateBodyLeaks: candidateLeaks.body,
+      candidateReadPathLeaks: candidateLeaks.readPath,
+      rerankBodyLeaks: rerankLeaks.body,
+      rerankReadPathLeaks: rerankLeaks.readPath
+    }
   };
 }
 
@@ -181,9 +338,11 @@ export async function runRerankQualityEval(
     catalogDir = defaultCatalogDir(),
     limit = DEFAULT_LIMIT,
     rerankImpl = runVoyageRerank,
-    rerankOptions = {}
+    rerankOptions = {},
+    providers
   } = {}
 ) {
+  const providerSpecs = resolveProviders({ providers, rerankImpl, rerankOptions });
   const scenarios = JSON.parse(await readFile(toPath(scenarioPath), "utf8"));
   if (!Array.isArray(scenarios)) {
     throw new Error("Rerank eval scenarios must be a JSON array");
@@ -208,70 +367,74 @@ export async function runRerankQualityEval(
     const catalog = catalogsByStudio.get(scenario.studio);
     const results = searchCatalog(catalog, scenario.prompt, { limit: scenario.limit ?? limit });
     const candidateCards = buildRerankCandidateCards(results);
-    const candidateLeaks = countPrivateFieldLeaks(candidateCards);
-    const rerank = await rerankImpl({
-      query: scenario.prompt,
-      candidateCards,
-      scenario,
-      ...rerankOptions
-    });
-    const rerankLeaks = countPrivateFieldLeaks(rerank?.candidateCards);
+    const negative = scenario.expectedSkill === null;
     const deterministicNames = results.map((result) => result.name);
-    const shadowNames = rerank?.status === "completed"
-      ? (rerank.ranked ?? []).map((entry) => entry.name)
-      : [];
+    const providerRows = {};
+
+    for (const [name, spec] of providerSpecs) {
+      const run = await runProvider(spec.impl, spec.options, {
+        query: scenario.prompt,
+        candidateCards,
+        deterministicEmpty: results.length === 0
+      });
+      providerRows[name] = {
+        rerank: { ...run.rerank, provider: run.rerank.provider ?? name },
+        shadow: {
+          rank: !negative && run.shadowNames.length ? rankOfNames(run.shadowNames, scenario.expectedSkill) : null,
+          topResults: run.rerank.ranked
+        },
+        latencyMs: run.latencyMs,
+        negativeCorrect: negative ? run.negativeCorrect : null,
+        privacy: run.privacy
+      };
+    }
+    const primary = providerRows[providerSpecs[0][0]];
 
     rows.push({
       id: scenario.id,
       studio: scenario.studio,
       prompt: scenario.prompt,
       expectedSkill: scenario.expectedSkill,
+      negative,
       overlapCluster: scenario.overlapCluster ?? null,
+      ...(scenario.provenance ? { provenance: scenario.provenance } : {}),
       deterministic: {
-        rank: rankOfNames(deterministicNames, scenario.expectedSkill),
+        rank: negative ? null : rankOfNames(deterministicNames, scenario.expectedSkill),
+        negativeCorrect: negative ? results.length === 0 : null,
         topResults: compactResults(results)
       },
-      rerank: {
-        provider: rerank?.provider ?? "voyage",
-        mode: rerank?.mode ?? "shadow",
-        status: rerank?.status ?? "failed",
-        model: rerank?.model ?? null,
-        inputCount: rerank?.inputCount ?? candidateCards.length,
-        selectedSkillWouldChange: rerank?.selectedSkillWouldChange ?? null,
-        error: rerank?.error ?? null,
-        ranked: rerank?.ranked ?? []
-      },
-      shadow: {
-        rank: shadowNames.length ? rankOfNames(shadowNames, scenario.expectedSkill) : null,
-        topResults: rerank?.ranked ?? []
-      },
-      privacy: {
-        candidateBodyLeaks: candidateLeaks.body,
-        candidateReadPathLeaks: candidateLeaks.readPath,
-        rerankBodyLeaks: rerankLeaks.body,
-        rerankReadPathLeaks: rerankLeaks.readPath
-      }
+      rerank: primary.rerank,
+      shadow: primary.shadow,
+      privacy: primary.privacy,
+      providers: providerRows
     });
   }
 
   return {
-    suite: SUITE,
+    suite: suiteFor(scenarioPath),
+    candidateLimit: limit,
+    providers: providerSpecs.map(([name]) => name),
     rows
   };
 }
 
-function parseCliArgs(argv) {
-  const [scenarioPath, ...rest] = argv;
+const USAGE =
+  "Usage: node src/eval-rerank.mjs [SCENARIOS] [--scenarios PATH] [--providers voyage,jev] [--candidate-limit N] " +
+  "[--summary] [--report PATH] [--catalog-dir PATH]";
+
+export function parseRerankEvalArgs(argv) {
   const options = {
-    scenarioPath,
+    scenarioPath: null,
     summaryOnly: false,
     reportPath: null,
-    catalogDir: defaultCatalogDir()
+    catalogDir: defaultCatalogDir(),
+    providers: [DEFAULT_PROVIDER],
+    candidateLimit: DEFAULT_LIMIT
   };
 
-  for (let index = 0; index < rest.length; index += 1) {
-    const arg = rest[index];
-    const next = rest[index + 1];
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
 
     if (arg === "--summary") {
       options.summaryOnly = true;
@@ -283,6 +446,26 @@ function parseCliArgs(argv) {
       if (!next || next.startsWith("--")) throw new Error("--catalog-dir requires a path");
       options.catalogDir = pathToFileURL(path.resolve(next));
       index += 1;
+    } else if (arg === "--scenarios") {
+      if (!next || next.startsWith("--")) throw new Error("--scenarios requires a path");
+      options.scenarioPath = next;
+      index += 1;
+    } else if (arg === "--providers") {
+      if (!next || next.startsWith("--")) throw new Error("--providers requires a comma-separated list");
+      const names = next.split(",").map((name) => name.trim()).filter(Boolean);
+      const unknown = names.filter((name) => !Object.hasOwn(PROVIDER_IMPLS, name));
+      if (names.length === 0 || unknown.length > 0) {
+        throw new Error(`--providers must list known providers (${Object.keys(PROVIDER_IMPLS).join(", ")})`);
+      }
+      options.providers = [...new Set(names)];
+      index += 1;
+    } else if (arg === "--candidate-limit") {
+      const parsed = Number(next);
+      if (!Number.isInteger(parsed) || parsed < 1) throw new Error("--candidate-limit must be a positive integer");
+      options.candidateLimit = parsed;
+      index += 1;
+    } else if (!arg.startsWith("--") && options.scenarioPath === null) {
+      options.scenarioPath = arg;
     } else {
       throw new Error(`Unknown argument: ${arg}`);
     }
@@ -299,31 +482,38 @@ async function writeReport(reportPath, report) {
 async function main() {
   let options;
   try {
-    options = parseCliArgs(process.argv.slice(2));
+    options = parseRerankEvalArgs(process.argv.slice(2));
   } catch (error) {
     console.error(error.message);
-    console.error("Usage: node src/eval-rerank.mjs evals/rerank-quality/v0/scenarios.json [--summary] [--report PATH] [--catalog-dir PATH]");
+    console.error(USAGE);
     process.exitCode = 2;
     return;
   }
   if (!options.scenarioPath) {
-    console.error("Usage: node src/eval-rerank.mjs evals/rerank-quality/v0/scenarios.json [--summary] [--report PATH] [--catalog-dir PATH]");
+    console.error(USAGE);
     process.exitCode = 2;
     return;
   }
 
   const result = await runRerankQualityEval(options.scenarioPath, {
-    catalogDir: options.catalogDir
+    catalogDir: options.catalogDir,
+    limit: options.candidateLimit,
+    providers: options.providers
   });
   const report = buildRerankEvalReport(result);
   const output = options.summaryOnly
     ? {
         suite: report.suite,
         scenarioCount: report.scenarioCount,
+        positiveCount: report.positiveCount,
+        negativeCount: report.negativeCount,
+        candidateLimit: report.candidateLimit,
         statusCounts: report.statusCounts,
         metrics: report.metrics,
+        deterministicNegatives: report.deterministicNegatives,
         privacy: report.privacy,
         promotion: report.promotion,
+        providers: report.providers,
         thresholdFailures: report.thresholdFailures,
         proofBoundary: report.proofBoundary
       }
