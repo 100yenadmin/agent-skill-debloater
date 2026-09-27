@@ -40,8 +40,8 @@ this repository's package proof and require separate issue-level approval.
 - public schemas and provenance checks
 - SQLite FTS5 search fast path by default, with portable JSON deterministic
   fallback
-- optional Voyage rerank shadow mode for compact candidate cards
-- rerank-quality shadow evals for optional Voyage comparison without promotion
+- optional Voyage rerank and TypeSafe Jev pick shadow modes for compact candidate cards
+- rerank-quality shadow evals for optional Voyage and Jev comparison without promotion
 - release preflight and scheduled upstream pack diff workflows
 
 ## Schema Contracts
@@ -131,19 +131,37 @@ Set `VOYAGE_RERANK_TIMEOUT_MS` to tune the request timeout. Missing keys,
 timeouts, or API failures leave the primary search results intact and record the
 rerank status in JSON.
 
+Optional TypeSafe Jev picking (`--rerank jev`) is also default-off and
+shadow-only. It sends the same compact candidate cards as one System One
+`choice` question with a `none` option. JSON output reports Jev's pick, its
+confidence, the per-candidate probabilities, whether it abstained, and whether
+the pick differs from the deterministic top candidate.
+
+```bash
+TYPESAFE_API_KEY=... debloat-skill-search engineering "review this pull request" \
+  --rerank jev \
+  --format json
+```
+
+Set `TYPESAFE_MODEL` to override the pinned default `jev-1.13.0` model. Set
+`TYPESAFE_RERANK_TIMEOUT_MS` to change the request timeout (default 8000).
+
 The routing eval gate proves deterministic search quality only. Voyage ordering
-must stay shadow-only until a separate rerank-quality eval proves lift without
-Recall@3 regression.
+and Jev picks must stay shadow-only until a separate rerank-quality eval proves
+lift without a Recall@3 regression.
 
 Run the advisory rerank comparison gate:
 
 ```bash
 npm run eval:rerank
+npm run eval:rerank:v1 -- --providers voyage,jev --candidate-limit 10
 ```
 
-Without `VOYAGE_API_KEY`, the suite exits cleanly with
-`skipped-missing-api-key` rows. With a key, it records shadow ranking deltas and
-promotion eligibility, but still does not reorder normal search results.
+Without API keys, the suite exits cleanly with `skipped-missing-api-key` rows.
+With keys, it records shadow ranking deltas and promotion eligibility for each
+provider, but still does not reorder normal search results. See
+[`docs/rerank-quality.md`](docs/rerank-quality.md) and
+[`RESULTS-JEV-SHADOW.md`](RESULTS-JEV-SHADOW.md).
 
 ## Pack Updates
 
