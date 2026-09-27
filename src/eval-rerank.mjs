@@ -65,9 +65,10 @@ function shadowNames(rerank) {
   const ranked = rerank.ranked ?? [];
   const names = ranked.map((entry) => entry.name);
   if (typeof rerank.abstained !== "boolean") return names;
+  // A non-abstaining pick always stays ahead of "none".
   const noneAt = rerank.abstained
     ? 0
-    : ranked.filter((entry) => (entry.probability ?? -1) >= (rerank.noneProbability ?? -1)).length;
+    : Math.max(1, ranked.filter((entry) => (entry.probability ?? -1) >= (rerank.noneProbability ?? -1)).length);
   names.splice(noneAt, 0, null);
   return names;
 }
@@ -136,7 +137,7 @@ function statusCounts(entries) {
   return Object.fromEntries(Object.entries(counts).sort(([a], [b]) => a.localeCompare(b)));
 }
 
-function promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy }) {
+function promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy, negatives, deterministicNegatives }) {
   const reasons = [];
   const deltas = {
     recallAt3: deltaMetric(shadowCompleted.recallAt3, deterministicCompleted.recallAt3),
@@ -155,13 +156,17 @@ function promotionDecision({ completedRows, deterministicCompleted, shadowComple
   if (completedRows.length > 0 && !mrrGain && !top1Gain) {
     reasons.push("insufficient-mrr-or-top1-gain");
   }
+  // Hard negatives: the provider must not accept more "no skill" requests than deterministic search did.
+  if (negatives?.count > 0 && negatives.correct < (deterministicNegatives?.correct ?? 0)) {
+    reasons.push("hard-negative-regression");
+  }
 
   return {
     eligible: reasons.length === 0,
     reasons,
     deltas,
     criteria:
-      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, and no privacy regression."
+      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, no hard-negative regression, and no privacy regression."
   };
 }
 
@@ -195,12 +200,15 @@ function providerReport(rows, name) {
   const shadowCompleted = rankMetrics(completedRows.map((entry) => entry.shadow.rank));
   const privacy = sumPrivacy(entries);
   const completed = entries.filter((entry) => entry.rerank.status === "completed");
+  const negativeEntries = entries.filter((entry) => entry.row.negative);
+  const negatives = negativeSummary(negativeEntries.map((entry) => entry.negativeCorrect));
+  const deterministicNegatives = negativeSummary(negativeEntries.map((entry) => entry.row.deterministic.negativeCorrect));
   const usageRows = completed.filter((entry) => entry.rerank.usage);
 
   return {
     statusCounts: statusCounts(entries),
     metrics: { deterministicCompleted, shadowCompleted },
-    negatives: negativeSummary(entries.filter((entry) => entry.row.negative).map((entry) => entry.negativeCorrect)),
+    negatives,
     wouldChangeTop1Count: completed.filter((entry) => entry.rerank.selectedSkillWouldChange === true).length,
     abstainedCount: completed.filter((entry) => entry.rerank.abstained === true).length,
     latencyMs: latencySummary(completed.map((entry) => entry.latencyMs)),
@@ -213,7 +221,7 @@ function providerReport(rows, name) {
         }
       : {}),
     privacy,
-    promotion: promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy })
+    promotion: promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy, negatives, deterministicNegatives })
   };
 }
 

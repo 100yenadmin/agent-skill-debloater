@@ -786,8 +786,10 @@ function normalizeJevAnswer(payload, candidateCards) {
       probability: finiteProbability(probabilities[labels[index]]),
       chosen: labels[index] === choice
     }))
+    // Jev's explicit choice always ranks first, even if another option reports a higher
+    // probability, so `choice`, `ranked[0]` and `selectedSkillWouldChange` agree.
     .sort((a, b) =>
-      (b.probability ?? -1) - (a.probability ?? -1) || Number(b.chosen) - Number(a.chosen) || a.index - b.index
+      Number(b.chosen) - Number(a.chosen) || (b.probability ?? -1) - (a.probability ?? -1) || a.index - b.index
     )
     .map(({ chosen, ...entry }, rankIndex) => ({ rank: rankIndex + 1, ...entry }));
 

@@ -65,6 +65,8 @@ Both providers must stay shadow-only unless a separate approved issue shows:
 
 - at least 5% absolute MRR@3 or Top1 gain;
 - no Recall@3 loss;
+- no hard-negative regression: a provider must not pick a skill for more "no skill" requests than
+  deterministic search does (reported per provider as `negatives`; the eval adds `hard-negative-regression`);
 - no privacy regression;
 - clean timeout/fallback behavior;
 - current routing eval thresholds remain green.

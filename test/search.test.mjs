@@ -668,6 +668,21 @@ test("Jev rerank reports abstention and a changed pick as would-change", async (
   assert.equal(changed.selectedSkillWouldChange, true);
 });
 
+test("Jev rerank keeps its explicit choice first even when another option reports a higher probability", async () => {
+  const cards = jevCards(["first", "second", "third"]);
+  const rerank = await runJevRerank({
+    query: "pick the first",
+    candidateCards: cards,
+    apiKey: "test-key",
+    fetchImpl: jevFetch({
+      answers: { skill: { type: "choice", choice: "first", confidence: 0.4, probabilities: { first: 0.3, second: 0.5, third: 0.2, none: 0 } } }
+    })
+  });
+  assert.equal(rerank.choice, "first");
+  assert.deepEqual(rerank.ranked.map((row) => row.name), ["first", "second", "third"]);
+  assert.equal(rerank.selectedSkillWouldChange, false);
+});
+
 test("Jev rerank never throws and reports each skip or failure status", async () => {
   const cards = jevCards(["first"]);
   const cases = [

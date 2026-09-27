@@ -283,6 +283,21 @@ test("rerank-quality/v1 suite runs keyless with 45 positives and 5 labelled nega
   assert.deepEqual(report.thresholdFailures, []);
 });
 
+test("rerank eval blocks promotion when a provider accepts more hard negatives than deterministic search", () => {
+  const privacy = { candidateBodyLeaks: 0, candidateReadPathLeaks: 0, rerankBodyLeaks: 0, rerankReadPathLeaks: 0 };
+  const completed = (rank) => ({ rerank: { status: "completed", selectedSkillWouldChange: false, abstained: false }, shadow: { rank }, privacy, latencyMs: 1 });
+  const rows = [
+    { id: "p1", negative: false, deterministic: { rank: 2 }, providers: { jev: completed(1) } },
+    { id: "p2", negative: false, deterministic: { rank: 2 }, providers: { jev: completed(1) } },
+    { id: "n1", negative: true, deterministic: { rank: null, negativeCorrect: true }, providers: { jev: { ...completed(null), negativeCorrect: false } } }
+  ];
+  const report = buildRerankEvalReport({ rows, providers: ["jev"] });
+  assert.deepEqual(report.providers.jev.negatives, { count: 1, correct: 0, accuracy: 0 });
+  assert.equal(report.providers.jev.promotion.deltas.top1, 1);
+  assert.equal(report.providers.jev.promotion.eligible, false);
+  assert.deepEqual(report.providers.jev.promotion.reasons, ["hard-negative-regression"]);
+});
+
 test("rerank eval CLI validates providers and candidate limits", async () => {
   assert.deepEqual(parseRerankEvalArgs(["--scenarios", "s.json", "--providers", "voyage,jev", "--candidate-limit", "10"]).providers, [
     "voyage",

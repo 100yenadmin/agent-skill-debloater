@@ -28,6 +28,7 @@
     "evals/fresh-agent-smokes/v0/scenarios.json",
     "evals/skill-routing-evals/v0/scenarios.json",
     "evals/rerank-quality/v0/scenarios.json",
+    "evals/rerank-quality/v1/scenarios.json",
     "locks/",
     "overlays/",
     "packs/",
