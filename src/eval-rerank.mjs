@@ -65,10 +65,11 @@ function shadowNames(rerank) {
   const ranked = rerank.ranked ?? [];
   const names = ranked.map((entry) => entry.name);
   if (typeof rerank.abstained !== "boolean") return names;
-  // A non-abstaining pick always stays ahead of "none".
+  // A non-abstaining pick is ranked[0] and stays ahead of "none"; the remaining candidates are in
+  // probability order, so "none" goes after those at or above its probability.
   const noneAt = rerank.abstained
     ? 0
-    : Math.max(1, ranked.filter((entry) => (entry.probability ?? -1) >= (rerank.noneProbability ?? -1)).length);
+    : 1 + ranked.slice(1).filter((entry) => (entry.probability ?? -1) >= (rerank.noneProbability ?? -1)).length;
   names.splice(noneAt, 0, null);
   return names;
 }
@@ -137,7 +138,7 @@ function statusCounts(entries) {
   return Object.fromEntries(Object.entries(counts).sort(([a], [b]) => a.localeCompare(b)));
 }
 
-function promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy, negatives, deterministicNegatives }) {
+function promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy, negatives, deterministicNegatives, negativeCoverage }) {
   const reasons = [];
   const deltas = {
     recallAt3: deltaMetric(shadowCompleted.recallAt3, deterministicCompleted.recallAt3),
@@ -160,13 +161,19 @@ function promotionDecision({ completedRows, deterministicCompleted, shadowComple
   if (negatives?.count > 0 && negatives.correct < (deterministicNegatives?.correct ?? 0)) {
     reasons.push("hard-negative-regression");
   }
+  // Negatives with no candidates never reach the reranker, so they are not evidence about it.
+  if (!negativeCoverage || negativeCoverage.completedCount === 0) {
+    reasons.push("no-negative-coverage");
+  } else if (negativeCoverage.completedCount < negativeCoverage.candidateCount) {
+    reasons.push("incomplete-negative-coverage");
+  }
 
   return {
     eligible: reasons.length === 0,
     reasons,
     deltas,
     criteria:
-      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, no hard-negative regression, and no privacy regression."
+      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, no hard-negative regression, at least one reranked hard negative, and no privacy regression."
   };
 }
 
@@ -203,12 +210,18 @@ function providerReport(rows, name) {
   const negativeEntries = entries.filter((entry) => entry.row.negative);
   const negatives = negativeSummary(negativeEntries.map((entry) => entry.negativeCorrect));
   const deterministicNegatives = negativeSummary(negativeEntries.map((entry) => entry.row.deterministic.negativeCorrect));
+  const candidateNegatives = negativeEntries.filter((entry) => (entry.row.deterministic.topResults?.length ?? 0) > 0);
+  const negativeCoverage = {
+    candidateCount: candidateNegatives.length,
+    completedCount: candidateNegatives.filter((entry) => entry.rerank.status === "completed").length
+  };
   const usageRows = completed.filter((entry) => entry.rerank.usage);
 
   return {
     statusCounts: statusCounts(entries),
     metrics: { deterministicCompleted, shadowCompleted },
     negatives,
+    negativeCoverage,
     wouldChangeTop1Count: completed.filter((entry) => entry.rerank.selectedSkillWouldChange === true).length,
     abstainedCount: completed.filter((entry) => entry.rerank.abstained === true).length,
     latencyMs: latencySummary(completed.map((entry) => entry.latencyMs)),
@@ -221,7 +234,15 @@ function providerReport(rows, name) {
         }
       : {}),
     privacy,
-    promotion: promotionDecision({ completedRows, deterministicCompleted, shadowCompleted, privacy, negatives, deterministicNegatives })
+    promotion: promotionDecision({
+      completedRows,
+      deterministicCompleted,
+      shadowCompleted,
+      privacy,
+      negatives,
+      deterministicNegatives,
+      negativeCoverage
+    })
   };
 }
 

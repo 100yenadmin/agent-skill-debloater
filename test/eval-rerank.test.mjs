@@ -295,7 +295,45 @@ test("rerank eval blocks promotion when a provider accepts more hard negatives t
   assert.deepEqual(report.providers.jev.negatives, { count: 1, correct: 0, accuracy: 0 });
   assert.equal(report.providers.jev.promotion.deltas.top1, 1);
   assert.equal(report.providers.jev.promotion.eligible, false);
-  assert.deepEqual(report.providers.jev.promotion.reasons, ["hard-negative-regression"]);
+  // The negative returned no candidates, so it is also not evidence about the reranker.
+  assert.deepEqual(report.providers.jev.promotion.reasons, ["hard-negative-regression", "no-negative-coverage"]);
+  assert.deepEqual(report.providers.jev.negativeCoverage, { candidateCount: 0, completedCount: 0 });
+});
+
+test("rerank eval places none after candidates above it when Jev's explicit pick sits below none", async () => {
+  const tmpRoot = new URL("./.test-tmp/eval-rerank-none-slot/", import.meta.url);
+  await rm(tmpRoot, { force: true, recursive: true });
+  await mkdir(tmpRoot, { recursive: true });
+  const scenarioPath = new URL("scenarios.json", tmpRoot);
+  await writeScenarios(scenarioPath, [
+    { id: "pos", studio: "marketing", prompt: "write core offer launch copy", expectedSkill: "product-marketing" }
+  ]);
+  const jev = {
+    impl: async ({ candidateCards }) => {
+      const names = candidateCards.map((card) => card.name);
+      const chosen = names.find((name) => name !== "product-marketing");
+      const probability = (name) => (name === chosen ? 0.3 : name === "product-marketing" ? 0.5 : 0.1);
+      const ordered = [chosen, ...names.filter((name) => name !== chosen).sort((a, b) => probability(b) - probability(a))];
+      return {
+        provider: "jev",
+        mode: "shadow",
+        status: "completed",
+        model: "jev-fixture",
+        inputCount: candidateCards.length,
+        candidateCards,
+        ranked: ordered.map((name, index) => ({ rank: index + 1, name, probability: probability(name) })),
+        selectedSkillWouldChange: true,
+        choice: chosen,
+        abstained: false,
+        noneProbability: 0.4
+      };
+    }
+  };
+  const report = buildRerankEvalReport(
+    await runRerankQualityEval(scenarioPath, { catalogDir: fixtureCatalogDir, providers: { jev: jev.impl } })
+  );
+  // Order is [pick 0.3, product-marketing 0.5, none 0.4, ...]: product-marketing stays at rank 2.
+  assert.equal(report.rows[0].providers.jev.shadow.rank, 2);
 });
 
 test("rerank eval CLI validates providers and candidate limits", async () => {

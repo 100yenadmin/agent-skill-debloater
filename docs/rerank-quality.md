@@ -67,6 +67,9 @@ Both providers must stay shadow-only unless a separate approved issue shows:
 - no Recall@3 loss;
 - no hard-negative regression: a provider must not pick a skill for more "no skill" requests than
   deterministic search does (reported per provider as `negatives`; the eval adds `hard-negative-regression`);
+- negative coverage: at least one hard negative that returned candidates must have been reranked, and every such
+  negative must complete (`no-negative-coverage` / `incomplete-negative-coverage`); negatives with no candidates
+  never reach a reranker and are not evidence about it;
 - no privacy regression;
 - clean timeout/fallback behavior;
 - current routing eval thresholds remain green.
