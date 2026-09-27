@@ -608,6 +608,18 @@ function invalidVoyageRerank(base) {
   };
 }
 
+// Shadow rerankers must never throw: malformed candidate cards become a `failed` status.
+function safeRerankCandidateCards(candidateCards) {
+  try {
+    return {
+      cards: Array.isArray(candidateCards) ? sanitizeRerankCandidateCards(candidateCards) : [],
+      error: null
+    };
+  } catch (error) {
+    return { cards: [], error: `Invalid rerank candidate cards: ${error?.message ?? "sanitization failed"}` };
+  }
+}
+
 export async function runVoyageRerank({
   query,
   candidateCards,
@@ -616,7 +628,7 @@ export async function runVoyageRerank({
   fetchImpl = globalThis.fetch,
   timeoutMs = rerankTimeoutMs(process.env.VOYAGE_RERANK_TIMEOUT_MS)
 } = {}) {
-  const cards = Array.isArray(candidateCards) ? sanitizeRerankCandidateCards(candidateCards) : [];
+  const { cards, error: cardError } = safeRerankCandidateCards(candidateCards);
   const base = {
     provider: "voyage",
     mode: "shadow",
@@ -625,6 +637,16 @@ export async function runVoyageRerank({
     inputCount: cards.length,
     candidateCards: cards
   };
+
+  if (cardError) {
+    return {
+      ...base,
+      status: "failed",
+      error: compactValue(cardError).slice(0, 240),
+      ranked: [],
+      selectedSkillWouldChange: false
+    };
+  }
 
   if (cards.length === 0) {
     return {
@@ -653,13 +675,13 @@ export async function runVoyageRerank({
     };
   }
 
-  const request = buildVoyageRerankRequest(query, cards, { model });
   const controller = typeof AbortController === "function" ? new AbortController() : null;
   const timeout = controller
     ? setTimeout(() => controller.abort(), rerankTimeoutMs(timeoutMs))
     : null;
 
   try {
+    const request = buildVoyageRerankRequest(query, cards, { model });
     const response = await fetchImpl(VOYAGE_RERANK_ENDPOINT, {
       method: "POST",
       headers: {
@@ -800,7 +822,7 @@ export async function runJevRerank({
   fetchImpl = globalThis.fetch,
   timeoutMs = rerankTimeoutMs(process.env.TYPESAFE_RERANK_TIMEOUT_MS, DEFAULT_JEV_RERANK_TIMEOUT_MS)
 } = {}) {
-  const cards = Array.isArray(candidateCards) ? sanitizeRerankCandidateCards(candidateCards) : [];
+  const { cards, error: cardError } = safeRerankCandidateCards(candidateCards);
   const base = {
     provider: "jev",
     mode: "shadow",
@@ -810,16 +832,17 @@ export async function runJevRerank({
     candidateCards: cards
   };
 
+  if (cardError) return jevResult(base, "failed", { error: compactValue(cardError).slice(0, 240) });
   if (cards.length === 0) return jevResult(base, "skipped-empty-candidates");
   if (!apiKey) return jevResult(base, "skipped-missing-api-key");
   if (typeof fetchImpl !== "function") return jevResult(base, "skipped-missing-fetch");
 
   const effectiveTimeoutMs = rerankTimeoutMs(timeoutMs, DEFAULT_JEV_RERANK_TIMEOUT_MS);
-  const request = buildJevRerankRequest(query, cards, { model });
   const controller = typeof AbortController === "function" ? new AbortController() : null;
   const timeout = controller ? setTimeout(() => controller.abort(), effectiveTimeoutMs) : null;
 
   try {
+    const request = buildJevRerankRequest(query, cards, { model });
     const response = await fetchImpl(JEV_SYSTEM_ONE_ENDPOINT, {
       method: "POST",
       headers: {

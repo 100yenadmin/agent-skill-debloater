@@ -705,6 +705,44 @@ test("Jev rerank never throws and reports each skip or failure status", async ()
   }
 });
 
+test("Shadow rerankers return failed instead of throwing on malformed candidate cards", async () => {
+  for (const run of [runJevRerank, runVoyageRerank]) {
+    for (const candidateCards of [[null], [undefined], [{ name: "ok" }, null]]) {
+      const rerank = await run({
+        query: "q",
+        candidateCards,
+        apiKey: "k",
+        fetchImpl: async () => {
+          throw new Error("fetch must not be called");
+        }
+      });
+      assert.equal(rerank.status, "failed");
+      assert.equal(rerank.mode, "shadow");
+      assert.deepEqual(rerank.ranked, []);
+      assert.equal(rerank.selectedSkillWouldChange, false);
+      assert.match(rerank.error, /Invalid rerank candidate cards/);
+    }
+  }
+});
+
+test("CLI output is byte-identical with --rerank omitted and --rerank off", () => {
+  const args = [
+    "bin/debloat-skill-search",
+    "marketing",
+    "SEO content plan for organic acquisition",
+    "--catalog-dir",
+    new URL("./fixtures/catalogs", import.meta.url).pathname,
+    "--pack-root",
+    "coreyhaines31/marketingskills=/packs/marketingskills"
+  ];
+  const cwd = new URL("..", import.meta.url).pathname;
+  for (const format of ["json", "text"]) {
+    const omitted = execFileSync(process.execPath, [...args, "--format", format], { cwd, encoding: "utf8" });
+    const off = execFileSync(process.execPath, [...args, "--format", format, "--rerank", "off"], { cwd, encoding: "utf8" });
+    assert.equal(off, omitted);
+  }
+});
+
 test("Jev request gives duplicate skill names unique option labels", () => {
   const request = buildJevRerankRequest("q", [fixtureEntry("dup"), fixtureEntry("dup"), fixtureEntry("none")]);
   assert.deepEqual(Object.keys(request.questions.skill.criteria), ["dup", "dup#2", "none#3", "none"]);

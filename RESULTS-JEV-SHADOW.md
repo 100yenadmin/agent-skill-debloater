@@ -106,3 +106,28 @@ either provider would add value on harder prompts.
   VM or fleet rollout readiness, or OpenClaw runtime safety. Both providers
   stay default-off and shadow-only. Promotion needs a separate approved PR, as
   `docs/rerank-quality.md` requires.
+
+## Supplementary run: private look-alike roster (not committed)
+
+The v1 suite cannot show lift: deterministic search already gets 44/45 first picks. A second run therefore used a
+private roster that is hard on purpose: 28 skills with overlapping names and descriptions (paraphrases of an internal
+operations toolkit), and 35 synthetic requests (29 positive, 6 "no skill" negatives), all written before this PR by a
+separate research lane. The roster and prompts are not in this repo because they describe internal tooling; only the
+aggregate numbers are reported. Same code and same eval command (`--scenarios`, `--catalog-dir`, `--providers voyage,jev`).
+
+First-pick accuracy on the 26 positives where deterministic search returned candidates (3 positives returned none,
+which no reranker can recover):
+
+| Candidate limit | Deterministic | Voyage | Jev |
+|---|---|---|---|
+| 5 | 0.692 | 0.885 | 0.923 |
+| 10 | 0.692 | 0.923 | 1.000 |
+
+- "No skill" negatives: deterministic 5/6, Voyage 5/6, Jev 6/6.
+- Recall@3 did not drop for either provider (0.923 → 0.923 at N=5; → 1.000 at N=10).
+- Two runs at each limit gave identical metrics. Privacy leaks: 0.
+- Both providers clear the existing promotion rule on this roster; neither clears it on v1.
+
+Proof boundary: the prompts are synthetic and were written by one author. The roster is not reproducible from this repo.
+The numbers show that a reranker helps when catalog entries look alike. They do not show the size of that gain on real
+user queries. Default behaviour is unchanged (`--rerank off`), and any promotion needs its own approved PR.
