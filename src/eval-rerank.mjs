@@ -173,7 +173,7 @@ function promotionDecision({ completedRows, deterministicCompleted, shadowComple
     reasons,
     deltas,
     criteria:
-      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, no hard-negative regression, at least one reranked hard negative, and no privacy regression."
+      "Future promotion requires >=5% absolute MRR@3 or Top1 gain, no Recall@3 loss, no hard-negative regression, every candidate-bearing hard negative reranked to completion (at least one), and no privacy regression."
   };
 }
 
