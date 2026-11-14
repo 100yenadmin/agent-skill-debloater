@@ -30,6 +30,9 @@ on:
   schedule:
     - cron: "17 9 * * 1"
 
+permissions:
+  contents: read
+
 jobs:
   diff-seed-packs:
     if: github.event_name == 'schedule' || inputs.mode == 'diff'
@@ -40,8 +43,8 @@ jobs:
       GITHUB_TOKEN: ${{ github.token }}
       TARGET_REF: ${{ inputs.to || 'main' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22.13.0"
       - run: mkdir -p artifacts/pack-sync
@@ -50,7 +53,7 @@ jobs:
       - run: node bin/pack-sync diff --pack garrytan/gstack --to "$TARGET_REF" > artifacts/pack-sync/gstack.json
       - run: node bin/pack-sync diff --pack obra/superpowers --to "$TARGET_REF" > artifacts/pack-sync/superpowers.json
       - run: node bin/pack-sync diff --pack mattpocock/skills --to "$TARGET_REF" > artifacts/pack-sync/mattpocock-skills.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: upstream-pack-diffs
@@ -69,8 +72,8 @@ jobs:
       TARGET_REF: ${{ inputs.to }}
       RESOLVED_AT: ${{ inputs.resolved_at }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22.13.0"
       - name: Validate update input
@@ -108,7 +111,7 @@ jobs:
           git commit -m "Update ${PACK_ID} skill pack to ${TARGET_REF}"
           git push origin "$BRANCH"
           gh pr create --draft --base main --head "$BRANCH" --title "Update ${PACK_ID} skill pack to ${TARGET_REF}" --body-file artifacts/pack-sync/update-pr-body.md
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: upstream-pack-update-pr-packet
