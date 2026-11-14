@@ -5,6 +5,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,8 +15,8 @@ jobs:
       matrix:
         node-version: ["22.13.0", "26.x"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm test
@@ -32,17 +35,17 @@ jobs:
           node src/fresh-agent-smoke.mjs evals/fresh-agent-smokes/v0/scenarios.json
           --summary
           --report artifacts/fresh-agent-smokes/v0/report-node-${{ matrix.node-version }}.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: skill-routing-evals-v0-node-${{ matrix.node-version }}
           path: artifacts/skill-routing-evals/v0/report-node-${{ matrix.node-version }}.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: rerank-quality-v0-node-${{ matrix.node-version }}
           path: artifacts/rerank-quality/v0/report-node-${{ matrix.node-version }}.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: fresh-agent-smokes-v0-node-${{ matrix.node-version }}
@@ -51,7 +54,7 @@ jobs:
       - run: npm run smoke:openclaw-adapter
       - run: mkdir -p artifacts/clean-room-install/v0
       - run: npm run acceptance:clean-room -- --report artifacts/clean-room-install/v0/report-node-${{ matrix.node-version }}.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: clean-room-install-v0-node-${{ matrix.node-version }}
